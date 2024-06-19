@@ -1,3 +1,7 @@
-# Welcome to Bear Resort!
-Here are all you need ~
-- [Bear Resort Scratch Paper 小熊樂園演算纸](../Bear-Resort/Scratch%20Paper/Blank.pdf)
+# Welcome to Bear Resort! 欢迎来到小熊樂園！
+Here are all you need~ 这里是你需要的一切～
+- Bear Resort Scratch Paper 小熊樂園演算纸
+    - [Blank 空白](/Scratch-Paper/Blank.pdf)
+    - [Lined 线条](/Scratch-Paper/Lined.pdf)
+    - [Hives 蜂巢](/Scratch-Paper/Hives.pdf)
+    - [Chars 稿纸](/Scratch-Paper/Characters.pdf)
