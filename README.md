@@ -1,2 +1,2 @@
-# Welcome to Public Page in Bear Resort.
-Here are all you need.
+# Welcome to Bear Resort!
+Here are all you need ~
