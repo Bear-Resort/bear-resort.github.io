@@ -1,5 +1,12 @@
+<div style="text-align: center;">
+
 # Welcome to Bear Resort! 欢迎来到小熊樂園！
 <img src="/logos/default-bear.png" width="20" height="20">
+
+</div>
+
+
+
 Here are all you need~ 这里是你需要的一切～
 - Bear Resort Scratch Paper 小熊樂園演算纸
     - [Blank 空白](/Scratch-Paper/Blank.pdf)
