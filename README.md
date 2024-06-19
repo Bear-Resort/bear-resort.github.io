@@ -1,4 +1,5 @@
-# Welcome to Bear Resort! 欢迎来到小熊樂園！
+# Welcome to Bear Resort!
+# 欢迎来到小熊樂園！
 
 ## <img src="/logos/default-bear.png" width="100" height="100"><br>
 
