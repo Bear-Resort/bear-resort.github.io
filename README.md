@@ -1,6 +1,6 @@
 # Welcome to Bear Resort!
 # 欢迎来到小熊樂園！
-- [Webpage 网页](bear-resort.github.io)
+- [Webpage 网页](https://bear-resort.github.io)
 
 ## <img src="/logos/default-bear.png" width="100" height="100"><br>
 
