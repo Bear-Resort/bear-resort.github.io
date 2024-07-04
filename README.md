@@ -11,6 +11,9 @@
     - [Hives 蜂巢](/Scratch-Paper/Hives.pdf)
     - [Chars 稿纸](/Scratch-Paper/Characters.pdf)
 
+### Bear Resort Seminars ~ 小熊樂園组会～
+- [Seminars 组会](/Seminars/F24.md)
+
 ### Here are our departments ~ 这里是我们的部门～
 - <img src="/logos/study-abroad.png" width="100" height="100"> Study Abroad Club / 留學俱樂部
 - <img src="/logos/space-traveler.png" width="100" height="100"> Space Travelers / 宇宙旅行團
