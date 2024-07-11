@@ -14,6 +14,10 @@
 ### Bear Resort Seminars ~ 小熊樂園组会～
 - [Seminars 组会](/Seminars/F24.md)
 
+### Hidden post on our xiaohongshu ~ 🐭鼠鼠和宅宅的火化日常🔢补档👾～
+- [Xiaohongshu Link 小红书链接](https://www.xiaohongshu.com/user/profile/64554f4400000000120358c9)
+- [Hidden Posts 补档](/posts/intro.md)
+
 ### Here are our departments ~ 这里是我们的部门～
 - <img src="/logos/study-abroad.png" width="100" height="100"> Study Abroad Club / 留學俱樂部
 - <img src="/logos/space-traveler.png" width="100" height="100"> Space Travelers / 宇宙旅行團
