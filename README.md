@@ -5,11 +5,13 @@
 ## <img src="/logos/default-bear.png" width="100" height="100"><br>
 
 ### Here are all you need ~ 这里是你需要的一切～
-- Bear Resort Scratch Paper 小熊樂園演算纸
+- Bear Resort Scratch Paper 小熊樂園演算紙
     - [Blank 空白](/Scratch-Paper/Blank.pdf)
     - [Lined 线条](/Scratch-Paper/Lined.pdf)
     - [Hives 蜂巢](/Scratch-Paper/Hives.pdf)
     - [Chars 稿纸](/Scratch-Paper/Characters.pdf)
+- Bear Resort Emoji 小熊樂園表情包
+    - [Proceed 前往](/emoji/emoji.md)
 
 ### Bear Resort Seminars ~ 小熊樂園组会～
 - [Seminars 组会](/Seminars/F24.md)
