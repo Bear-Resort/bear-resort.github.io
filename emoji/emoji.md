@@ -21,7 +21,12 @@ In Creation/創作中
 
 ### D4: Little Bear, the Problem Kid 
 ### D4: 問題青年小小熊
-Little bear is, of course, the most adorable creature in the Bear Resort. At the same time, little bear is the problem kid, regularly making troubles and got into infractions. Let's see what inappropriate stuffs little bear would do！
+Little bear is, of course, the most adorable creature in the Bear Resort. At the same time, little bear is the problem kid, regularly making troubles and got into infractions. Let's see what inappropriate stuffs little bear would do!
 小小熊當之無愧是小熊樂園裡最可愛的生物。同時，小小熊也是一個熊孩子，經常在樂園裡闖禍、被警告。來看看小小熊又在樂園裡做了什麼不合時宜的事情吧！
 - Author: Mathy (数数)
 - Download: <img src="/emoji/little_bear.bmp" width="200" height="200"> [Link](https://w.url.cn/s/A9HGgcn#wechat_redirect)
+
+### D5: Little Bear Helps you Talk
+### D5: 你的嘴替小小熊
+In Creation/創作中
+- Coming soon/敬請期待
