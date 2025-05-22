@@ -36,4 +36,4 @@ In Creation/創作中
 Dr. B, a giant panda, is a new member joining the Bear Resort. He is a workout fanatic and is also a doctor (although we don't know if he possesses a medical degree, or Doctor of Philosophy, or both). He also has a benzene reactor on his chest that he rarely takes off...
 大熊貓胖胖博士是小熊樂園的新成員。他酷愛健身，沒人知道他是醫生或是博士，又或許都是？他胸部裝著一個高級苯反應堆，只是他幾乎從不取下它。
 - Author: Mathy (数数)
-- Download: <img src="/emoji/dr_B.bmp" width="200" height="200"> [Link](https://w.url.cn/s/ABTYfiX#wechat_redirect)
+- Download: <img src="/emoji/dr_b.bmp" width="200" height="200"> [Link](https://w.url.cn/s/ABTYfiX#wechat_redirect)
