@@ -36,14 +36,14 @@ largertitle {
 .topnav {
     background-color: #623c11;
     color: #ffffff;
-    overflow: hidden;
-    height: 2px;
-    border-width: 0;
+    /* overflow: hidden; */
+    /* height: 2px; */
+    /* border-width: 0; */
 }
 
 .topnav a {
-    /* display: flex;
-    float: center; */
+    /* display: flex; */
+    float: center;
     color: #f7ed9f;
     text-align: center;
     padding: 14px 24px;
