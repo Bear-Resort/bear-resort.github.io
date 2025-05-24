@@ -1,8 +1,10 @@
+---
+layout: default
+title: "Home"
+---
+
 # Welcome to Bear Resort!
 # 欢迎来到小熊樂園！
-- [Webpage 网页](https://bear-resort.github.io)
-- [Old Page Archive 老的网址](https://sites.google.com/view/bear-resort/home)
-- [Older Page Archive 更老的网址](https://livejohnshopkins.sharepoint.com/sites/mathland/bear_resort)
 
 ## <img src="/logos/default-bear.png" width="100" height="100"><br>
 

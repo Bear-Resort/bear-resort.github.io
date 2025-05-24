@@ -1,17 +1,17 @@
 body {
-    font-family: "Helvetica", serif;
+    font-family: "Trebuchet MS", serif;
     font-size: 12pt;
 }
 
 code {
-    font-family: "Monaco", monospace;
+    font-family: "Lucida Console", monospace;
 }
 
 h1 {
     color: #6b4a1f;
     margin-top: 1em;
     font-size: 16pt;
-}  
+}
 
 h2 {
     color: #7e6c48;
@@ -37,7 +37,10 @@ largertitle {
     background-color: #623c11;
     color: #ffffff;
     overflow: hidden;
+    height: 2px;
+    border-width: 0;
 }
+
 .topnav a {
     display: flex;
     float: center;
@@ -66,5 +69,5 @@ largertitle {
 
 #content {
 	margin: 0 auto;
-	max-width: 30em;
+	max-width: 64em;
 }
