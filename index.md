@@ -3,10 +3,11 @@ layout: default
 title: "Home"
 ---
 
-# Welcome to Bear Resort!
-# 欢迎来到小熊樂園！
+# Welcome to Bear Resort! <br> 欢迎来到小熊樂園！
 
-## <img src="/logos/default-bear.png" width="100" height="100"><br>
+## <img src="/logos/default-bear.gif" width="100" height="100"><br>
 
-### Contact us ~ 联系我们～
-- [Email 电邮](mailto:bear.resort.01@gmail.com)
+Bear Resort is a branch of Mathland. We established this organization in Spring 2023 to facilitate communication among our group.
+
+小熊樂園是数学之境的一个分支。我们于2023年春天建立了这个组织以便我们的交流互动
+
