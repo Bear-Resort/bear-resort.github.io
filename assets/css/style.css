@@ -1,9 +1,9 @@
-body {
-    font-family: "Arial", serif;
+#content body {
+    font-family: "Lucida Bright", serif;
     font-size: 12pt;
 }
 
-code {
+#content code {
     font-family: "Lucida Console", monospace;
 }
 
