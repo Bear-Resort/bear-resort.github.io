@@ -1,5 +1,5 @@
 body {
-    font-family: "Trebuchet MS", serif;
+    font-family: "Lucida Bright", serif;
     font-size: 12pt;
 }
 
@@ -9,6 +9,7 @@ code {
 
 h1 {
     color: #6b4a1f;
+    text-align: center;
     margin-top: 1em;
     font-size: 16pt;
 }
