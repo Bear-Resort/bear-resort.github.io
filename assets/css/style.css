@@ -34,22 +34,23 @@ largertitle {
 
 
 .topnav {
-    background-color: #623c11;
-    color: #ffffff;
-}
+      background-color: #623c11;
+      color: #ffffff;
+    }
 
-.topnav a {
-    color: #f7ed9f;
-    text-align: center;
-    padding: 14px 24px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.topnav a:hover {
-    background-color: #e0d9bd;
-    color: #372914;
-}
+    .topnav a {
+      color: #f7ed9f;
+      text-align: center;
+      padding: 14px 24px;
+      text-decoration: none;
+      font-size: 17px;
+      display: inline-block;
+    }
 
+    .topnav a:hover {
+      background-color: #e0d9bd;
+      color: #372914;
+    }
 .column {
     float: left;
     width: 50%;
