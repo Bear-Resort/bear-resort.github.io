@@ -31,4 +31,14 @@
 </div>
 
 </body>
+
+<script>
+  // Wait for the DOM to load
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a').forEach(link => {
+      link.setAttribute('target', '_blank');
+    });
+  });
+</script>
+
 </html>
