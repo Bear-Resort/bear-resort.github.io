@@ -1,6 +1,7 @@
-#content body {
-    font-family: "Lucida Bright", serif;
+body {
+    font-family: "Lucida Bright", "Georgia", serif;
     font-size: 12pt;
+
 }
 
 #content code {
