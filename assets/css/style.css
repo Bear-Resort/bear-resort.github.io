@@ -37,8 +37,7 @@ largertitle {
     background-color: #623c11;
     color: #ffffff;
     overflow: hidden;
-    height: 2px;
-    border-width: 0;
+    /* height: 2px; */
 }
 
 .topnav a {
