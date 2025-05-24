@@ -60,6 +60,15 @@ a {
     display: inline-block;
 }
 
+.topnav a:visited {
+    color: #f7ed9f;
+    text-align: center;
+    padding: 14px 24px;
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-block;
+}
+
 .topnav a:hover {
     background-color: #e0d9bd;
     color: #372914;
