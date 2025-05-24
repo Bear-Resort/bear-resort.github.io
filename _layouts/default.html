@@ -18,7 +18,7 @@
         <a href="/mathland/mathland.html">Mathland</a> |
         <a href="/legal/legal.html">Legal</a> |
         <a href="/emoji/emoji.html">Emoji</a> |
-        <a href="https://www.instagram.com/bear_resort/">Instagram</a> 
+        <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
     </div>
     <br>
     <div style="text-align: center;">
@@ -35,20 +35,27 @@
 
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    const currentHost = window.location.host;
+    const currentHost = location.hostname;
 
-    document.querySelectorAll('a[href^="http"]').forEach(link => {
-      // Skip links inside the navbar (.topnav)
+    document.querySelectorAll('a').forEach(link => {
+      const href = link.getAttribute('href');
+
+      // Skip if no href or not starting with http (i.e., not an absolute URL)
+      if (!href || !href.startsWith('http')) return;
+
+      // Skip if the link is inside the .topnav div
       if (link.closest('.topnav')) return;
 
-      // Only open external links in a new tab
-      if (!link.href.includes(currentHost)) {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer'); // For security
-      }
+      // Skip if the link is to the same domain
+      if (link.hostname === currentHost) return;
+
+      // Apply attributes to open in new tab
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
     });
   });
 </script>
+
 
 
 </html>
