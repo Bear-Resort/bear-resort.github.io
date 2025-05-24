@@ -77,3 +77,11 @@ largertitle {
 .vfill {
     flex: 1;
 }
+
+a {
+    color: #6b4a1f;
+  }
+  
+  a:visited{
+    color: #6b4a1f;
+  }

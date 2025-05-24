@@ -3,9 +3,7 @@ layout: default
 title: "Emoji"
 ---
 
-## Bear Resort Emoji / 小熊樂園專屬表情包
-
-### Season 1: Daily Life in Bear Resort <br> 第一季: 小熊樂園日常
+## Season 1: Daily Life in Bear Resort <br> 第一季: 小熊樂園日常
 
 <img src="S1.png" height="100"><br>
 
@@ -14,7 +12,7 @@ Beary and little bear are two adorable bears in Bear Resort. They would enjoy th
 - Author: Mathy (数数)
 - Download: <img src="/emoji/bear_resort.bmp" width="200" height="200"> [Link](https://w.url.cn/s/AR0SewL#wechat_redirect)
 
-### Season 2: Mathy's Turntable <br> 第二季: 數數的大轉盤
+## Season 2: Mathy's Turntable <br> 第二季: 數數的大轉盤
 A (unproven) proposition prevailing among chinese netizens is that all emotions of human can be classified into one of five types, 典(pulling quotes), 孝(potentially excessive loyalty), 贏(win), 急(irascible), and 麻(shocked but having nothing to do). Mathy included an extra 輸(lose) to account for more aggressiveness.
 在中國網路上的一個(未證明)的命題為，人類的感情可以被歸類於典、孝、贏、急和麻的一種。數數還貼心地加入了輸，讓這套表情包更富有攻擊力。
 - Author: Mathy (数数)
@@ -25,7 +23,7 @@ A (unproven) proposition prevailing among chinese netizens is that all emotions 
 In Creation/創作中
 - Coming soon/敬請期待 -->
 
-### Season 3: Little Bear, the Problem Kid <br> 第三季: 問題青年小小熊
+## Season 3: Little Bear, the Problem Kid <br> 第三季: 問題青年小小熊
 
 <img src="S3.png" height="100"><br>
 
@@ -39,7 +37,7 @@ Little bear is, of course, the most adorable creature in the Bear Resort. At the
 In Creation/創作中
 - Coming soon/敬請期待 -->
 
-### Season 4: Giant Panda Dr. B <br> 第四季: 大熊貓胖胖博士
+## Season 4: Giant Panda Dr. B <br> 第四季: 大熊貓胖胖博士
 
 <img src="S4.png" height="100"><br>
 
