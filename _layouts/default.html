@@ -33,12 +33,21 @@
 </body>
 
 <script>
-  // Wait for the DOM to load
   window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a').forEach(link => {
-      link.setAttribute('target', '_blank');
+    const currentHost = window.location.host;
+
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      // Skip links inside the navbar (.topnav)
+      if (link.closest('.topnav')) return;
+
+      // Only open external links in a new tab
+      if (!link.href.includes(currentHost)) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer'); // For security
+      }
     });
   });
 </script>
+
 
 </html>
