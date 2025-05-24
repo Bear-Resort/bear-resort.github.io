@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Emoji"
+---
+
 ## Bear Resort Emoji / 小熊樂園專屬表情包
 
 ### D1: Daily Life in Bear Resort
@@ -14,10 +19,10 @@ A (unproven) proposition prevailing among chinese netizens is that all emotions 
 - Author: Mathy (数数)
 - Download: <img src="/emoji/turntable.bmp" width="200" height="200"> [Link](https://w.url.cn/s/AZh61D6#wechat_redirect)
 
-### D3: Beary's Expenditure of Hopkins 
+<!-- ### D3: Beary's Expenditure of Hopkins 
 ### D3: 小熊勇闖霍普金斯
 In Creation/創作中
-- Coming soon/敬請期待
+- Coming soon/敬請期待 -->
 
 ### D4: Little Bear, the Problem Kid 
 ### D4: 問題青年小小熊
@@ -26,10 +31,10 @@ Little bear is, of course, the most adorable creature in the Bear Resort. At the
 - Author: Mathy (数数)
 - Download: <img src="/emoji/little_bear.bmp" width="200" height="200"> [Link](https://w.url.cn/s/A9HGgcn#wechat_redirect)
 
-### D5: Little Bear Helps you Talk
+<!-- ### D5: Little Bear Helps you Talk
 ### D5: 你的嘴替小小熊
 In Creation/創作中
-- Coming soon/敬請期待
+- Coming soon/敬請期待 -->
 
 ### D6: Giant Panda Dr. B 
 ### D6: 大熊貓胖胖博士

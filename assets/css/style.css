@@ -7,7 +7,7 @@ code {
     font-family: "Lucida Console", monospace;
 }
 
-h1 {
+#content h1 {
     color: #6b4a1f;
     text-align: center;
     margin-top: 1em;
