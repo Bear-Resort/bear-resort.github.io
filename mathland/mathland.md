@@ -7,7 +7,7 @@ One can interpret *mathland* as the educational department of the Bear Resort gi
 
 您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。
 
-# <img src="/logos/mathland.gif" height="200"><br>
+# <img src="/logos/mathland.gif" height="250"><br>
 
 ## Bear Resort Scratch Paper <br> 小熊樂園演算紙
 - [Blank 空白](/Scratch-Paper/Blank.pdf)
