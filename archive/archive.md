@@ -23,7 +23,7 @@ We have been using some old webpages prior to switching to `github`.
 ### Other Bear Resort Associates <br> 小熊樂園其他
 - [Seminars 组会](/Seminars/F24.md)
 - [Xiaohongshu Link 小红书链接](https://www.xiaohongshu.com/user/profile/64554f4400000000120358c9)
-- [Xiaohongshu Hidden Posts 小红书补档](/posts/intro.md)
+- [Xiaohongshu Hidden Posts 小红书补档](/posts/intro.html)
 
 ### Here are our departments <br> 这里是我们的部门
 - <img src="/logos/study-abroad.png" width="100" height="100"> Study Abroad Club / 留學俱樂部
