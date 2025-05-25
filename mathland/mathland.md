@@ -3,6 +3,12 @@ layout: default
 title: "Mathland"
 ---
 
+One can interpret *mathland* as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.
+
+您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。
+
+# <img src="/logos/mathland.gif" width="200"><br>
+
 ## Bear Resort Exams <br> 小熊樂園的考试
 
 The Bear Resort Qualification Examination aims to evaluate the general capabilities of pre-members, note that the marks to qualify is much lower than the full marks on the paper. The evaluation focuses on (but not limited to) Bear Resort information, language skills, literature capabilities, mathematical logics, physics/chemistry capabilities, computer usages, and commonsense; therefore, competitors should select questions that they are comfortable with and skip the unfamiliar topics.
