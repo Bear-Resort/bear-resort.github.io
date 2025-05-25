@@ -5,7 +5,7 @@ title: "Home"
 
 # Welcome to Bear Resort! <br> 欢迎来到小熊樂園！
 
-# <img src="/logos/default-bear.gif" width="100" height="100"><br>
+# <img src="/logos/home.gif" width="150" height="150"><br>
 
 Bear Resort is a branch of Mathland. We established this organization in Spring 2023 to facilitate communication among our group, foster collaboration, and create a welcoming environment for sharing ideas and initiatives.
 
