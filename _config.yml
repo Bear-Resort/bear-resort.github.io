@@ -5,3 +5,9 @@ relative_links:
   collections: true
 include:
   - README.md
+defaults:
+  - scope:
+      path: ""   # applies to all files
+      type: "pages"
+    values:
+      layout: default
