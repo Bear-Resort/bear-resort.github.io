@@ -35,24 +35,12 @@
 </body>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // Get your current site's hostname
-    const currentHost = window.location.hostname;
-
-    // Loop through all <a> tags
-    document.querySelectorAll('a').forEach(link => {
-      const href = link.getAttribute('href');
-      
-      // Skip links that are inside .topnav
-      if (link.closest('.topnav')) return;
-
-      // Open external link in new tab
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
-    });
+  // This will make all links open in a new tab
+  document.querySelectorAll('a').forEach(link => {
+    if (link.closest('.topnav')) return;
+    link.setAttribute('target', '_blank');
   });
 </script>
-
 
 
 
