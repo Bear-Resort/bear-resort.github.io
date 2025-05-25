@@ -27,34 +27,32 @@
     <br>
     {{ content }}
     <br><br><br>
-    <h2>Contact us</h2>
-    Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>. 联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。
+    <footer>
+        Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>. 联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。
+    </footer>
 </div>
 
 </body>
 
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    const currentHost = location.hostname;
+    // Get your current site's hostname
+    const currentHost = window.location.hostname;
 
+    // Loop through all <a> tags
     document.querySelectorAll('a').forEach(link => {
       const href = link.getAttribute('href');
-
-      // Skip if no href or not starting with http (i.e., not an absolute URL)
-      if (!href || !href.startsWith('http')) return;
-
-      // Skip if the link is inside the .topnav div
+      
+      // Skip links that are inside .topnav
       if (link.closest('.topnav')) return;
 
-      // Skip if the link is to the same domain
-      if (link.hostname === currentHost) return;
-
-      // Apply attributes to open in new tab
+      // Open external link in new tab
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
     });
   });
 </script>
+
 
 
 
