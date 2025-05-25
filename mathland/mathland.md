@@ -9,6 +9,12 @@ One can interpret *mathland* as the educational department of the Bear Resort gi
 
 # <img src="/logos/mathland.gif" height="200"><br>
 
+## Bear Resort Scratch Paper <br> 小熊樂園演算紙
+- [Blank 空白](/Scratch-Paper/Blank.pdf)
+- [Lined 线条](/Scratch-Paper/Lined.pdf)
+- [Hives 蜂巢](/Scratch-Paper/Hives.pdf)
+- [Chars 稿纸](/Scratch-Paper/Characters.pdf)
+
 ## Bear Resort Exams <br> 小熊樂園的考试
 
 The Bear Resort Qualification Examination aims to evaluate the general capabilities of pre-members, note that the marks to qualify is much lower than the full marks on the paper. The evaluation focuses on (but not limited to) Bear Resort information, language skills, literature capabilities, mathematical logics, physics/chemistry capabilities, computer usages, and commonsense; therefore, competitors should select questions that they are comfortable with and skip the unfamiliar topics.
