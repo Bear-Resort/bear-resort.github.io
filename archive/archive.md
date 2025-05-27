@@ -23,6 +23,12 @@ We have been using some old webpages prior to switching to `github`.
 - [Xiaohongshu Link 小红书链接](https://www.xiaohongshu.com/user/profile/64554f4400000000120358c9)
 - [Xiaohongshu Hidden Posts 小红书补档](/posts/intro.html)
 
+## Comedy Show Scripts <br> 小品剧本
+- [Having Fun in Writing Class 写作课堂欢乐多](小品-写作课堂欢乐多普通版.pdf)
+Upcoming...
+- [The News Live Show 新闻直播秀]
+- [Advanture of the Blue Car 小蓝车奇遇记]
+
 <!-- ## Here are our departments <br> 这里是我们的部门
 - <img src="/logos/study-abroad.png" width="100" height="100"> Study Abroad Club / 留學俱樂部
 - <img src="/logos/space-traveler.png" width="100" height="100"> Space Travelers / 宇宙旅行團
