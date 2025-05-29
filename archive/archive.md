@@ -24,7 +24,7 @@ We have been using some old webpages prior to switching to `github`.
 - [Xiaohongshu Hidden Posts 小红书补档](/posts/intro.html) -->
 
 ## Comedy Show Scripts <br> 小品剧本
-- [Having Fun in Writing Class 写作课堂欢乐多](小品-写作课堂欢乐多.pdf)
+- [Having Fun in Writing Class 写作课堂欢乐多](小品-写作课堂欢乐多.pdf) ([Recording 錄製](https://youtu.be/VEa-i194gtY?si=HeigVH2i2TaMvuDO&t=7562))
 
 Upcoming... / 即将到来 
 - [The News Live Show 新闻直播秀](语言-新闻秀.pdf)
