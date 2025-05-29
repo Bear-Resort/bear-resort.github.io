@@ -1,5 +1,4 @@
 ---
-layout: page
 title: "Bear Resort Constitution"
 ---
 
