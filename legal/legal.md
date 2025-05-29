@@ -10,4 +10,4 @@ The *legal* department deals with the legitimate and court stuffs inside the Bea
 # <img src="/logos/legal.gif" height="200"><br>
 
 - [Court Citation / 法庭传唤](BR-citation.pdf)
-- [Bear Resort Constitution / 小熊樂園憲法](https://sites.google.com/view/bear-resort/modules/04/defining-bears)
+- [Bear Resort Constitution / 小熊樂園憲法](legal.html)
