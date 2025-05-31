@@ -134,6 +134,27 @@ textarea {
     overflow: hidden;
 }
 
+.button-wrapper {
+    display: flex;
+    align-items: center;  
+    justify-content: flex-start;
+    width: 120px;
+}
+
+.button-wrapper span {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    gap: 20px; 
+    margin-top: 50px;
+    width: 100%;
+}
+
 .switch {
     display: inline-flex;
     align-items: center;  
@@ -141,6 +162,7 @@ textarea {
     position: relative;
     width: 70px;
     height: 34px;
+    overflow: hidden;
 }
 
 /* Hide the default HTML checkbox */
@@ -182,26 +204,6 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(26px);
+    transform: translateX(25px);
     background-image: url('/logos/yes.png');
-}
-
-.button-wrapper {
-    display: flex;
-    align-items: center;  
-    justify-content: flex-start;
-}
-
-.button-wrapper span {
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-.buttons-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-end; 
-    gap: 20px; 
-    margin-top: 50px;
-    width: 100%;
 }
