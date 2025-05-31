@@ -15,8 +15,20 @@ var score = 0;
         });
     }
     
-    function result() {
+    async function result() {
         const name = document.getElementById('inputBox').value;
+
+        if (name === "") {
+            document.getElementById('result').textContent =  "You need to fill in your name, my friend! / 你需要填写你的名字, 我的朋友。";
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            document.getElementById('result').textContent =  "";
+            await new Promise(resolve => setTimeout(resolve, 500));
+            document.getElementById('result').textContent =  "You need to fill in your name, my friend! / 你需要填写你的名字, 我的朋友。";
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            document.getElementById('result').textContent =  "";
+            return;
+        }
+
         var outcome = "";
         var sentence = "";
         var outcome_ch = "";
