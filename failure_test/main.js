@@ -19,16 +19,8 @@ var score = 0;
         const name = document.getElementById('inputBox').value;
 
         if (name.trim() === "") {
-            document.getElementById('result').textContent =  "You need to fill in your name, my friend! / 你需要填写你的名字, 我的朋友。";
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            document.getElementById('result').textContent =  " ";
-            await new Promise(resolve => setTimeout(resolve, 50));
-            document.getElementById('result').textContent =  "You need to fill in your name, my friend! / 你需要填写你的名字, 我的朋友。";
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            document.getElementById('result').textContent =  " ";
-            await new Promise(resolve => setTimeout(resolve, 50));
-            document.getElementById('result').textContent =  "You need to fill in your name, my friend! / 你需要填写你的名字, 我的朋友。";
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            document.getElementById('result').textContent =  "You need to fill in your name, my friend! We do not record your name and it is for your own reference. / 你需要填写你的名字，我的朋友。我们不会记录你的名字，这个是给你自己的.";
+            await new Promise(resolve => setTimeout(resolve, 3000));
             document.getElementById('result').textContent =  "";
         } else {
             var outcome = "";
