@@ -248,24 +248,24 @@ You will be filling out this survey and this page would compute how failure your
 </div>
 
 <script>
+    var score = 0;
+
+    // Update text for each switch based on state
+    for (let i = 1; i <= 20; i++) {
+        const switchButton = document.getElementById(`switchButton${i}`);
+        const statusText = document.getElementById(`status${i}`);
+        switchButton.addEventListener('change', function() {
+            if (switchButton.checked) {
+                statusText.textContent = 'Yes';
+                score++;
+            } else {
+                statusText.textContent = 'No';
+                score--;
+            }
+        });
+    }
+    
     function result() {
-        var score = 0;
-
-        // Update text for each switch based on state
-        for (let i = 1; i <= 20; i++) {
-            const switchButton = document.getElementById(`switchButton${i}`);
-            const statusText = document.getElementById(`status${i}`);
-            
-            switchButton.addEventListener('change', function() {
-                if (switchButton.checked) {
-                    statusText.textContent = 'Yes';
-                    score++;
-                } else {
-                    statusText.textContent = 'No';
-                }
-            });
-        }
-
         document.getElementById('result').textContent = "Your Result: " + score;
     }
 
