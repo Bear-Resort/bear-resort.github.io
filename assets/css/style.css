@@ -100,7 +100,7 @@ button {
     font-family: "Palatino", serif;
     font-size: 17px;
     padding: 12px 24px;
-    background-color: #ffffff; 
+    background-color: #f7ed9f; 
     color: #6b4a1f;
     border: none;
     border-radius: 6px;
@@ -110,7 +110,7 @@ button {
 
 button:hover {
     background-color: #6b4a1f;
-    color: #ffffff;
+    color: #f7ed9f;
 }
 
 button:disabled {
@@ -158,7 +158,7 @@ textarea {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #b9b191;
+    background-color: #bebdbc;
     transition: 0.4s;
     border-radius: 34px;
 }
@@ -177,13 +177,22 @@ textarea {
     transition: 0.4s;
 }
 
-/* When the checkbox is checked, move the slider */
 input:checked + .slider {
     background-color: #e2cf72;
 }
 
-/* When checked, move the circle to the right */
 input:checked + .slider:before {
     transform: translateX(26px);
     background-image: url('/logos/yes.png');
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: center;  
+    justify-content: flex-start;
+}
+
+.button-wrapper span {
+    margin-right: 10px;
+    font-size: 16px;
 }

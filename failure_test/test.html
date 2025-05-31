@@ -3,17 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Switch Button with Image</title>
+    <title>Multiple Switch Buttons</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container for the buttons */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;  /* Stack buttons vertically */
+            align-items: flex-end; /* Align buttons to the right */
+            gap: 20px; /* Space between buttons */
+            margin-top: 50px;
+            width: 100%; /* Full width for right alignment */
+        }
+
+        /* Style for the switch button container */
+        .button-wrapper {
+            display: flex;
+            align-items: center;  /* Vertically center the switch and text */
+            justify-content: flex-start; /* Left align text and button */
+        }
+
+        .button-wrapper span {
+            margin-right: 10px; /* Space between text and switch */
+            font-size: 16px;
+        }
+
         /* Style for the switch container */
         .switch {
+            display: inline-flex; /* Flexbox for aligning the switch */
+            align-items: center;  /* Vertically center the switch */
             position: relative;
-            display: inline-block;
             width: 60px;
             height: 34px;
         }
 
-        /* Hide the default HTML checkbox */
+        /* Hide the default checkbox */
         .switch input {
             opacity: 0;
             width: 0;
@@ -28,12 +55,12 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #b9b191;
+            background-color: #ccc;
             transition: 0.4s;
             border-radius: 34px;
         }
 
-        /* The circle inside the switch, initially with a background image */
+        /* The circle inside the switch */
         .slider:before {
             position: absolute;
             content: "";
@@ -42,14 +69,14 @@
             border-radius: 50%;
             left: 4px;
             bottom: 4px;
-            background-image: url(no.png); /* Placeholder image */
-            background-size: cover; /* Make the image cover the circle */
+            background-image: url('no.png'); /* Default "No" image */
+            background-size: cover;
             transition: 0.4s;
         }
 
         /* When the checkbox is checked, move the slider */
         input:checked + .slider {
-            background-color: #e2cf72;
+            background-color: #4CAF50;
         }
 
         /* When checked, move the circle to the right */
@@ -57,38 +84,118 @@
             transform: translateX(26px);
             background-image: url('yes.png'); /* Change to "Yes" image */
         }
-
-        /* Style for the text */
-        .status-text {
-            font-size: 20px;
-            margin-left: 10px;
-        }
     </style>
 </head>
 <body>
 
-<h2>Toggle Switch Button with Image</h2>
+<h2>Multiple Toggle Switch Buttons</h2>
 
-<label class="switch">
-  <input type="checkbox" id="switchButton">
-  <span class="slider"></span>
-</label>
+<div class="buttons-container">
+    <!-- Button 1 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status1">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton1">
+            <span class="slider"></span>
+        </label>
+    </div>
 
-<span class="status-text" id="status">No</span>
+    <!-- Button 2 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status2">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton2">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 3 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status3">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton3">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 4 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status4">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton4">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 5 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status5">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton5">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 6 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status6">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton6">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 7 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status7">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton7">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 8 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status8">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton8">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 9 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status9">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton9">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Button 10 -->
+    <div class="button-wrapper">
+        <span class="status-text" id="status10">No</span>
+        <label class="switch">
+            <input type="checkbox" id="switchButton10">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
 
 <script>
-    // Get the elements
-    const switchButton = document.getElementById('switchButton');
-    const statusText = document.getElementById('status');
-
-    // Function to update the text based on the switch state
-    switchButton.addEventListener('change', function() {
-        if (switchButton.checked) {
-            statusText.textContent = 'Yes';
-        } else {
-            statusText.textContent = 'No';
-        }
-    });
+    // Update text for each switch based on state
+    for (let i = 1; i <= 10; i++) {
+        const switchButton = document.getElementById(`switchButton${i}`);
+        const statusText = document.getElementById(`status${i}`);
+        
+        switchButton.addEventListener('change', function() {
+            if (switchButton.checked) {
+                statusText.textContent = 'Yes';
+            } else {
+                statusText.textContent = 'No';
+            }
+        });
+    }
 </script>
 
 </body>
