@@ -94,3 +94,94 @@ a:visited{
 .vfill {
     flex: 1;
 }
+
+
+button {
+    font-family: "Palatino", serif;
+    font-size: 17px;
+    padding: 12px 24px;
+    background-color: #ffffff; 
+    color: #6b4a1f;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6b4a1f;
+    color: #ffffff;
+}
+
+button:disabled {
+    background-color: rgb(74, 82, 83);
+    color: #443f39;
+    cursor: default;
+}
+
+button:disabled a {
+    cursor: default;
+}
+
+
+textarea {
+    font-size: 12px;
+    width: 75%;
+    margin: 0 auto 10px auto;  
+    display: block; 
+    resize: none;
+    height: auto;
+    overflow: hidden;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider/round button */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #b9b191;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+/* The circle inside the switch, initially with a background image */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-image: url('/logos/no.png');
+    background-size: cover;
+    transition: 0.4s;
+}
+
+/* When the checkbox is checked, move the slider */
+input:checked + .slider {
+    background-color: #e2cf72;
+}
+
+/* When checked, move the circle to the right */
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-image: url('/logos/yes.png');
+}

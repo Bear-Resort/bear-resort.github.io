@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q/ 你在多节课拿到了A+。\nYou have at least two majors.\\E$"}
