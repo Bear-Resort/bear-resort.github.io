@@ -6,7 +6,7 @@ title: "Failure Test"
 
 You will be filling out this survey and this page would compute how failure your life is at Hopkins.
 
-你讲填写本问卷，此网页将评估你的霍普金斯生活有多废物。
+你將填写本问卷，用於评估你的霍普金斯生活有多废物。
 
 ### Your name / 你的名字
 
@@ -14,7 +14,7 @@ You will be filling out this survey and this page would compute how failure your
 
 ## Academically / 學術上
 
-- You have a full 4.0 GPA. / 你的绩点是4.0。
+- You have a full 4.0 GPA. / 你的绩点是4.0滿績。
 <div class="buttons-container">
     <div class="button-wrapper">
         <label class="switch">
