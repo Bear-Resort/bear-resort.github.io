@@ -260,6 +260,7 @@ You will be filling out this survey and this page would compute how failure your
                 score++;
             } else {
                 statusText.textContent = 'No';
+                score--;
             }
         });
     }
