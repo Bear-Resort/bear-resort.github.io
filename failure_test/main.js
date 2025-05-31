@@ -19,6 +19,11 @@ var score = 0;
         const name = document.getElementById('inputBox').value;
 
         if (name.trim() === "") {
+            document.getElementById('greeting').textContent = "";
+            document.getElementById('end').textContent =  "";
+            document.getElementById('greeting_ch').textContent = "";
+            document.getElementById('result_ch').textContent = "";
+            document.getElementById('end_ch').textContent =  "";
             document.getElementById('result').textContent =  "You need to fill in your name, my friend! We do not record your name and it is for your own reference. / 你需要填写你的名字，我的朋友。我们不会记录你的名字，这个是给你自己的.";
             await new Promise(resolve => setTimeout(resolve, 3000));
             document.getElementById('result').textContent =  "";
