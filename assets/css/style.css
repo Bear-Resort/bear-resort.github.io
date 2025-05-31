@@ -135,8 +135,10 @@ textarea {
 }
 
 .switch {
+    display: inline-flex;
+    align-items: center;  
+    justify-content: center;
     position: relative;
-    display: inline-block;
     width: 60px;
     height: 34px;
 }
