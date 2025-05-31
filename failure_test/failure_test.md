@@ -10,7 +10,7 @@ You will be filling out this survey and this page would compute how failure your
 
 ### Your name / 你的名字
 
-<textarea id="inputBox" placeholder="Enter your name here..." style="font-size: 16px"></textarea>
+<textarea id="inputBox" placeholder="Enter your name here... / 输入你的名字..." style="font-size: 16px"></textarea>
 
 ## Academically / 學術上
 
