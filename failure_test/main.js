@@ -5,6 +5,7 @@ var score = 0;
         const switchButton = document.getElementById(`switchButton${i}`);
         const statusText = document.getElementById(`status${i}`);
         switchButton.addEventListener('change', function() {
+            clearAll();
             if (switchButton.checked) {
                 statusText.textContent = 'Yes';
                 score++;
@@ -19,11 +20,7 @@ var score = 0;
         const name = document.getElementById('inputBox').value;
 
         if (name.trim() === "") {
-            document.getElementById('greeting').textContent = "";
-            document.getElementById('end').textContent =  "";
-            document.getElementById('greeting_ch').textContent = "";
-            document.getElementById('result_ch').textContent = "";
-            document.getElementById('end_ch').textContent =  "";
+            clearAll();
             document.getElementById('result').textContent =  "You need to fill in your name, my friend! We do not record your name and it is for your own reference. / 你需要填写你的名字，我的朋友。我们不会记录你的名字，这个是给你自己的.";
             await new Promise(resolve => setTimeout(resolve, 3000));
             document.getElementById('result').textContent =  "";
@@ -65,4 +62,13 @@ var score = 0;
             document.getElementById('result_ch').textContent = "你的霍普金斯生活被鉴定为" + outcome_ch + ". " + sentence_ch;
             document.getElementById('end_ch').textContent =  "诚挚的, 小熊樂園.";
         }
+    }
+
+    function clearAll() {
+        document.getElementById('greeting').textContent = "";
+        document.getElementById('end').textContent =  "";
+        document.getElementById('greeting_ch').textContent = "";
+        document.getElementById('result_ch').textContent = "";
+        document.getElementById('end_ch').textContent =  "";
+        document.getElementById('result').textContent =  "";
     }
