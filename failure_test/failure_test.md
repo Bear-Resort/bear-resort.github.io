@@ -244,8 +244,11 @@ You will be filling out this survey and this page would compute how failure your
 
 <div style="text-align: center">
     <button onclick="result()" id="compute">Compute / 结算</button>
-    <div id="result"> Results / 结果:</div>
 </div>
+
+<br>
+
+<div id="result"></div>
 
 <script>
     var score = 0;
@@ -266,7 +269,26 @@ You will be filling out this survey and this page would compute how failure your
     }
     
     function result() {
-        document.getElementById('result').textContent = "Your Result: " + score;
+        const name = document.getElementById('inputBox').value.toLowerCase();
+        var outcome = "";
+        var sentence = "";
+        if (score < 5) {
+            outcome = "absolute failure";
+            sentence = "Try to enjoy your life at Hopkins please!"
+        } else if (score < 10) {
+            outcome = "mostly failure";
+            sentence = "At least there are people that is more failure than you!"
+        } else if (score < 15) {
+            outcome = "somewhat failure";
+            sentence = "Generally not failure, but you can be better!"
+        } else if (score < 20) {
+            outcome = "not really failure";
+            sentence = "Glad you are generally successful here!"
+        } else {
+            outcome = "absolutely successful";
+            sentence = "Well, the only failure you might be is failing to be a failure. Maybe?"
+        }
+        document.getElementById('result').textContent = "Hey" + name + ", your are " + outcome + "." + sentence;
     }
 
 
