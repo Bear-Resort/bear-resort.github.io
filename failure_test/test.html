@@ -24,6 +24,8 @@
             display: flex;
             align-items: center;  /* Vertically center the switch and text */
             justify-content: flex-start; /* Left align text and button */
+            position: relative;
+            width: 120px;  /* Increased width to fit both text and switch */
         }
 
         .button-wrapper span {
@@ -36,8 +38,9 @@
             display: inline-flex; /* Flexbox for aligning the switch */
             align-items: center;  /* Vertically center the switch */
             position: relative;
-            width: 60px;
-            height: 34px;
+            width: 70px;  /* Width of the switch */
+            height: 34px; /* Height of the switch */
+            overflow: hidden;  /* Prevent the slider from overflowing */
         }
 
         /* Hide the default checkbox */
