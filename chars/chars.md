@@ -8,19 +8,19 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 
 ## The Bear Family <br> 熊熊家族
 
-# <img src="beary.png" height="100">
+# <img src="beary.png" style="height: 100px;">
 
 - Beary (小熊)
     - Beary is a Brown bear ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear)), and he is the head of the Bear Family. <br> 小熊是一头棕熊，他也是熊熊家族的族长。
     - Beary is a senior technician and associate professor in the BIASA (Bear Institute of Aeronautics and Space Administration), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe. <br> 小熊是BIASA(熊熊航空航天局)的高级技师和副教授，也是纯数系和天体物理系的教员。他的研究主要在代数拓扑学在多尺度结构宇宙中的应用。
 
-# <img src="little-bear.png" height="100">
+# <img src="little-bear.png" style="height: 100px;">
 
 - Little Bear (小小熊)
     - Little Bear is also a Brown bear ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear)), and he is the son of Beary. <br> 小小熊也是一头棕熊，他也是小熊的儿子。
     - Little Bear is a problem kid in the Bear Resort, as he always causes troubles around. However, every time when he messes around, his innocent eyes and adorable emotions always condone him from penalties. <br> 小小熊是小熊樂園里的问题青年，因为他处处闯祸。尽管如此，每当他搞砸了，他的无辜眼神和可爱表情总能为他脱罪。
 
-# <img src="dr-b.png" height="100">
+# <img src="dr-b.png" style="height: 100px;">
 
 - Dr. B (胖胖博士)
     - Dr. B is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He obtains a dual family membership, in both the Bear Family and the Cat Family. <br> 胖胖博士是一头大熊猫。他拥有双重身份，同属于熊熊家庭和猫猫家庭。
@@ -30,7 +30,7 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 
 ## The Cat Family <br> 猫猫家族
 
-# <img src="tiger.png" height="100">
+# <img src="tiger.png" style="height: 100px;">
 
 - Unnamed Tiger (未命名的老虎) [Survey / 问卷](https://forms.gle/vUvgz4qUCUnKk1cT8)
     - *???* is a South China Tiger ([*P. t. amoyensis*](https://en.wikipedia.org/wiki/South_China_tiger)). As the King of Beasts, he is undoubtfully the head of the Cat Family. <br> *???* 是一头华南虎。作为百兽之王，他毋庸置疑是猫猫家族的族长。
