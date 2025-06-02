@@ -38,7 +38,7 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
     - *???* is a South China Tiger ([*P. t. amoyensis*](https://en.wikipedia.org/wiki/South_China_tiger)). As the King of Beasts, he is undoubtfully the head of the Cat Family. <br> *???* 是一头华南虎。作为百兽之王，他毋庸置疑是猫猫家族的族长。
     - *???* is a cook, where he makes dishes for all the carnivores and bears in the Bear Resort. You'd better not call him by his nickname Meow-sieur, unless your are sure that he will not eat you. <br> *???*是一个厨子，他为小熊樂園里的各个食肉动物和熊们准备餐点。你最好不要叫他的小名咪咪，除非你知道他不会吃了你。
 
-<br>
+# <img src="simba.png" style="height: 200px;">
 
 - Simba (辛巴)
     - Simba is a little Ginger Cat. <br> 辛巴是一只小橘猫。
