@@ -12,7 +12,7 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 
 - Beary (小熊)
     - Beary is a Brown bear ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear)), and he is the head of the Bear Family. <br> 小熊是一头棕熊，他也是熊熊家族的族长。
-    - Beary is a senior technician and associate professor in the BIASA (Bear Institute of Aeronautics and Space Administration), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe. <br> 小熊是BIASA(熊熊航空航天局)的高级技师和副教授，也是纯数系和天体物理系的教员。他的研究主要在代数拓扑学在多尺度结构宇宙中的应用。
+    - Beary is a senior technician and associate professor in the BIAS (Bear Institute of Aeronautics and Space), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe. <br> 小熊是BIAS(熊熊航空航天局)的高级技师和副教授，也是纯数系和天体物理系的教员。他的研究主要在代数拓扑学在多尺度结构宇宙中的应用。
 
 # <img src="little-bear.png" style="height: 200px;">
 
