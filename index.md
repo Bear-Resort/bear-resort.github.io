@@ -15,4 +15,6 @@ Bear Resort is a branch of Mathland. We established this organization in Spring 
 
 Upon its establishment, the Bear Resort has been the habitant of various creatures. See who do we have now! / 自建立伊始，小熊樂園便是许多生灵的栖息之所。看看谁是我们的成员吧！
 
-<button onclick="location.href='/chars/chars.html'">Check out the Members / 查看成员</button>
+# <button onclick="window.open('/chars/chars.html', '_blank')">
+  Check out the Members / 查看成员
+</button>
