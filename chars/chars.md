@@ -23,9 +23,8 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 # <img src="dr-b.png" style="height: 200px;">
 
 - Dr. B (胖胖博士) ([*Survey Results / 问卷结果*](https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm))
-    - Dr. B is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He obtains a dual family membership, in both the Ursalinos and the Meowstars. <br> 胖胖博士是一头大熊猫。他拥有双重身份，同属于熊手党和喵星人。
+    - Dr. B is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He owns a dual identity, serving in both the Ursalinos and the Meowstars. <br> 胖胖博士是一头大熊猫。他拥有双重身份，同属于熊手党和喵星人。
     - Dr. B is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off... <br> 胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。
-
 <br>
 
 - More Ursalinos members coming soon.
@@ -42,6 +41,7 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 
 - Simba (辛巴)
     - Simba is a little Ginger Cat. <br> 辛巴是一只小橘猫。
+    - 
 
 <br>
 
