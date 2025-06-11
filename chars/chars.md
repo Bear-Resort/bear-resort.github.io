@@ -34,7 +34,7 @@ Upon its establishment, the Bear Resort has been the habitant of various creatur
 # <img src="tiger.png" style="height: 200px;">
 
 - Meow-sieur Chef (神厨咪咪) ([*Survey Results / 问卷结果*](https://docs.google.com/forms/d/e/1FAIpQLSeSW_F1lZ-YPX4SVYt6Ryv5MRwZlF0ktrK1k7WABXoYVraSNQ/viewanalytics?usp=form_confirm))
-    - Meow-sieur Chef a South China Tiger ([*P. t. amoyensis*](https://en.wikipedia.org/wiki/South_China_tiger)). As the King of Beasts, he is undoubtfully the head of the Meowstars. <br> 神厨咪咪 是一头华南虎。作为百兽之王，他毋庸置疑是喵星人的族长。
+    - Meow-sieur Chef is a South China Tiger ([*P. t. amoyensis*](https://en.wikipedia.org/wiki/South_China_tiger)). As the King of Beasts, he is undoubtfully the head of the Meowstars. <br> 神厨咪咪是一头华南虎。作为百兽之王，他毋庸置疑是喵星人的族长。
     - Meow-sieur Chef is a cook, and he makes dishes for all the carnivores and bears in the Bear Resort. Absolutely marvelous control of knifes, so one should suspect what he does before becoming a chief. FYI: You'd better call him by Big Justin (which appeared to be on his ID, probably) rather than Meow-sieur (his nickname), unless you are absolutely sure that you will not become his breakfast tomorrow. <br> 神厨咪咪是一个厨子，他为小熊樂園里的各个食肉动物和熊们准备餐点。绝佳的刀工，让人不得不怀疑他在做厨子之前干的是什么行当。小贴士：你最好叫他的真名-大哥贾斯汀，而非小名咪咪，除非你绝对知道你不会成为他明天的早餐。
 
 # <img src="simba.png" style="height: 200px;">
