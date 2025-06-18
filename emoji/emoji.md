@@ -44,4 +44,14 @@ In Creation/創作中
 Dr. B, a giant panda, is a new member joining the Bear Resort. He is a workout fanatic and is also a doctor (although we don't know if he possesses a medical degree, or Doctor of Philosophy, or both). He also has a benzene reactor on his chest that he rarely takes off...
 大熊貓胖胖博士是小熊樂園的新成員。他酷愛健身，沒人知道他是醫生或是博士，又或許都是？他胸部裝著一個高級苯反應堆，只是他幾乎從不取下它。
 - Author: Mathy (数数)
-- Download: <img src="/emoji/dr_b.bmp" width="200" height="200"> [Link](https://w.url.cn/s/ABTYfiX#wechat_redirect)
+- Download: <img src="/emoji/dr_b.bmp" width="200" height="200"> [Link](https://w.url.cn/s/ABTYfiX)
+
+## Season 5: Meow-sieur Chief, the Tiger <br> 第五季: 大老虎神厨咪咪
+
+<img src="S5.png" height="100"><br>
+
+Meow-sieur Chef is the chief for all the carnivores and bears in the Bear Resort. He has absolutely marvelous control of knifes and absolute capabilities of making dishes. Many of his actions are making some clue that he must be having some unrevealed experiences prior to becoming the chief. <br> 神厨咪咪是小熊樂園里为食肉动物和熊们准备餐点的大厨。绝佳的刀工和厨艺。他的不少行为让人不得不怀疑他在做厨子之前见不得光的行当。
+- Author: Mathy (数数)
+- Download: <img src="/emoji/meow-sieur.bmp" width="200" height="200"> [Link](https://w.url.cn/s/A5kxBBH)
+
+## Season 6: ？？？
