@@ -1,9 +1,11 @@
+let questions = [];  // Store the questions globally so we can access them later
+
 // Fetch the CSV file from the same directory
 fetch('questions.csv')
     .then(response => response.text())
     .then(csvData => {
-        const questions = parseCSV(csvData);
-        generateExam(questions);
+        questions = parseCSV(csvData);  // Parse and store the questions globally
+        generateExam(questions);        // Generate the exam
     })
     .catch(error => {
         console.error("Error reading CSV file:", error);
@@ -105,8 +107,8 @@ function displayResults(score, totalQuestions) {
     const returnButton = document.createElement('button');
     returnButton.textContent = 'Return to Exam';
     returnButton.addEventListener('click', function() {
-        // Re-generate the exam questions
-        generateExam(parseCSV(document.querySelector('script[src="questions.csv"]').text));
+        // Re-generate the exam questions from the stored global questions
+        generateExam(questions);
         document.getElementById('submit-btn').style.display = 'block'; // Show Submit again
     });
 
