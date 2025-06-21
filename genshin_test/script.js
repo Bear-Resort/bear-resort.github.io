@@ -62,7 +62,7 @@ function generateExam(questions) {
 
     // Show the Submit button
     const submitButton = document.getElementById('submit-btn');
-    // submitButton.style.display = 'block';
+    returnButton.textContent = 'Submit';
     submitButton.addEventListener('click', function() {
         const answers = collectAnswers(questions);
         const score = calculateScore(answers);
