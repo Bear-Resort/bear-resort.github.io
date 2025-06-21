@@ -6,8 +6,8 @@ fetch('questions.csv')
         generateExam(questions);
     })
     .catch(error => {
-        alert("Error reading CSV file:", error);
-        alert("Failed to load the questions. Please ensure the 'questions.csv' file is in the correct location.", error);
+        console.error("Error reading CSV file:", error);
+        alert("Failed to load the questions. Please ensure the 'questions.csv' file is in the correct location.");
     });
 
 // Function to parse CSV data
@@ -17,7 +17,7 @@ function parseCSV(csvData) {
 
     for (let line of lines) {
         const parts = line.split(',');
-        if (parts.length >= 5) {
+        if (parts.length >= 6) { // Assuming format: question, 4 choices, correct answer
             const question = {
                 questionText: parts[0].trim(),
                 choices: [parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4].trim()],
@@ -59,10 +59,12 @@ function generateExam(questions) {
     });
 
     // Show the Submit button
-    document.getElementById('submit-btn').style.display = 'block';
-    document.getElementById('submit-btn').addEventListener('click', function() {
+    const submitButton = document.getElementById('submit-btn');
+    submitButton.style.display = 'block';
+    submitButton.addEventListener('click', function() {
         const answers = collectAnswers(questions);
-        displayResults(answers);
+        const score = calculateScore(answers);
+        displayResults(score, questions.length);
     });
 }
 
@@ -83,17 +85,33 @@ function collectAnswers(questions) {
     return answers;
 }
 
-// Function to display the results
-function displayResults(answers) {
-    const resultContainer = document.getElementById('exam-container');
-    resultContainer.innerHTML = '<h2>Results</h2>';
-
+// Function to calculate the score
+function calculateScore(answers) {
+    let score = 0;
     answers.forEach(answer => {
-        const resultDiv = document.createElement('div');
-        resultDiv.textContent = `${answer.question} - Your answer: ${answer.selectedAnswer} - ${answer.isCorrect ? 'Correct' : 'Incorrect'}`;
-        resultContainer.appendChild(resultDiv);
+        if (answer.isCorrect) {
+            score++;
+        }
+    });
+    return score;
+}
+
+// Function to display the results (just the score)
+function displayResults(score, totalQuestions) {
+    const resultContainer = document.getElementById('exam-container');
+    resultContainer.innerHTML = `<h2>Your Score: ${score} / ${totalQuestions}</h2>`;
+
+    // Add the Return button to go back to the questions
+    const returnButton = document.createElement('button');
+    returnButton.textContent = 'Return to Exam';
+    returnButton.addEventListener('click', function() {
+        // Re-generate the exam questions
+        generateExam(parseCSV(document.querySelector('script[src="questions.csv"]').text));
+        document.getElementById('submit-btn').style.display = 'block'; // Show Submit again
     });
 
-    // Hide the submit button after submitting
+    resultContainer.appendChild(returnButton);
+
+    // Hide the Submit button after submitting
     document.getElementById('submit-btn').style.display = 'none';
 }
