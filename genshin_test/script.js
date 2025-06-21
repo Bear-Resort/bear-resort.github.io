@@ -61,7 +61,7 @@ function generateExam(questions) {
     });
 
     // Show the Submit button
-    const submitButton = document.getElementById('submit-btn');
+    const submitButton = document.createElement('button');
     submitButton.textContent = 'Submit';
     submitButton.addEventListener('click', function() {
         const answers = collectAnswers(questions);
@@ -111,7 +111,7 @@ function displayResults(score, totalQuestions) {
     resultContainer.innerHTML = `<h2>Your Score: ${score} / ${totalQuestions}</h2>`;
 
     // Add the Return button to go back to the questions
-    const returnButton = document.getElementById('submit-btn');
+    const returnButton = document.createElement('button');
     returnButton.textContent = 'Return to Exam';
     returnButton.addEventListener('click', function() {
         // Re-generate the exam questions from the stored global questions
