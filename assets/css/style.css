@@ -205,3 +205,6 @@ input:checked + .slider:before {
     transform: translateX(25px);
     background-image: url('/logos/yes.png');
 }
+.choices input {
+    margin-right: 10px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/logos/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Genshin Impact Exam</h1>
+
+    <div class="exam-container" id="exam-container">
+        <!-- Multiple choice questions will be dynamically generated here -->
+    </div>
+
+    <button id="submit-btn" style="display: none;">Submit Exam</button>
+
+    <!-- External JS File -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+  // This will make all links open in a new tab
+  document.querySelectorAll('a').forEach(link => {
+    if (link.closest('.topnav')) return;
+    link.setAttribute('target', '_blank');
+  });
+</script>
+
+<style>
+  img {
+    max-width: 75%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
