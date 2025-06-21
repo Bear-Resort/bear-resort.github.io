@@ -62,7 +62,6 @@ function generateExam(questions) {
 
     // Show the Submit button
     const submitButton = document.getElementById('submit-btn');
-    submitButton.style.display = 'block';
     submitButton.addEventListener('click', function() {
         const answers = collectAnswers(questions);
         const score = calculateScore(answers);
@@ -104,16 +103,12 @@ function displayResults(score, totalQuestions) {
     resultContainer.innerHTML = `<h2>Your Score: ${score} / ${totalQuestions}</h2>`;
 
     // Add the Return button to go back to the questions
-    const returnButton = document.createElement('button');
+    const returnButton = document.getElementById('submit-btn');
     returnButton.textContent = 'Return to Exam';
     returnButton.addEventListener('click', function() {
         // Re-generate the exam questions from the stored global questions
         generateExam(questions);
-        document.getElementById('submit-btn').style.display = 'block'; // Show Submit again
     });
 
     resultContainer.appendChild(returnButton);
-
-    // Hide the Submit button after submitting
-    document.getElementById('submit-btn').style.display = 'none';
 }
