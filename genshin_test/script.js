@@ -62,6 +62,7 @@ function generateExam(questions) {
 
     // Show the Submit button
     const submitButton = document.getElementById('submit-btn');
+    // submitButton.style.display = 'block';
     submitButton.addEventListener('click', function() {
         const answers = collectAnswers(questions);
         const score = calculateScore(answers);
@@ -83,6 +84,7 @@ function collectAnswers(questions) {
             answers.push(answer);
         }
     });
+    console.log("Collected answers:", answers);
     return answers;
 }
 
@@ -90,10 +92,14 @@ function collectAnswers(questions) {
 function calculateScore(answers) {
     let score = 0;
     answers.forEach(answer => {
+        // Log the selected and correct answers for debugging
+        console.log(`Selected Answer: ${answer.selectedAnswer}, Correct Answer: ${answer.correctAnswer}`);
+        
         if (answer.isCorrect) {
             score++;
         }
     });
+    console.log(`Calculated Score: ${score}`);
     return score;
 }
 
@@ -111,4 +117,7 @@ function displayResults(score, totalQuestions) {
     });
 
     resultContainer.appendChild(returnButton);
+
+    // Hide the Submit button after submitting
+    // document.getElementById('submit-btn').style.display = 'none';
 }
