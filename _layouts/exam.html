@@ -47,7 +47,7 @@
             const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
             const seconds = String(totalSeconds % 60).padStart(2, '0');
 
-            displayElement.textContent = `⏱️ Time Elapsed: ${minutes}:${seconds}`;
+            displayElement.textContent = `⏱️ ${minutes}:${seconds}`;
         }, 1000);
     }
 
@@ -166,6 +166,7 @@
 
     // Function to display the results (just the score)
     function displayResults(score, totalQuestions) {
+        document.getElementById('timer').style.display = 'none';
         const resultContainer = document.getElementById('exam-container');
         resultContainer.innerHTML = `<h2>Your Score: ${score} / ${totalQuestions}</h2>`;
 
@@ -184,6 +185,7 @@
         returnButton.addEventListener('click', function() {
             // Re-generate the exam questions from the stored global questions
             generateExam(questions);
+            document.getElementById('timer').style.display = 'block';
         });
 
         resultContainer.appendChild(document.createElement('br'));
@@ -199,9 +201,6 @@
     });
 </script>
 
-</body>
-</html>
-
 <style>
   img {
     max-width: 75%;
@@ -211,3 +210,6 @@
     margin-right: auto;
   }
 </style>
+
+</body>
+</html>
