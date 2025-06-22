@@ -208,3 +208,15 @@ input:checked + .slider:before {
 .choices input {
     margin-right: 10px;
 }
+
+#timer {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #f7ed9f;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
