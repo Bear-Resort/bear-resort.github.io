@@ -220,3 +220,11 @@ input:checked + .slider:before {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     z-index: 1000;
 }
+
+.exam-container {
+    width: 80%; /* Or set to a specific pixel value, like 600px */
+    max-width: 800px; /* Max width of the container */
+    margin: 0 auto; /* Centers the container */
+    padding: 20px;
+    box-sizing: border-box; 
+}
