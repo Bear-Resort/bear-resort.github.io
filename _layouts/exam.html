@@ -42,12 +42,12 @@
 
     function startElapsedTime(displayElement) {
         // Use stored startTime if available
-        const storedStartTime = localStorage.getItem('examStartTime');
+        const storedStartTime = localStorage.getItem('examStartTime' + `{{ page.filename }}`);
         if (storedStartTime) {
             startTime = parseInt(storedStartTime);
         } else {
             startTime = Date.now();
-            localStorage.setItem('examStartTime', startTime);
+            localStorage.setItem('examStartTime' + `{{ page.filename }}`, startTime);
         }
 
         timerInterval = setInterval(() => {
