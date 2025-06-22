@@ -34,3 +34,7 @@ Submit scanned solution to DK4KY3 on Gradescope. 完成作答后请扫描提交�
 - [JHU Shuttle Map / JHU校园巴士图](/files/br-version-map.pdf)
 - [Split Rent Algorithm / 巧分房租算法](/mathland/split-rent-algo.pdf)
 - [Bear Resort Steam Tunnel Signage Project Standards / 小熊樂園蒸汽管道指引牌项目导视系统标准](/tunnels/Instruction_of_Labels(H).pdf)
+
+## Brief Exams <br> 簡短的考試
+
+- [Genshin Exam / 原神考試](/exams/genshin.html)
