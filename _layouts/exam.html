@@ -19,6 +19,8 @@
         <largertitle>{{ page.title }}</largertitle>
     </div>
 
+    <br> <br>
+
     <div class="exam-container" id="exam-container">
         <!-- Multiple choice questions will be dynamically generated here -->
     </div>
@@ -39,7 +41,14 @@
     let timerInterval;
 
     function startElapsedTime(displayElement) {
-        startTime = Date.now();
+        // Use stored startTime if available
+        const storedStartTime = localStorage.getItem('examStartTime');
+        if (storedStartTime) {
+            startTime = parseInt(storedStartTime);
+        } else {
+            startTime = Date.now();
+            localStorage.setItem('examStartTime', startTime);
+        }
 
         timerInterval = setInterval(() => {
             const elapsedMs = Date.now() - startTime;
