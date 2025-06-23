@@ -34,8 +34,21 @@
         Fans only content. Log in to view. If you are already logged in, refresh the page. <br>
         会员专享内容。登录以查看。如果您已登录，请刷新页面。
       </div>
-      <div id="canvasContainer" style="display: none; text-align: center;">
-        <canvas id="pdf-render"></canvas>
+      <div id="isHidden" style="display: none; text-align: center;">
+        <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
+          <button onclick="prevPage()">Previous</button>
+          <span>Page: <span id="page-num">1</span> / <span id="page-count">?</span></span>
+          <button onclick="nextPage()">Next</button>
+          &nbsp;&nbsp;
+          <button onclick="zoomOut()">-</button>
+          <button onclick="zoomIn()">+</button>
+        </div>
+
+        <div id="loading" style="text-align: center;">Loading PDF...</div>
+        <div id="canvasContainer" style="text-align: center;">
+          <canvas id="pdf-render"></canvas>
+        </div>
+
         <!-- <embed src="{{ page.filename }}" width="100%" height="600px" type="application/pdf"> -->
       </div>
 
@@ -54,7 +67,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     if (isLoggedIn()) {
       const notHidden = document.getElementById("isNotHidden");
-      const isHidden = document.getElementById("canvasContainer");
+      const isHidden = document.getElementById("isHidden");
       if (notHidden && isHidden) {
         notHidden.style.display = "none";
         isHidden.style.display = "block";
@@ -64,29 +77,79 @@
 </script>
 
 <script>
-  const url = "{{ page.filename }}";  // e.g. "files/my-document.pdf"
+  const url = "{{ page.filename }}"; // Replace with "files/your.pdf" if testing
 
   const canvas = document.getElementById('pdf-render');
   const ctx = canvas.getContext('2d');
+  const loadingMsg = document.getElementById('loading');
+
+  let pdfDoc = null;
+  let pageNum = 1;
+  let pageCount = 0;
+  let scale = 1.5;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  pdfjsLib.getDocument(url).promise.then(pdfDoc => {
-    // Render the first page
-    return pdfDoc.getPage(1);
-  }).then(page => {
-    const viewport = page.getViewport({ scale: 1.5 });
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+  function renderPage(num) {
+    loadingMsg.style.display = 'block';
 
-    const renderContext = {
-      canvasContext: ctx,
-      viewport: viewport
-    };
-    return page.render(renderContext).promise;
+    pdfDoc.getPage(num).then(page => {
+      const viewport = page.getViewport({ scale: scale });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+
+      page.render(renderContext).promise.then(() => {
+        loadingMsg.style.display = 'none';
+        document.getElementById('page-num').textContent = pageNum;
+      });
+    });
+  }
+
+  function queueRenderPage(num) {
+    if (num >= 1 && num <= pageCount) {
+      pageNum = num;
+      renderPage(pageNum);
+    }
+  }
+
+  function nextPage() {
+    if (pageNum < pageCount) {
+      queueRenderPage(pageNum + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNum > 1) {
+      queueRenderPage(pageNum - 1);
+    }
+  }
+
+  function zoomIn() {
+    scale += 0.25;
+    renderPage(pageNum);
+  }
+
+  function zoomOut() {
+    if (scale > 0.5) {
+      scale -= 0.25;
+      renderPage(pageNum);
+    }
+  }
+
+  // Load the PDF
+  pdfjsLib.getDocument(url).promise.then(doc => {
+    pdfDoc = doc;
+    pageCount = doc.numPages;
+    document.getElementById('page-count').textContent = pageCount;
+    renderPage(pageNum);
   }).catch(err => {
-    console.error('PDF rendering error:', err);
-    document.getElementById('canvasContainer').innerText = 'Failed to load PDF.';
+    console.error("PDF load error:", err);
+    loadingMsg.textContent = "Failed to load PDF.";
   });
 </script>
 
@@ -99,6 +162,19 @@
       margin-left: auto;
       margin-right: auto;
     }
+    <style>
+  #pdf-render {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+  #pdf-controls button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 12px;
+  }
+</style>
+
   </style>
 
 </body>
