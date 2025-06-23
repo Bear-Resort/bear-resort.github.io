@@ -36,7 +36,7 @@ export function loginU(username, password) {
     .then(csvText => {
       const users = parseCSV(csvText);
       if (checkLogin(usernameEnc, passwordEnc, users)) {
-        alert("Login successful");
+        // alert("Login successful");
         localStorage.setItem("loggedInUser", username);
 
         const loginLink = document.getElementById("login");
@@ -44,7 +44,7 @@ export function loginU(username, password) {
 
         return true; // ✅ resolves the promise
       } else {
-        alert("Invalid username or password");
+        // alert("Invalid username or password");
         return false;
       }
     })

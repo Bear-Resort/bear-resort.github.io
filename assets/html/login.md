@@ -9,8 +9,10 @@ title: "Login"
       <input type="password" id="password" placeholder="Password" required />
       <button onclick="handleLogin()">Login</button>
     </div>
-    <div id="welcome" style="display: none; text-align: center;">
+    <div style="text-align: center;">
       <div id="welcome-text"></div>
+    </div>
+    <div id="welcome" style="display: none; text-align: center;">
       <button id="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
 </div>
