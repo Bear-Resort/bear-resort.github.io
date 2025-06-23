@@ -35,7 +35,7 @@ function loginU(username, password) {
         if (checkLogin(usernameEnc, passwordEnc, users)) {
             alert("Login successful");
             localStorage.setItem("loggedInUser", username);
-            document.getElementById("login").id = username;
+            document.getElementById("login").textContent = username;
             return true;
         } else {
             alert("Invalid username or password");
@@ -60,9 +60,9 @@ function getCurrentUser() {
 function logout() {
     localStorage.removeItem('loggedInUser');
     console.log("User logged out");
-    document.getElementById("login").id = "log in";
+    document.getElementById("login").textContent = "log in";
 }
 
 if (isLoggedIn()) {
-    document.getElementById("login").id = localStorage.getItem('loggedInUser');
+    document.getElementById("login").textContent = localStorage.getItem('loggedInUser');
 }
