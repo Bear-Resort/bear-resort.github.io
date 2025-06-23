@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/logos/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button onclick="handleLogin()">Login</button>
+    </div>
+    <div id="welcome" style="display: none;">
+      <div id="welcome-text"></div>
+      <button id="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("login").style.display = "none";
+
+    function handleLogin() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (loginU(username, password)) {
+        showWelcome(username);
+      }
+    }
+
+    function showWelcome(username) {
+      document.getElementById("login-form").style.display = "none";
+      const welcome = document.getElementById("welcome");
+      document.getElementById("welcome-text").textContent = `✅ You are logged in as "${getCurrentUser()}"`;
+      welcome.style.display = "block";
+    }
+
+    // Auto-check on page load
+    if (isLoggedIn()) {
+      document.getElementById("login-form").style.display = "none";
+      showWelcome(savedUser);
+    }
+
+    function handleLogout() {
+      logout();
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+    }
+</script>
+
+</body>
+</html>
