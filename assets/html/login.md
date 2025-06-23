@@ -53,6 +53,7 @@ title: "Login"
       document.getElementById("login-form").style.display = "block";
       document.getElementById("username").value = "";
       document.getElementById("password").value = "";
+      document.getElementById("welcome-text").textContent = "";
     }
 
     window.handleLogin = handleLogin;
