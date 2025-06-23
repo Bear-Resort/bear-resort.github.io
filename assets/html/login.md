@@ -3,13 +3,13 @@ title: "Login"
 ---
 
 <div class="container">
-    <div id="login-form">
+    <div id="login-form" style="text-align: center;">
       <h2>Login</h2>
       <input type="text" id="username" placeholder="Username" required />
       <input type="password" id="password" placeholder="Password" required />
       <button onclick="handleLogin()">Login</button>
     </div>
-    <div id="welcome" style="display: none;">
+    <div id="welcome" style="display: none; text-align: center;">
       <div id="welcome-text"></div>
       <button id="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
@@ -19,14 +19,15 @@ title: "Login"
     document.getElementById("login").style.display = "none";
 
     function handleLogin() {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value;
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
 
-      if (loginU(username, password)) {
-        showWelcome(username);
-      } else {
-        document.getElementById("welcome-text").textContent = "❌ Invalid username or passcode.";
-      }
+        const success = await loginU(username, password); // Wait for async result
+        if (success) {
+            showWelcome(username);
+        } else {
+            document.getElementById("welcome-text").textContent = "❌ Invalid username or passcode.";
+        }
     }
 
     function showWelcome(username) {

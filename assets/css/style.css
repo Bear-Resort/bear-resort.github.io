@@ -125,6 +125,7 @@ button:disabled a {
 
 
 textarea {
+    font-family: 'Merriweather', serif;
     font-size: 12px;
     width: 75%;
     margin: 0 auto 0 auto;  
@@ -132,6 +133,11 @@ textarea {
     resize: none;
     height: auto;
     overflow: hidden;
+}
+
+input {
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
 }
 
 .button-wrapper {
