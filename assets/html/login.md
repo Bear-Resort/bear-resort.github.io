@@ -16,6 +16,8 @@ title: "Login"
 </div>
 
 <script>
+    import { login, isLoggedIn, getCurrentUser, logout } from '/assets/js/login.js';
+
     document.getElementById("login").style.display = "none";
 
     function handleLogin() {
