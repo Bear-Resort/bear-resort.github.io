@@ -45,11 +45,18 @@
   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
     if (isLoggedIn()) {
-      document.getElementById("isNotHidden").style.display = "none";
-      document.getElementById("isHidden").style.display = "block";
+      const notHidden = document.getElementById("isNotHidden");
+      const isHidden = document.getElementById("isHidden");
+      if (notHidden && isHidden) {
+        notHidden.style.display = "none";
+        isHidden.style.display = "block";
+      }
     }
-  </script>
+  });
+</script>
+
   <style>
     img {
       max-width: 75%;
