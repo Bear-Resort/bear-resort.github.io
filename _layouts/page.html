@@ -9,39 +9,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="content" style="text-align: left;">
+        <div class="topnav" style="text-align: center;">
+            <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"> Bear Resort &nbsp; &nbsp; &nbsp;
+            <a href="/index.html">Home</a> | 
+            <a href="/archive/archive.html">Archive</a> |
+            <a href="/mathland/mathland.html">Mathland</a> |
+            <a href="/legal/legal.html">Legal</a> |
+            <a href="/emoji/emoji.html">Emoji</a> |
+            <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
+        </div>
 
-<div id="content" style="text-align: left;">
-    <div class="topnav" style="text-align: center;">
-        <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"> Bear Resort &nbsp; &nbsp; &nbsp;
-        <a href="/index.html">Home</a> | 
-        <a href="/archive/archive.html">Archive</a> |
-        <a href="/mathland/mathland.html">Mathland</a> |
-        <a href="/legal/legal.html">Legal</a> |
-        <a href="/emoji/emoji.html">Emoji</a> |
-        <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
-    </div>
-    <br>
-    <div style="text-align: center;">
-        <largertitle>{{ page.title }}</largertitle>
-    </div>
-    <br>
-    {{ content }}
-    <br><br><br>
-    <footer>
-        Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>. 联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。
-    </footer>
-</div>
+        <br>
 
+        <div style="text-align: center;">
+            <largertitle>{{ page.title }}</largertitle>
+        </div>
+
+        <br>
+
+        {{ content }}
+
+        <br>
+        <br>
+        <br>
+
+        <footer>
+            Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>. 联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。
+        </footer>
+
+        <a href="login.html" id="login">👤</a>
+
+    </div>
+    <script src="/assets/js/link.js"></script>
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@1.3.1/dist/forge.min.js"></script>
 </body>
-
-<script>
-  // This will make all links open in a new tab
-  document.querySelectorAll('a').forEach(link => {
-    if (link.closest('.topnav')) return;
-    link.setAttribute('target', '_blank');
-  });
-</script>
-
-
 
 </html>
