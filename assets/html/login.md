@@ -24,20 +24,22 @@ title: "Login"
 
       if (loginU(username, password)) {
         showWelcome(username);
+      } else {
+        document.getElementById("welcome-text").textContent = "❌ Invalid username or passcode.";
       }
     }
 
     function showWelcome(username) {
       document.getElementById("login-form").style.display = "none";
       const welcome = document.getElementById("welcome");
-      document.getElementById("welcome-text").textContent = `✅ You are logged in as "${getCurrentUser()}"`;
+      document.getElementById("welcome-text").textContent = `✅ You are logged in as "${username}"`;
       welcome.style.display = "block";
     }
 
     // Auto-check on page load
     if (isLoggedIn()) {
       document.getElementById("login-form").style.display = "none";
-      showWelcome(savedUser);
+      showWelcome(getCurrentUser());
     }
 
     function handleLogout() {

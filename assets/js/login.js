@@ -61,8 +61,7 @@ function isLoggedIn() {
 
 // Get current user info
 function getCurrentUser() {
-    const user = localStorage.getItem('loggedInUser');
-    return user ? JSON.parse(user) : null;
+    return localStorage.getItem('loggedInUser');
 }
 
 // Log out user
