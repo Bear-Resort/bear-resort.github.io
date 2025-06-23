@@ -212,7 +212,7 @@ input:checked + .slider:before {
 #timer {
     position: fixed;
     top: 10px;
-    right: 20px;
+    left: 20px;
     background-color: #f7ed9f;
     padding: 10px 15px;
     border-radius: 8px;
@@ -220,6 +220,20 @@ input:checked + .slider:before {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     z-index: 1000;
 }
+
+#login {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #6b4a1f;
+    color: #f7ed9f;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
 
 .exam-container {
     width: 80%; /* Or set to a specific pixel value, like 600px */
