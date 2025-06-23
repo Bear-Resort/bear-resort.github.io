@@ -65,7 +65,3 @@ function logout() {
 if (isLoggedIn()) {
     document.getElementById("login").id = localStorage.getItem('loggedInUser');
 }
-
-// Export functions if using modules
-export { loginU, isLoggedIn, getCurrentUser, logout };
-

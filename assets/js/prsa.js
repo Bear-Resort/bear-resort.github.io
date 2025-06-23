@@ -13,6 +13,3 @@ function encodeRSA(myStr) {
     const encrypted = publicKey.encrypt(message, "RSA-OAEP");
     return forge.util.encode64(encrypted);
 }
-
-// Export functions if using modules
-export { encodeRSA };
