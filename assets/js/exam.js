@@ -7,12 +7,12 @@ let timerInterval;
 
 function startElapsedTime(displayElement) {
     // Use stored startTime if available
-    const storedStartTime = localStorage.getItem('examStartTime' + `{{ page.filename }}`);
+    const storedStartTime = localStorage.getItem('examStartTime' + fileName);
     if (storedStartTime) {
         startTime = parseInt(storedStartTime);
     } else {
         startTime = Date.now();
-        localStorage.setItem('examStartTime' + `{{ page.filename }}`, startTime);
+        localStorage.setItem('examStartTime' + fileName, startTime);
     }
 
     timerInterval = setInterval(() => {
@@ -28,7 +28,7 @@ function startElapsedTime(displayElement) {
 let questions = [];  // Store the questions
 
 // Fetch the CSV file from the file name
-fetch(`{{ page.filename }}`)
+fetch(fileName)
     .then(response => response.text())
     .then(csvData => {
         questions = parseCSV(csvData); 

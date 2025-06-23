@@ -16,15 +16,13 @@ title: "Login"
 </div>
 
 <script>
-    import { login, isLoggedIn, getCurrentUser, logout } from '/assets/js/login.js';
-
     document.getElementById("login").style.display = "none";
 
     function handleLogin() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value;
 
-      if (login(username, password)) {
+      if (loginU(username, password)) {
         showWelcome(username);
       } else {
         alert("Invalid username or password");

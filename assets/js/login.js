@@ -20,7 +20,7 @@ function checkLogin(inputUsername, inputPassword, users) {
 }
 
 // Save user login info to localStorage
-function login(username, password) {
+function loginU(username, password) {
     if (!username || !password) {
         console.error("Username or password missing");
         return false;
@@ -69,5 +69,5 @@ if (isLoggedIn()) {
 }
 
 // Export functions if using modules
-export { login, isLoggedIn, getCurrentUser, logout };
+export { loginU, isLoggedIn, getCurrentUser, logout };
 
