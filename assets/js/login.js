@@ -27,7 +27,7 @@ function loginU(username, password) {
     const passwordEnc = password;
     // const usernameEnc = encodeRSA(username);
     // const passwordEnc = encodeRSA(password);
-    fetch("users.csv")
+    fetch("/assets/js/users.csv")
         .then(response => response.text())
         .then(csvText => {
         const users = parseCSV(csvText);
