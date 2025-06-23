@@ -52,4 +52,7 @@ title: "Login"
       document.getElementById("username").value = "";
       document.getElementById("password").value = "";
     }
+
+    window.handleLogin = handleLogin;
+    window.handleLogout = handleLogout;
 </script>
