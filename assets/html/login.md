@@ -28,6 +28,7 @@ title: "Login"
 
         const success = await loginU(username, password); // Wait for async result
         if (success) {
+            localStorage.setItem('loginEvent', Date.now().toString());
             showWelcome(username);
         } else {
             document.getElementById("welcome-text").textContent = "❌ Invalid username or passcode.";
@@ -48,12 +49,14 @@ title: "Login"
     }
 
     function handleLogout() {
-      logout();
-      document.getElementById("welcome").style.display = "none";
-      document.getElementById("login-form").style.display = "block";
-      document.getElementById("username").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("welcome-text").textContent = "";
+        logout();
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("welcome-text").textContent = "";
+        localStorage.setItem('logoutEvent', Date.now().toString());
+
     }
 
     window.handleLogin = handleLogin;
