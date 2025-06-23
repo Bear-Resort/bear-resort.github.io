@@ -20,29 +20,38 @@ function checkLogin(inputUsername, inputPassword, users) {
 
 // Save user login info to localStorage
 function loginU(username, password) {
-    if (!username || !password) {
-        console.error("Username or password missing");
+  if (!username || !password) {
+    console.error("Username or password missing");
+    return Promise.resolve(false);
+  }
+
+  const usernameEnc = username;
+  const passwordEnc = password;
+
+  // const usernameEnc = encodeRSA(username);
+  // const passwordEnc = encodeRSA(password);
+
+  return fetch("/assets/js/users.csv") 
+    .then(response => response.text())
+    .then(csvText => {
+      const users = parseCSV(csvText);
+      if (checkLogin(usernameEnc, passwordEnc, users)) {
+        alert("Login successful");
+        localStorage.setItem("loggedInUser", username);
+
+        const loginLink = document.getElementById("login");
+        if (loginLink) loginLink.textContent = username;
+
+        return true; // ✅ resolves the promise
+      } else {
+        alert("Invalid username or password");
         return false;
-    }
-    const usernameEnc = username;
-    const passwordEnc = password;
-    // const usernameEnc = encodeRSA(username);
-    // const passwordEnc = encodeRSA(password);
-    fetch("/assets/js/users.csv")
-        .then(response => response.text())
-        .then(csvText => {
-        const users = parseCSV(csvText);
-        if (checkLogin(usernameEnc, passwordEnc, users)) {
-            alert("Login successful");
-            localStorage.setItem("loggedInUser", username);
-            document.getElementById("login").textContent = username;
-            return true;
-        } else {
-            alert("Invalid username or password");
-        }
-        })
-        .catch(error => console.error("CSV load error:", error));
-    return false;
+      }
+    })
+    .catch(error => {
+      console.error("CSV load error:", error);
+      return false;
+    });
 }
 
 // Check if user is logged in
