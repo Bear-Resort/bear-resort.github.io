@@ -45,6 +45,8 @@
   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
   <script>
+    import { isLoggedIn } from './login.js';
+
   document.addEventListener("DOMContentLoaded", function () {
     if (isLoggedIn()) {
       const notHidden = document.getElementById("isNotHidden");
