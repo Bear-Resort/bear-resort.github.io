@@ -19,7 +19,7 @@ function checkLogin(inputUsername, inputPassword, users) {
 }
 
 // Save user login info to localStorage
-function loginU(username, password) {
+export function loginU(username, password) {
   if (!username || !password) {
     console.error("Username or password missing");
     return Promise.resolve(false);
@@ -55,17 +55,17 @@ function loginU(username, password) {
 }
 
 // Check if user is logged in
-function isLoggedIn() {
+export function isLoggedIn() {
     return localStorage.getItem('loggedInUser') !== null;
 }
 
 // Get current user info
-function getCurrentUser() {
+export function getCurrentUser() {
     return localStorage.getItem('loggedInUser');
 }
 
 // Log out user
-function logout() {
+export function logout() {
     localStorage.removeItem('loggedInUser');
     console.log("User logged out");
     document.getElementById("login").textContent = "log in";
