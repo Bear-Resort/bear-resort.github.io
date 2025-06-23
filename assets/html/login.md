@@ -24,8 +24,6 @@ title: "Login"
 
       if (loginU(username, password)) {
         showWelcome(username);
-      } else {
-        alert("Invalid username or password");
       }
     }
 

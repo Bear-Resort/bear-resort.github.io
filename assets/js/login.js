@@ -1,13 +1,8 @@
 function parseCSV(text) {
   const lines = text.trim().split("\n");
-  const headers = lines[0].split(",");
-  return lines.slice(1).map(line => {
+  return lines.map(line => {
     const values = line.split(",");
-    return headers.reduce((obj, header, index) => {
-      alert(header.trim(), values[index].trim());
-      obj[header.trim()] = values[index].trim();
-      return obj;
-    }, {});
+    return values.map(value => value.trim());
   });
 }
 
@@ -32,8 +27,6 @@ function loginU(username, password) {
         .then(response => response.text())
         .then(csvText => {
         const users = parseCSV(csvText);
-        alert(usernameEnc, passwordEnc);
-        alert(" ");
         if (checkLogin(usernameEnc, passwordEnc, users)) {
             alert("Login successful");
             localStorage.setItem("loggedInUser", username);
