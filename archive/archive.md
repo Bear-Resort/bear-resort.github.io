@@ -27,7 +27,7 @@ We have been using some old webpages prior to switching to `github`.
 - [Having Fun in Writing Class 写作课堂欢乐多](小品-写作课堂欢乐多.pdf) ([Recording 錄製](https://youtu.be/VEa-i194gtY?si=HeigVH2i2TaMvuDO&t=7562))
 
 Upcoming... / 即将到来 
-- [The News Live Show 新闻直播秀](语言-新闻秀.pdf)
+- [The News Live Show 新闻直播秀](新闻秀.html)
 - [Adventure of the Blue Car 小蓝车奇遇记]
 
 <!-- ## Here are our departments <br> 这里是我们的部门
