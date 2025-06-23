@@ -46,7 +46,7 @@
 
         <div id="loading" style="text-align: center;">Loading PDF...</div>
         <div id="canvasContainer" style="text-align: center;">
-          <canvas id="pdf-render"></canvas>
+          <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
         </div>
 
         <!-- <embed src="{{ page.filename }}" width="100%" height="600px" type="application/pdf"> -->
@@ -86,7 +86,7 @@
   let pdfDoc = null;
   let pageNum = 1;
   let pageCount = 0;
-  let scale = 1.5;
+  let scale = 3.5;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
