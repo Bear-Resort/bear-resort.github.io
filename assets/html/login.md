@@ -4,7 +4,7 @@ title: "User Center"
 
 <div class="container">
     <h1>User Center <br> 用户中心</h1>
-    <img src="/logos/user.gif" height="200"><br>
+    <img src="/logos/user.gif" style="width: 200px; height: 200px;"><br>
     <br>
     Users of the Bear Resort enjoys "fans-only" exclusive contents. 小熊樂園用户享受“粉丝专享”独家资源。
     <br>
