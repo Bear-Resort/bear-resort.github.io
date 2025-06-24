@@ -26,10 +26,6 @@ export function loginU(username, password) {
   }
   const usernameEnc = hashDeterministically(username);
   const passwordEnc = hashDeterministically(password);
-
-  alert(username)
-  alert(usernameEnc)
-
   return fetch("/assets/js/users.csv") 
     .then(response => response.text())
     .then(csvText => {
