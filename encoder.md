@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Public RSA Encoder"
+title: "Public Hashing Encoder"
 ---
 
-This Public RSA Encoder encodes the cipher based on the public key.
+This Public Hashing Encoder encodes the cipher based on the public key.
 
 <div style="text-align: center">
     <textarea id="inputBox" placeholder="Enter text here..." style="font-size: 16px"></textarea><br>
@@ -23,7 +23,7 @@ This Public RSA Encoder encodes the cipher based on the public key.
         }
 
         try {
-            const encryptedText = encodeRSA(input);
+            const encryptedText = hashDeterministically(input);
             document.getElementById('output').textContent = encryptedText;
         } catch (err) {
             console.error("Encryption failed:", err);

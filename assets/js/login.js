@@ -24,8 +24,8 @@ export function loginU(username, password) {
     console.error("Username or password missing");
     return Promise.resolve(false);
   }
-  const usernameEnc = encodeRSA(username);
-  const passwordEnc = encodeRSA(password);
+  const usernameEnc = hashDeterministically(username);
+  const passwordEnc = hashDeterministically(password);
 
   alert(username)
   alert(usernameEnc)
