@@ -24,12 +24,8 @@ export function loginU(username, password) {
     console.error("Username or password missing");
     return Promise.resolve(false);
   }
-
-  const usernameEnc = username;
-  const passwordEnc = password;
-
-  // const usernameEnc = encodeRSA(username);
-  // const passwordEnc = encodeRSA(password);
+  const usernameEnc = encodeRSA(username);
+  const passwordEnc = encodeRSA(password);
 
   return fetch("/assets/js/users.csv") 
     .then(response => response.text())
