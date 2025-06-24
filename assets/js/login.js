@@ -27,6 +27,8 @@ export function loginU(username, password) {
   const usernameEnc = encodeRSA(username);
   const passwordEnc = encodeRSA(password);
 
+  alert(username, " ", usernameEnc)
+
   return fetch("/assets/js/users.csv") 
     .then(response => response.text())
     .then(csvText => {
