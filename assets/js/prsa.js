@@ -9,7 +9,21 @@ AhZyE+cx8PDqjzqaqlUdlbpiaBi/WxNsLh+xQsjdNHtLC2g1vYkp9KIT4+bYyCyG
 -----END PUBLIC KEY-----`);
 
 function encodeRSA(myStr) {
+    // Save original random function
+    const originalRandomBytes = forge.random.getBytes;
+
+    // Patch randomness with fixed bytes
+    forge.random.getBytes = function (count) {
+    return '\x00'.repeat(count);  // or use any fixed value
+    };
+
     const message = myStr;
-    const encrypted = publicKey.encrypt(message);
+
+    // Encrypt deterministically
+    const encrypted = publicKey.encrypt(message, 'RSAES-PKCS1-V1_5');
+
+    // Restore original randomness
+    forge.random.getBytes = originalRandomBytes;
+    
     return forge.util.encode64(encrypted);
 }
