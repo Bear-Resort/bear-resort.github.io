@@ -1,12 +1,16 @@
 ---
-title: "Login"
+title: "User Center"
 ---
 
 <div class="container">
+    <h1>User Center <br> 用户中心</h1>
+    <br>
+    Users of the Bear Resort enjoys "fans-only" exclusive contents. 小熊樂園用户享受“粉丝专享”独家资源。
+    <br>
     <div id="login-form" style="text-align: center;">
-      <h2>Login</h2>
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
+      <h2>Log in <br> 登录</h1>
+      Username / 用户名: <input type="text" id="username" placeholder="Enter your username..." required /> &nbsp; &nbsp;
+      Password / 密码: <input type="password" id="password" placeholder="Enter your password..." required /> <br>
       <button onclick="handleLogin()">Login</button>
     </div>
     <div style="text-align: center;">
@@ -15,6 +19,8 @@ title: "Login"
     <div id="welcome" style="display: none; text-align: center;">
       <button id="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
+    <br>
+    Do not give your password to other people. 不要把密码给别人！
 </div>
 
 <script type="module">
