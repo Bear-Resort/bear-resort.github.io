@@ -10,6 +10,6 @@ AhZyE+cx8PDqjzqaqlUdlbpiaBi/WxNsLh+xQsjdNHtLC2g1vYkp9KIT4+bYyCyG
 
 function encodeRSA(myStr) {
     const message = myStr;
-    const encrypted = publicKey.encrypt(message, "RSA-OAEP");
+    const encrypted = publicKey.encrypt(message);
     return forge.util.encode64(encrypted);
 }
