@@ -63,6 +63,7 @@ export function getCurrentUser() {
 // Log out user
 export function logout() {
     localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('passcode');
     console.log("User logged out");
     document.getElementById("login").textContent = "log in";
 }
