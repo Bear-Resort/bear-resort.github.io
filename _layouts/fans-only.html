@@ -143,7 +143,10 @@
   }
 
   // Load the PDF
-  pdfjsLib.getDocument(url).promise.then(doc => {
+  pdfjsLib.getDocument(
+    url: url,
+    password: localStorage.getItem('passcode')
+  ).promise.then(doc => {
     pdfDoc = doc;
     pageCount = doc.numPages;
     document.getElementById('page-count').textContent = pageCount;

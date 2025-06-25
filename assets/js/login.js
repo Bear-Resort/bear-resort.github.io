@@ -33,6 +33,7 @@ export function loginU(username, password) {
       if (checkLogin(usernameEnc, passwordEnc, users)) {
         // alert("Login successful");
         localStorage.setItem("loggedInUser", username);
+        localStorage.setItem("passcode", "Zk83fL9nTpQ2Vm6RdXs4");
 
         const loginLink = document.getElementById("login");
         if (loginLink) loginLink.textContent = username;
