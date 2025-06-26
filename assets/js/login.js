@@ -35,7 +35,7 @@ export function loginU(username, password) {
         localStorage.setItem("loggedInUser", username);
         localStorage.setItem("usrPasscode", password);
 
-        const rowUsr = users.find(row => row.name === usernameEnc);
+        const rowUsr = users.find(row => row.username === usernameEnc);
         const encData = rowUsr["enccode"];
         const pW = Number(encData);
         const encPW = stringToHash(password);
