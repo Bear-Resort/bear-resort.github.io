@@ -36,6 +36,8 @@ largertitle {
     border-color: #000000;
     padding-top: .5em;
     padding-bottom: .5em;
+    display: block;
+    width: 100%; 
 }  
 
 a {
