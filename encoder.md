@@ -27,6 +27,7 @@ This Public Hashing Encoder encodes the cipher based on the public key.
             const encryptedText = hashDeterministically(input);
             const encryptedText2 = stringToHash(input);
             document.getElementById('output1').textContent = encryptedText;
+            document.getElementById('output2').textContent = encryptedText2;
         } catch (err) {
             console.error("Encryption failed:", err);
             document.getElementById('output1').textContent = "Encryption error.";
