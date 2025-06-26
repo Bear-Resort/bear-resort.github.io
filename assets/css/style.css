@@ -251,7 +251,7 @@ input:checked + .slider:before {
     box-sizing: border-box; 
 }
 
-.login-form {
+.login-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 25px;
