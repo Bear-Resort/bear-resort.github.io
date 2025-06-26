@@ -37,10 +37,10 @@ export function loginU(username, password) {
 
         const rowUsr = data.find(row => row.name === usernameEnc);
         const encData = rowUsr["encenccode"];
-        const int pW = Number(encData);
-        const int encPW = stringToHash(password);
+        const pW = Number(encData);
+        const encPW = stringToHash(password);
 
-        const int passcode = encPW + pW;
+        const passcode = encPW + pW;
 
         localStorage.setItem("passcode", passcode.toString());
 
