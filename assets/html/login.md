@@ -14,6 +14,7 @@ title: "User Center"
       <label for="username">Username / 用户名:</label> <input type="text" id="username" placeholder="Enter your username..." style="font-size: 16px" required />
       <label for="password">Password / 密码:</label> <input type="password" id="password" placeholder="Enter your password..." style="font-size: 16px" required />
       </form>
+      <br><br>
       <button onclick="handleLogin()">Login</button>
     </div>
     <div style="text-align: center;">

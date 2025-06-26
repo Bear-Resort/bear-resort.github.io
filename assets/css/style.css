@@ -252,7 +252,7 @@ input:checked + .slider:before {
 }
 
 .login-grid {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 1fr 2fr;
     gap: 25px;
     max-width: 500px;
@@ -260,5 +260,4 @@ input:checked + .slider:before {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
 }
