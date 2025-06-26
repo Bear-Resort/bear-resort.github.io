@@ -250,3 +250,14 @@ input:checked + .slider:before {
     padding: 20px;
     box-sizing: border-box; 
 }
+
+.login-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    max-width: 500px;
+    background: #f7ed9f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
