@@ -31,9 +31,8 @@ export function loginU(username, password) {
     .then(csvText => {
       const users = parseCSV(csvText);
       if (checkLogin(usernameEnc, passwordEnc, users)) {
-        // alert("Login successful");
         localStorage.setItem("loggedInUser", username);
-        localStorage.setItem("usrPasscode", password);
+        // localStorage.setItem("usrPasscode", password);
 
         const rowUsr = users.find(row => row.username === usernameEnc);
         const encData = rowUsr["enccode"];
@@ -47,9 +46,8 @@ export function loginU(username, password) {
         const loginLink = document.getElementById("login");
         if (loginLink) loginLink.textContent = username;
 
-        return true; // ✅ resolves the promise
+        return true;
       } else {
-        // alert("Invalid username or password");
         return false;
       }
     })
