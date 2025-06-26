@@ -10,7 +10,8 @@ This Public Hashing Encoder encodes the cipher based on the public key.
     <button onclick="handleEncrypt()" id="enc">Encrypt</button>
     <br>
     <br>
-    <h2 id="output"></h2>
+    <h2 id="output1"></h2>
+    <h2 id="output2"></h2>
 </div>
 
 <script>
@@ -18,16 +19,17 @@ This Public Hashing Encoder encodes the cipher based on the public key.
         const input = document.getElementById('inputBox').value;
 
         if (!input.trim()) {
-            document.getElementById('output').textContent = "Please enter text.";
+            document.getElementById('output1').textContent = "Please enter text.";
             return;
         }
 
         try {
             const encryptedText = hashDeterministically(input);
-            document.getElementById('output').textContent = encryptedText;
+            const encryptedText2 = stringToHash(input);
+            document.getElementById('output1').textContent = encryptedText;
         } catch (err) {
             console.error("Encryption failed:", err);
-            document.getElementById('output').textContent = "Encryption error.";
+            document.getElementById('output1').textContent = "Encryption error.";
         }
     }
 </script>
