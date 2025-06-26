@@ -33,8 +33,16 @@ export function loginU(username, password) {
       if (checkLogin(usernameEnc, passwordEnc, users)) {
         // alert("Login successful");
         localStorage.setItem("loggedInUser", username);
-        localStorage.setItem("usrPasscode", password)
-        localStorage.setItem("passcode", "Zk83fL9nTpQ2Vm6RdXs4");
+        localStorage.setItem("usrPasscode", password);
+
+        const rowUsr = data.find(row => row.name === usernameEnc);
+        const encData = rowUsr["encenccode"];
+        const int pW = Number(encData);
+        const int encPW = stringToHash(password);
+
+        const int passcode = encPW + pW;
+
+        localStorage.setItem("passcode", passcode.toString());
 
         const loginLink = document.getElementById("login");
         if (loginLink) loginLink.textContent = username;
