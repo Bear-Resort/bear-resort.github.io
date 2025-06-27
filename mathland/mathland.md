@@ -32,8 +32,6 @@ Submit scanned solution to DK4KY3 on Gradescope. 完成作答后请扫描提交�
 - [Brian's Conjecture / 布莱恩的猜想](/files/weird_cate.pdf)
 - [Failure Test / 废物测试](/failure_test/failure_test.html)
 - [JHU Shuttle Map / JHU校园巴士图](/files/br-version-map.pdf)
-- [Split Rent Algorithm / 巧分房租算法](/fans_only/split-rent-algo.html)
-- [Bear Resort Steam Tunnel Signage Project Standards / 小熊樂園蒸汽管道指引牌项目导视系统标准](/tunnels/ins-labels.html)
 
 ## Brief Exams <br> 簡短的考試
 
