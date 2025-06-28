@@ -2,17 +2,17 @@
 title: "Failure Test"
 ---
 
-# Hopkins Failure Test <br> 霍普金斯废物测试
+# <span class="eng">Hopkins Failure Test</span> <span class="chn">霍普金斯废物测试</span>
 
-You will be filling out this survey and this page would compute how failure your life is at Hopkins.
+<span class="eng">You will be filling out this survey and this page would compute how failure your life is at Hopkins.</span>
 
-你將填写本问卷，用於评估你的霍普金斯生活有多废物。
+<span class="chn">你將填写本问卷，用於评估你的霍普金斯生活有多废物。</span>
 
-### Your name / 你的名字
+### <span class="eng">Your name</span> <span class="chn">你的名字</span>
 
 <textarea id="inputBox" placeholder="Enter your name here... / 输入你的名字..." style="font-size: 16px"></textarea>
 
-## Academically / 學術上
+## <span class="eng">Academically</span> <span class="chn">學術上</span>
 
 - You have a full 4.0 GPA. / 你的绩点是4.0滿績。
 <div class="buttons-container">
@@ -69,7 +69,7 @@ You will be filling out this survey and this page would compute how failure your
     </div>
 </div>
 
-## Socially / 社交上
+## <span class="eng">Socially</span> <span class="chn">社交上</span>
 
 - You have never studied at the library until after 2am. / 你從沒在图书馆学习到半夜两点以后。
 <div class="buttons-container">
@@ -126,7 +126,7 @@ You will be filling out this survey and this page would compute how failure your
     </div>
 </div>
 
-## Emotionally / 感情上
+## <span class="eng">Emotionally</span> <span class="chn">感情上</span>
 
 - You have not cried in the last semester. / 你在過去一个学期不曾哭泣。
 <div class="buttons-container">
@@ -183,7 +183,7 @@ You will be filling out this survey and this page would compute how failure your
     </div>
 </div>
 
-## Explorative / 探索上
+## <span class="eng">Explorative</span> <span class="chn">探索上</span>
 
 - You have taken courses that would not contribute to your graduation. / 你上過不为毕业需要的课程。
 <div class="buttons-container">

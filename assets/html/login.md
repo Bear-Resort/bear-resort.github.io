@@ -50,16 +50,16 @@ title: "User Center"
             localStorage.setItem('loginEvent', Date.now().toString());
             showWelcome(username);
         } else {
-            document.getElementById("welcome-text").textContent = "❌ Invalid username or passcode.";
+            document.getElementById("welcome-text").textContent = "❌ <span class="eng">Invalid username or passcode.</span> <span class="chn">用戶名或密碼錯誤。</span>";
         }
     }
 
     function showWelcome(username) {
       document.getElementById("login-form").style.display = "none";
       const welcome = document.getElementById("welcome");
-      document.getElementById("welcome-text").textContent = "✅ You are logged in / 您已登录";
+      document.getElementById("welcome-text").textContent = "✅ <span class="eng">You are logged in</span> <span class="chn">您已登录</span>";
       document.getElementById("active-username").textContent = `${username}`;
-      document.getElementById("active-category").textContent = "True Fan / 真爱粉";
+      document.getElementById("active-category").textContent = "<span class="eng">True Fan</span> <span class="chn">真爱粉</span>";
       welcome.style.display = "block";
     }
 
