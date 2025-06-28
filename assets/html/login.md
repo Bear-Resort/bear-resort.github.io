@@ -24,7 +24,7 @@ title: "User Center"
     <br>
     <div id="welcome" style="display: none; text-align: center;">
         <div class="login-grid">
-            <label for="username">Username / 用户名:</label> ${username}
+            <label for="username">Username / 用户名:</label> `"${username}"`
         </div>
         <button id="logout-btn" onclick="handleLogout()">Logout</button>
       </div>
