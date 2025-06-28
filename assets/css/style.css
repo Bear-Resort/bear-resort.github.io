@@ -368,6 +368,7 @@ input:checked + .slider:before {
     width: 25px;
     height: 25px;
     line-height: 25px;
+    font-size: 10px;
     text-align: center;
     color: #e2d8b7;
     padding: 5px 5px;
