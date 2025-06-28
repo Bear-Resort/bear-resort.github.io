@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const pdfUrl = link.getAttribute('href'); // Get the href of the PDF link
 
         // Redirect to the view-pdf.html with the PDF URL as a query parameter
-        window.location.href = 'pdf-renderer.html?pdf=' + encodeURIComponent(pdfUrl);
+        window.location.href = '/pdf-renderer.html?pdf=' + encodeURIComponent(pdfUrl);
     });
     });
 });
