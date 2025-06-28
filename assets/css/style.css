@@ -143,7 +143,7 @@ button {
     font-family: 'Merriweather', serif;
     font-size: 16px;
     padding: 10px 25px;
-    color: #6b4a1f;
+    color: #f7ed9f;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
 
     background: linear-gradient(to bottom, #5b3a18 0%, #3a220b 100%);
@@ -164,7 +164,7 @@ button {
 
 button::before {
     content: "";
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
