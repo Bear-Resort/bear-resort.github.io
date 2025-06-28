@@ -1,6 +1,4 @@
 const langBtn = document.getElementById('lang');
-const engSpan = document.getElementById('eng');
-const chnSpan = document.getElementById('chn');
 
 // Attempt to load the language from localStorage
 const savedLang = localStorage.getItem('language');
@@ -14,11 +12,21 @@ langBtn.textContent = 'Eng'; // Default to English
 
 // Initialize visibility based on saved or default language
 if (langBtn.textContent === 'Eng') {
-engSpan.style.display = 'inline'; // Show the English span
-chnSpan.style.display = 'none';   // Hide the Chinese span
+// Show English elements, hide Chinese elements
+document.querySelectorAll('.eng').forEach(el => {
+    el.style.display = 'inline';
+});
+document.querySelectorAll('.chn').forEach(el => {
+    el.style.display = 'none';
+});
 } else {
-engSpan.style.display = 'none';   // Hide the English span
-chnSpan.style.display = 'inline'; // Show the Chinese span
+// Show Chinese elements, hide English elements
+document.querySelectorAll('.eng').forEach(el => {
+    el.style.display = 'none';
+});
+document.querySelectorAll('.chn').forEach(el => {
+    el.style.display = 'inline';
+});
 }
 
 // Event listener for language toggle
@@ -31,12 +39,22 @@ langBtn.textContent = newLang;
 // Store the selected language in localStorage
 localStorage.setItem('language', newLang);
 
-// Toggle visibility of the spans based on the selected language
+// Toggle visibility of elements with the appropriate class
 if (newLang === 'Eng') {
-    engSpan.style.display = 'inline'; // Show the English span
-    chnSpan.style.display = 'none';   // Hide the Chinese span
+    // Show English elements, hide Chinese elements
+    document.querySelectorAll('.eng').forEach(el => {
+    el.style.display = 'inline';
+    });
+    document.querySelectorAll('.chn').forEach(el => {
+    el.style.display = 'none';
+    });
 } else {
-    engSpan.style.display = 'none';   // Hide the English span
-    chnSpan.style.display = 'inline'; // Show the Chinese span
+    // Show Chinese elements, hide English elements
+    document.querySelectorAll('.eng').forEach(el => {
+    el.style.display = 'none';
+    });
+    document.querySelectorAll('.chn').forEach(el => {
+    el.style.display = 'inline';
+    });
 }
 });
