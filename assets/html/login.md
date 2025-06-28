@@ -17,13 +17,17 @@ title: "User Center"
       <br><br>
       <button onclick="handleLogin()">Login</button>
     </div>
+    <br>
     <div style="text-align: center;">
       <div id="welcome-text"></div>
     </div>
-    <div id="welcome" style="display: none; text-align: center;">
-      <button id="logout-btn" onclick="handleLogout()">Logout</button>
-    </div>
     <br>
+    <div id="welcome" style="display: none; text-align: center;">
+        <div class="login-grid">
+            <label for="username">Username / 用户名:</label> ${username}
+        </div>
+        <button id="logout-btn" onclick="handleLogout()">Logout</button>
+      </div>
     <h2>Do not give your password to other people. 不要把密码给别人！</h2>
 </div>
 
