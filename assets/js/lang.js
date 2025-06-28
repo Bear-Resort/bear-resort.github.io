@@ -12,7 +12,7 @@ langBtn.textContent = savedLang;
 langBtn.textContent = 'Eng'; // Default to English
 }
 
-// Initialize visibility based on stored or default language
+// Initialize visibility based on saved or default language
 if (langBtn.textContent === 'Eng') {
 engSpan.style.display = 'inline'; // Show the English span
 chnSpan.style.display = 'none';   // Hide the Chinese span
@@ -25,13 +25,13 @@ chnSpan.style.display = 'inline'; // Show the Chinese span
 langBtn.addEventListener('click', () => {
 const newLang = (langBtn.textContent === 'Eng') ? '中' : 'Eng';
 
-// Update button text
+// Update button text to reflect new language
 langBtn.textContent = newLang;
 
 // Store the selected language in localStorage
 localStorage.setItem('language', newLang);
 
-// Toggle visibility of the spans
+// Toggle visibility of the spans based on the selected language
 if (newLang === 'Eng') {
     engSpan.style.display = 'inline'; // Show the English span
     chnSpan.style.display = 'none';   // Hide the Chinese span
