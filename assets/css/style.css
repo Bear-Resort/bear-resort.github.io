@@ -90,6 +90,11 @@ a:visited{
     color: #372914;
 }
 
+.topnav a:active {
+    background-color: #372914;
+    color: #e0d9bd;
+}
+
 .botnav {
   display: inline-block;
   position: fixed;

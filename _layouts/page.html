@@ -15,12 +15,12 @@
     
     <div class="topnav" style="text-align: center;">
         <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"> &nbsp;
-        <a href="/index.html"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> | 
-        <a href="/archive/archive.html"><span class="eng">Archive</span><span class="chn">归档</span></a> |
-        <a href="/mathland/mathland.html"><span class="eng">Mathland</span><span class="chn">数学之境</span></a> |
-        <a href="/legal/legal.html"><span class="eng">Legal</span><span class="chn">法务部</span></a> |
-        <a href="/emoji/emoji.html"><span class="eng">Emoji</span><span class="chn">表情包</span></a> |
-        <a href="/fans_only/fans-only.html"><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a> |
+        <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> | 
+        <a href="/archive/archive.html" id="archive"><span class="eng">Archive</span><span class="chn">归档</span></a> |
+        <a href="/mathland/mathland.html" id="mathland"><span class="eng">Mathland</span><span class="chn">数学之境</span></a> |
+        <a href="/legal/legal.html" id="legal"><span class="eng">Legal</span><span class="chn">法务部</span></a> |
+        <a href="/emoji/emoji.html" id="emoji"><span class="eng">Emoji</span><span class="chn">表情包</span></a> |
+        <a href="/fans_only/fans-only.html" id="fans-only"><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a> |
         <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
     </div>
 
@@ -54,6 +54,28 @@
     <script src="/assets/js/listener.js"></script>
 
     <script src="/assets/js/pdf-redirect.js"></script>
+
+    <script>
+    if ({{ page.title }} === "Home") {
+      activeLink = document.getElementById("home");
+    }
+    if ({{ page.title }} === "Archive") {
+      activeLink = document.getElementById("archive");
+    }
+    if ({{ page.title }} === "Mathland") {
+      activeLink = document.getElementById("mathland");
+    }
+    if ({{ page.title }} === "Legal") {
+      activeLink = document.getElementById("legal");
+    }
+    if ({{ page.title }} === "Emoji") {
+      activeLink = document.getElementById("emoji");
+    }
+    if ({{ page.title }} === "Fans Only") {
+      activeLink = document.getElementById("fans-only");
+    }
+    activeLink.classList.add("active");
+  </script>
 </body>
 
 </html>
