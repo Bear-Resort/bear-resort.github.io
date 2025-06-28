@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Legal"
+title-chn: "法务部"
 ---
 
 The *legal* department deals with the legitimate and court stuffs inside the Bear Resort.

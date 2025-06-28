@@ -58,7 +58,7 @@ a:visited{
   color: #fff;
   font-size: 16px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
-  padding: 8px 12px;
+  padding: 7px 12px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 
@@ -75,7 +75,7 @@ a:visited{
 .topnav a {
     color: #f7ed9f;
     text-align: center;
-    padding: 8px 10px;
+    padding: 7px 12px;
     border-radius: 10px;
     text-decoration: none;
     font-size: 17px;

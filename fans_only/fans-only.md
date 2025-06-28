@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Fans Only"
+title-chn: "粉丝独享"
 ---
 
 Are you a fan of Bear Resort? Bear Resort is now offering exclusive contents for our fans! Register to become a fan today by contacting us!
@@ -9,7 +10,7 @@ Are you a fan of Bear Resort? Bear Resort is now offering exclusive contents for
 
 ## Zhaizhai's Pretty Anime Girl Zone <br> 宅宅的美少女专区
 
-- [Sketches of the Beauty / 美少女立绘](sketches-beauty.html)
+- [<span id="eng">Sketches of the Beauty</span> <span id="chn">美少女立绘</span>](sketches-beauty.html)
 - [MJS, God of Algebraic Geometry / 孟建设，代数几何之神](mjs-god-of-ag.html)
 
 ## Mousy's Steam Tunnelers and Dark Arena <br> 鼠鼠的蒸汽管道与暗黑竞技场

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Mathland"
+title-chn: "数学之境"
 ---
 
 One can interpret *mathland* as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.

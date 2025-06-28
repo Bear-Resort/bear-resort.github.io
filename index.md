@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Home"
+title-chn: "主页"
 ---
 
 # Welcome to Bear Resort! <br> 欢迎来到小熊樂園！
