@@ -56,22 +56,22 @@
     <script src="/assets/js/pdf-redirect.js"></script>
 
     <script>
-    if (`{{ page.title }}` === "Home") {
+    if ("{{ page.title }}" === "Home") {
       activeLink = document.getElementById("home");
     }
-    if (`{{ page.title }}` === "Archive") {
+    if ("{{ page.title }}" === "Archive") {
       activeLink = document.getElementById("archive");
     }
-    if (`{{ page.title }}` === "Mathland") {
+    if ("{{ page.title }}" === "Mathland") {
       activeLink = document.getElementById("mathland");
     }
-    if (`{{ page.title }}` === "Legal") {
+    if ("{{ page.title }}" === "Legal") {
       activeLink = document.getElementById("legal");
     }
-    if (`{{ page.title }}` === "Emoji") {
+    if ("{{ page.title }}" === "Emoji") {
       activeLink = document.getElementById("emoji");
     }
-    if (`{{ page.title }}` === "Fans Only") {
+    if ("{{ page.title }}" === "Fans Only") {
       activeLink = document.getElementById("fans-only");
     }
     activeLink.classList.add("active");
