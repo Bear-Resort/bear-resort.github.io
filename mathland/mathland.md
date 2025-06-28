@@ -4,36 +4,38 @@ title: "Mathland"
 title-chn: "数学之境"
 ---
 
-One can interpret *mathland* as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.
+<span class="eng">One can interpret *mathland* as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.</span>
 
-您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。
+<span class="chn">您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。</span>
 
 # <img src="/logos/mathland.gif" height="250"><br>
 
-## Bear Resort Scratch Paper <br> 小熊樂園演算紙
-- [Blank 空白](/Scratch-Paper/Blank.pdf)
-- [Lined 线条](/Scratch-Paper/Lined.pdf)
-- [Hives 蜂巢](/Scratch-Paper/Hives.pdf)
-- [Chars 稿纸](/Scratch-Paper/Characters.pdf)
+## <span class="eng">Bear Resort Scratch Paper</span><span class="chn">小熊樂園演算紙</span>
+- [<span class="eng">Blank</span><span class="chn">空白</span>](/Scratch-Paper/Blank.pdf)
+- [<span class="eng">Lined</span><span class="chn">线条</span>](/Scratch-Paper/Lined.pdf)
+- [<span class="eng">Hives</span><span class="chn">蜂巢</span>](/Scratch-Paper/Hives.pdf)
+- [<span class="eng">Chars</span><span class="chn">稿纸</span>](/Scratch-Paper/Characters.pdf)
 
-## Bear Resort Exams <br> 小熊樂園的考试
+## <span class="eng">Bear Resort Exams</span><span class="chn">小熊樂園的考试</span> 
 
-The Bear Resort Qualification Examination aims to evaluate the general capabilities of pre-members, note that the marks to qualify is much lower than the full marks on the paper. The evaluation focuses on (but not limited to) Bear Resort information, language skills, literature capabilities, mathematical logics, physics/chemistry capabilities, computer usages, and commonsense; therefore, competitors should select questions that they are comfortable with and skip the unfamiliar topics.
+<span class="eng">The Bear Resort Qualification Examination aims to evaluate the general capabilities of pre-members, note that the marks to qualify is much lower than the full marks on the paper. The evaluation focuses on (but not limited to) Bear Resort information, language skills, literature capabilities, mathematical logics, physics/chemistry capabilities, computer usages, and commonsense; therefore, competitors should select questions that they are comfortable with and skip the unfamiliar topics.</span>
 
-小熊樂園资格考试将评估准成员的综合素养，资格考通过的分数将远低于卷面总分。考察的方面包含 且不限于小熊樂園基本信息、语言能力、文学素养、数学逻辑、理化基础、计算机运用和生活常识，应 试者仅需选择自己擅长的方向进行回答，可以跳过不擅长的领域。
+<span class="chn">小熊樂園资格考试将评估准成员的综合素养，资格考通过的分数将远低于卷面总分。考察的方面包含 且不限于小熊樂園基本信息、语言能力、文学素养、数学逻辑、理化基础、计算机运用和生活常识，应 试者仅需选择自己擅长的方向进行回答，可以跳过不擅长的领域。</span>
 
-- [Entrance Exam / 资格考](Base-exam-2025.pdf)
-- [Math Logical Exam / 逻辑考](/files/math-exam.pdf)
+- [<span class="eng">Entrance Exam</span><span class="chn">资格考</span>](Base-exam-2025.pdf)
+- [<span class="eng">Math Logical Exam</span><span class="chn">逻辑考</span>](/files/math-exam.pdf)
 
-Submit scanned solution to DK4KY3 on Gradescope. 完成作答后请扫描提交至 DK4KY3 的 Gradescope。
+<span class="eng">Submit scanned solution to DK4KY3 on Gradescope.</span>
 
-## Weird Stuffs <br> 奇怪的东西
+<span class="chn">完成作答后请扫描提交至 DK4KY3 的 Gradescope。</span>
 
-- [Andrew's Quiz / 安德鲁的小测](/files/andrew_quiz.pdf)
-- [Brian's Conjecture / 布莱恩的猜想](/files/weird_cate.pdf)
-- [Failure Test / 废物测试](/failure_test/failure_test.html)
-- [JHU Shuttle Map / JHU校园巴士图](/files/br-version-map.pdf)
+## <span class="eng">Weird Stuffs</span><span class="chn">奇怪的东西</span>
 
-## Brief Exams <br> 簡短的考試
+- [<span class="eng">Andrew's Quiz</span><span class="chn">安德鲁的小测</span>](/files/andrew_quiz.pdf)
+- [<span class="eng">Brian's Conjecture</span><span class="chn">布莱恩的猜想</span>](/files/weird_cate.pdf)
+- [<span class="eng">Failure Test</span><span class="chn">废物测试</span>](/failure_test/failure_test.html)
+- [<span class="eng">JHU Shuttle Map</span><span class="chn">JHU校园巴士图</span>](/files/br-version-map.pdf)
 
-- [Genshin Exam / 原神考試](/exams/genshin.html)
+## <span class="eng">Brief Exams</span><span class="chn">簡短的考試</span>
+
+- [<span class="eng">Genshin Exam</span><span class="chn">原神考試</span>](/exams/genshin.html)
