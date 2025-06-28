@@ -24,7 +24,8 @@ title: "User Center"
     <br>
     <div id="welcome" style="display: none; text-align: center;">
         <div class="login-grid">
-            <label for="username">Username / 用户名:</label> `"${username}"`
+            <label for="username-active">Username / 用户名:</label> <span id="active-username"></span>
+            <label for="user-lvl">Category / 范畴:</label> <span id="active-category"></span>
         </div>
         <button id="logout-btn" onclick="handleLogout()">Logout</button>
       </div>
@@ -52,7 +53,9 @@ title: "User Center"
     function showWelcome(username) {
       document.getElementById("login-form").style.display = "none";
       const welcome = document.getElementById("welcome");
-      document.getElementById("welcome-text").textContent = `✅ You are logged in as "${username}"`;
+      document.getElementById("welcome-text").textContent = "✅ You are logged in / 您已登录";
+      document.getElementById("active-username").textContent = `"${username}"`;
+      document.getElementById("active-category").textContent = "True Fan / 真爱粉";
       welcome.style.display = "block";
     }
 
