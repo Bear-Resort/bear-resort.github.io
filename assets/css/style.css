@@ -64,7 +64,7 @@ a:visited{
     inset 0 1px 0 rgba(255, 255, 255, 0.3),  /* top highlight */
     inset 0 -1px 0 rgba(0, 0, 0, 0.3),       /* bottom inset */
     0 2px 6px rgba(0, 0, 0, 0.4);            /* outer shadow */
-  max-height: 35px;
+  max-height: 36px;
   overflow: auto;
   white-space: nowrap;
   margin: 0 auto;
@@ -77,16 +77,12 @@ a:visited{
     padding: 7px 12px;
     border-radius: 10px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
     display: inline-block;
 }
 
 .topnav a:visited {
     color: #f7ed9f;
-    text-align: center;
-    text-decoration: none;
-    font-size: 17px;
-    display: inline-block;
 }
 
 .topnav a:hover {
