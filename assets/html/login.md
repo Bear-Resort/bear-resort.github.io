@@ -12,8 +12,8 @@ title: "User Center"
     <div id="login-form" style="text-align: center;">
       <h2><span class="eng">Log in</span> <span class="chn">登录</span></h2>
       <form class="login-grid">
-      <label for="username"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <input type="text" id="username" placeholder="Enter your username..." style="font-size: 16px" required />
-      <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="Enter your password..." style="font-size: 16px" required />
+      <label for="username"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <input type="text" id="username" placeholder="<span class='eng'>Enter your username...</span> <span class='chn'>輸入用戶名...</span>" style="font-size: 16px" required />
+      <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="<span class='eng'>Enter your password...</span> <span class='chn'>輸入密码...</span>" style="font-size: 16px" required />
       </form>
       <br><br>
       <button onclick="handleLogin()">Login</button>
@@ -50,16 +50,16 @@ title: "User Center"
             localStorage.setItem('loginEvent', Date.now().toString());
             showWelcome(username);
         } else {
-            document.getElementById("welcome-text").textContent = "❌ <span class="eng">Invalid username or passcode.</span> <span class="chn">用戶名或密碼錯誤。</span>";
+            document.getElementById("welcome-text").textContent = "❌ <span class='eng'>Invalid username or passcode.</span> <span class='chn'>用戶名或密碼錯誤。</span>";
         }
     }
 
     function showWelcome(username) {
       document.getElementById("login-form").style.display = "none";
       const welcome = document.getElementById("welcome");
-      document.getElementById("welcome-text").textContent = "✅ <span class="eng">You are logged in</span> <span class="chn">您已登录</span>";
+      document.getElementById("welcome-text").textContent = "✅ <span class='eng'>You are logged in</span> <span class='chn'>您已登录</span>";
       document.getElementById("active-username").textContent = `${username}`;
-      document.getElementById("active-category").textContent = "<span class="eng">True Fan</span> <span class="chn">真爱粉</span>";
+      document.getElementById("active-category").textContent = "<span class='eng'>True Fan</span> <span class='chn'>真爱粉</span>";
       welcome.style.display = "block";
     }
 
