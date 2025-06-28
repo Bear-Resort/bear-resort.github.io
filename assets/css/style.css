@@ -49,22 +49,27 @@ a:visited{
 }
 
 .topnav {
-    display: inline;
-    position: fixed;
-    top: 0px;
-    left: 3px;
-    right:3px;
-    background: linear-gradient(to right, #623c11, #41280c);
-    color: #ffffff;
-    padding: 10px 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    max-height: 35px;
-    overflow: auto;
-    white-space: nowrap;
-    margin: 0 auto;
+  display: inline-block;
+  position: fixed;
+  top: 0px;
+  left: 3px;
+  right: 3px;
+  background: linear-gradient(to bottom, #6e431a 0%, #3a220b 100%);
+  color: #fff;
+  font-size: 16px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+  padding: 8px 12px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),  /* top highlight */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),       /* bottom inset */
+    0 2px 6px rgba(0, 0, 0, 0.4);            /* outer shadow */
+  max-height: 35px;
+  overflow: auto;
+  white-space: nowrap;
+  margin: 0 auto;
+  z-index: 1000;
 }
 
 .topnav a {
@@ -91,30 +96,49 @@ a:visited{
 }
 
 .botnav {
-    display: inline;
-    position: fixed;
-    bottom: 0px;
-    left: 3px;
-    right:3px;
-    background: linear-gradient(to right, #623c11, #41280c);
-    color: #ffffff;
-    padding: 8px 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin: 0 auto;
-    max-height: 35px;
-    overflow: auto;
-    white-space: nowrap;
+  display: inline-block;
+  position: fixed;
+  bottom: 0px;
+  left: 3px;
+  right: 3px;
+  background: linear-gradient(to bottom, #f4f1e1 0%, #e2d8b7 100%); /* Soft gradient for iOS 6 feel */
+  color: #000;
+  font-size: 16px;
+  text-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.6); /* Subtle text shadow for emboss effect */
+  padding: 8px 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3), /* top inner highlight */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),      /* bottom inner shadow */
+    0 -2px 6px rgba(0, 0, 0, 0.4);           /* outer shadow */
+  margin: 0 auto;
+  max-height: 35px;
+  overflow: auto;
+  white-space: nowrap;
+  z-index: 1000;
 }
 
+.botnav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  pointer-events: none; /* Ensures it doesn't block any clicks or interactions */
+}
+
+
 .botnav a {
-    color: #f7ed9f;
+    color: #6b4a1f;
 }
 
 .botnav a:visited {
-    color: #f7ed9f;
+    color: #6b4a1f;
 }
 
 .column {
@@ -143,63 +167,59 @@ button {
     font-family: 'Merriweather', serif;
     font-size: 16px;
     padding: 10px 25px;
-    color: #f7ed9f;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
-
-    background: linear-gradient(to bottom, #5b3a18 0%, #3a220b 100%);
-    border: 1px solid #2a1807;
-    border-radius: 10px;
+    color: #f7ed9f; /* Light text color */
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
+  
+    background: linear-gradient(to bottom, #4a2a04 0%, #3b1a0f 100%); /* Inverse gradient on hover */
+    border: 1px solid #4d2a0d; /* Dark brown border */
+    border-radius: 8px; /* Rounded corners */
     box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-        0 4px 8px rgba(0, 0, 0, 0.4);
+        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Top inner highlight */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),    /* Bottom inner shadow */
+        0 2px 6px rgba(0, 0, 0, 0.4);          /* Outer shadow */
 
-    border: none;
-    border-radius: 6px;
     cursor: pointer;
-
-    transition: all 0.2s ease;
-    overflow: hidden;
+    transition: all 0.2s ease; /* Smooth transition for hover and active states */
+    overflow: hidden; /* Prevents inner shadow or pseudo-element from going out of bounds */
+    transform: translateY(0px);
 }
 
 button::before {
     content: "";
-    position: relative;
+    position: absolute; /* Ensure it's positioned over the button */
     top: 0;
     left: 0;
     width: 100%;
-    height: 45%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    pointer-events: none;
+    height: 45%; /* Control the height of the glossy effect */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1)); /* Glossy effect */
+    border-top-left-radius: 8px; /* Match the button border radius */
+    border-top-right-radius: 8px;
+    pointer-events: none; /* Prevent interaction with the pseudo-element */
 }
 
 button:hover {
-    background: linear-gradient(to bottom, #9b6733 0%, #704416 100%);
+    background: linear-gradient(to bottom, #5a3a14 0%, #6b4a1f 100%); /* Inverse gradient on hover */
     box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-        0 5px 10px rgba(0, 0, 0, 0.6);
-}
-
-button:disabled {
-    background-color: rgb(74, 82, 83);
-    color: #443f39;
-    cursor: default;
-}
-
-button:disabled a {
-    cursor: default;
+        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Light inner shadow */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5), /* Bottom shadow */
+        0 5px 10px rgba(0, 0, 0, 0.6); /* Stronger outer shadow on hover */
+    transform: translateY(0px);
 }
 
 button:active {
-    background: linear-gradient(to bottom, #3a220b 0%, #5b3a18 100%);
-      box-shadow: 
-        inset 0 2px 5px rgba(0, 0, 0, 0.6),
-        0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #5a3a14 0%, #6b4a1f 100%); /* Active state with inverse gradient */
+    box-shadow: 
+        inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
+        inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
+        0 1px 4px rgba(0, 0, 0, 0.5);        /* More pronounced outer shadow */
+    transform: translateY(2px); /* Simulate the pressing down effect */
 }
 
+button:disabled {
+    background-color: rgb(74, 82, 83); /* Muted background when disabled */
+    color: #443f39; /* Muted text color */
+    cursor: default; /* Disable cursor interaction */
+}
 
 textarea {
     font-family: 'Merriweather', serif;
@@ -305,18 +325,40 @@ input:checked + .slider:before {
 }
 
 #login {
-    position: fixed;
-    top: 60px;
-    right: 3px;
-    background-color: #6b4a1f;
-    color: #f7ed9f;
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    z-index: 1000;
-    text-decoration: none;
+  position: fixed;
+  top: 60px;
+  right: 3px;
+  background: linear-gradient(to bottom, #f7ed9f 0%, #e2d8b7 100%); /* Soft light gradient */
+  color: #6b4a1f; /* Dark brown text */
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3), /* top inner highlight */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),     /* bottom inner shadow */
+    0 2px 6px rgba(0, 0, 0, 0.4);          /* outer shadow */
+  z-index: 1000;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
+  display: inline-block;
+  transition: all 0.2s ease; /* For smooth hover and active transitions */
 }
 
+#login:hover {
+  background: linear-gradient(to bottom, #e2d8b7 0%, #f7ed9f 100%); /* Inverse gradient on hover */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.5); /* Slightly darker shadow for hover effect */
+}
+
+#login:active {
+  background: linear-gradient(to bottom, #e2d8b7 0%, #f7ed9f 100%); /* Active state with inverse gradient */
+  box-shadow: 
+    inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
+    inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
+    0 1px 4px rgba(0, 0, 0, 0.5);        /* More pronounced outer shadow */
+  transform: translateY(2px); /* Simulate the pressing down effect */
+}
 
 .exam-container {
     width: 80%; /* Or set to a specific pixel value, like 600px */
