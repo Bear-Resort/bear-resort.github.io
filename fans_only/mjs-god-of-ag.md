@@ -1,5 +1,5 @@
 ---
 layout: fans-only
-title: "MJS, God of Algebraid Geometry"
+title: "MJS, God of Algebraic Geometry"
 filename: files/mjs-alg-geo.pdf
 ---
