@@ -3,16 +3,17 @@ title: "User Center"
 ---
 
 <div class="container">
-    <h1>User Center <br> 用户中心</h1>
+    <h1><span class="eng">User Center</span> <span class="chn">用户中心</span></h1>
     <img src="/logos/user.gif" style="width: 200px; height: 200px;"><br>
     <br>
-    Users of the Bear Resort enjoys "fans-only" exclusive contents. 小熊樂園用户享受“粉丝专享”独家资源。
+    <span class="eng">Users of the Bear Resort enjoys "fans-only" exclusive contents.</span>
+    <span class="chn">小熊樂園用户享受“粉丝专享”独家资源。</span> 
     <br>
     <div id="login-form" style="text-align: center;">
-      <h2>Log in <br> 登录</h2>
+      <h2><span class="eng">Log in</span> <span class="chn">登录</span></h2>
       <form class="login-grid">
-      <label for="username">Username / 用户名:</label> <input type="text" id="username" placeholder="Enter your username..." style="font-size: 16px" required />
-      <label for="password">Password / 密码:</label> <input type="password" id="password" placeholder="Enter your password..." style="font-size: 16px" required />
+      <label for="username"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <input type="text" id="username" placeholder="Enter your username..." style="font-size: 16px" required />
+      <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="Enter your password..." style="font-size: 16px" required />
       </form>
       <br><br>
       <button onclick="handleLogin()">Login</button>
@@ -24,12 +25,15 @@ title: "User Center"
     <br>
     <div id="welcome" style="display: none; text-align: center;">
         <div class="login-grid">
-            <label for="username-active">Username / 用户名:</label> <span id="active-username"></span>
-            <label for="user-lvl">Category / 范畴:</label> <span id="active-category"></span>
+            <label for="username-active"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <span id="active-username"></span>
+            <label for="user-lvl"><span class="eng">Category</span> <span class="chn">范畴</span>:</label> <span id="active-category"></span>
         </div>
+        <br>
         <button id="logout-btn" onclick="handleLogout()">Logout</button>
       </div>
-    <h2>Do not give your password to other people. 不要把密码给别人！</h2>
+    <div style="text-align: center">
+        <h2><span class="eng">Do not give your password to other people!</span> <span class="chn">不要把密码给别人！</span></h2>
+    </div>
 </div>
 
 <script type="module">
@@ -54,7 +58,7 @@ title: "User Center"
       document.getElementById("login-form").style.display = "none";
       const welcome = document.getElementById("welcome");
       document.getElementById("welcome-text").textContent = "✅ You are logged in / 您已登录";
-      document.getElementById("active-username").textContent = `"${username}"`;
+      document.getElementById("active-username").textContent = `${username}`;
       document.getElementById("active-category").textContent = "True Fan / 真爱粉";
       welcome.style.display = "block";
     }
