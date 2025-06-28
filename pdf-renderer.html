@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/logos/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <div class="topnav" style="text-align: center;">
+      <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> Bear Resort &nbsp; &nbsp; &nbsp; &nbsp;
+      PDF Reader &nbsp; | &nbsp; PDF 阅读器
+  </div>
+
+  <div id="content" style="text-align: left;">
+       <a href="/assets/html/login.html" id="login">Log in</a>
+
+       <script src="/assets/js/forge.js"></script>
+  <script src="/assets/js/prsa.js"></script>
+  <script type="module" src="/assets/js/login.js"></script>
+
+
+      <br><br><br>
+
+      {{ content }}
+
+      <div style="display: none; text-align: center;">
+        <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
+          <button onclick="prevPage()">←</button>
+          <span>Page: <span id="page-num">1</span> / <span id="page-count">?</span></span>
+          <button onclick="nextPage()">→</button>
+        </div>
+
+        <div id="loading" style="text-align: center;">Loading PDF...</div>
+        <div id="canvasContainer" style="text-align: center;">
+          <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
+        </div>
+      </div>
+      <br><br><br>
+  </div>
+
+  <div class="botnav" style="text-align: center;">
+    When you finish, please close the page. 当你用完本界面，请直接关闭界面。
+  </div>
+
+  <script src="/assets/js/link.js"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const url = urlParams.get('pdf');
+
+  const canvas = document.getElementById('pdf-render');
+  const ctx = canvas.getContext('2d');
+  const loadingMsg = document.getElementById('loading');
+
+  if (!url) {
+    loadingMsg.textContent = "Invalid URL.";
+    return;
+  }
+
+  let pdfDoc = null;
+  let pageNum = 1;
+  let pageCount = 0;
+  let scale = 5.0;
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  function renderPage(num) {
+    loadingMsg.style.display = 'block';
+
+    pdfDoc.getPage(num).then(page => {
+      const viewport = page.getViewport({ scale: scale });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+
+      page.render(renderContext).promise.then(() => {
+        loadingMsg.style.display = 'none';
+        document.getElementById('page-num').textContent = pageNum;
+      });
+    });
+  }
+
+  function queueRenderPage(num) {
+    if (num >= 1 && num <= pageCount) {
+      pageNum = num;
+      renderPage(pageNum);
+    }
+  }
+
+  function nextPage() {
+    if (pageNum < pageCount) {
+      queueRenderPage(pageNum + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNum > 1) {
+      queueRenderPage(pageNum - 1);
+    }
+  }
+
+  function zoomIn() {
+    scale += 0.25;
+    renderPage(pageNum);
+  }
+
+  function zoomOut() {
+    if (scale > 0.5) {
+      scale -= 0.25;
+      renderPage(pageNum);
+    }
+  }
+
+  // Load the PDF
+  pdfjsLib.getDocument({
+    url: url,
+    password: localStorage.getItem('passcode')
+  }).promise.then(doc => {
+    pdfDoc = doc;
+    pageCount = doc.numPages;
+    document.getElementById('page-count').textContent = pageCount;
+    renderPage(pageNum);
+  }).catch(err => {
+    console.error("PDF load error:", err);
+    loadingMsg.textContent = "Failed to load PDF. Refresh or try logging in.";
+  });
+</script>
+
+<script src="/assets/js/listener.js"></script>
+
+
+  <style>
+    img {
+      max-width: 75%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    <style>
+  #pdf-render {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+  #pdf-controls button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 12px;
+  }
+</style>
+
+  </style>
+
+</body>
+</html>

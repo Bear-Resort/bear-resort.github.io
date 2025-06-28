@@ -4,11 +4,12 @@ title: "Legal"
 title-chn: "法务部"
 ---
 
-The *legal* department deals with the legitimate and court stuffs inside the Bear Resort.
+<span class="eng">The <i>legal</i> department deals with the legitimate and court stuffs inside the Bear Resort.</span>
 
-小熊樂園*法务部*处理小熊樂園内部的司法和官司问题。
+<span class="chn">小熊樂園<i>法务部</i>处理小熊樂園内部的司法和官司问题。</span>
+
 
 # <img src="/logos/legal.gif" height="200"><br>
 
-- [Court Citation / 法庭传唤](BR-citation.pdf)
-- [Bear Resort Constitution / 小熊樂園憲法](constitution.html)
+- [<span class="eng">Court Citation</span> <span class="chn">法庭传唤</span>](BR-citation.pdf)
+- [<span class="eng">Bear Resort Constitution</span> <span class="chn">小熊樂園憲法</span>](constitution.html)

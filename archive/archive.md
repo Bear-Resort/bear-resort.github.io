@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Archive"
+title-chn: "归档"
 ---
 
 The Bear Resort was not built in one day. Hence, through our progress of development, many designs are no longer compatible. Thus, we compile them here.

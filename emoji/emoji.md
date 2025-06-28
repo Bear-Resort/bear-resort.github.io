@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Emoji"
+title-chn: "表情包"
 ---
 
 ## Season 1: Daily Life in Bear Resort <br> 第一季: 小熊樂園日常
