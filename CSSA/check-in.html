@@ -18,19 +18,27 @@
   <script>
     async function checkIn() {
   const name = document.getElementById('nameInput').value.trim();
-  if (!name) return result.textContent = '❗ Please enter a name.';
+  const result = document.getElementById('result');
+
+  if (!name) {
+    result.textContent = "❗ Please enter a name.";
+    return;
+  }
 
   try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbz5lAbUjBQU53HnqDdDCJzxJj7WC3kobduZ_w7K3YJBV8jylk9AFVkQ56BDDzCtnGuD/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbz5lAbUjBQU53HnqDdDCJzxJj7WC3kobduZ_w7K3YJBV8jylk9AFVkQ56BDDzCtnGuD/exec', {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
       body: name
     });
-    const txt = await res.text();
-    result.textContent = txt;
-    nameInput.value = '';
-  } catch {
-    result.textContent = '❌ Failed to check in.';
+
+    const message = await response.text();
+    result.textContent = message;
+  } catch (err) {
+    console.error(err);
+    result.textContent = "❌ Failed to check in.";
   }
 }
   </script>
