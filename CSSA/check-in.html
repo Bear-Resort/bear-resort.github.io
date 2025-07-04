@@ -24,6 +24,63 @@
   <p id="result"></p>
 
   <script>
+const AUTH_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
+const CHECKED_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
+
+let authorized = {};
+let checkedIn = new Set();
+
+async function loadCSVs() {
+  // Load and parse AUTH_CSV
+  const authText = await fetch(AUTH_CSV).then(r => r.text());
+  authText.split('\n').slice(1).forEach(line => {
+    const [name, count] = line.trim().split(',');
+    if (name) authorized[name.toLowerCase()] = parseInt(count);
+  });
+
+  // Load and parse CHECKED_CSV
+  const checkedText = await fetch(CHECKED_CSV).then(r => r.text());
+  checkedText.split('\n').slice(1).forEach(line => {
+    const name = line.trim().toLowerCase();
+    if (name) checkedIn.add(name);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', loadCSVs);
+
+document.getElementById('survey-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const name = this.name.value.trim().toLowerCase();
+  const result = document.getElementById('result');
+
+  if (checkedIn.has(name)) {
+    result.textContent = "✅ Already checked in.";
+    return;
+  }
+
+  if (authorized[name]) {
+    result.textContent = `✅ Authorized. ${authorized[name]} people may enter.`;
+
+    // Submit to Google Apps Script to log
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: name
+    });
+
+    // Optionally, add to `checkedIn` set locally
+    checkedIn.add(name);
+  } else {
+    result.textContent = "❌ Not authorized.";
+  }
+
+  this.reset();
+});
+</script>
+
+  
+  <!-- <script>
     const form = document.getElementById('survey-form');
     const responseMsg = document.getElementById('response-msg');
 
@@ -52,6 +109,6 @@
         document.getElementById("submitBtn").disabled = false;
       });
     });
-  </script>
+  </script> -->
 </body>
 </html>
