@@ -11,37 +11,47 @@
 <body>
 
   <h1>Event Check-In</h1>
-  <input type="text" id="nameInput" placeholder="Enter your name" />
-  <button onclick="checkIn()">Check In</button>
+  <form id="survey-form">
+  <div style="width: 75%; margin: 0 auto;">
+    <p>
+        Name: 
+        <input type="text" name="name" placeholder="Enter your name..." required>
+        <br>
+    </p>
+    <button type="submit" id="submitBtn">Submit</button>
+    </div>
+  </form>
   <p id="result"></p>
 
   <script>
-    async function checkIn() {
-  const name = document.getElementById('nameInput').value.trim();
-  const result = document.getElementById('result');
+    const form = document.getElementById('survey-form');
+    const responseMsg = document.getElementById('response-msg');
 
-  if (!name) {
-    result.textContent = "❗ Please enter a name.";
-    return;
-  }
+    form.addEventListener('submit', function (e) {
+        document.getElementById("submitBtn").disabled = true;
+        e.preventDefault();
 
-  try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbz5lAbUjBQU53HnqDdDCJzxJj7WC3kobduZ_w7K3YJBV8jylk9AFVkQ56BDDzCtnGuD/exec', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: name
+      const formData = {
+        name: form.name.value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbz5lAbUjBQU53HnqDdDCJzxJj7WC3kobduZ_w7K3YJBV8jylk9AFVkQ56BDDzCtnGuD/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert("✅ Form submitted successfully!");
+        form.reset();
+        document.getElementById("submitBtn").disabled = false;
+      })
+      .catch(err => {
+        alert("❌ Something is wrong, please submit again!");
+        document.getElementById("submitBtn").disabled = false;
+      });
     });
-
-    const message = await response.text();
-    result.textContent = message;
-  } catch (err) {
-    console.error(err);
-    result.textContent = "❌ Failed to check in.";
-  }
-}
   </script>
-
 </body>
 </html>
