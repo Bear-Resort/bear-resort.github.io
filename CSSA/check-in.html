@@ -135,11 +135,11 @@ button:disabled {
         submitBtn.disabled = true;
 
         const nameRaw = form.name.value;
-        let name = nameRaw.trim().toLowerCase();
+        const name = nameRaw.trim().toLowerCase();
 
         loadCSVs();
 
-        let finalName = name;
+        let finalName = nameRaw;
 
         if (checkedIn.has(name)) {
             finalName += "000";
