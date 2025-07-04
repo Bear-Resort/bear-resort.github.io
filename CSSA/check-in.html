@@ -68,7 +68,17 @@ document.getElementById('survey-form').addEventListener('submit', async function
       mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: name
-    });
+    })
+    .then(res => res.text())
+      .then(msg => {
+        alert("✅ Form submitted successfully!");
+        form.reset();
+        document.getElementById("submitBtn").disabled = false;
+      })
+      .catch(err => {
+        alert("❌ Something is wrong, please submit again!");
+        document.getElementById("submitBtn").disabled = false;
+      });
 
     // Optionally, add to `checkedIn` set locally
     checkedIn.add(name);
