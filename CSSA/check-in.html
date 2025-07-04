@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Check-In</title>
+  <style>
+    body { font-family: Arial; padding: 2em; }
+    input, button { font-size: 16px; padding: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>Event Check-In</h1>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button onclick="checkIn()">Check In</button>
+  <p id="result"></p>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzX6RfQuqXyFzcdnhlwjxjKcaawwHe9TdrSwsEDHoKq0-BTvNNEqNhkj9_UGaplGOnI/exec';
+
+    async function checkIn() {
+      const nameInput = document.getElementById('nameInput');
+      const result = document.getElementById('result');
+      const name = nameInput.value.trim();
+
+      if (!name) {
+        result.textContent = '❗ Please enter a name.';
+        return;
+      }
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'name=' + encodeURIComponent(name)
+        });
+
+        const message = await res.text();
+        result.textContent = message;
+        nameInput.value = '';
+      } catch (err) {
+        console.error(err);
+        result.textContent = '❌ Failed to check in.';
+      }
+    }
+  </script>
+
+</body>
+</html>
