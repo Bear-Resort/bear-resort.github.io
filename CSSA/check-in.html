@@ -141,14 +141,16 @@ button:disabled {
 
         let finalName = nameRaw;
 
-        if (checkedIn.has(name)) {
-            finalName += "000";
-            alert("⚠️ 此参与者已签到.");
-        } else if (!authorized[name]) {
+        if (!authorized[name]) {
             finalName += "111";
             alert("❌ 没有找到此报名.");
+        } else if (authorized[name] < 0) {
+            alert(`❓ 欢迎! 请与工作人员确认学生信息。入场人数 ${-authorized[name]} 人.`);
+        } else if (checkedIn.has(name)) {
+            finalName += "000";
+            alert(`⚠️ 此参与者已签到. 入场人数 ${authorized[name]} 人.`);
         } else {
-            alert(`✅ 欢迎! 报名人数 ${authorized[name]} 人.`);
+            alert(`✅ 欢迎! 入场人数 ${authorized[name]} 人.`);
         }
 
         const formData = { name: finalName };
