@@ -24,75 +24,81 @@
   <p id="result"></p>
 
   <script>
-  const AUTH_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
-const CHECKED_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
+    const AUTH_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
+    const CHECKED_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
 
-  let authorized = {};
-  let checkedIn = new Set();
+    let authorized = {};
+    let checkedIn = new Set();
 
-  async function loadCSVs() {
-    const [authText, checkedText] = await Promise.all([
-      fetch(AUTH_CSV).then(r => r.text()),
-      fetch(CHECKED_CSV).then(r => r.text())
-    ]);
+    async function loadCSVs() {
+        const [authText, checkedText] = await Promise.all([
+        fetch(AUTH_CSV).then(r => r.text()),
+        fetch(CHECKED_CSV).then(r => r.text())
+        ]);
 
-    authText.split('\n').slice(1).forEach(line => {
-      const [name, count] = line.trim().split(',');
-      if (name) authorized[name.toLowerCase()] = parseInt(count || 1);
-    });
+        authText.split('\n').slice(1).forEach(line => {
+        const [name, count] = line.trim().split(',');
+        if (name) authorized[name.toLowerCase()] = parseInt(count || 1);
+        });
 
-    checkedText.split('\n').slice(1).forEach(line => {
-      const name = line.trim().toLowerCase();
-      if (name) checkedIn.add(name);
-    });
-  }
+        checkedText.split('\n').slice(1).forEach(line => {
+            const parts = line.trim().split(',');
+            const name = (parts[1] || "").toLowerCase().trim(); // Get second column
+            if (name) checkedIn.add(name);
+        });
 
-  document.addEventListener('DOMContentLoaded', loadCSVs);
-
-  const form = document.getElementById('survey-form');
-  const submitBtn = document.getElementById('submitBtn');
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-
-    const nameRaw = form.name.value;
-    const name = nameRaw.trim().toLowerCase();
-
-    if (checkedIn.has(name)) {
-      alert("⚠️ You are already checked in.");
-      submitBtn.disabled = false;
-      return;
+        console.log("Loaded authorized:", authorized);
+        console.log("Loaded checked-in:", checkedIn);
     }
 
-    if (!authorized[name]) {
-      alert("❌ You are not authorized to check in.");
-      submitBtn.disabled = false;
-      return;
-    }
+    document.addEventListener('DOMContentLoaded', loadCSVs);
 
-    alert(`✅ Welcome! You may enter with ${authorized[name]} people.`);
+    const form = document.getElementById('survey-form');
+    const submitBtn = document.getElementById('submitBtn');
 
-    const formData = { name: nameRaw };
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
 
-    fetch("https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    })
-    .then(res => res.text())
-    .then(msg => {
-      alert("✅ Form submitted successfully!");
-      form.reset();
-      submitBtn.disabled = false;
-    })
-    .catch(err => {
-      alert("❌ Something is wrong, please submit again!");
-      submitBtn.disabled = false;
+        const nameRaw = form.name.value;
+        const name = nameRaw.trim().toLowerCase();
+
+        loadCSVs();
+
+        if (checkedIn.has(name)) {
+        alert("⚠️ You are already checked in.");
+        submitBtn.disabled = false;
+        return;
+        }
+
+        if (!authorized[name]) {
+        alert("❌ You are not authorized to check in.");
+        submitBtn.disabled = false;
+        return;
+        }
+
+        alert(`✅ Welcome! You may enter with ${authorized[name]} people.`);
+
+        const formData = { name: nameRaw };
+
+        fetch("https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+        })
+        .then(res => res.text())
+        .then(msg => {
+        alert("✅ Form submitted successfully!");
+        form.reset();
+        submitBtn.disabled = false;
+        })
+        .catch(err => {
+        alert("❌ Something is wrong, please submit again!");
+        submitBtn.disabled = false;
+        });
     });
-  });
 </script>
 
 
