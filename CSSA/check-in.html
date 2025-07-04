@@ -72,7 +72,7 @@ button:active {
 }
 
 button:disabled {
-    background-color: rgb(74, 82, 83); /* Muted background when disabled */
+    background-color: #443f39; /* Muted background when disabled */
     color: #443f39; /* Muted text color */
     cursor: default; /* Disable cursor interaction */
 }
@@ -84,14 +84,16 @@ button:disabled {
   <form id="survey-form">
   <div style="width: 75%; margin: 0 auto; text-align: center;">
     <p>
-        欢迎来到由JHUCSSA举办的新生会活动. 请在签到完成后有序进入会场!
+        欢迎来到由JHUCSSA举办的新生会活动. 请在签到完成后有序进入会场! <br> <br>
         姓名（需与报名问卷一致）: <br>
         <input type="text" name="name" placeholder="请输入..." required>
         <br>
     </p>
-    <button type="submit" id="submitBtn">签到</button>
+    <button type="submit" id="submitBtn">签到</button><br>
     </div>
   </form>
+  <img src="bluejay.png" alt="Blue Jay" width="300" style="float: left; padding: 0;" />
+    <img src="qr-code.jpg" alt="Blue Jay" width="300" style="float: right; padding: 0;" />
   <p id="result"></p>
 
   <script>
@@ -139,13 +141,11 @@ button:disabled {
 
         if (checkedIn.has(name)) {
         alert("⚠️ 此参与者已签到.");
-        }
-
-        if (!authorized[name]) {
+        } else if (!authorized[name]) {
         alert("❌ 没有找到此报名.");
+        } else {
+            alert(`✅ 欢迎! 报名人数 ${authorized[name]} 人.`);
         }
-
-        alert(`✅ 欢迎! 报名人数 ${authorized[name]} 人.`);
 
         const formData = { name: nameRaw };
 
