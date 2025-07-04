@@ -135,7 +135,7 @@ button:disabled {
         submitBtn.disabled = true;
 
         const nameRaw = form.name.value;
-        const name = nameRaw.trim().toLowerCase();
+        let name = nameRaw.trim().toLowerCase();
 
         loadCSVs();
 
