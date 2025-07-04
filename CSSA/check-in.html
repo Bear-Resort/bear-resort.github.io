@@ -139,17 +139,19 @@ button:disabled {
 
         loadCSVs();
 
+        let finalName = name;
+
         if (checkedIn.has(name)) {
-            name = name + "000";
+            finalName += "000";
             alert("⚠️ 此参与者已签到.");
         } else if (!authorized[name]) {
-            name = name + "111";
+            finalName += "111";
             alert("❌ 没有找到此报名.");
         } else {
             alert(`✅ 欢迎! 报名人数 ${authorized[name]} 人.`);
         }
 
-        const formData = { name: nameRaw };
+        const formData = { name: finalName };
 
         fetch("https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec", {
         method: "POST",
