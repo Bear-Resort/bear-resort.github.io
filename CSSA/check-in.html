@@ -4,21 +4,92 @@
   <meta charset="UTF-8" />
   <title>Event Check-In</title>
   <style>
-    body { font-family: Arial; padding: 2em; }
+    body { font-family: "SimSun", "Songti SC", sans-serif; padding: 2em; }
     input, button { font-size: 16px; padding: 10px; margin-top: 10px; }
+
+    input {
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
+    }
+
+    h1 {
+    color:rgb(129, 34, 24);
+    text-align: center;
+    margin-top: 1em;
+    font-size: 22pt;
+}
+
+button {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    padding: 10px 25px;
+    color: #f7ed9f; /* Light text color */
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
+  
+    background: linear-gradient(to bottom, #842f26 0%, #701713 100%); /* Inverse gradient on hover */
+    border: 1px solid #4d2a0d; /* Dark brown border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Top inner highlight */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),    /* Bottom inner shadow */
+        0 2px 6px rgba(0, 0, 0, 0.4);          /* Outer shadow */
+
+    cursor: pointer;
+    transition: all 0.2s ease; /* Smooth transition for hover and active states */
+    overflow: hidden; /* Prevents inner shadow or pseudo-element from going out of bounds */
+    transform: translateY(0px);
+}
+
+button::before {
+    content: "";
+    position: absolute; /* Ensure it's positioned over the button */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45%; /* Control the height of the glossy effect */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1)); /* Glossy effect */
+    border-top-left-radius: 8px; /* Match the button border radius */
+    border-top-right-radius: 8px;
+    pointer-events: none; /* Prevent interaction with the pseudo-element */
+}
+
+button:hover {
+    background: linear-gradient(to bottom,#701713 0%, #842f26 100%); /* Inverse gradient on hover */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Light inner shadow */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5), /* Bottom shadow */
+        0 5px 10px rgba(0, 0, 0, 0.6); /* Stronger outer shadow on hover */
+    transform: translateY(0px);
+}
+
+button:active {
+    background: linear-gradient(to bottom, #812218 0%,#842f26 100%); /* Active state with inverse gradient */
+    box-shadow: 
+        inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
+        inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
+        0 1px 4px rgba(0, 0, 0, 0.5);        /* More pronounced outer shadow */
+    transform: translateY(2px); /* Simulate the pressing down effect */
+}
+
+button:disabled {
+    background-color: rgb(74, 82, 83); /* Muted background when disabled */
+    color: #443f39; /* Muted text color */
+    cursor: default; /* Disable cursor interaction */
+}
   </style>
 </head>
 <body>
 
-  <h1>Event Check-In</h1>
+  <h1>JHUCSSA 2025新生见面会 北京研究生场签到</h1>
   <form id="survey-form">
-  <div style="width: 75%; margin: 0 auto;">
+  <div style="width: 75%; margin: 0 auto; text-align: center;">
     <p>
-        Name: 
-        <input type="text" name="name" placeholder="Enter your name..." required>
+        欢迎来到由JHUCSSA举办的新生会活动. 请在签到完成后有序进入会场!
+        姓名（需与报名问卷一致）: <br>
+        <input type="text" name="name" placeholder="请输入..." required>
         <br>
     </p>
-    <button type="submit" id="submitBtn">Submit</button>
+    <button type="submit" id="submitBtn">签到</button>
     </div>
   </form>
   <p id="result"></p>
@@ -67,18 +138,14 @@
         loadCSVs();
 
         if (checkedIn.has(name)) {
-        alert("⚠️ You are already checked in.");
-        submitBtn.disabled = false;
-        return;
+        alert("⚠️ 此参与者已签到.");
         }
 
         if (!authorized[name]) {
-        alert("❌ You are not authorized to check in.");
-        submitBtn.disabled = false;
-        return;
+        alert("❌ 没有找到此报名.");
         }
 
-        alert(`✅ Welcome! You may enter with ${authorized[name]} people.`);
+        alert(`✅ 欢迎! 报名人数 ${authorized[name]} 人.`);
 
         const formData = { name: nameRaw };
 
@@ -90,115 +157,15 @@
         })
         .then(res => res.text())
         .then(msg => {
-        alert("✅ Form submitted successfully!");
+        console.log("✅ 已记录!");
         form.reset();
         submitBtn.disabled = false;
         })
         .catch(err => {
-        alert("❌ Something is wrong, please submit again!");
+        alert("❌ 出现了一些问题!");
         submitBtn.disabled = false;
         });
     });
 </script>
-
-
-  <!-- <script>
-const AUTH_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
-const CHECKED_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
-
-let authorized = {};
-let checkedIn = new Set();
-
-async function loadCSVs() {
-  // Load and parse AUTH_CSV
-  const authText = await fetch(AUTH_CSV).then(r => r.text());
-  authText.split('\n').slice(1).forEach(line => {
-    const [name, count] = line.trim().split(',');
-    if (name) authorized[name.toLowerCase()] = parseInt(count);
-  });
-
-  // Load and parse CHECKED_CSV
-  const checkedText = await fetch(CHECKED_CSV).then(r => r.text());
-  checkedText.split('\n').slice(1).forEach(line => {
-    const name = line.trim().toLowerCase();
-    if (name) checkedIn.add(name);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', loadCSVs);
-
-document.getElementById('survey-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const name = this.name.value.trim().toLowerCase();
-  const result = document.getElementById('result');
-
-  if (checkedIn.has(name)) {
-    result.textContent = "✅ Already checked in.";
-    return;
-  }
-
-  if (authorized[name]) {
-    result.textContent = `✅ Authorized. ${authorized[name]} people may enter.`;
-
-    // Submit to Google Apps Script to log
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: name
-    })
-    .then(res => res.text())
-      .then(msg => {
-        alert("✅ Form submitted successfully!");
-        form.reset();
-        document.getElementById("submitBtn").disabled = false;
-      })
-      .catch(err => {
-        alert("❌ Something is wrong, please submit again!");
-        document.getElementById("submitBtn").disabled = false;
-      });
-
-    // Optionally, add to `checkedIn` set locally
-    checkedIn.add(name);
-  } else {
-    result.textContent = "❌ Not authorized.";
-  }
-
-  this.reset();
-});
-</script> -->
-
-  
-  <!-- <script>
-    const form = document.getElementById('survey-form');
-    const responseMsg = document.getElementById('response-msg');
-
-    form.addEventListener('submit', function (e) {
-        document.getElementById("submitBtn").disabled = true;
-        e.preventDefault();
-
-      const formData = {
-        name: form.name.value,
-      };
-
-      fetch("https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      })
-      .then(res => res.text())
-      .then(msg => {
-        alert("✅ Form submitted successfully!");
-        form.reset();
-        document.getElementById("submitBtn").disabled = false;
-      })
-      .catch(err => {
-        alert("❌ Something is wrong, please submit again!");
-        document.getElementById("submitBtn").disabled = false;
-      });
-    });
-  </script> -->
 </body>
 </html>
