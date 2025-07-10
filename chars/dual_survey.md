@@ -66,5 +66,3 @@ title: "Character Survey: Dual Brothers"
         });
     });
 </script>
-</body>
-</html>
