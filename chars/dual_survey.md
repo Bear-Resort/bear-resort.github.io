@@ -10,7 +10,7 @@ title: "Character Survey: Dual Brothers"
 
 <span class="eng">Now, the brothers badly need some names. So it is up to you! By July 20th, we will be collecting some names for these brothers!</span>
 
-<span class="chn">现在，两兄弟急需一些名字。由此，我们向大伙儿征集名字！到7月20日，我们会手机大家给兄弟们起的名字。</span> 
+<span class="chn">现在，两兄弟急需一些名字。由此，我们向大伙儿征集名字！到7月20日，我们会收集大家给兄弟们起的名字。</span> 
 
 # <img src="dual.png" style="height: 200px;">
 
