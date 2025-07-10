@@ -23,6 +23,8 @@ title: "Character Survey: Dual Brothers"
         <span class="eng">Name of the Polar Bear</span> <span class="chn">北极熊的名字</span>  <br>
         <input type="text" name="p_name" placeholder="English..." required> <input type="text" name="p_name_ch" placeholder="中文..." required>
         <br>
+        <span class="eng">If you would like to leave any comments or your name, do so below.</span> <span class="chn">如果你想留下任何意见或你的姓名，请下方自便。</span>
+        <br>
         <textarea id="inputBox" name="feedback" placeholder="Enter your feedback here... / 输入你的意见..." style="font-size: 16px; height: 39px;"></textarea>
     </p>
     <button type="submit" id="submitBtn"><span class="eng">Submit</span> <span class="chn">提交</span> </button><br>
