@@ -82,4 +82,6 @@ title: "User Center"
 
     window.handleLogin = handleLogin;
     window.handleLogout = handleLogout;
+
+    updateLanguage();
 </script>

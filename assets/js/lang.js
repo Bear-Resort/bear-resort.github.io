@@ -58,3 +58,35 @@ if (newLang === 'Eng') {
     });
 }
 });
+
+function updateLanguage() {
+    const newLang = (langBtn.textContent === 'Eng') ? 'Eng' : '中';
+    
+    // Update button text to reflect new language
+    langBtn.textContent = newLang;
+
+    // Store the selected language in localStorage
+    localStorage.setItem('language', newLang);
+
+    // Toggle visibility of elements with the appropriate class
+    const engElements = document.querySelectorAll('.eng');
+    const chnElements = document.querySelectorAll('.chn');
+
+    if (newLang === 'Eng') {
+        // Show English elements, hide Chinese elements
+        engElements.forEach(el => {
+            el.style.display = 'inline';
+        });
+        chnElements.forEach(el => {
+            el.style.display = 'none';
+        });
+    } else {
+        // Show Chinese elements, hide English elements
+        engElements.forEach(el => {
+            el.style.display = 'none';
+        });
+        chnElements.forEach(el => {
+            el.style.display = 'inline';
+        });
+    }
+}
