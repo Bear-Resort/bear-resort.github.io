@@ -2,16 +2,16 @@
 title: "Characters"
 ---
 
-<span class="eng">Upon its establishment, the Bear Resort has been the habitant of various creatures. Here are the ones we have adopted. </span>
+<span class="eng">Upon its establishment, the Bear Resort has been the habitant of various creatures. Here are the ones we have adopted.</span>
 
 <span class="chn">自建立伊始，小熊樂園便是许多生灵的栖息之所。这是我们现有的一些成员。</span>
 
-## <span class="eng">The Ursalinos</span> <span class="chn">熊手党</span> 
+## <span class="eng">The Ursalinos</span><span class="chn">熊手党</span> 
 
 # <img src="beary.png" style="height: 200px;">
 
 - <span class="eng">Beary</span> <span class="chn">小熊</span>
-    - <span class="eng">Beary is a Brown bear ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear)), and he is the head of the Ursalinos.</span> <span class="chn"></span>小熊是一头棕熊 ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear))，他也是熊手党的族长。<br>
+    - <span class="eng">Beary is a Brown bear ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear)), and he is the head of the Ursalinos.</span><span class="chn">小熊是一头棕熊 ([*Ursus arctos*](https://en.wikipedia.org/wiki/Brown_bear))，他也是熊手党的族长。</span><br>
     - <span class="eng">Beary is a senior technician and associate professor in the BIAS (Bear Institute of Aeronautics and Space), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe.</span> <span class="chn">小熊是BIAS(熊熊航空航天局)的高级技师和副教授，也是纯数系和天体物理系的教员。他的研究主要在代数拓扑学在多尺度结构宇宙中的应用。</span>
 
 # <img src="little-bear.png" style="height: 200px;">
@@ -22,19 +22,19 @@ title: "Characters"
 
 # <img src="dr-b.png" style="height: 200px;">
 
-- <span class="eng">Dr. B</span> <span class="chn">胖胖博士</span> ([<span class="eng">Survey Results</span> <span class="chn">问卷结果</span>](https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm))
+- <span class="eng">Dr. B</span> <span class="chn">胖胖博士</span> ([<span class="eng">*Survey Results*</span><span class="chn">*问卷结果*</span>](https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm))
     - <span class="eng">Dr. B is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He owns a dual identity, serving in both the Ursalinos and the Meowstars.</span> <span class="chn">胖胖博士是一头大熊猫 ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda))。他拥有双重身份，同属于熊手党和喵星人。</span>
     - <span class="eng">Dr. B is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off...</span> <span class="chn">胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。</span>
 <br>
 
 - <span class="eng">More Ursalinos members coming soon.</span> <span class="chn">更多熊手党成员即将到来。</span>
-    - [<span class="eng">New!</span> <span class="chn">全新！</span>] [<span class="eng">Name Survey</span> <span class="chn">命名问卷</span>](dual_survey.html)
+    - [<span class="eng">New!</span> <span class="chn">全新!</span>] [<span class="eng">*Name Survey*</span><span class="chn">*命名问卷*</span>](dual_survey.html)
 
 ## <span class="eng">Meowstars</span> <span class="chn">喵星人</span> 
 
 # <img src="tiger.png" style="height: 200px;">
 
-- <span class="eng">Meow-sieur Chef</span> <span class="chn">神厨咪咪</span> ([<span class="eng">Survey Results</span> <span class="chn">问卷结果</span>](https://docs.google.com/forms/d/e/1FAIpQLSeSW_F1lZ-YPX4SVYt6Ryv5MRwZlF0ktrK1k7WABXoYVraSNQ/viewanalytics?usp=form_confirm))
+- <span class="eng">Meow-sieur Chef</span> <span class="chn">神厨咪咪</span> ([<span class="eng">*Survey Results*</span><span class="chn">*问卷结果*</span>](https://docs.google.com/forms/d/e/1FAIpQLSeSW_F1lZ-YPX4SVYt6Ryv5MRwZlF0ktrK1k7WABXoYVraSNQ/viewanalytics?usp=form_confirm))
     - <span class="eng">Meow-sieur Chef is a South China Tiger ([*P. t. amoyensis*](https://en.wikipedia.org/wiki/South_China_tiger)). As the King of Beasts, he is undoubtfully the head of the Meowstars.</span> <span class="chn">神厨咪咪是一头华南虎。作为百兽之王，他毋庸置疑是喵星人的族长。</span>
     - <span class="eng">Meow-sieur Chef is a cook, and he makes dishes for all the carnivores and bears in the Bear Resort. Absolutely marvelous control of knifes, so one should naturally suspect what he does before becoming a chief. FYI: You'd better call him by Big Justin (which appeared to be on his ID, probably) rather than Meow-sieur (his nickname), unless you are absolutely sure that you will not become his breakfast tomorrow.</span> <span class="chn">神厨咪咪是一个厨子，他为小熊樂園里的各个食肉动物和熊们准备餐点。绝佳的刀工，让人不得不怀疑他在做厨子之前干的是什么行当。小贴士：你最好叫他的真名-大哥贾斯汀，而非小名咪咪，除非你绝对知道你不会成为他明天的早餐。</span>
 
