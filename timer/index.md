@@ -60,7 +60,7 @@ title: "Timer"
     <button id="stopButton"><span class="eng">Stop</span><span class="chn">停止</span></button>
 </div>
 <div id="countdown-timer" style="display: none">00:00:00</div>
-<div id="additions">
+<div id="additions" style="display: none">
     <button id="add30sButton"><span class="eng">Add 30s</span><span class="chn">加30秒</span></button>
     <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button>
     <button id="add5mButton"><span class="eng">Add 5m</span><span class="chn">加5分钟</span></button>
