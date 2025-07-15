@@ -106,6 +106,7 @@ export function updateMyLanguage() {
         chnElements.forEach(el => {
             el.style.display = 'none';
         });
+        return "Eng";
     } else {
         // Show Chinese elements, hide English elements
         engElements.forEach(el => {
@@ -114,5 +115,6 @@ export function updateMyLanguage() {
         chnElements.forEach(el => {
             el.style.display = 'inline';
         });
+        return "Chn";
     }
 }

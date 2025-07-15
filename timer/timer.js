@@ -39,6 +39,7 @@ function initializeTimer() {
             inputForm.style.display = 'none';
             controls.style.display = 'block';
             additions.style.display = 'block';
+            timerDisplay.style.display = 'block';
             bear_stop.style.display = 'block';
             bear_progress.style.display = 'none';
             startCountdown(); // Start countdown if there's remaining time
@@ -70,7 +71,11 @@ function startCountdown() {
     const inputTime = hours * 3600 + minutes * 60 + seconds;
 
     if (inputTime <= 0 && remainingTime <= 0) {
-        alert('Please enter a valid time greater than 0');
+        if (updateMyLanguage() === "Eng") {
+            alert('Please enter a valid time.');
+        } else {
+            alert('请输入一个有效的时间.');
+        }
         return;
     }
 
@@ -106,7 +111,12 @@ function startCountdown() {
                 controls.style.display = 'none';
                 additions.style.display = 'none';
                 inputForm.style.display = 'block';
-                alert('Time is up!');
+                if (updateMyLanguage() === "Eng") {
+                    alert('Time is up.');
+                } else {
+                    alert('时间到了.');
+                }
+                timerDisplay.style.display = 'none';
                 localStorage.removeItem('endTimestamp'); // Clear stored time
                 localStorage.removeItem('totalTime'); // Clear total time
                 return;
