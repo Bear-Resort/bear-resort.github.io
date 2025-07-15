@@ -91,7 +91,7 @@ function updateLanguage() {
     }
 }
 
-function updateMyLanguage() {
+export function updateMyLanguage() {
     const lang = langBtn.textContent;
     
     // Toggle visibility of elements with the appropriate class
