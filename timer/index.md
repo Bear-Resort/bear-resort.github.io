@@ -40,11 +40,12 @@ title: "Timer"
 
 # <span class="eng">Countdown Timer</span><span class="chn">计时器</span>
 
+<div style = "text-align: center">
 <div id="stopped">
-    <img src="stop.gif" height="200">
+    <img src="stop.gif" style="width: 200px; height: 200px;">
 </div>
 <div id="progress" style="display: none;">
-    <img src="begin.gif" height="200">
+    <img src="begin.gif" style="width: 200px; height: 200px;">
 </div>
 <div id="inputForm">
     <input type="number" id="hoursInput" placeholder="0" min="0"> <span class="eng">Hour(s)</span><span class="chn">小时</span> 
@@ -64,3 +65,6 @@ title: "Timer"
     <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button>
     <button id="add5mButton"><span class="eng">Add 5m</span><span class="chn">加5分钟</span></button>
 </div>
+</div>
+
+<script src="timer.js"></script>
