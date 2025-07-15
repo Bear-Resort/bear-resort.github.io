@@ -101,10 +101,12 @@ function startCountdown() {
             if (remainingTime < 0) {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
-                alert('Time is up!');
+                bear_stop.style.display = 'block';
+                bear_progress.style.display = 'none';
                 controls.style.display = 'none';
                 additions.style.display = 'none';
                 inputForm.style.display = 'block';
+                alert('Time is up!');
                 localStorage.removeItem('endTimestamp'); // Clear stored time
                 localStorage.removeItem('totalTime'); // Clear total time
                 return;
