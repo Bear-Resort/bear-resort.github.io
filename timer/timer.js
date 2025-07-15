@@ -1,3 +1,5 @@
+import { updateMyLanguage } from '/assets/js/lang.js';
+
 let countdown;
 let remainingTime = 0; // Remaining time in seconds
 let isPaused = false;
