@@ -60,6 +60,7 @@ title: "User Center"
       document.getElementById("welcome-text").innerHTML = "✅ <span class='eng'>You are logged in</span> <span class='chn'>您已登录</span>";
       document.getElementById("active-username").textContent = `${username}`;
       document.getElementById("active-category").innerHTML = "<span class='eng'>True Fan</span> <span class='chn'>真爱粉</span>";
+      updateMyLanguage();
       welcome.style.display = "block";
     }
 

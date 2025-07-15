@@ -90,3 +90,29 @@ function updateLanguage() {
         });
     }
 }
+
+function updateMyLanguage() {
+    const lang = langBtn.textContent;
+    
+    // Toggle visibility of elements with the appropriate class
+    const engElements = document.querySelectorAll('.eng');
+    const chnElements = document.querySelectorAll('.chn');
+
+    if (lang === 'Eng') {
+        // Show English elements, hide Chinese elements
+        engElements.forEach(el => {
+            el.style.display = 'inline';
+        });
+        chnElements.forEach(el => {
+            el.style.display = 'none';
+        });
+    } else {
+        // Show Chinese elements, hide English elements
+        engElements.forEach(el => {
+            el.style.display = 'none';
+        });
+        chnElements.forEach(el => {
+            el.style.display = 'inline';
+        });
+    }
+}
