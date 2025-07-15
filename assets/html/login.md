@@ -38,6 +38,7 @@ title: "User Center"
 
 <script type="module">
     import { isLoggedIn, logout, getCurrentUser, loginU } from '/assets/js/login.js';
+    import { updateMyLanguage } from '/assets/js/lang.js';
 
     document.getElementById("login").style.display = "none";
 
@@ -83,6 +84,4 @@ title: "User Center"
 
     window.handleLogin = handleLogin;
     window.handleLogout = handleLogout;
-
-    updateLanguage();
 </script>
