@@ -31,11 +31,11 @@
       <div style="text-align: center;">
         <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
           <button onclick="prevPage()">←</button>
-          <span>Page: <span id="page-num">1</span> / <span id="page-count">?</span></span>
+          <span><span class="eng">Page</span><span class="chn">页码</span>: <span id="page-num">1</span> / <span id="page-count">?</span></span>
           <button onclick="nextPage()">→</button>
         </div>
 
-        <div id="loading" style="text-align: center;">Loading PDF...</div>
+        <div id="loading" style="text-align: center;"><span class="eng">Loading...</span><span class="chn">加载中...</span></div>
         <div id="canvasContainer" style="text-align: center;">
           <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
         </div>

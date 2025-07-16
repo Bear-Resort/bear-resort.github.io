@@ -30,20 +30,19 @@
       <br><br><br>
 
       <div id="isNotHidden" style="text-align: center;">
-        Fans only content. Log in to view. <br>
-        粉丝专享内容。登录以查看。
+        <span class="eng">Fans only content. Log in to view.</span><span class="chn">粉丝专享内容。登录以查看。</span> <br>
       </div>
       <div id="isHidden" style="display: none; text-align: center;">
         <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
           <button onclick="prevPage()">←</button>
-          <span>Page: <span id="page-num">1</span> / <span id="page-count">?</span></span>
+          <span><span class="eng">Page</span><span class="chn">页码</span>: <span id="page-num">1</span> / <span id="page-count">?</span></span>
           <button onclick="nextPage()">→</button>
           <!-- &nbsp;&nbsp;
           <button onclick="zoomOut()">-</button>
           <button onclick="zoomIn()">+</button> -->
         </div>
 
-        <div id="loading" style="text-align: center;">Loading PDF...</div>
+        <div id="loading" style="text-align: center;"><span class="eng">Loading...</span><span class="chn">加载中...</span></div>
         <div id="canvasContainer" style="text-align: center;">
           <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
         </div>
