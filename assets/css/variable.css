@@ -1,0 +1,9 @@
+:root {
+    --main-color:  #6b4a1f; 
+    --main-color-light: #5a3a14;
+    --secondary-color: #f7ed9f; 
+    --secondary-light: #e2d8b7;
+
+    --font-family: 'Merriweather', serif, 'Yuanti SC', 'Microsoft YaHei', sans-serif;
+    --font-code: "Lucida Console", monospace;
+}

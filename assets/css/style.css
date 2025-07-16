@@ -1,25 +1,27 @@
+@import url('variables.css');
+
 #content {
-  font-family: 'Merriweather', serif, 'Yuanti SC', 'Microsoft YaHei', sans-serif;
+  font-family: var(--font-family);
 }
 
 body {
-    font-family: 'Merriweather', 'Yuanti SC', 'Microsoft YaHei', sans-serif;
+    font-family: var(--font-family);
     font-size: 12pt;
 }
 
 code {
-    font-family: "Lucida Console", monospace;
+    font-family: var(--font-code);
 }
 
 #content h1 {
-    color: #6b4a1f;
+    color: var(--main-color);
     text-align: center;
     margin-top: 1em;
     font-size: 16pt;
 }
 
 h2 {
-    color: #7e6c48;
+    color: var(--main-color-light);
     margin-top: 1em;
     font-size: 14pt;
 }  
@@ -40,11 +42,11 @@ largertitle {
 }  
 
 a {
-    color: #6b4a1f;
+    color: var(--main-color);
 }
 
 a:visited{
-    color: #6b4a1f;
+    color: var(--main-color);
 }
 
 .topnav {
@@ -53,7 +55,7 @@ a:visited{
   top: 0px;
   left: 3px;
   right: 3px;
-  background: linear-gradient(to bottom, #6e431a 0%, #3a220b 100%);
+  background: linear-gradient(to bottom, var(--main-color) 0%, var(--main-color-light) 100%);
   color: #fff;
   font-size: 16px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
@@ -72,7 +74,7 @@ a:visited{
 }
 
 .topnav a {
-    color: #f7ed9f;
+    color: var(--secondary-color);
     text-align: center;
     padding: 7px 12px;
     border-radius: 10px;
@@ -82,12 +84,12 @@ a:visited{
 }
 
 .topnav a:visited {
-    color: #f7ed9f;
+    color: var(--secondary-color);
 }
 
 .topnav a:hover {
-    background: linear-gradient(to bottom, #f7ed9f 0%, #e2d8b7 100%);
-    color: #372914;
+    background: linear-gradient(to bottom, var(--secondary-color) 0%, var(--secondary-light) 100%);
+    color: var(--main-color-light);
     box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5),
@@ -96,8 +98,8 @@ a:visited{
 
 
 .topnav a:active {
-    background: linear-gradient(to top, #f7ed9f 0%, #e2d8b7 100%);
-    color: #372914;
+    background: linear-gradient(to top, var(--secondary-color) 0%, var(--secondary-light) 100%);
+    color: var(--main-color-light);
     box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5),
@@ -106,7 +108,7 @@ a:visited{
 }
 
 .topnav a.active {
-    background: linear-gradient(to top, #f7ed9f 0%, #faf5d1 100%);
+    background: linear-gradient(to top, var(--secondary-color) 0%, var(--secondary-light) 100%);
     color: #000;
     cursor: default;
     box-shadow: 
@@ -122,19 +124,19 @@ a:visited{
   bottom: 0px;
   left: 3px;
   right: 3px;
-  background: linear-gradient(to bottom, #f4f1e1 0%, #e2d8b7 100%); /* Soft gradient for iOS 6 feel */
+  background: linear-gradient(to bottom, #f4f1e1 0%, var(--secondary-light) 100%); 
   color: #000;
   font-size: 16px;
-  text-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.6); /* Subtle text shadow for emboss effect */
+  text-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.6);
   padding: 8px 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.3), /* top inner highlight */
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3),      /* bottom inner shadow */
-    0 -2px 6px rgba(0, 0, 0, 0.4);           /* outer shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 -2px 6px rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   max-height: 35px;
   overflow: auto;
@@ -150,16 +152,16 @@ a:visited{
   width: 100%;
   height: 50%;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-  pointer-events: none; /* Ensures it doesn't block any clicks or interactions */
+  pointer-events: none;
 }
 
 
 .botnav a {
-    color: #6b4a1f;
+    color: var(--main-color);
 }
 
 .botnav a:visited {
-    color: #6b4a1f;
+    color: var(--main-color);
 }
 
 .column {
@@ -167,7 +169,6 @@ a:visited{
     width: 50%;
   }
   
-  /* Clear floats after the columns */
   .row:after {
     content: "";
     display: table;
@@ -185,65 +186,64 @@ a:visited{
 
 
 button {
-    font-family: 'Merriweather', serif;
+    font-family: var(--font-family);
     font-size: 16px;
     padding: 10px 25px;
-    color: #f7ed9f; /* Light text color */
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
+    color: var(--secondary-color);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   
-    background: linear-gradient(to bottom, #4a2a04 0%, #3b1a0f 100%); /* Inverse gradient on hover */
-    border: 1px solid #4d2a0d; /* Dark brown border */
-    border-radius: 8px; /* Rounded corners */
+    background: linear-gradient(to bottom, var(--main-color) 0%, var(--main-color-light) 100%);
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
     box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Top inner highlight */
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3),    /* Bottom inner shadow */
-        0 2px 6px rgba(0, 0, 0, 0.4);          /* Outer shadow */
-
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 2px 6px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: all 0.2s ease; /* Smooth transition for hover and active states */
-    overflow: hidden; /* Prevents inner shadow or pseudo-element from going out of bounds */
+    transition: all 0.2s ease;
+    overflow: hidden;
     transform: translateY(0px);
 }
 
 button::before {
     content: "";
-    position: absolute; /* Ensure it's positioned over the button */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 45%; /* Control the height of the glossy effect */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1)); /* Glossy effect */
-    border-top-left-radius: 8px; /* Match the button border radius */
+    height: 45%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+    border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    pointer-events: none; /* Prevent interaction with the pseudo-element */
+    pointer-events: none;
 }
 
 button:hover {
-    background: linear-gradient(to bottom, #5a3a14 0%, #6b4a1f 100%); /* Inverse gradient on hover */
+    background: linear-gradient(to bottom, var(--main-color-light) 0%, var(--main-color) 100%);
     box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Light inner shadow */
-        inset 0 -1px 0 rgba(0, 0, 0, 0.5), /* Bottom shadow */
-        0 5px 10px rgba(0, 0, 0, 0.6); /* Stronger outer shadow on hover */
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+        0 5px 10px rgba(0, 0, 0, 0.6);
     transform: translateY(0px);
 }
 
 button:active {
-    background: linear-gradient(to bottom, #5a3a14 0%, #6b4a1f 100%); /* Active state with inverse gradient */
+    background: linear-gradient(to bottom, var(--main-color-light) 0%, var(--main-color) 100%);
     box-shadow: 
-        inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
-        inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
-        0 1px 4px rgba(0, 0, 0, 0.5);        /* More pronounced outer shadow */
-    transform: translateY(2px); /* Simulate the pressing down effect */
+        inset 0 2px 3px rgba(0, 0, 0, 0.5),
+        inset 0 -3px 4px rgba(0, 0, 0, 0.6),
+        0 1px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
 }
 
 button:disabled {
-    background-color: rgb(74, 82, 83); /* Muted background when disabled */
-    color: #443f39; /* Muted text color */
-    cursor: default; /* Disable cursor interaction */
+    background-color: #4a5253; 
+    color: #443f39;
+    cursor: default;
 }
 
 textarea {
-    font-family: 'Merriweather', serif;
+    font-family: var(--font-family);
     font-size: 12px;
     width: 75%;
     margin: 0 auto 0 auto;  
@@ -254,7 +254,7 @@ textarea {
 }
 
 input {
-    font-family: 'Merriweather', serif;
+    font-family: var(--font-family);
     font-size: 12px;
 }
 
@@ -337,7 +337,7 @@ input:checked + .slider:before {
     position: fixed;
     top: 60px;
     left: 3px;
-    background-color: #f7ed9f;
+    background-color: var(--secondary-color);
     padding: 10px 15px;
     border-radius: 8px;
     font-weight: bold;
@@ -349,8 +349,8 @@ input:checked + .slider:before {
   position: fixed;
   top: 60px;
   right: 3px;
-  background: linear-gradient(to bottom, #f7ed9f 0%, #e2d8b7 100%); /* Soft light gradient */
-  color: #6b4a1f; /* Dark brown text */
+  background: linear-gradient(to bottom, var(--secondary-color) 0%, var(--secondary-light) 100%); /* Soft light gradient */
+  color: var(--main-color); /* Dark brown text */
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: 
@@ -365,7 +365,7 @@ input:checked + .slider:before {
 }
 
 #login:hover {
-  background: linear-gradient(to bottom, #e2d8b7 0%, #f7ed9f 100%); /* Inverse gradient on hover */
+  background: linear-gradient(to bottom, var(--secondary-light) 0%, var(--secondary-color) 100%); /* Inverse gradient on hover */
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5),
@@ -373,7 +373,7 @@ input:checked + .slider:before {
 }
 
 #login:active {
-  background: linear-gradient(to bottom, #e2d8b7 0%, #f7ed9f 100%); /* Active state with inverse gradient */
+  background: linear-gradient(to bottom, var(--secondary-light) 0%, var(--secondary-color) 100%); /* Active state with inverse gradient */
   box-shadow: 
     inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
     inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
@@ -391,7 +391,7 @@ input:checked + .slider:before {
     line-height: 25px;
     font-size: 10px;
     text-align: center;
-    color: #e2d8b7;
+    color: var(--secondary-light);
     padding: 5px 5px;
     border-radius: 8px;
     box-shadow: 
