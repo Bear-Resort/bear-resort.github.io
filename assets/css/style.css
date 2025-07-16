@@ -116,6 +116,17 @@ a:visited{
     transform: translateY(0.25px);
 }
 
+.topnav a.active {
+    background: linear-gradient(to top, var(--secondary-color) 0%, var(--secondary-light) 100%);
+    color: #000;
+    cursor: default;
+    box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+    transform: translateY(0.25px);
+}
+
 .topnav a.logo {
     padding: 0;
 }
