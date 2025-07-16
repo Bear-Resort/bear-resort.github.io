@@ -10,13 +10,13 @@ title-chn: "粉丝专享"
 
 ## <span class="eng">Zhaizhai's Pretty Anime Girl Zone</span><span class="chn">宅宅的美少女专区</span>
 
-- [<span class="eng">Sketches of the Beauty</span> <span class="chn">美少女立绘</span>](sketches-beauty.html)
-- [<span class="eng">MJS, God of Algebraic Geometry</span><span class="chn">孟建设，代数几何之神</span>](mjs-god-of-ag.html)
+- [<span class="eng">Sketches of the Beauty</span> <span class="chn">美少女立绘</span>](sketches-of-the-beauty.pdff)
+- [<span class="eng">MJS, God of Algebraic Geometry</span><span class="chn">孟建设，代数几何之神</span>](mjs-alg-geo.pdff)
 
 ## <span class="eng">Mousy's Steam Tunnelers and Dark Arena</span><span class="chn">鼠鼠的蒸汽管道与暗黑竞技场</span>
 
-- [<span class="eng">Bear Resort Steam Tunnel Signage Project Standards</span><span class="chn">小熊樂園蒸汽管道指引牌项目导视系统标准</span>](/tunnels/ins-labels.html)
+- [<span class="eng">Bear Resort Steam Tunnel Signage Project Standards</span><span class="chn">小熊樂園蒸汽管道指引牌项目导视系统标准</span>](Instruction_of_Labels(H).pdff)
 
 ## <span class="eng">Mathy's Math Clandestinity</span><span class="chn">数数的数学秘境</span>
 
-- [<span class="eng">Split Rent Algorithm</span><span class="chn">巧分房租算法</span>](/fans_only/split-rent-algo.html)
+- [<span class="eng">Split Rent Algorithm</span><span class="chn">巧分房租算法</span>](split-rent-algo.pdff)

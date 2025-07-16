@@ -8,7 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
       const pdfUrl = link.getAttribute('href'); // Get the href of the PDF link
 
       // Open the PDF renderer in a new tab with the PDF URL as a query parameter
-      window.open('/pdf-renderer.html?pdf=' + encodeURIComponent(pdfUrl), '_blank');
+      window.open('/assets/html/pdf-renderer.html?pdf=' + encodeURIComponent(pdfUrl), '_blank');
+    });
+  });
+
+  const fansLinks = document.querySelectorAll('a[href$=".pdff"]');  // Select all PDF links
+
+  // Attach click event listener to each PDF link
+  fansLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+      const fansUrl = link.getAttribute('href').slice(0, -1); // Get the href of the PDF link
+
+      // Open the PDF renderer in a new tab with the PDF URL as a query parameter
+      window.open('/assets/html/fans-only.html?pdf=' + encodeURIComponent(fansUrl), '_blank');
     });
   });
 });
