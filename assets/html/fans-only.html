@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <title>Fans Only</title>
     <link rel="stylesheet" href="/assets/css/variable.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/logos/favicon.png">
@@ -14,8 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
   <div class="topnav" style="text-align: center;">
-      <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> Bear Resort &nbsp; &nbsp; &nbsp; &nbsp;
-      Fans Only Content &nbsp; | &nbsp; 粉丝专享内容
+      <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp; <span class="eng">Fans Only Content</span><span class="chn">粉丝专享内容</span>
   </div>
 
   <div id="content" style="text-align: left;">
@@ -27,8 +26,6 @@
 
 
       <br><br><br>
-
-      {{ content }}
 
       <div id="isNotHidden" style="text-align: center;">
         Fans only content. Log in to view. <br>
@@ -54,8 +51,10 @@
       <br><br><br>
   </div>
 
+  <div id="lang">Eng</div>
+
   <div class="botnav" style="text-align: center;">
-    This is a fans only content. When you finish, please close the page. 这是粉丝独享内容。当你用完本界面，请直接关闭界面。
+    <span class="eng">This is a fans only content. When you finish, please close the page.</span><span class="chn">这是粉丝独享内容。当你用完本界面，请直接关闭界面。</span>
   </div>
 
   <script src="/assets/js/link.js"></script>
@@ -78,7 +77,7 @@
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const url = urlParams.get('pdf');
+  const url = '/fans_only/' + urlParams.get('pdf');
 
   const canvas = document.getElementById('pdf-render');
   const ctx = canvas.getContext('2d');
