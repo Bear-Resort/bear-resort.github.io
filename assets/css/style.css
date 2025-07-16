@@ -492,3 +492,26 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: var(--secondary-color);
 }
+
+@media print {
+  .topnav {
+    display: none !important;
+  }
+
+  .break {
+    display: none !important;
+  }
+
+  .navbar-print {
+    background-color: #ffffff !important;
+    color: var(--main-color) !important;
+    display: block !important;
+    margin-bottom: 20px;
+  }
+
+  th {
+    background-color: #ffffff !important;
+    color: var(--main-color) !important;
+    padding: 8px;
+}
+}
