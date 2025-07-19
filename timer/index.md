@@ -10,7 +10,6 @@ title: "Timer"
         align-items: center;
         /* justify-content: center; */
         height: 100vh;
-        background-color: #f4f4f4;
     }
     input {
         padding: 10px;
