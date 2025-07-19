@@ -1,9 +1,31 @@
 :root {
-    --main-color:  #6b4a1f; 
-    --main-color-light: #5a3a14;
-    --secondary-color: #f7ed9f; 
-    --secondary-light: #e2d8b7;
+    --dark-color:  #6b4a1f; 
+    --dark-light: #5a3a14;
+    --light-color: #f7ed9f; 
+    --light-light: #e2d8b7;
 
     --font-family: 'Merriweather', serif, 'Yuanti SC', 'Microsoft YaHei', sans-serif;
     --font-code: "Lucida Console", monospace;
+}
+
+/* Day Theme */
+.day-theme {
+    --main-color: var(--dark-color);
+    --main-color-light: var(--dark-light);
+    --secondary-color: var(--light-color);
+    --secondary-light: var(--light-light);
+
+    --text-color: #202020;
+    --background-color: #eaeaea;
+}
+
+/* Night Theme */
+.night-theme {
+    --main-color: var(--light-color);
+    --main-color-light: var(--light-light);
+    --secondary-color: var(--dark-color);
+    --secondary-light: var(--dark-light);
+
+    --text-color: #eaeaea;
+    --background-color: #202020;
 }
