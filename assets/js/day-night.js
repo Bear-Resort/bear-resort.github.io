@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle theme on button click and update Local Storage
     toggleButton.addEventListener('click', () => {
         localStorage.setItem('refresh', Date.now().toString());
-        const currentTheme = localStorage.getItem('theme');
+        const currentTheme = getCookie('theme');
         setTheme(currentTheme != 'night');
     });
 });
