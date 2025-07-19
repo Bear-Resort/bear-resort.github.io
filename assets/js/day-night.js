@@ -1,5 +1,5 @@
 // day-night.js
-import { setCookie, getCookie } from 'http://bear-resort.github.io/assets/js/cookie.js';
+import { setCookie, getCookie } from 'https://bear-resort.github.io/assets/js/cookie.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('day-night');
