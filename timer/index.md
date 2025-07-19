@@ -27,7 +27,7 @@ title: "Timer"
     }
     #countdown-timer {
         font-size: 48px;
-        color: #333;
+        color: var(--text-color);
         margin-top: 20px;
     }
     #controls {
