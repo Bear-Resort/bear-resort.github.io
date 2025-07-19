@@ -13,6 +13,7 @@
     --text-color: var(--dark);
     --text-color-dark: #000000;
     --background-color: var(--light);
+    --background-light: #ffffff;
 }
 
 /* Night Theme */
@@ -25,6 +26,7 @@
     --text-color: var(--light);
     --text-color-dark: #ffffff;
     --background-color: var(--dark);
+    --background-light: #000000;
 }
 
 #content {
@@ -309,6 +311,7 @@ textarea {
     overflow: hidden;
     color: var(--text-color);
     background-color: var(--background-color);
+    border-color: var(--background-light);
 }
 
 input {
@@ -316,6 +319,7 @@ input {
     font-size: 12px;
     color: var(--text-color);
     background-color: var(--background-color);
+    border-color: var(--background-light);
 }
 
 .button-wrapper {
