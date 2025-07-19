@@ -3,5 +3,7 @@ window.addEventListener('storage', function (event) {
     location.reload();
   } else if (event.key === 'logoutEvent') {
     location.reload();
+  } else if (event.key === 'refresh') {
+    location.reload();
   }
 });
