@@ -1,5 +1,5 @@
 // day-night.js
-import { setCookie, getCookie } from './cookies.js';
+import { setCookie, getCookie } from './cookie.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('day-night');
