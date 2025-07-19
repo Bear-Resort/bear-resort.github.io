@@ -16,6 +16,7 @@
     --secondary-light: var(--light-light);
 
     --text-color: #202020;
+    --text-color-dark: #000000;
     --background-color: #eaeaea;
 }
 
@@ -27,5 +28,6 @@
     --secondary-light: var(--dark-light);
 
     --text-color: #eaeaea;
+    --text-color-dark: #ffffff;
     --background-color: #202020;
 }
