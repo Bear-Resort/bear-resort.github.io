@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isNight) {
             document.body.classList.add('night-theme');
             document.body.classList.remove('day-theme');
-            toggleButton.textContent = '🌜'; // Change to moon emoji
+            toggleButton.textContent = '☾'; // Change to moon emoji
             localStorage.setItem('theme', 'night');
         } else {
             document.body.classList.remove('night-theme');
             document.body.classList.add('day-theme');
-            toggleButton.textContent = '🌞'; // Change to sun emoji
+            toggleButton.textContent = '☼'; // Change to sun emoji
             localStorage.setItem('theme', 'day');
         }
         localStorage.setItem('refresh', Date.now().toString());
