@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.textContent = '☼'; // Change to sun emoji
             localStorage.setItem('theme', 'day');
         }
-        localStorage.setItem('refresh', Date.now().toString());
     };
 
     // Check Local Storage for theme preference and set it
@@ -24,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle theme on button click and update Local Storage
     toggleButton.addEventListener('click', () => {
+        localStorage.setItem('refresh', Date.now().toString());
         const currentTheme = localStorage.getItem('theme');
         setTheme(currentTheme != 'night');
     });
