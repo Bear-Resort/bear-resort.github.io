@@ -10,44 +10,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body class="day-theme">
+  <script type="module" src="/assets/js/cookie.js"></script>
+  <script type="module" src="/assets/js/login.js"></script>
+  <script type="module" src="/assets/js/lang.js"></script>
+  <script type="module" src="/assets/js/day-night.js"></script>
+  <div class="topnav" style="text-align: center;">
+    <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"> &nbsp;
+    <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> | 
+    <a href="/archive/" id="archive"><span class="eng">Archive</span><span class="chn">归档</span></a> |
+    <a href="/mathland/" id="mathland"><span class="eng">Mathland</span><span class="chn">数学之境</span></a> |
+    <a href="/legal/" id="legal"><span class="eng">Legal</span><span class="chn">法务部</span></a> |
+    <a href="/emoji/" id="emoji"><span class="eng">Emoji</span><span class="chn">表情包</span></a> |
+    <a href="/fans_only/" id="fans-only"><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a> |
+    <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
+  </div>
 
-    <script type="module" src="/assets/js/login.js"></script>
-    <script type="module" src="/assets/js/lang.js"></script>
-    <script type="module" src="/assets/js/day-night.js"></script>
-    <div class="topnav" style="text-align: center;">
-        <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"> &nbsp;
-        <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> | 
-        <a href="/archive/" id="archive"><span class="eng">Archive</span><span class="chn">归档</span></a> |
-        <a href="/mathland/" id="mathland"><span class="eng">Mathland</span><span class="chn">数学之境</span></a> |
-        <a href="/legal/" id="legal"><span class="eng">Legal</span><span class="chn">法务部</span></a> |
-        <a href="/emoji/" id="emoji"><span class="eng">Emoji</span><span class="chn">表情包</span></a> |
-        <a href="/fans_only/" id="fans-only"><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a> |
-        <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
+  <div id="dynamic-island" style="display: none;"></div>
+  <div id="day-night">🌞</div>
+
+  <div id="content" style="text-align: left;">
+    <br><br><br>
+
+    <div style="text-align: center;">
+        <largertitle><span class="eng">{{ page.title }}</span><span class="chn"> {{ page.title-chn }}</span></largertitle>
     </div>
 
-    <div id="dynamic-island" style="display: none;"></div>
-    <div id="day-night">🌞</div>
+    <br>
 
-    <div id="content" style="text-align: left;">
-        <br><br><br>
+    {{ content }}
 
-        <div style="text-align: center;">
-            <largertitle><span class="eng">{{ page.title }}</span><span class="chn"> {{ page.title-chn }}</span></largertitle>
-        </div>
+    <br><br><br>
 
-        <br>
+    <a href="/assets/html/login.html" id="login"><span class="eng">Log in</span><span class="chn">登录</span></a>
+    <div id="lang">Eng</div>
 
-        {{ content }}
-
-        <br><br><br>
-
-        <a href="/assets/html/login.html" id="login"><span class="eng">Log in</span><span class="chn">登录</span></a>
-        <div id="lang">Eng</div>
-
-    </div>
+  </div>
 
     <div class="botnav" style="text-align: center;">
-        <span class="eng">Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>.</span> <span class="chn">联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。</span>
+      <span class="eng">Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>.</span> <span class="chn">联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。</span>
     </div>
     <script src="/assets/js/link.js"></script>
     <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
