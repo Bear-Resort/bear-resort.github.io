@@ -307,6 +307,8 @@ textarea {
     resize: none;
     height: auto;
     overflow: hidden;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 input {
