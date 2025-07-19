@@ -311,7 +311,7 @@ textarea {
     overflow: hidden;
     color: var(--text-color);
     background-color: var(--background-color);
-    border-color: var(--background-light);
+    border-color: var(--text-color);
 }
 
 input {
@@ -319,7 +319,7 @@ input {
     font-size: 12px;
     color: var(--text-color);
     background-color: var(--background-color);
-    border-color: var(--background-light);
+    border-color: var(--text-color);
 }
 
 .button-wrapper {
