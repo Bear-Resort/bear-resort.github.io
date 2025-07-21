@@ -13,3 +13,4 @@ title-chn: "法务部"
 
 - [<span class="eng">Court Citation</span> <span class="chn">法庭传唤</span>](BR-citation.pdf)
 - [<span class="eng">Bear Resort Constitution</span> <span class="chn">小熊樂園憲法</span>](constitution.html)
+- [<span class="eng">Bear Resort Real Estate</span> <span class="chn">小熊樂園房地產</span>](/real-estate/)
