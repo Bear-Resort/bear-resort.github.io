@@ -43,8 +43,7 @@ title-chn: "数学之境"
 - [<span class="eng">Andrew's Quiz</span><span class="chn">安德鲁的小测</span>](/files/andrew_quiz.pdf)
 - [<span class="eng">Brian's Conjecture</span><span class="chn">布莱恩的猜想</span>](/files/weird_cate.pdf)
 - [<span class="eng">Failure Test</span><span class="chn">废物测试</span>](/failure_test/failure_test.html)
-- [<span class="eng">JHU Shuttle Map</span><span class="chn">JHU校园巴士图</span>](/files/br-version-map.pdf)
-    - [Test Language (dual)](/assets/html/pdf-renderer-dual.html?pdf=/mathland/shuttle-map-eng.pdf&pdfChn=/mathland/shuttle-map-chn.pdf&go)
+- [<span class="eng">JHU Shuttle Map</span><span class="chn">JHU校园巴士图</span>](/assets/html/pdf-renderer-dual.html?pdf=/mathland/shuttle-map-eng.pdf&pdfChn=/mathland/shuttle-map-chn.pdf&go)
 
 ## <span class="eng">Brief Exams</span><span class="chn">簡短的考試</span>
 
