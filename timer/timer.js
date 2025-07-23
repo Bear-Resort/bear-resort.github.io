@@ -57,8 +57,8 @@ function initializeTimer() {
 }
 
 startButton.addEventListener('click', startCountdown);
-studyBreak.addEventListener('click', () => startCountdown(600));
-milkTea.addEventListener('click', () => startCountdown(300));
+studyBreak.addEventListener('click', () => startCountdownWT(600));
+milkTea.addEventListener('click', () => startCountdownWT(300));
 pauseResumeButton.addEventListener('click', togglePauseResume);
 stopButton.addEventListener('click', stopCountdown);
 add30sButton.addEventListener('click', () => addTime(30));
@@ -131,7 +131,7 @@ function startCountdown() {
     }, 1000);
 }
 
-function startCountdown(time) {
+function startCountdownWT(time) {
     isPaused = false;
 
     const inputTime = time;
