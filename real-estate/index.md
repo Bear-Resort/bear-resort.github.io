@@ -11,10 +11,10 @@ title: "Real Estate Map"
 
     .grid {
         position: relative;
-        width: 600px;
+        width: 1200px;
         height: 500px;
         display: grid;
-        grid-template-columns: repeat(12, 1fr); /* Define grid columns */
+        grid-template-columns: repeat(24, 1fr); /* Define grid columns */
         grid-template-rows: repeat(10, 1fr); /* Define grid rows */
     }
 
@@ -66,7 +66,7 @@ title: "Real Estate Map"
     document.getElementById('grid').appendChild(imgElement);
 }
 
-    for (let i = 0; i <= 12; i++) {
+    for (let i = 0; i <= 24; i++) {
         for (let j = 0; j <= 10; j++) {
             placeImage('fig/empty.png',i,j,1,1,0);
         }
@@ -88,7 +88,7 @@ title: "Real Estate Map"
         placeImage('fig/road.png',10,i,1,1,1);
     }
 
-    for (let i = 0; i <= 12; i++) {
+    for (let i = 0; i <= 24; i++) {
         placeImage('fig/road.png',i,5,1,1,0);
     }
 
@@ -96,7 +96,11 @@ title: "Real Estate Map"
     placeImage('fig/xing.png',10,5,1,1,0);
 
     placeImage('fig/turn.png',2,1,1,1,3);
-    placeImage('fig/turn.png',10,1,1,1,0);
+    
+    
+    placeImage('fig/tway.png',10,1,1,1,0);
+
+    placeImage('fig/tway.png',15,6,1,1,2);
 
     placeImage('fig/tway.png',2,9,1,1,2);
 
@@ -116,8 +120,7 @@ title: "Real Estate Map"
     // placeImage('fig/restaurant.png', 1, 0, 2, 1,0); // Position (1,0), Span (2,1)
     placeImage('fig/plaza.png', 3, 6, 2, 2,3);      // Position (1,1), Span (2,2)
     placeImage('fig/fountain.png', 5, 6, 1, 1,0);      // Position (1,1), Span (2,2)
-    placeImage('fig/tway.png', 10, 2, 1, 1, 3);
-    placeImage('fig/school.png', 11, 1, 3, 2,1);     // Position (1,3), Span (3,2)
+    placeImage('fig/college.png', 11, 0, 7, 5,0);
 
     placeImage('fig/xing.png',6,5,1,1,0);
     placeImage('fig/road.png',6,4,1,1,1);
