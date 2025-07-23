@@ -92,6 +92,11 @@ title: "Real Estate Map"
         placeImage('fig/road.png',i,5,1,1,0);
     }
 
+
+    for (let i = 18; i <= 24; i++) {
+        placeImage('fig/road.png',i,0,1,1,0);
+    }
+
     placeImage('fig/xing.png',2,5,1,1,0);
     placeImage('fig/xing.png',10,5,1,1,0);
 
@@ -100,7 +105,9 @@ title: "Real Estate Map"
     
     placeImage('fig/tway.png',10,1,1,1,0);
 
-    placeImage('fig/tway.png',15,6,1,1,2);
+    placeImage('fig/tway.png',10,3,1,1,3);
+
+    placeImage('fig/tway.png',14,5,1,1,2);
 
     placeImage('fig/tway.png',2,9,1,1,2);
 
