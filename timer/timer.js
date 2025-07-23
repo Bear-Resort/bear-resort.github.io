@@ -9,6 +9,8 @@ const hoursInput = document.getElementById('hoursInput');
 const minutesInput = document.getElementById('minutesInput');
 const secondsInput = document.getElementById('secondsInput');
 const startButton = document.getElementById('startButton');
+const studyBreak = document.getElementById('studyBreak');
+const milkTea = document.getElementById('milkTea');
 const pauseResumeButton = document.getElementById('pauseResumeButton');
 const stopButton = document.getElementById('stopButton');
 const add30sButton = document.getElementById('add30sButton');
@@ -55,6 +57,8 @@ function initializeTimer() {
 }
 
 startButton.addEventListener('click', startCountdown);
+studyBreak.addEventListener('click', () => startCountdown(600));
+milkTea.addEventListener('click', () => startCountdown(300));
 pauseResumeButton.addEventListener('click', togglePauseResume);
 stopButton.addEventListener('click', stopCountdown);
 add30sButton.addEventListener('click', () => addTime(30));
@@ -69,6 +73,68 @@ function startCountdown() {
     const minutes = parseInt(minutesInput.value) || 0;
     const seconds = parseInt(secondsInput.value) || 0;
     const inputTime = hours * 3600 + minutes * 60 + seconds;
+
+    if (inputTime <= 0 && remainingTime <= 0) {
+        if (updateMyLanguage() === "Eng") {
+            alert('Please enter a valid time.');
+        } else {
+            alert('请输入一个有效的时间.');
+        }
+        return;
+    }
+
+    // Use input time if provided, otherwise resume existing time
+    remainingTime = inputTime || remainingTime;
+
+    // Store end timestamp in localStorage
+    endTimestamp = Date.now() + remainingTime * 1000;
+    localStorage.setItem('endTimestamp', endTimestamp);
+    localStorage.setItem('totalTime', remainingTime);
+
+    inputForm.style.display = 'none';
+    controls.style.display = 'block';
+    additions.style.display = 'block';
+    timerDisplay.style.display = 'block';
+    bear_stop.style.display = 'none';
+    bear_progress.style.display = 'block';
+    updateTimerDisplay(remainingTime);
+    clearInterval(countdown);
+
+    countdown = setInterval(() => {
+        if (!isPaused) {
+            remainingTime--;
+
+            // Update the end timestamp in localStorage
+            localStorage.setItem('endTimestamp', Date.now() + remainingTime * 1000);
+
+            if (remainingTime < 0) {
+                clearInterval(countdown);
+                timerDisplay.innerHTML = "00:00:00";
+                bear_stop.style.display = 'block';
+                bear_progress.style.display = 'none';
+                controls.style.display = 'none';
+                additions.style.display = 'none';
+                inputForm.style.display = 'block';
+                if (updateMyLanguage() === "Eng") {
+                    alert('Time is up.');
+                } else {
+                    alert('时间到了.');
+                }
+                timerDisplay.style.display = 'none';
+                localStorage.removeItem('endTimestamp'); // Clear stored time
+                localStorage.removeItem('totalTime'); // Clear total time
+                return;
+            }
+
+            updateTimerDisplay(remainingTime);
+        }
+    }, 1000);
+}
+
+function startCountdown(time) {
+    isPaused = false;
+
+    const inputTime = time;
 
     if (inputTime <= 0 && remainingTime <= 0) {
         if (updateMyLanguage() === "Eng") {
