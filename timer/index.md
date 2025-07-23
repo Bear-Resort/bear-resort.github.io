@@ -55,9 +55,7 @@ title: "Timer"
         <br>
         <span class="eng">Quick Starts</span><span class="chn">快速开始</span>
         <button id="studyBreak"><img src="study-break.gif" style="width: 30px; height: 30px;" /><br><span class="eng">Dr. B's Study Break</span><span class="chn">胖胖博士的学习小憩</span></button>
-        <button>
         <button id="milkTea"><img src="milk-tea.gif" style="width: 30px; height: 30px;" /><br><span class="eng">Buy a cup of Milk Tea</span><span class="chn">买杯奶茶</span></button>
-        <button>
     </div>
 </div>
 <div id="controls">
