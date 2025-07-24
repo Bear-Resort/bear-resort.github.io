@@ -54,12 +54,12 @@ title: "Timer"
     <input type="number" id="secondsInput" placeholder="00" min="0" max="59"> <span class="eng">Second(s)</span><span class="chn">秒</span><br><br>
     <div style="text-align: center;">
         <button id="startButton"><span class="eng">Start</span><span class="chn">开始</span></button>
-        <br>
-        <span class="eng">Quick Starts</span><span class="chn">快速开始</span><br>
-        <button id="quickNap"><img src="quick-nap.gif" style="width: 50px; height: 50px;" /><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp;
-        <button id="studyBreak"><img src="study-break.gif" style="width: 50px; height: 50px;" /><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp;
-        <button id="milkTea"><img src="milk-tea.gif" style="width: 50px; height: 50px;" /><span class="eng">Milk Tea Time</span><span class="chn">奶茶时间</span> (5')</button>
-        <button id="goonSession"><img src="confused.gif" style="width: 50px; height: 50px;" /><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
+        <br><br>
+        <span class="eng">**Quick Starts**</span><span class="chn">**快速开始**</span><br>
+        <button id="quickNap"><img src="quick-nap.gif" style="width: 100px; height: 75px;" /><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp; &nbsp;
+        <button id="studyBreak"><img src="study-break.gif" style="width: 100px; height: 75px;" /><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp; &nbsp;
+        <button id="milkTea"><img src="milk-tea.gif" style="width: 100px; height: 75px;" /><span class="eng">Milk Tea Time</span><span class="chn">奶茶时间</span> (5')</button> &nbsp; &nbsp;
+        <button id="goonSession"><img src="confused.gif" style="width: 100px; height: 75px;" /><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
     </div>
     <div style="text-align: center; font-size: 10px;">
     </div>
