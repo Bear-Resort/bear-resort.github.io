@@ -29,6 +29,20 @@ const additions = document.getElementById('additions');
 const bear_stop = document.getElementById('stopped');
 const bear_progress = document.getElementById('progress');
 
+// play the alarm
+function startAlarm() {
+    const alarm = document.getElementById('alarm');
+    alarm.currentTime = 0; // restart from beginning
+    alarm.loop = true;
+    alarm.play();
+}
+
+// stop the alarm
+function stopAlarm() {
+    const alarm = document.getElementById('alarm');
+    alarm.pause();
+}
+
 // control UI uniformly
 function showTimerUI(show) {
     // show input or all other features
@@ -66,8 +80,7 @@ function runCountdownLoop() {
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
-                document.getElementById('alarm').play();
-                bear_progress.style.display = 'none';
+                startAlarm();
                 bear_stop.style.display = 'block';
                 setTimeout(() => {
                     if (updateMyLanguage() === "Eng") {
@@ -76,6 +89,7 @@ function runCountdownLoop() {
                         alert('时间到了.');
                     }
                     showTimerUI(false);
+                    stopAlarm();
                 }, 300);
                 timerDisplay.style.display = 'none';
                 localStorage.removeItem('endTimestamp');
