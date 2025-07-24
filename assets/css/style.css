@@ -645,3 +645,10 @@ tr:nth-child(odd) {
     transform: translateY(2px);
     cursor: pointer;
 }
+
+ruby {
+    font-size: 1em; margin-right: .15em;
+}
+rt {
+    font-size: .5em; color: var(--main-color-light);
+}
