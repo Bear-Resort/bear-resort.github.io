@@ -65,13 +65,17 @@ function runCountdownLoop() {
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
-                showTimerUI(false);
                 document.getElementById('alarm').play();
-                if (updateMyLanguage() === "Eng") {
-                    alert('Time is up.');
-                } else {
-                    alert('时间到了.');
-                }
+                bear_progress.style.display = 'none';
+                bear_stop.style.display = 'block';
+                setTimeout(() => {
+                    if (updateMyLanguage() === "Eng") {
+                        alert('Time is up.');
+                    } else {
+                        alert('时间到了.');
+                    }
+                    showTimerUI(false);
+                }, 300);
                 timerDisplay.style.display = 'none';
                 localStorage.removeItem('endTimestamp');
                 return;
@@ -179,7 +183,8 @@ function initializeTimer() {
     if (savedEndTimestamp) {
         endTimestamp = parseInt(savedEndTimestamp, 10);
         const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
-        if (timeLeft > 0) {
+        isPaused = localStorage.getItem('isPaused');
+        if (timeLeft > 0 || isPaused) {
             updateTimerDisplay(timeLeft);
             showTimerUI(true);
             runCountdownLoop();
