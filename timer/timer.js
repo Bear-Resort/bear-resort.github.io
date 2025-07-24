@@ -93,7 +93,9 @@ function runCountdownLoop() {
                 timerDisplay.style.display = 'none';
                 localStorage.removeItem('endTimestamp');
                 showTimerUI(false);
-                stopAlarm();
+                setTimeout(() => {
+                    stopAlarm();
+                }, 3000);
                 return;
             }
             updateTimerDisplay(timeLeft);
