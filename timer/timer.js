@@ -78,7 +78,7 @@ function runCountdownLoop() {
             }
             updateTimerDisplay(timeLeft);
         } else {
-            const timeLeft = localStorage.getItem('timeLeft');
+            const timeLeft = localStorage.getItem('time-left-paused');
             updateTimerDisplay(parseInt(timeLeft));
             bear_stop.style.display = 'block';
             bear_progress.style.display = 'none';
