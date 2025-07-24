@@ -54,6 +54,10 @@ function runCountdownLoop() {
     clearInterval(countdown);
     countdown = setInterval(() => {
         isPaused = localStorage.getItem('isPaused') === 'true';
+        pauseResumeButton.innerHTML = isPaused
+        ? `<span class="eng">Resume</span><span class="chn">继续</span>`
+        : `<span class="eng">Pause</span><span class="chn">暂停</span>`;
+        updateMyLanguage();
         if (!isPaused) {
             bear_stop.style.display = 'none';
             bear_progress.style.display = 'block';
@@ -74,6 +78,8 @@ function runCountdownLoop() {
             }
             updateTimerDisplay(timeLeft);
         } else {
+            const timeLeft = localStorage.getItem('timeLeft');
+            updateTimerDisplay(timeLeft);
             bear_stop.style.display = 'block';
             bear_progress.style.display = 'none';
         }
