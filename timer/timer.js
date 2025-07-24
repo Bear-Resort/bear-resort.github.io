@@ -9,8 +9,11 @@ const hoursInput = document.getElementById('hoursInput');
 const minutesInput = document.getElementById('minutesInput');
 const secondsInput = document.getElementById('secondsInput');
 const startButton = document.getElementById('startButton');
+
+const quickNap = document.getElementById('quickNap');
 const studyBreak = document.getElementById('studyBreak');
 const milkTea = document.getElementById('milkTea');
+
 const pauseResumeButton = document.getElementById('pauseResumeButton');
 const stopButton = document.getElementById('stopButton');
 const add30sButton = document.getElementById('add30sButton');
@@ -57,6 +60,8 @@ function initializeTimer() {
 }
 
 startButton.addEventListener('click', startCountdown);
+
+quickNap.addEventListener('click', () => startCountdownWT(900));
 studyBreak.addEventListener('click', () => startCountdownWT(600));
 milkTea.addEventListener('click', () => startCountdownWT(300));
 pauseResumeButton.addEventListener('click', togglePauseResume);

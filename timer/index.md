@@ -54,8 +54,9 @@ title: "Timer"
         <button id="startButton"><span class="eng">Start</span><span class="chn">开始</span></button>
         <br>
         <span class="eng">Quick Starts</span><span class="chn">快速开始</span><br>
-        <button id="studyBreak"><img src="study-break.gif" style="width: 50px; height: 50px;" /><span class="eng">Study Break</span><span class="chn">学习小憩</span></button>
-        <button id="milkTea"><img src="milk-tea.gif" style="width: 50px; height: 50px;" /><span class="eng">Milk Tea Time</span><span class="chn">奶茶时间</span></button>
+        <button id="quickNap"><img src="quick-nap.gif" style="width: 50px; height: 50px;" /><span class="eng">Quick Nap (15m)</span><span class="chn">小眯一会儿 (15分钟)</span></button> &nbsp;
+        <button id="studyBreak" style="font-size: 10pt"><img src="study-break.gif" style="width: 50px; height: 50px;" /><span class="eng">Study Break (10m)</span><span class="chn">学习小憩 (10分钟)</span></button> &nbsp;
+        <button id="milkTea"><img src="milk-tea.gif" style="width: 50px; height: 50px;" /><span class="eng">Milk Tea Time (5m)</span><span class="chn">奶茶时间 (5分钟)</span></button>
     </div>
 </div>
 <div id="controls">
@@ -64,8 +65,8 @@ title: "Timer"
 </div>
 <div id="countdown-timer" style="display: none">00:00:00</div>
 <div id="additions" style="display: none">
-    <button id="add30sButton"><span class="eng">Add 30s</span><span class="chn">加30秒</span></button>
-    <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button>
+    <button id="add30sButton"><span class="eng">Add 30s</span><span class="chn">加30秒</span></button> &nbsp;
+    <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button> &nbsp;
     <button id="add5mButton"><span class="eng">Add 5m</span><span class="chn">加5分钟</span></button>
 </div>
 </div>
