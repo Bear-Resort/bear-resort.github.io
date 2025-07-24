@@ -3,12 +3,6 @@ title: "Real Estate Map"
 ---
 
 <style>
-    body {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-    }
-
     .grid {
         position: relative;
         width: 1200px;
@@ -123,10 +117,8 @@ title: "Real Estate Map"
 
     placeImage('fig/fountain.png',12,9,1,1,1);
 
-    // Place images using the new function
-    // placeImage('fig/restaurant.png', 1, 0, 2, 1,0); // Position (1,0), Span (2,1)
-    placeImage('fig/plaza.png', 3, 6, 2, 2,3);      // Position (1,1), Span (2,2)
-    placeImage('fig/fountain.png', 5, 6, 1, 1,0);      // Position (1,1), Span (2,2)
+    placeImage('fig/plaza.png', 3, 6, 2, 2,3); 
+    placeImage('fig/fountain.png', 5, 6, 1, 1,0);
     placeImage('fig/college.png', 11, 0, 7, 5,0);
 
     placeImage('fig/xing.png',6,5,1,1,0);
@@ -136,7 +128,7 @@ title: "Real Estate Map"
     placeImage('fig/xing.png',5,7,1,1,1);
     placeImage('fig/restaurant.png',4,8,2,1,2);
 
-    placeImage('fig/school.png', 7, 6, 3, 2,3);     // Position (1,3), Span (3,2)
+    placeImage('fig/school.png', 7, 6, 3, 2,3);
 
     placeImage('fig/tway.png', 10, 7, 1, 1,1);
 
