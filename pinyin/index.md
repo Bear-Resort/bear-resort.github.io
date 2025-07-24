@@ -58,7 +58,7 @@ title-chn: "拼音转换器"
         return html;
       }
 
-      input.addEventListener('input', () => {
+      input.addEventListener('textarea', () => {
         if (typeof window.pinyinPro === 'undefined') {
           output.innerHTML = `<span class="eng">Load failed, please reload.</span><span class="chn"><ruby>加<rt>jiā</rt></ruby><ruby>载<rt>zài</rt></ruby><ruby>失<rt>shī</rt></ruby><ruby>败<rt>bài</rt></ruby>，<ruby>请<rt>qǐng</rt></ruby><ruby>刷<rt>shuā</rt></ruby><ruby>新<rt>xīn</rt></ruby><ruby>页<rt>yè</rt></ruby><ruby>面<rt>miàn</rt></ruby>。</span>`;
           return;
