@@ -1,4 +1,4 @@
-const textarea = document.getElementById('inputBox');
+const textarea = document.getElementById('textarea');
 
 function adjustHeight() {
     textarea.style.height = 'auto';

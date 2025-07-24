@@ -16,7 +16,7 @@ title-chn: "拼音转换器"
 
 <script src="pinyin.js"></script>
 
-<textarea id="input" placeholder="在这里输入中文……"></textarea>
+<textarea id="textarea" placeholder="在这里输入中文……"></textarea>
 <div class="output" id="output"></div>
 
 <script>
