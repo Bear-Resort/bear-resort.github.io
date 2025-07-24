@@ -55,6 +55,8 @@ function runCountdownLoop() {
     countdown = setInterval(() => {
         isPaused = localStorage.getItem('isPause');
         if (!isPaused) {
+            bear_stop.style.display = 'none';
+            bear_progress.style.display = 'block';
             const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
             if (timeLeft <= 0) {
                 clearInterval(countdown);
@@ -70,6 +72,9 @@ function runCountdownLoop() {
                 return;
             }
             updateTimerDisplay(timeLeft);
+        } else {
+            bear_stop.style.display = 'block';
+            bear_progress.style.display = 'none';
         }
     }, 1000);
 }
