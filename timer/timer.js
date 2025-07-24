@@ -2,7 +2,7 @@ import { updateMyLanguage } from '/assets/js/lang.js';
 
 // basic variables
 let countdown;
-let isPaused = false;
+let isPaused;
 let endTimestamp;
 
 // input fields
@@ -53,6 +53,7 @@ function updateTimerDisplay(totalSeconds) {
 function runCountdownLoop() {
     clearInterval(countdown);
     countdown = setInterval(() => {
+        isPaused = localStorage.getItem('isPause');
         if (!isPaused) {
             const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
             if (timeLeft <= 0) {
@@ -76,6 +77,7 @@ function runCountdownLoop() {
 // start the countdown
 function startCountdown() {
     isPaused = false;
+    localStorage.setItem('isPaused', false);
     const hours = parseInt(hoursInput.value) || 0;
     const minutes = parseInt(minutesInput.value) || 0;
     const seconds = parseInt(secondsInput.value) || 0;
@@ -99,6 +101,7 @@ function startCountdown() {
 // count down with a time
 function startCountdownWT(time) {
     isPaused = false;
+    localStorage.setItem('isPaused', false);
     if (time <= 0) return;
     endTimestamp = Date.now() + time * 1000;
     localStorage.setItem('endTimestamp', endTimestamp);
@@ -108,19 +111,19 @@ function startCountdownWT(time) {
 }
 
 function togglePauseResume() {
+    isPaused = localStorage.getItem('isPaused');
     isPaused = !isPaused;
     pauseResumeButton.innerHTML = isPaused
     ? `<span class="eng">Resume</span><span class="chn">继续</span>`
     : `<span class="eng">Pause</span><span class="chn">暂停</span>`;
+    localStorage.setItem('isPaused', isPaused);
     updateMyLanguage();
     if (isPaused) {
         bear_stop.style.display = 'block';
         bear_progress.style.display = 'none';
         const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
         localStorage.setItem('time-left-paused', timeLeft);
-        localStorage.setItem('isPaused', true);
     } else {
-        localStorage.setItem('isPaused', false);
         const prevTimeLeft = localStorage.getItem('time-left-paused');
         endTimestamp = Date.now() + prevTimeLeft * 1000;
         localStorage.setItem('endTimestamp', endTimestamp);
@@ -155,8 +158,12 @@ function addTime(seconds) {
 }
 
 function initializeTimer() {
-    updateMyLanguage();
     const savedEndTimestamp = localStorage.getItem('endTimestamp');
+    const savedPausedInfo = localStorage.getItem('isPaused');
+    pauseResumeButton.innerHTML = isPaused
+    ? `<span class="eng">Resume</span><span class="chn">继续</span>`
+    : `<span class="eng">Pause</span><span class="chn">暂停</span>`;
+    updateMyLanguage();
     if (savedEndTimestamp) {
         endTimestamp = parseInt(savedEndTimestamp, 10);
         const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
