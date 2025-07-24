@@ -53,7 +53,7 @@ function updateTimerDisplay(totalSeconds) {
 function runCountdownLoop() {
     clearInterval(countdown);
     countdown = setInterval(() => {
-        isPaused = localStorage.getItem('isPause');
+        isPaused = localStorage.getItem('isPaused') === 'true';
         if (!isPaused) {
             bear_stop.style.display = 'none';
             bear_progress.style.display = 'block';
@@ -62,6 +62,7 @@ function runCountdownLoop() {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
                 showTimerUI(false);
+                document.getElementById('alarm').play();
                 if (updateMyLanguage() === "Eng") {
                     alert('Time is up.');
                 } else {
@@ -116,7 +117,7 @@ function startCountdownWT(time) {
 }
 
 function togglePauseResume() {
-    isPaused = localStorage.getItem('isPaused');
+    isPaused = localStorage.getItem('isPaused')  === "true";
     isPaused = !isPaused;
     pauseResumeButton.innerHTML = isPaused
     ? `<span class="eng">Resume</span><span class="chn">继续</span>`
@@ -164,7 +165,7 @@ function addTime(seconds) {
 
 function initializeTimer() {
     const savedEndTimestamp = localStorage.getItem('endTimestamp');
-    const savedPausedInfo = localStorage.getItem('isPaused');
+    isPaused = localStorage.getItem('isPaused')  === "true";
     pauseResumeButton.innerHTML = isPaused
     ? `<span class="eng">Resume</span><span class="chn">继续</span>`
     : `<span class="eng">Pause</span><span class="chn">暂停</span>`;

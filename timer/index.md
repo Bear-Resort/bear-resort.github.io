@@ -35,7 +35,9 @@ title: "Timer"
     }
 </style>
 
-
+<audio id="alarm">
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>
 
 # <span class="eng">Countdown Timer</span><span class="chn">计时器</span>
 
