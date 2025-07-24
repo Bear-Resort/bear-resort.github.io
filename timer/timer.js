@@ -185,14 +185,13 @@ function stopCountdown() {
 }
 
 function addTime(seconds) {
-    endTimestamp = localStorage.getItem('endTimestamp');
-
-    isPaused = localStorage.getItem('isPaused');
+    isPaused = localStorage.getItem('isPaused') === 'true';
     if (isPaused) {
         let timeLeft = localStorage.getItem('time-left-paused');
         timeLeft += seconds * 1000;
         localStorage.getItem('time-left-paused');
     } else {
+        endTimestamp = localStorage.getItem('endTimestamp');
         let timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
         timeLeft += seconds;
         endTimestamp = Date.now() + timeLeft * 1000;
