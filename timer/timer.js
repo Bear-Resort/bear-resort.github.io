@@ -61,6 +61,7 @@ function runCountdownLoop() {
         if (!isPaused) {
             bear_stop.style.display = 'none';
             bear_progress.style.display = 'block';
+            endTimestamp = localStorage.getItem('endTimestamp');
             const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
             if (timeLeft <= 0) {
                 clearInterval(countdown);
@@ -112,6 +113,7 @@ function startCountdown() {
     showTimerUI(true);
     updateTimerDisplay(inputTime);
     runCountdownLoop();
+    localStorage.setItem('refresh', Date.now().toString());
 }
 
 // count down with a time
@@ -124,6 +126,7 @@ function startCountdownWT(time) {
     showTimerUI(true);
     updateTimerDisplay(time);
     runCountdownLoop();
+    localStorage.setItem('refresh', Date.now().toString());
 }
 
 function togglePauseResume() {
@@ -163,13 +166,23 @@ function stopCountdown() {
     minutesInput.value = min > 0 ? min : '';
     secondsInput.value = sec > 0 ? sec : '';
     localStorage.removeItem('endTimestamp');
+    localStorage.setItem('refresh', Date.now().toString());
 }
 
 function addTime(seconds) {
-    let timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
-    timeLeft += seconds;
-    endTimestamp = Date.now() + timeLeft * 1000;
-    localStorage.setItem('endTimestamp', endTimestamp);
+    endTimestamp = localStorage.getItem('endTimestamp');
+
+    isPaused = localStorage.getItem('isPaused');
+    if (isPaused) {
+        let timeLeft = localStorage.getItem('time-left-paused');
+        timeLeft += seconds * 1000;
+        localStorage.getItem('time-left-paused');
+    } else {
+        let timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+        timeLeft += seconds;
+        endTimestamp = Date.now() + timeLeft * 1000;
+        localStorage.setItem('endTimestamp', endTimestamp);
+    }
     updateTimerDisplay(timeLeft);
 }
 
