@@ -1,66 +1,183 @@
 import { updateMyLanguage } from '/assets/js/lang.js';
 
+// basic variables
 let countdown;
-let remainingTime = 0; // Remaining time in seconds
 let isPaused = false;
-let endTimestamp; // Timestamp for when the countdown ends
-const timerDisplay = document.getElementById('countdown-timer');
+let endTimestamp;
+
+// input fields
 const hoursInput = document.getElementById('hoursInput');
 const minutesInput = document.getElementById('minutesInput');
 const secondsInput = document.getElementById('secondsInput');
-const startButton = document.getElementById('startButton');
 
+// buttons
+const startButton = document.getElementById('startButton');
 const quickNap = document.getElementById('quickNap');
 const studyBreak = document.getElementById('studyBreak');
 const milkTea = document.getElementById('milkTea');
-
 const pauseResumeButton = document.getElementById('pauseResumeButton');
 const stopButton = document.getElementById('stopButton');
 const add30sButton = document.getElementById('add30sButton');
 const add1mButton = document.getElementById('add1mButton');
 const add5mButton = document.getElementById('add5mButton');
+
+// controls
+const timerDisplay = document.getElementById('countdown-timer');
 const inputForm = document.getElementById('inputForm');
 const controls = document.getElementById('controls');
 const additions = document.getElementById('additions');
-
 const bear_stop = document.getElementById('stopped');
 const bear_progress = document.getElementById('progress');
 
-// Load saved timestamp and make sure the countdown continues if saved
-const savedEndTimestamp = localStorage.getItem('endTimestamp');
-const savedTotalTime = localStorage.getItem('totalTime');
+// control UI uniformly
+function showTimerUI(show) {
+    // show input or all other features
+    inputForm.style.display = show ? 'none' : 'block';
+    controls.style.display = show ? 'block' : 'none';
+    additions.style.display = show ? 'block' : 'none';
+    timerDisplay.style.display = show ? 'block' : 'none';
+    bear_progress.style.display = show ? 'block' : 'none';
+    bear_stop.style.display = show ? 'none' : 'block';
+}
 
-function initializeTimer() {
-    if (savedEndTimestamp) {
-        endTimestamp = parseInt(savedEndTimestamp);
-        const currentTime = Date.now();
+// update the timer display
+function updateTimerDisplay(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    timerDisplay.innerHTML =
+    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
 
-        // Calculate remaining time
-        remainingTime = Math.floor((endTimestamp - currentTime) / 1000);
-
-        if (remainingTime > 0) {
-            // Timer is still active
-            updateTimerDisplay(remainingTime);
-            inputForm.style.display = 'none';
-            controls.style.display = 'block';
-            additions.style.display = 'block';
-            timerDisplay.style.display = 'block';
-            bear_stop.style.display = 'block';
-            bear_progress.style.display = 'none';
-            startCountdown(); // Start countdown if there's remaining time
-        } else {
-            // If time is up
-            localStorage.removeItem('endTimestamp');
-            localStorage.removeItem('totalTime');
-            timerDisplay.innerHTML = "00:00:00";
-            bear_stop.style.display = 'none';
-            bear_progress.style.display = 'block';
+// run the countdown loop
+function runCountdownLoop() {
+    clearInterval(countdown);
+    countdown = setInterval(() => {
+        if (!isPaused) {
+            const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerDisplay.innerHTML = "00:00:00";
+                showTimerUI(false);
+                if (updateMyLanguage() === "Eng") {
+                    alert('Time is up.');
+                } else {
+                    alert('时间到了.');
+                }
+                timerDisplay.style.display = 'none';
+                localStorage.removeItem('endTimestamp');
+                return;
+            }
+            updateTimerDisplay(timeLeft);
         }
+    }, 1000);
+}
+
+// start the countdown
+function startCountdown() {
+    isPaused = false;
+    const hours = parseInt(hoursInput.value) || 0;
+    const minutes = parseInt(minutesInput.value) || 0;
+    const seconds = parseInt(secondsInput.value) || 0;
+    const inputTime = hours * 3600 + minutes * 60 + seconds;
+    if (inputTime <= 0) {
+    if (updateMyLanguage() === "Eng") {
+        alert('Please enter a valid time.');
+    }
+    else {
+        alert('请输入一个有效的时间.');
+    }
+    return;
+    }
+    endTimestamp = Date.now() + inputTime * 1000;
+    localStorage.setItem('endTimestamp', endTimestamp);
+    showTimerUI(true);
+    updateTimerDisplay(inputTime);
+    runCountdownLoop();
+}
+
+// count down with a time
+function startCountdownWT(time) {
+    isPaused = false;
+    if (time <= 0) return;
+    endTimestamp = Date.now() + time * 1000;
+    localStorage.setItem('endTimestamp', endTimestamp);
+    showTimerUI(true);
+    updateTimerDisplay(time);
+    runCountdownLoop();
+}
+
+function togglePauseResume() {
+    isPaused = !isPaused;
+    pauseResumeButton.innerHTML = isPaused
+    ? `<span class="eng">Resume</span><span class="chn">继续</span>`
+    : `<span class="eng">Pause</span><span class="chn">暂停</span>`;
+    updateMyLanguage();
+    if (isPaused) {
+        bear_stop.style.display = 'block';
+        bear_progress.style.display = 'none';
+        const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+        localStorage.setItem('time-left-paused', timeLeft);
+        localStorage.setItem('isPaused', true);
+    } else {
+        localStorage.setItem('isPaused', false);
+        const prevTimeLeft = localStorage.getItem('time-left-paused');
+        endTimestamp = Date.now() + prevTimeLeft * 1000;
+        localStorage.setItem('endTimestamp', endTimestamp);
+        bear_stop.style.display = 'none';
+        bear_progress.style.display = 'block';
     }
 }
 
-startButton.addEventListener('click', startCountdown);
+function stopCountdown() {
+    clearInterval(countdown);
+    showTimerUI(false);
+    let secondsLeft = 0;
+    if (typeof endTimestamp === "number") {
+        secondsLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+    }
+    let hr = Math.floor(secondsLeft / 3600);
+    let min = Math.floor((secondsLeft % 3600) / 60);
+    let sec = secondsLeft % 60;
+    
+    hoursInput.value = hr > 0 ? hr : '';
+    minutesInput.value = min > 0 ? min : '';
+    secondsInput.value = sec > 0 ? sec : '';
+    localStorage.removeItem('endTimestamp');
+}
 
+function addTime(seconds) {
+    let timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+    timeLeft += seconds;
+    endTimestamp = Date.now() + timeLeft * 1000;
+    localStorage.setItem('endTimestamp', endTimestamp);
+    updateTimerDisplay(timeLeft);
+}
+
+function initializeTimer() {
+    updateMyLanguage();
+    const savedEndTimestamp = localStorage.getItem('endTimestamp');
+    if (savedEndTimestamp) {
+        endTimestamp = parseInt(savedEndTimestamp, 10);
+        const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+        if (timeLeft > 0) {
+            updateTimerDisplay(timeLeft);
+            showTimerUI(true);
+            runCountdownLoop();
+        } else {
+            localStorage.removeItem('endTimestamp');
+            timerDisplay.innerHTML = "00:00:00";
+            showTimerUI(false);
+        }
+    } else {
+        showTimerUI(false);
+        timerDisplay.innerHTML = "00:00:00";
+        timerDisplay.style.display = 'none';
+    }
+}
+
+// button functions
+startButton.addEventListener('click', startCountdown);
 quickNap.addEventListener('click', () => startCountdownWT(900));
 studyBreak.addEventListener('click', () => startCountdownWT(600));
 milkTea.addEventListener('click', () => startCountdownWT(300));
@@ -69,184 +186,6 @@ stopButton.addEventListener('click', stopCountdown);
 add30sButton.addEventListener('click', () => addTime(30));
 add1mButton.addEventListener('click', () => addTime(60));
 add5mButton.addEventListener('click', () => addTime(300));
-
-function startCountdown() {
-    isPaused = false;
-
-    // Get input time in seconds only when starting fresh
-    const hours = parseInt(hoursInput.value) || 0;
-    const minutes = parseInt(minutesInput.value) || 0;
-    const seconds = parseInt(secondsInput.value) || 0;
-    const inputTime = hours * 3600 + minutes * 60 + seconds;
-
-    if (inputTime <= 0 && remainingTime <= 0) {
-        if (updateMyLanguage() === "Eng") {
-            alert('Please enter a valid time.');
-        } else {
-            alert('请输入一个有效的时间.');
-        }
-        return;
-    }
-
-    // Use input time if provided, otherwise resume existing time
-    remainingTime = inputTime || remainingTime;
-
-    // Store end timestamp in localStorage
-    endTimestamp = Date.now() + remainingTime * 1000;
-    localStorage.setItem('endTimestamp', endTimestamp);
-    localStorage.setItem('totalTime', remainingTime);
-
-    inputForm.style.display = 'none';
-    controls.style.display = 'block';
-    additions.style.display = 'block';
-    timerDisplay.style.display = 'block';
-    bear_stop.style.display = 'none';
-    bear_progress.style.display = 'block';
-    updateTimerDisplay(remainingTime);
-    clearInterval(countdown);
-
-    countdown = setInterval(() => {
-        if (!isPaused) {
-            remainingTime--;
-
-            // Update the end timestamp in localStorage
-            localStorage.setItem('endTimestamp', Date.now() + remainingTime * 1000);
-
-            if (remainingTime < 0) {
-                clearInterval(countdown);
-                timerDisplay.innerHTML = "00:00:00";
-                bear_stop.style.display = 'block';
-                bear_progress.style.display = 'none';
-                controls.style.display = 'none';
-                additions.style.display = 'none';
-                inputForm.style.display = 'block';
-                if (updateMyLanguage() === "Eng") {
-                    alert('Time is up.');
-                } else {
-                    alert('时间到了.');
-                }
-                timerDisplay.style.display = 'none';
-                localStorage.removeItem('endTimestamp'); // Clear stored time
-                localStorage.removeItem('totalTime'); // Clear total time
-                return;
-            }
-
-            updateTimerDisplay(remainingTime);
-        }
-    }, 1000);
-}
-
-function startCountdownWT(time) {
-    isPaused = false;
-
-    const inputTime = time;
-
-    if (inputTime <= 0 && remainingTime <= 0) {
-        if (updateMyLanguage() === "Eng") {
-            alert('Please enter a valid time.');
-        } else {
-            alert('请输入一个有效的时间.');
-        }
-        return;
-    }
-
-    // Use input time if provided, otherwise resume existing time
-    remainingTime = inputTime || remainingTime;
-
-    // Store end timestamp in localStorage
-    endTimestamp = Date.now() + remainingTime * 1000;
-    localStorage.setItem('endTimestamp', endTimestamp);
-    localStorage.setItem('totalTime', remainingTime);
-
-    inputForm.style.display = 'none';
-    controls.style.display = 'block';
-    additions.style.display = 'block';
-    timerDisplay.style.display = 'block';
-    bear_stop.style.display = 'none';
-    bear_progress.style.display = 'block';
-    updateTimerDisplay(remainingTime);
-    clearInterval(countdown);
-
-    countdown = setInterval(() => {
-        if (!isPaused) {
-            remainingTime--;
-
-            // Update the end timestamp in localStorage
-            localStorage.setItem('endTimestamp', Date.now() + remainingTime * 1000);
-
-            if (remainingTime < 0) {
-                clearInterval(countdown);
-                timerDisplay.innerHTML = "00:00:00";
-                bear_stop.style.display = 'block';
-                bear_progress.style.display = 'none';
-                controls.style.display = 'none';
-                additions.style.display = 'none';
-                inputForm.style.display = 'block';
-                if (updateMyLanguage() === "Eng") {
-                    alert('Time is up.');
-                } else {
-                    alert('时间到了.');
-                }
-                timerDisplay.style.display = 'none';
-                localStorage.removeItem('endTimestamp'); // Clear stored time
-                localStorage.removeItem('totalTime'); // Clear total time
-                return;
-            }
-
-            updateTimerDisplay(remainingTime);
-        }
-    }, 1000);
-}
-
-function togglePauseResume() {
-    isPaused = !isPaused;
-    pauseResumeButton.innerHTML = isPaused ? `<span class="eng">Resume</span><span class="chn">继续</span>` : `<span class="eng">Pause</span><span class="chn">暂停</span>`;
-    updateMyLanguage();
-    if (isPaused) {
-        bear_stop.style.display = 'block';
-        bear_progress.style.display = 'none';
-    } else {
-        bear_stop.style.display = 'none';
-        bear_progress.style.display = 'block';
-    }
-}
-
-function stopCountdown() {
-    clearInterval(countdown);
-    timerDisplay.style.display = 'none'; // Hide the timer display when stopped
-    controls.style.display = 'none'; // Keep control buttons visible
-    additions.style.display = 'none';
-    inputForm.style.display = 'block';
-    bear_stop.style.display = 'block';
-    bear_progress.style.display = 'none';
-    // Calculate and display remaining time in input boxes
-    const hours = Math.floor(remainingTime / 3600);
-    const minutes = Math.floor((remainingTime % 3600) / 60);
-    const seconds = remainingTime % 60;
-
-    hoursInput.value = hours;
-    minutesInput.value = minutes;
-    secondsInput.value = seconds;
-
-    localStorage.removeItem('endTimestamp'); // Clear stored end timestamp
-    localStorage.setItem('totalTime', remainingTime); // Store remaining time
-}
-
-function addTime(seconds) {
-    remainingTime += seconds;
-    localStorage.setItem('endTimestamp', Date.now() + remainingTime * 1000); // Update endTimestamp
-    localStorage.setItem('totalTime', remainingTime); // Update total time
-    updateTimerDisplay(remainingTime);
-}
-
-function updateTimerDisplay(totalSeconds) {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    timerDisplay.innerHTML = 
-        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
 
 // Initialize the timer upon loading
 initializeTimer();

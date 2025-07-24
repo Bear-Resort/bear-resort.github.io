@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timer Sound Example</title>
+</head>
+<body>
+
+<audio id="alarm">
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="startTimer()">Start Timer</button>
+<p id="status"></p>
+
+<script>
+function startTimer() {
+  document.getElementById('status').innerText = "Timer started! Waiting 1 seconds...";
+  setTimeout(function() {
+    document.getElementById('alarm').play();
+    document.getElementById('status').innerText = "Alarm playing!";
+  }, 1000); // 1 seconds
+}
+</script>
+
+</body>
+</html>
