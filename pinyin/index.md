@@ -5,7 +5,7 @@ title-chn: "拼音转换器"
 
 <style>
     .output {
-        font-size: 2.25m; line-height: 2em; margin-top: 1em;
+        font-size: 2.25em; line-height: 2em; margin-top: 1em;
     }
 </style>
 
