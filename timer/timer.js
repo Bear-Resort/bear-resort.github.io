@@ -89,11 +89,11 @@ function runCountdownLoop() {
                     } else {
                         alert('时间到了.');
                     }
-                    showTimerUI(false);
-                    stopAlarm();
                 }, 300);
                 timerDisplay.style.display = 'none';
                 localStorage.removeItem('endTimestamp');
+                showTimerUI(false);
+                stopAlarm();
                 return;
             }
             updateTimerDisplay(timeLeft);
