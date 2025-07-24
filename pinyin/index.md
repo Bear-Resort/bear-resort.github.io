@@ -11,7 +11,8 @@ title-chn: "拼音转换器"
 
 # <span class="eng"> Pinyin Converter </span><span class="chn"> <ruby>拼<rt>pīn</rt></ruby><ruby>音<rt>yīn</rt></ruby><ruby>转<rt>zhuǎn</rt></ruby><ruby>换<rt>huàn</rt></ruby><ruby>器<rt>qì</rt></ruby> </span>
 
-<span class="eng"> This converter adds pinyin above the Chinese characters.  </span><span class="chn"> 此转换器在中文字符上添加拼音。 </span>
+
+<span class="eng"> This converter adds pinyin above the Chinese characters.  </span><span class="chn"> <ruby>此<rt>cǐ</rt></ruby><ruby>转<rt>zhuǎn</rt></ruby><ruby>换<rt>huàn</rt></ruby><ruby>器<rt>qì</rt></ruby><ruby>在<rt>zài</rt></ruby><ruby>中<rt>zhōng</rt></ruby><ruby>文<rt>wén</rt></ruby><ruby>字<rt>zì</rt></ruby><ruby>符<rt>fú</rt></ruby><ruby>上<rt>shàng</rt></ruby><ruby>添<rt>tiān</rt></ruby><ruby>加<rt>jiā</rt></ruby><ruby>拼<rt>pīn</rt></ruby><ruby>音<rt>yīn</rt></ruby><ruby>。</ruby> </span>
 
 <script src="pinyin.js"></script>
 
