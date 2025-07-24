@@ -83,7 +83,7 @@ function runCountdownLoop() {
             bear_stop.style.display = 'block';
             bear_progress.style.display = 'none';
         }
-    }, 1000);
+    }, 250);
 }
 
 // start the countdown
