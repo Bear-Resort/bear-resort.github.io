@@ -233,7 +233,7 @@ startButton.addEventListener('click', startCountdown);
 quickNap.addEventListener('click', () => startCountdownWT(900));
 studyBreak.addEventListener('click', () => startCountdownWT(600));
 milkTea.addEventListener('click', () => startCountdownWT(300));
-goonSession.addEventListener('click', () => startCountdownWT(100));
+goonSession.addEventListener('click', () => startCountdownWT(60));
 pauseResumeButton.addEventListener('click', togglePauseResume);
 stopButton.addEventListener('click', stopCountdown);
 add30sButton.addEventListener('click', () => addTime(30));
