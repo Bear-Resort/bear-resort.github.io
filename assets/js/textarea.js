@@ -1,12 +1,12 @@
-const textarea = document.getElementById('textarea');
+const textarea = document.querySelectorAll('textarea');
 
 function adjustHeight() {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+    textarea.forEach(ta => {
+        ta.style.height = textarea.scrollHeight + 'px';
+    })
 }
 
-// Event listener
-if (textarea) {
-    textarea.addEventListener('input', adjustHeight);
-    adjustHeight();
-}
+textarea.forEach(ta => {
+    ta.addEventListener('input', adjustHeight);
+    ta.style.height = textarea.scrollHeight + 'px';
+})
