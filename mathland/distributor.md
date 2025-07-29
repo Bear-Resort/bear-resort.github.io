@@ -2,7 +2,7 @@
 title: "Distributor"
 ---
 
-## Adjustable Ratio Distributor
+## <span class="eng">Adjustable Ratio Distributor</span><span class="chn">比例分配器</span>
 
 <label>
     <span class="eng">Total Amount:</span><span class="chn">总量:</span>  

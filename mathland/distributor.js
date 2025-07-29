@@ -100,7 +100,7 @@ const tableBody = document.querySelector("#ratioTable tbody");
       // Remove button
       const removeTd = document.createElement("td");
       const removeBtn = document.createElement("button");
-      removeBtn.textContent = "Remove";
+      removeBtn.textContent = "🗑️";
       removeBtn.onclick = function() {
         tableBody.removeChild(tr);
         if (tableBody.children.length < 2) {
