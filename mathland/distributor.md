@@ -5,9 +5,8 @@ title: "Distributor"
 <style>
     input {
         padding: 10px;
-        font-size: 20pt;
+        font-size: 16pt;
         margin-top: 10px;
-        width: 70px;
         text-align: center;
     }
 </style>
