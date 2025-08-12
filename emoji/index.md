@@ -53,6 +53,14 @@ title-chn: "表情包"
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
 - <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/meow-sieur.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/A5kxBBH#wechat_redirect)
 
-## <span class="eng">Season 6: The Yin-Yang Twin Bears</span><span class="chn">第六季: 双胞熊弟殷殷洋洋</span>
+## <span class="eng">Season 6: The Naughty Twin Bearthers</span><span class="chn">第六季: 双胞熊弟爱捣蛋</span>
 
-- <span class="eng">Coming soon.</span><span class="chn">即将到来。</span>
+<img src="S6.png" height="100"><br>
+
+<span class="eng">Ayin and Ayang are twin brothers. The two bearthers love messing around in the Bear Resort.</span>
+<span class="chn">阿殷和阿杨是一对儿双胞兄弟。两“熊”弟最喜欢在小熊樂園里上蹿下跳、四处捣蛋！</span>
+
+- <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
+- <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/twin-bearthers.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/AJmsMqf#wechat_redirect)
+
+
