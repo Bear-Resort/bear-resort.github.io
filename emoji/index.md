@@ -57,7 +57,7 @@ title-chn: "表情包"
 
 <img src="S6.png" height="100"><br>
 
-<span class="eng">Ayin and Ayang are twin brothers. The two bearthers love messing around in the Bear Resort.</span>
+<span class="eng">Ayin and Ayang are twin brothers. The two bearthers love messing   around in the Bear Resort.</span>
 <span class="chn">阿殷和阿杨是一对儿双胞兄弟。两“熊”弟最喜欢在小熊樂園里上蹿下跳、四处捣蛋！</span>
 
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
