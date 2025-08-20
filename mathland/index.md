@@ -24,6 +24,8 @@ title-chn: "数学之境"
 
 - [<span class="eng">Timer</span><span class="chn">计时器</span>](/timer)
     - <span class="eng">In future updates, the timer will appear site-wide.</span><span class="chn">在未来更新中，计时器将全局显示。</span>
+- [<span class="eng">Mathy's Turntable</span><span class="chn">数数的大转盘</span>](/turntable)
+- [<span class="eng">Distributor</span><span class="chn">分配器</span>](distributor.html)
 
 ## <span class="eng">Bear Resort Exams</span><span class="chn">小熊樂園的考试</span> 
 
