@@ -64,7 +64,7 @@ title-chn: "数数的大转盘"
     #turntable-canvas {
         display: block;
         margin: auto;
-        background: var(--background-light);
+        background: #444;
         border-radius: 50%;
         box-shadow: 0 2px 8px var(--shadow-color);
     }
@@ -86,8 +86,7 @@ title-chn: "数数的大转盘"
     <div id="result-modal">
         <div id="result-box">
             <div id="result-text"></div>
-                <button id="close-modal-btn">×</button>
-            </div>
+            <button id="close-modal-btn">×</button>
         </div>
     </div>
 </div>
