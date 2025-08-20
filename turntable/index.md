@@ -78,11 +78,10 @@ title-chn: "数数的大转盘"
         <button type="submit" id="add-choice-btn" style="padding: 6px 12px;"><span class="eng">Add</span><span class="chn">添加</span></button>
     </form>
     <div class="choices-list" id="choices-list"></div>
-        <div id="turntable-wrapper">
-            <canvas id="turntable-canvas" width="340" height="340"></canvas>
-            <br><br>
-            <button id="spin-btn" disabled><span class="eng">Let's Rock!</span><span class="chn">转盘，启动！</span></button>
-        </div>
+    <div id="turntable-wrapper">
+        <canvas id="turntable-canvas" width="340" height="340"></canvas>
+        <br><br>
+        <button id="spin-btn" disabled><span class="eng">Let's Rock!</span><span class="chn">转盘，启动！</span></button>
     </div>
     <div id="result-modal">
         <div id="result-box">
@@ -93,4 +92,4 @@ title-chn: "数数的大转盘"
     </div>
 </div>
 
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>
