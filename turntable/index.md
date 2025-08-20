@@ -64,7 +64,7 @@ title-chn: "数数的大转盘"
     #turntable-canvas {
         display: block;
         margin: auto;
-        background: #444;
+        background: #8f8f8f8f;
         border-radius: 50%;
         box-shadow: 0 2px 8px var(--shadow-color);
     }
