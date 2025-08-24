@@ -30,6 +30,11 @@ const additions = document.getElementById('additions');
 const bear_stop = document.getElementById('stopped');
 const bear_progress = document.getElementById('progress');
 
+// modal
+const resultModal = document.getElementById('result-modal');
+const resultText = document.getElementById('result-text');
+const closeModalBtn = document.getElementById('close-modal-btn');
+
 // play the alarm
 function startAlarm() {
     const alarm = document.getElementById('alarm');
@@ -83,19 +88,7 @@ function runCountdownLoop() {
                 timerDisplay.innerHTML = "00:00:00";
                 startAlarm();
                 bear_stop.style.display = 'block';
-                setTimeout(() => {
-                    if (updateMyLanguage() === "Eng") {
-                        alert('Time is up.');
-                    } else {
-                        alert('时间到了.');
-                    }
-                }, 300);
-                timerDisplay.style.display = 'none';
-                localStorage.removeItem('endTimestamp');
-                showTimerUI(false);
-                setTimeout(() => {
-                    stopAlarm();
-                }, 3000);
+                showTimeUp();
                 return;
             }
             updateTimerDisplay(timeLeft);
@@ -203,6 +196,7 @@ function addTime(seconds) {
 }
 
 function initializeTimer() {
+    resultModal.style.display='none';
     const savedEndTimestamp = localStorage.getItem('endTimestamp');
     isPaused = localStorage.getItem('isPaused')  === "true";
     pauseResumeButton.innerHTML = isPaused
@@ -240,6 +234,19 @@ stopButton.addEventListener('click', stopCountdown);
 add30sButton.addEventListener('click', () => addTime(30));
 add1mButton.addEventListener('click', () => addTime(60));
 add5mButton.addEventListener('click', () => addTime(300));
+
+function showTimeUp() {
+    resultText.textContent = updateMyLanguage() === "Eng" ? "Time is Up!" : "时候到了！";
+    resultModal.style.display='flex';
+}
+
+closeModalBtn.onclick = () => {
+    resultModal.style.display='none';
+    timerDisplay.style.display = 'none';
+    localStorage.removeItem('endTimestamp');
+    showTimerUI(false);
+    stopAlarm();
+};
 
 // Initialize the timer upon loading
 initializeTimer();

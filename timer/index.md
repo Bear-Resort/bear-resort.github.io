@@ -61,19 +61,23 @@ title: "Timer"
         <button id="milkTea"><img src="milk-tea.gif" style="width: 75px; height: 75px;" /><span class="eng">Milk Tea Time</span><span class="chn">奶茶时间</span> (5')</button> &nbsp; &nbsp;
         <button id="goonSession"><img src="confused.gif" style="width: 75px; height: 75px;" /><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
     </div>
-    <div style="text-align: center; font-size: 10px;">
-    </div>
 </div>
 <div id="controls">
     <button id="pauseResumeButton"><span class="eng">Pause</span><span class="chn">暂停</span></button>
     <button id="stopButton"><span class="eng">Stop</span><span class="chn">停止</span></button>
 </div>
 <div id="countdown-timer" style="display: none">00:00:00</div>
-<div id="additions" style="display: none">
-    <button id="add30sButton"><span class="eng">Add 30s</span><span class="chn">加30秒</span></button> &nbsp;
-    <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button> &nbsp;
-    <button id="add5mButton"><span class="eng">Add 5m</span><span class="chn">加5分钟</span></button>
+    <div id="additions" style="display: none">
+        <button id="add30sButton"><span class="eng">Add 30s</span><span class="chn">加30秒</span></button> &nbsp;
+        <button id="add1mButton"><span class="eng">Add 1m</span><span class="chn">加1分钟</span></button> &nbsp;
+        <button id="add5mButton"><span class="eng">Add 5m</span><span class="chn">加5分钟</span></button>
+    </div>
 </div>
+<div id="result-modal">
+    <div id="result-box">
+        <div id="result-text"></div>
+        <button id="close-modal-btn">×</button>
+    </div>
 </div>
 
 <script type="module" src="timer.js"></script>
