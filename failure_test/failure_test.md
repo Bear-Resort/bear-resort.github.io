@@ -248,11 +248,13 @@ title: "Failure Test"
 
 <br>
 
-<h2 id="greeting" class="eng"></h2>
-<h3 id="result" class="eng"></h3>
-<div style="text-align: right" id="end" class="eng"></div>
-<h2 id="greeting_ch" class="chn"></h2>
-<h3 id="result_ch" class="chn"></h3>
-<div style="text-align: right" id="end_ch" class="chn"></div>
-
+<div id="result-modal">
+    <div id="result-box">
+        <h2 id="greeting"></h2><br>
+        <h3 id="result"></h3>
+        <br>
+        <div style="text-align: right" id="end" class="eng"></div>
+        <button id="close-modal-btn">×</button>
+    </div>
+</div>
 <script src="main.js"></script>
