@@ -3,6 +3,7 @@ import { updateMyLanguage } from '/assets/js/lang.js';
 var score = 0;
 
 const resultModal = document.getElementById('result-modal');
+const closeModalBtn = document.getElementById('close-modal-btn');
 
 resultModal.style.display = 'none';
 
@@ -22,7 +23,7 @@ for (let i = 1; i <= 20; i++) {
     });
 }
 
-async function result() {
+function result() {
     const name = document.getElementById('inputBox').value;
 
     if (name.trim() === "") {
