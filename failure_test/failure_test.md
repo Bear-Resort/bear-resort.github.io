@@ -257,4 +257,4 @@ title: "Failure Test"
         <button id="close-modal-btn">×</button>
     </div>
 </div>
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>
