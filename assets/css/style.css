@@ -320,8 +320,8 @@ textarea {
 input {
     font-family: var(--font-family);
     font-size: 14px;
-    color: var(--text-color);
-    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    background-color: var(--background-light);
     border-color: var(--text-color);
     padding: 5px 8px;
     border-radius: 6px;
