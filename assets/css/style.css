@@ -305,16 +305,19 @@ button:disabled {
 
 textarea {
     font-family: var(--font-family);
-    font-size: 12px;
+    font-size: 14px;
+    color: var(--text-color-dark);
+    background-color: var(--background-light);
+    border-color: var(--text-color);
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
     width: 75%;
     margin: 0 auto 0 auto;  
     display: block; 
     resize: none;
     height: auto;
     overflow: hidden;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    border-color: var(--text-color);
 }
 
 input {
