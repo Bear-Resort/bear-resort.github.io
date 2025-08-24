@@ -250,10 +250,9 @@ title: "Failure Test"
 
 <div id="result-modal">
     <div id="result-box">
-        <h2 id="greeting"></h2><br>
+        <h2 id="greeting"></h2>
         <h3 id="result"></h3>
-        <br>
-        <div style="text-align: right" id="end" class="eng"></div>
+        <span id="end"></span>
         <button id="close-modal-btn">×</button>
     </div>
 </div>
