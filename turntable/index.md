@@ -47,13 +47,6 @@ title-chn: "数数的大转盘"
         color: darkslategray;
     }
 
-    #add-choice-form {
-        margin-bottom: 18px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px; }
-
     #turntable-wrapper {
         margin: 28px auto 24px auto;
         display: flex;
@@ -73,7 +66,7 @@ title-chn: "数数的大转盘"
 # <span class="eng">Mathy's Turntable</span><span class="chn">数数的大转盘</span>
 
 <div class="container">
-    <form id="add-choice-form" autocomplete="off">
+    <form class="clms" id="add-choice-form" autocomplete="off">
         <input type="text" id="new-choice" placeholder="Enter a choice" maxlength="18" required>
         <button type="submit" id="add-choice-btn" style="padding: 6px 12px;"><span class="eng">Add</span><span class="chn">添加</span></button>
     </form>

@@ -698,3 +698,10 @@ rt {
         padding: 1px 5px;
         border-color: #850b0b;
     }
+
+    .clms {
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px; }

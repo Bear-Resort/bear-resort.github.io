@@ -8,9 +8,9 @@ title: "Failure Test"
 
 <span class="chn">你將填写本问卷，用於评估你的霍普金斯生活有多废物。</span>
 
-### <span class="eng">Your name</span><span class="chn">你的名字</span>
-
-<textarea id="inputBox" placeholder="Enter your name here... / 输入你的名字..." style="font-size: 16px"></textarea>
+<form class="clms" id="add-choice-form" autocomplete="off">
+    <span class="eng">Your Name:</span><span class="chn">你的名字:</span> <input type="text" id="inputBox" placeholder="Enter your name here... / 输入你的名字...">
+</form>
 
 ## <span class="eng">Academically</span><span class="chn">學術上</span>
 
