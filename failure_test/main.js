@@ -4,6 +4,7 @@ var score = 0;
 
 const resultModal = document.getElementById('result-modal');
 const closeModalBtn = document.getElementById('close-modal-btn');
+const computBtn = document.getElementById('compute');
 
 resultModal.style.display = 'none';
 
@@ -91,3 +92,6 @@ closeModalBtn.onclick = () => {
     resultModal.style.display='none';
 };
 
+computBtn.onclick = () => {
+    result();
+}

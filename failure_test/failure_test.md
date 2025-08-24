@@ -243,7 +243,7 @@ title: "Failure Test"
 <br>
 
 <div style="text-align: center">
-    <button onclick="result()" id="compute"><span class="eng">Compute</span><span class="chn">结算</span></button>
+    <button id="compute"><span class="eng">Compute</span><span class="chn">结算</span></button>
 </div>
 
 <br>
