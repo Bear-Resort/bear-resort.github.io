@@ -88,6 +88,7 @@ function runCountdownLoop() {
                 timerDisplay.innerHTML = "00:00:00";
                 startAlarm();
                 bear_stop.style.display = 'block';
+                bear_progress.style.display = 'none';
                 showTimeUp();
                 return;
             }
