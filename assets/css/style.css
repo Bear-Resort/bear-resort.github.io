@@ -663,46 +663,67 @@ rt {
 }
 
 #result-modal {
-        position: fixed;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        display: none;
-        background: var(--shadow-color);
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-    }
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display: none;
+    background: var(--shadow-color);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
 
-    #result-box {
-        position: relative;
-        background: var(--background-color);
-        border-radius: 12px;
-        box-shadow: 0 8px 32px var(--shadow-color);
-        padding: 32px 60px;
-        min-width: 280px;
-        max-width: 75%;
-        font-size: 1.2em;
-        color: var(--text-color-dark);
-        font-weight:bold;
-        text-align: center;
-    }
+#result-box {
+    position: relative;
+    background: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    padding: 32px 60px;
+    min-width: 280px;
+    max-width: 75%;
+    font-size: 1.2em;
+    color: var(--text-color-dark);
+    font-weight:bold;
+    text-align: center;
+}
 
 
-    #close-modal-btn {
-        position: absolute;
-        top: 12px;
-        right: 14px;
-        background: #b01212;
-        color: #fff;
-        padding: 1px 5px;
-        border-color: #850b0b;
-    }
+#close-modal-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: #b01212;
+    color: #fff;
+    padding: 1px 5px;
+    border-color: #850b0b;
+}
 
-    .clms {
-        margin-bottom: 18px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px; }
+.clms {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; }
+
+.led-ticker {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.led-message {
+    display: inline-block;
+    color: var(--text-color);
+    font-weight: 10;
+    font-size: 16px;
+    will-change: transform;
+}
+
+@keyframes led-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
