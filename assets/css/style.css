@@ -711,7 +711,7 @@ rt {
     display: inline-block;
     overflow: hidden;
     vertical-align: middle;
-    max-width: 100%;
+    width: 90%;
     box-sizing: border-box;
 }
 
