@@ -727,3 +727,11 @@ rt {
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
 }
+
+.night-theme #pdf-render {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+.day-theme #pdf-render {
+  filter: invert(0.08) hue-rotate(0deg);
+}
