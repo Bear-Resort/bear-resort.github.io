@@ -1,10 +1,14 @@
 :root {
     --dark: #202020;
     --light: #eaeaea;
-}
+
+    --dark-color: var(--dark-color, #1f436b); 
+    --dark-light: var(--dark-light, #14405a);
+    --light-color: var(--light-color, #9fc8f7);
+    --light-light: var(--light-light, #b7d0e2);
 
 /* Day Theme */
-.day-theme {
+
     --main-color: var(--dark-color);
     --main-color-light: var(--dark-light);
     --secondary-color: var(--light-color);
