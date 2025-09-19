@@ -53,7 +53,7 @@ async function uploadData() {
     .then(res => res.text())
     .then(msg => {
         alert("✅ Success / 成功");
-        form.reset();
+        reset();
         submitBtn.disabled = false;
         })
     .catch(err => {
@@ -62,6 +62,14 @@ async function uploadData() {
         alert("🛜 This might be an issue of the internet / 也许是网络失效");
         submitBtn.disabled = false;
     });
+}
+
+function reset() {
+    nameInput.value = "";
+    emailInput.value = "";
+    usrnameInput.value = "";
+    pdInput.value = "";
+    pdInputRe.value = "";
 }
 
 // document.addEventListener("keydown", (event) => {
