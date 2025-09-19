@@ -16,7 +16,8 @@ title: "User Center"
       <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="Enter your password.../輸入密码..." style="font-size: 16px" required />
       </form>
       <br><br>
-      <button onclick="handleLogin()">Login</button>
+      <button onclick="handleLogin()"><span class="eng">Login</span><span class="chn">登錄</span></button><br>
+      <button href="/register"><span class="eng">Register</span><span class="chn">註冊</span></button>
     </div>
     <br>
     <div style="text-align: center;">
