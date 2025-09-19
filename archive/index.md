@@ -31,7 +31,7 @@ title-chn: "归档"
 
 <span class="eng">Upcoming...</span><span class="chn">即将到来</span>
 
-- <span class="eng">(Fans Only).</span><span class="chn">(粉丝独享).</span> [<span class="eng">The News Live Show</span><span class="chn">新闻直播秀</span>](语言-新闻秀.pdff)
+- [<span class="eng">The News Live Show</span><span class="chn">新闻直播秀</span>](语言-新闻秀.pdf)
 - <span class="eng">Adventure of the Blue Car</span><span class="chn">小蓝车奇遇记</span>
 
 
