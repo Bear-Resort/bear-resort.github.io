@@ -11,6 +11,8 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby13wkrygJBb9qk_DEwO
 
 const pdReBlk = document.getElementById("re");
 
+document.getElementById("sub").addEventListener("click", handleSubmit);
+
 async function handleSubmit() {
     const username = usrnameInput.value.trim();
     const password = pdInput.value;
@@ -59,11 +61,11 @@ async function uploadData() {
     });
 }
 
-document.addEventListener("keydown", (event) => {
-  if (pdInput.value) {
-    pdInputRe.style.display = flex;
-  } else {
-    pdInputRe.style.display = none;
-    pdInput.value = "";
-  }
-})
+// document.addEventListener("keydown", (event) => {
+//   if (pdInput.value) {
+//     pdInputRe.style.display = flex;
+//   } else {
+//     pdInputRe.style.display = none;
+//     pdInput.value = "";
+//   }
+// })
