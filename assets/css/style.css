@@ -728,10 +728,10 @@ rt {
     to { transform: translateX(-100%); }
 }
 
-.night-theme #pdf-render {
+.night-theme #pdf-render, #pdf-render-top, #pdf-render-bottom {
   filter: invert(0.88) hue-rotate(180deg);
 }
 
-.day-theme #pdf-render {
+.day-theme #pdf-render, #pdf-render-top, #pdf-render-bottom {
   filter: invert(0.08) hue-rotate(0deg);
 }

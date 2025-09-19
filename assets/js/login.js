@@ -57,6 +57,26 @@ export function loginU(username, password) {
     });
 }
 
+export function checkUsr(username) {
+  if (!username) {
+    console.error("Username or password missing");
+    return Promise.resolve(false);
+  }
+  const usernameEnc = hashDeterministically(username);
+  return fetch("/assets/js/users.csv") 
+    .then(response => response.text())
+    .then(csvText => {
+      const users = parseCSV(csvText);
+      return !users.some(user =>
+        user.username === inputUsername
+      );
+    })
+    .catch(error => {
+      console.error("CSV load error:", error);
+      return false;
+    });
+}
+
 // Check if user is logged in
 export function isLoggedIn() {
     return localStorage.getItem('loggedInUser') !== null;
