@@ -7,11 +7,13 @@ const usrnameInput = document.getElementById("username");
 const pdInput = document.getElementById("password");
 const pdInputRe = document.getElementById("re-password");
 
+const submitBtn = document.getElementById("sub")
+
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby13wkrygJBb9qk_DEwOOibQWj4Nu5VxLyblrW6PmRoqDhriWuKvlAwG-ICZTpt4vzZmA/exec';
 
 const pdReBlk = document.getElementById("re");
 
-document.getElementById("sub").addEventListener("click", handleSubmit);
+submitBtn.addEventListener("click", handleSubmit);
 
 async function handleSubmit() {
     const username = usrnameInput.value.trim();

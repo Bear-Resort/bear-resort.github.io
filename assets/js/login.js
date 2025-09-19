@@ -68,7 +68,7 @@ export function checkUsr(username) {
     .then(csvText => {
       const users = parseCSV(csvText);
       return !users.some(user =>
-        user.username === inputUsername
+        user.username === username
       );
     })
     .catch(error => {
