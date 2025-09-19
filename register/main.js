@@ -52,14 +52,15 @@ async function uploadData() {
     })
     .then(res => res.text())
     .then(msg => {
-    alert("✅ Success / 成功");
-    form.reset();
-    submitBtn.disabled = false;
-    })
+        alert("✅ Success / 成功");
+        form.reset();
+        submitBtn.disabled = false;
+        })
     .catch(err => {
-    alert("❌ Failed / 失败");
-    alert("🛜 This might be an issue of the internet / 也许是网络失效");
-    submitBtn.disabled = false;
+        console.log(err);
+        alert("❌ Failed / 失败");
+        alert("🛜 This might be an issue of the internet / 也许是网络失效");
+        submitBtn.disabled = false;
     });
 }
 
