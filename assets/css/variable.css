@@ -1,8 +1,8 @@
 :root {
-    --dark-color:  #6b4a1f; 
-    --dark-light: #5a3a14;
-    --light-color: #f7ed9f; 
-    --light-light: #e2d8b7;
+    --dark-color:  #6b4a1fee; 
+    --dark-light: #5a3a14ee;
+    --light-color: #f7ed9fee; 
+    --light-light: #e2d8b7ee;
 
     --font-family: 'Merriweather', serif, 'Yuanti SC', 'Microsoft YaHei', sans-serif;
     --font-code: "Lucida Console", monospace;
