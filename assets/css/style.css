@@ -2,17 +2,17 @@
     --dark: #202020;
     --light: #eaeaea;
 
-    --dark-color: var(--dark-color, #1f436b); 
-    --dark-light: var(--dark-light, #14405a);
-    --light-color: var(--light-color, #9fc8f7);
-    --light-light: var(--light-light, #b7d0e2);
+    --dark-main: var(--dark-color, #1f436b); 
+    --dark-secondary: var(--dark-light, #14405a);
+    --light-main: var(--light-color, #9fc8f7);
+    --light-secondary: var(--light-light, #b7d0e2);
 
 /* Day Theme */
 
-    --main-color: var(--dark-color);
-    --main-color-light: var(--dark-light);
-    --secondary-color: var(--light-color);
-    --secondary-light: var(--light-light);
+    --main-color: var(--dark-main);
+    --main-color-light: var(--dark-secondary);
+    --secondary-color: var(--light-main);
+    --secondary-light: var(--light-secondary);
 
     --text-color: var(--dark);
     --text-color-dark: #000000;
@@ -23,10 +23,10 @@
 
 /* Night Theme */
 .night-theme {
-    --main-color: var(--light-color);
-    --main-color-light: var(--light-light);
-    --secondary-color: var(--dark-color);
-    --secondary-light: var(--dark-light);
+    --main-color: var(--light-main);
+    --main-color-light: var(--light-secondary);
+    --secondary-color: var(--dark-main);
+    --secondary-light: var(--dark-secondary);
 
     --text-color: var(--light);
     --text-color-dark: #ffffff;
@@ -105,7 +105,7 @@ a:visited{
   top: 0px;
   left: 3px;
   right: 3px;
-  background: linear-gradient(to bottom, var(--dark-color) 0%, var(--dark-light) 100%);
+  background: linear-gradient(to bottom, var(--dark-main) 0%, var(--dark-secondary) 100%);
   color: var(--light);
   font-size: 16px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
@@ -124,7 +124,7 @@ a:visited{
 }
 
 .topnav a {
-    color: var(--light-color);
+    color: var(--light-main);
     text-align: center;
     padding: 7px 12px;
     border-radius: 10px;
@@ -134,12 +134,12 @@ a:visited{
 }
 
 .topnav a:visited {
-    color: var(--light-color);
+    color: var(--light-main);
 }
 
 .topnav a:hover {
-    background: linear-gradient(to bottom, var(--light-color) 0%, var(--light-light) 100%);
-    color: var(--dark-light);
+    background: linear-gradient(to bottom, var(--light-main) 0%, var(--light-secondary) 100%);
+    color: var(--dark-secondary);
     box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5),
@@ -148,7 +148,7 @@ a:visited{
 
 
 .topnav a:active {
-    background: linear-gradient(to top, var(--light-color) 0%, var(--light-light) 100%);
+    background: linear-gradient(to top, var(--light-main) 0%, var(--light-secondary) 100%);
     color: var(--dark);
     box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -158,7 +158,7 @@ a:visited{
 }
 
 .topnav a.active {
-    background: linear-gradient(to top, var(--light-color) 0%, var(--light-light) 100%);
+    background: linear-gradient(to top, var(--light-main) 0%, var(--light-secondary) 100%);
     color: var(--dark);
     cursor: default;
     box-shadow: 
@@ -188,7 +188,7 @@ a:visited{
   bottom: 0px;
   left: 3px;
   right: 3px;
-  background: linear-gradient(to bottom, var(--light-color) 0%, var(--light-light) 100%); 
+  background: linear-gradient(to bottom, var(--light-main) 0%, var(--light-secondary) 100%); 
   color: var(--dark);
   font-size: 16px;
   text-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.6);
@@ -221,11 +221,11 @@ a:visited{
 
 
 .botnav a {
-    color: var(--dark-color);
+    color: var(--dark-main);
 }
 
 .botnav a:visited {
-    color: var(--dark-color);
+    color: var(--dark-main);
 }
 
 .column {
