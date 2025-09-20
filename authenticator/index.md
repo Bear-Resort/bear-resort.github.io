@@ -11,3 +11,5 @@ title: "Authenticator"
         <button onclick="window.open('/assets/html/login.html')"><span class="eng">Log in</span><span class="chn">登录</span></button>
     </div>
 </div>
+
+<script src="./main.js"></script>
