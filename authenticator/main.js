@@ -1,4 +1,4 @@
-import { isLoggedIn } from "../assets/js/login";
+import { isLoggedIn } from "/assets/js/login.js";
 
 const authoDiv = document.getElementById("result");
 const alertDiv = document.getElementById("alert");
