@@ -12,4 +12,4 @@ title: "Authenticator"
     </div>
 </div>
 
-<script src="./main.js"></script>
+<script type="module" src="./main.js"></script>
