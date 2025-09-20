@@ -5,7 +5,7 @@ const alertDiv = document.getElementById("alert");
 const codeSpan = document.getElementById("cc");
 
 const rendercode = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn()) {
         alertDiv.style.display = "none";
         authoDiv.style.display = "block";
         renderResult();
