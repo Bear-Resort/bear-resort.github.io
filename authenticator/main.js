@@ -17,7 +17,7 @@ const rendercode = () => {
 }
 
 const renderResult = () => {
-    const v1 = hashDeterministically(localStorage.getItem("loggedInUser")) % 1000;
+    const v1 = hashDeterministically(localStorage.getItem("loggedInUser")).substring(0,4);
     const urlParams = new URLSearchParams(window.location.search);
     const v2 = urlParams.get('auth') ** 13 % 100;
     codeSpan.textContent = v1.toString() + v2.toString();
