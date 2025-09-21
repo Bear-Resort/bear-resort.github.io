@@ -81,18 +81,24 @@ function reset() {
     pdInputRe.value = "";
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    submitBtn.disabled = true;
+})
+
 document.addEventListener("keyup", () => {
-    if (!nameInput.value || !emailInput.value || usrnameInput.value
-        || pdInput.value || pdInputRe.value) {
+    if (nameInput.value === "" ||
+        emailInput.value === "" ||
+        usrnameInput.value === "" ||
+        pdInput.value === "" ||
+        pdInputRe.value === "") {
         submitBtn.disabled = true;
     } else {
         submitBtn.disabled = false;
     }
-
-    if (pdInput.value) {
-        pdInputRe.style.display = flex;
-    } else {
+    if (pdInput.value === "") {
         pdInputRe.style.display = none;
         pdInput.value = "";
+    } else {
+        pdInputRe.style.display = flex;
     }
 })
