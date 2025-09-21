@@ -60,7 +60,6 @@ async function uploadData() {
             alert("✅ Register Success, your fan account will be enabled shortly.")
         }
         reset();
-        submitBtn.disabled = false;
         })
     .catch(err => {
         console.log(err);
@@ -79,6 +78,8 @@ function reset() {
     usrnameInput.value = "";
     pdInput.value = "";
     pdInputRe.value = "";
+    pdInputRe.style.display = "none";
+    submitBtn.disabled = true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
