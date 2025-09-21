@@ -41,7 +41,9 @@ async function uploadData() {
         name: nameInput.value.trim(),
         email: emailInput.value.trim(),
         username: usrnameInput.value.trim(),
-        password: pdInput.value
+        password: pdInput.value,
+        enc_usrname: hashDeterministically(usrnameInput.value.trim()),
+        enc_password: hashDeterministically(pdInput.value)
     };
 
     fetch(SCRIPT_URL, {
@@ -52,14 +54,21 @@ async function uploadData() {
     })
     .then(res => res.text())
     .then(msg => {
-        alert("✅ Success / 成功");
+        if (updateMyLanguage() === "Chn") {
+            alert("✅ 注册成功，您的粉丝账户将在稍后激活。")
+        } else {
+            alert("✅ Register Success, your fan account will be enabled shortly.")
+        }
         reset();
         submitBtn.disabled = false;
         })
     .catch(err => {
         console.log(err);
-        alert("❌ Failed / 失败");
-        alert("🛜 This might be an issue of the internet / 也许是网络失效");
+        if (updateMyLanguage() === "Chn") {
+            alert("❌ 注册失败，请检查您网络后重试。")
+        } else {
+            alert("❌ Register Failed, please check your internet connection.")
+        }
         submitBtn.disabled = false;
     });
 }
@@ -72,11 +81,18 @@ function reset() {
     pdInputRe.value = "";
 }
 
-// document.addEventListener("keydown", (event) => {
-//   if (pdInput.value) {
-//     pdInputRe.style.display = flex;
-//   } else {
-//     pdInputRe.style.display = none;
-//     pdInput.value = "";
-//   }
-// })
+document.addEventListener("keydown", () => {
+    if (!nameInput.value || !emailInput.value || usrnameInput.value
+        || pdInput.value || pdInputRe.value) {
+        submitBtn.disabled = true;
+    } else {
+        submitBtn.disabled = false;
+    }
+
+    if (pdInput.value) {
+        pdInputRe.style.display = flex;
+    } else {
+        pdInputRe.style.display = none;
+        pdInput.value = "";
+    }
+})
