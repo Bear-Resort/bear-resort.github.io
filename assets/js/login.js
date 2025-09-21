@@ -59,7 +59,7 @@ export function loginU(username, password) {
 
 export function checkUsr(username) {
   if (!username) {
-    console.error("Username or password missing");
+    console.error("Username missing");
     return Promise.resolve(false);
   }
   const usernameEnc = hashDeterministically(username);
@@ -68,7 +68,7 @@ export function checkUsr(username) {
     .then(csvText => {
       const users = parseCSV(csvText);
       return !users.some(user =>
-        user.username === username
+        user.username === usernameEnc
       );
     })
     .catch(error => {
