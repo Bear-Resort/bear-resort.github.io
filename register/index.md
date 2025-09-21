@@ -16,7 +16,7 @@ title: "Join Fandom"
       <label for="email"><span class="eng">Email</span> <span class="chn">电邮</span>:</label> <input type="email" id="email" placeholder="Enter your email.../輸入电邮..." style="font-size: 16px" required />
       <label for="username"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <input type="text" id="username" placeholder="Enter your username.../輸入用戶名..." style="font-size: 16px" required />
       <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="Enter your password.../輸入密码..." style="font-size: 16px" required />
-      <label for="re-password"><span class="eng">Enter Password again</span> <span class="chn">再次输入密码</span>:</label> <input type="password" id="re-password" placeholder="Enter your password.../輸入密码..." style="font-size: 16px" required />
+      <label for="re-password"><span class="eng">Enter Password again</span> <span class="chn">再次输入密码</span>:</label> <input type="password" id="re-password" placeholder="Enter your password.../輸入密码..." style="display: none" required />
       </form>
       <br><br>
       <button id="sub"><span class="eng">Submit</span> <span class="chn">提交</span></button>

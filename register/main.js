@@ -81,7 +81,7 @@ function reset() {
     pdInputRe.value = "";
 }
 
-document.addEventListener("keydown", () => {
+document.addEventListener("keyup", () => {
     if (!nameInput.value || !emailInput.value || usrnameInput.value
         || pdInput.value || pdInputRe.value) {
         submitBtn.disabled = true;
