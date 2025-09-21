@@ -96,9 +96,9 @@ document.addEventListener("keyup", () => {
         submitBtn.disabled = false;
     }
     if (pdInput.value === "") {
-        pdInputRe.style.display = none;
+        pdInputRe.style.display = "none";
         pdInput.value = "";
     } else {
-        pdInputRe.style.display = flex;
+        pdInputRe.style.display = "flex";
     }
 })
