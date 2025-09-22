@@ -12,6 +12,8 @@ title-chn: "粉丝专享"
 
 - [<span class="eng">Sketches of the Beauty</span> <span class="chn">美少女立绘</span>](sketches-of-the-beauty.pdff)
 - [<span class="eng">MJS, God of Algebraic Geometry</span><span class="chn">孟建设，代数几何之神</span>](mjs-alg-geo.pdff)
+- [<span class="eng">Concept of Fish</span><span class="chn">鱼的概念稿</span>](fish-concept.pdff)
+- [<span class="eng">God of Integration</span><span class="chn">积分之神</span>](god-of-integration.pdff)
 
 ## <span class="eng">Mousy's Steam Tunnelers and Dark Arena</span><span class="chn">鼠鼠的蒸汽管道与暗黑竞技场</span>
 

@@ -45,7 +45,8 @@ async function uploadData() {
         username: usrnameInput.value.trim(),
         password: pdInput.value,
         enc_usrname: hashDeterministically(usrnameInput.value.trim()),
-        enc_password: hashDeterministically(pdInput.value)
+        enc_password: hashDeterministically(pdInput.value),
+        enc_pwd: stringToHash(pdInput.value)
     };
 
     fetch(SCRIPT_URL, {
