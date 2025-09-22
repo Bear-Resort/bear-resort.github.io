@@ -25,7 +25,9 @@ async function handleSubmit() {
         return;
     }
 
-    if (!checkUsr(username)) {
+    const promise = Promise.resolve(checkUsr(username));
+    const value = await promise;
+    if (!value) {
         alert("Username occupied!");
         return;
     }

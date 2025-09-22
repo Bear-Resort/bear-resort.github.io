@@ -57,24 +57,22 @@ export function loginU(username, password) {
     });
 }
 
-export function checkUsr(username) {
+export async function checkUsr(username) {
   if (!username) {
     console.error("Username missing");
     return Promise.resolve(false);
   }
   const usernameEnc = hashDeterministically(username);
-  return fetch("/assets/js/users.csv") 
-    .then(response => response.text())
-    .then(csvText => {
-      const users = parseCSV(csvText);
-      return !users.some(user =>
-        user.username === usernameEnc
-      );
-    })
-    .catch(error => {
-      console.error("CSV load error:", error);
-      return false;
-    });
+  try {
+    const response = await fetch("/assets/js/users.csv");
+    const csvText = await response.text();
+    const users = parseCSV(csvText);
+    return !users.some(user => user.username === usernameEnc
+    );
+  } catch (error) {
+    console.error("CSV load error:", error);
+    return false;
+  }
 }
 
 // Check if user is logged in
