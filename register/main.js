@@ -39,6 +39,7 @@ async function handleSubmit() {
         return;
     }
 
+    console.log(vercode, temp_vericode);
     if (vercode !== temp_vericode) {
         alert("Incorrect verification code!")
         return;
@@ -160,7 +161,6 @@ async function handleEmail() {
         } else {
             alert("✅ The verification code is sent to your email address.")
         }
-        verfication.disabled = false;
         })
     .catch(err => {
         console.log(err);
