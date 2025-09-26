@@ -14,8 +14,6 @@ title-chn: "我是小画家"
       image-rendering: pixelated;
     }
     #display_result {
-      /* width: 300px;
-      height: 300px; */
       font-size: 12px;
       font-family: 'Noto Sans Mono', 'Noto Sans Symbols2', monospace;
     }
@@ -28,8 +26,10 @@ title-chn: "我是小画家"
     <button id="redoBtn" title="Redo (Cmd/Ctrl+Shift+Z)"><span class="eng">Redo</span><span class="chn">重做</span></button>
     <button id="clearBtn"><span class="eng">Clear</span><span class="chn">清除</span></button>
     <button id="exportBtn"><span class="eng">Export</span><span class="chn">导出</span></button>
-    <br>
+    <br><br>
+    <div style="display: flex; align-items: center;">
     <canvas id="canvas" width="100" height="100"></canvas>
+    </div><br><br>
     <h3><span class="eng">Result</span><span class="chn">结果</span></h3>
     <button id="copyBtn" title="Copy output text (Cmd/Ctrl+C)"><span class="eng">Copy</span><span class="chn">拷贝</span></button>
     <br>
