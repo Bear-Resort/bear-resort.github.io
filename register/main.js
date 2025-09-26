@@ -127,7 +127,7 @@ document.addEventListener("keyup", () => {
     }
     if (pdInput.value === "") {
         pdInputRe.disabled = true;
-        pdInput.value = "";
+        pdInputRe.value = "";
     } else {
         pdInputRe.disabled = false;
     }
@@ -159,9 +159,9 @@ async function handleEmail() {
     .then(res => res.text())
     .then(msg => {
         if (updateMyLanguage() === "Chn") {
-            alert("✅ 验证码已发送到您的邮箱")
+            alert(`✅ 验证码已发送到您的邮箱。<br>📮 注意：验证码可能在垃圾邮箱里。`)
         } else {
-            alert("✅ The verification code is sent to your email address.")
+            alert("✅ The verification code is sent to your email address.<br>📮 Please also check the spam folders.")
         }
         verfication.disabled = false;
         })
