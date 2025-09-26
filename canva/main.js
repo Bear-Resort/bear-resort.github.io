@@ -135,14 +135,14 @@ function exportCanvas() {
     outputLines.push(row);
     if (outputLines.length >= Math.floor(height / blockH)) break;
     }
-    document.getElementById('export').value = outputLines.join('\n');
+    document.getElementById('display_result').value = outputLines.join('\n');
 }
 
 document.getElementById('exportBtn').addEventListener('click', exportCanvas);
 
 // --- Copy to clipboard ---
 function copyOutput() {
-    const ta = document.getElementById('export');
+    const ta = document.getElementById('display_result');
     // If not exported yet, do it first!
     if (!ta.value.trim()) exportCanvas();
     ta.select();

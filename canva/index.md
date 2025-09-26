@@ -13,8 +13,8 @@ title-chn: "我是小画家"
       height: 500px;
       image-rendering: pixelated;
     }
-    #export {
-      width: 100%;
+    #display_result {
+      width: 300px;
       height: 300px;
       font-size: 12px;
       font-family: 'Noto Sans Mono', 'Noto Sans Symbols2', monospace;
@@ -35,7 +35,7 @@ title-chn: "我是小画家"
     <h3><span class="eng">Result</span><span class="chn">结果</span></h3>
     <button id="copyBtn" title="Copy output text (Cmd/Ctrl+C)"><span class="eng">Copy</span><span class="chn">拷贝</span></button>
     <br>
-    <textarea id="export" readonly></textarea>
+    <textarea id="display_result" readonly></textarea>
 </div>
 
 <script src="./main.js"></script>
