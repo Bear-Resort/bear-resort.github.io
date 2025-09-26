@@ -136,10 +136,7 @@ function isValidEmail(email) {
   return re.test(email);
 }
 
-veriBtn.addEventListener("click", () => {
-    
-})
-
+veriBtn.addEventListener("click", handleEmail);
 
 async function handleEmail() {
     temp_vericode = Math.floor(Math.random() * 90000) + 10000;
