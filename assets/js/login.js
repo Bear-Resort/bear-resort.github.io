@@ -24,7 +24,7 @@ export function loginU(username, password) {
     console.error("Username or password missing");
     return Promise.resolve(false);
   }
-  const usernameEnc = hashDeterministically(username);
+  const usernameEnc = hashDeterministically(username.trim());
   const passwordEnc = hashDeterministically(password);
   return fetch("/assets/js/users.csv") 
     .then(response => response.text())
