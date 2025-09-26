@@ -27,7 +27,7 @@ title-chn: "我是小画家"
     <button id="clearBtn"><span class="eng">Clear</span><span class="chn">清除</span></button>
     <button id="exportBtn"><span class="eng">Export</span><span class="chn">导出</span></button>
     <br><br>
-    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center; flex-direction: column;">
     <canvas id="canvas" width="100" height="100"></canvas>
     </div><br><br>
     <h3><span class="eng">Result</span><span class="chn">结果</span></h3>
