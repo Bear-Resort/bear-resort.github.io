@@ -177,3 +177,28 @@ window.addEventListener('keydown', function(e) {
         saveState();
     }
 });
+
+canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    if (e.touches.length > 0) {
+    drawing = true;
+    const pos = getPosFromClient(e.touches[0].clientX, e.touches[0].clientY);
+    drawAt(pos.x, pos.y);
+    }
+}, {passive: false});
+canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    if (drawing && e.touches.length > 0) {
+    const pos = getPosFromClient(e.touches[0].clientX, e.touches[0].clientY);
+    drawAt(pos.x, pos.y);
+    }
+}, {passive: false});
+canvas.addEventListener('touchend', function(e) {
+    if (drawing) {
+    drawing = false;
+    saveState();
+    }
+});
+canvas.addEventListener('touchcancel', function(e) {
+    drawing = false;
+});
