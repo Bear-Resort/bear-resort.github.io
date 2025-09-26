@@ -145,7 +145,6 @@ function copyOutput() {
     const ta = document.getElementById('display_result');
     // If not exported yet, do it first!
     if (!ta.textContent.trim()) exportCanvas();
-    ta.select();
     ta.setSelectionRange(0, ta.value.length);
     try {
     document.execCommand('copy');
