@@ -94,14 +94,14 @@ function reset() {
     pdInput.value = "";
     pdInputRe.value = "";
     verfication.value = "";
-    pdInputRe.style.display = "none";
-    verfication.style.display = "none";
+    pdInputRe.disabled = true;
+    verfication.disabled = true;
     submitBtn.disabled = true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
-    verfication.disabled = true;
+    veriBtn.disabled = true;
 })
 
 document.addEventListener("keyup", () => {
@@ -117,16 +117,16 @@ document.addEventListener("keyup", () => {
         submitBtn.disabled = false;
     }
     if (isValidEmail(emailInput.value)) {
-        verfication.style.display = "flex";
+        verfication.disabled = false;
     } else {
-        verfication.style.display = "none";
+        verfication.disabled = true;
         verfication.value = "";
     }
     if (pdInput.value === "") {
-        pdInputRe.style.display = "none";
+        pdInputRe.disabled = true;
         pdInput.value = "";
     } else {
-        pdInputRe.style.display = "flex";
+        pdInputRe.disabled = true;
     }
 })
 
