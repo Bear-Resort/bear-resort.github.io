@@ -145,13 +145,8 @@ function copyOutput() {
     const ta = document.getElementById('display_result');
     // If not exported yet, do it first!
     if (!ta.textContent.trim()) exportCanvas();
-    ta.setSelectionRange(0, ta.value.length);
-    try {
-    document.execCommand('copy');
-    } catch (e) {}
-    // For compatibility, try Clipboard API as well
     if (navigator.clipboard) {
-    navigator.clipboard.writeText(ta.value);
+    navigator.clipboard.writeText(ta.textContent);
     }
 }
 document.getElementById('copyBtn').addEventListener('click', copyOutput);
