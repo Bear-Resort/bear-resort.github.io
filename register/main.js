@@ -39,8 +39,7 @@ async function handleSubmit() {
         return;
     }
 
-    console.log(vercode, temp_vericode);
-    if (vercode !== temp_vericode) {
+    if (vercode != temp_vericode) {
         alert("Incorrect verification code!")
         return;
     }
@@ -102,6 +101,8 @@ function reset() {
 
 document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
+    pdInputRe.disabled = true;
+    verfication.disabled = true;
     veriBtn.disabled = true;
 })
 
@@ -121,6 +122,7 @@ document.addEventListener("keyup", () => {
         veriBtn.disabled = false;
     } else {
         veriBtn.disabled = true;
+        verfication.disabled = true;
         verfication.value = "";
     }
     if (pdInput.value === "") {
@@ -161,6 +163,7 @@ async function handleEmail() {
         } else {
             alert("✅ The verification code is sent to your email address.")
         }
+        verfication.disabled = false;
         })
     .catch(err => {
         console.log(err);
