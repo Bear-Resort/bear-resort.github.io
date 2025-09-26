@@ -15,7 +15,7 @@ const submitBtn = document.getElementById("sub")
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby13wkrygJBb9qk_DEwOOibQWj4Nu5VxLyblrW6PmRoqDhriWuKvlAwG-ICZTpt4vzZmA/exec';
 
-const SCRIPT_URL_2 = 'https://script.google.com/macros/s/AKfycbzANy1B45cj0KiWUuu0ZlhfWTfNZCnddvUhH63LLbDy0fwuQ_AU7TlpR-I1iVdpn1WYMQ/exec';
+const SCRIPT_URL_2 = 'https://script.google.com/macros/s/AKfycbzNjhxIxS0hcyGglkEaDht86XCq3XdrMtuIO68N2bzQcUZtYcH8I3KGEJBPw-LpBzjr/exec';
 
 
 submitBtn.addEventListener("click", handleSubmit);
@@ -117,16 +117,16 @@ document.addEventListener("keyup", () => {
         submitBtn.disabled = false;
     }
     if (isValidEmail(emailInput.value)) {
-        verfication.disabled = false;
+        veriBtn.disabled = false;
     } else {
-        verfication.disabled = true;
+        veriBtn.disabled = true;
         verfication.value = "";
     }
     if (pdInput.value === "") {
         pdInputRe.disabled = true;
         pdInput.value = "";
     } else {
-        pdInputRe.disabled = true;
+        pdInputRe.disabled = false;
     }
 })
 
@@ -160,7 +160,7 @@ async function handleEmail() {
         } else {
             alert("✅ The verification code is sent to your email address.")
         }
-        verfication.style.display = "flex";
+        verfication.disabled = false;
         })
     .catch(err => {
         console.log(err);
