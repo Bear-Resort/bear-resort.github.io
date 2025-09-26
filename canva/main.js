@@ -135,7 +135,7 @@ function exportCanvas() {
     outputLines.push(row);
     if (outputLines.length >= Math.floor(height / blockH)) break;
     }
-    document.getElementById('display_result').value = outputLines.join('\n');
+    document.getElementById('display_result').textContent = outputLines.join('\n');
 }
 
 document.getElementById('exportBtn').addEventListener('click', exportCanvas);

@@ -35,7 +35,7 @@ title-chn: "我是小画家"
     <h3><span class="eng">Result</span><span class="chn">结果</span></h3>
     <button id="copyBtn" title="Copy output text (Cmd/Ctrl+C)"><span class="eng">Copy</span><span class="chn">拷贝</span></button>
     <br>
-    <textarea id="display_result" readonly></textarea>
+    <div id="display_result" readonly></div>
 </div>
 
 <script src="./main.js"></script>
