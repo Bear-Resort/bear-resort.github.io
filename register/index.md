@@ -17,8 +17,10 @@ title: "Join Fandom"
       <label for="username"><span class="eng">Username</span> <span class="chn">用户名</span>:</label> <input type="text" id="username" placeholder="Enter your username.../輸入用戶名..." style="font-size: 16px" required />
       <label for="password"><span class="eng">Password</span> <span class="chn">密码</span>:</label> <input type="password" id="password" placeholder="Enter your password.../輸入密码..." style="font-size: 16px" required />
       <label for="re-password"><span class="eng">Enter Password again</span> <span class="chn">再次输入密码</span>:</label> <input type="password" id="re-password" placeholder="Enter your password.../輸入密码..." style="display: none" required />
+      <label for="verification"><span class="eng">Verification Code</span> <span class="chn">验证码</span>:</label> <input type="password" id="verification" placeholder="Enter your verification code.../輸入验证码..." style="display: none" required />
       </form>
       <br><br>
+      <button id="veri"><span class="eng">Get Verification Code</span> <span class="chn">获取验证码</span></button> &nbsp; 
       <button id="sub"><span class="eng">Submit</span> <span class="chn">提交</span></button>
     </div>
     <br>
