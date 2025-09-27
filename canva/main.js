@@ -7,15 +7,28 @@ function fillWhite() {
 }
 fillWhite();
 
-const brushSize = 4; // Thinner brush
+const brushSize = 6;
 
 let drawing = false;
+
 function getPos(evt) {
     const rect = canvas.getBoundingClientRect();
-    return {
-    x: Math.floor((evt.clientX - rect.left) / (rect.width / canvas.width)),
-    y: Math.floor((evt.clientY - rect.top) / (rect.height / canvas.height))
-    };
+      let clientX, clientY;
+      // --- Touch support below! ---
+      if (evt.touches && evt.touches.length) {
+        clientX = evt.touches[0].clientX;
+        clientY = evt.touches[0].clientY;
+      } else if (evt.changedTouches && evt.changedTouches.length) {
+        clientX = evt.changedTouches[0].clientX;
+        clientY = evt.changedTouches[0].clientY;
+      } else {
+        clientX = evt.clientX;
+        clientY = evt.clientY;
+      }
+      return {
+        x: Math.floor((clientX - rect.left) / (rect.width / canvas.width)),
+        y: Math.floor((clientY - rect.top) / (rect.height / canvas.height))
+      };
 }
 
 function draw(e) {
@@ -76,6 +89,25 @@ window.addEventListener('mouseup', () => {
     }
 });
 
+// --- Touch events for mobile/tablet ---
+canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault(); // Prevent scrolling
+    drawing = true;
+    draw(e);
+}, { passive: false });
+
+canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    if (drawing) draw(e);
+}, { passive: false });
+
+canvas.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    if (drawing) {
+    drawing = false;
+    saveState();
+    }
+}, { passive: false });
 
 // --- UI Buttons ---
 document.getElementById('clearBtn').addEventListener('click', () => {
@@ -176,29 +208,4 @@ window.addEventListener('keydown', function(e) {
         fillWhite();
         saveState();
     }
-});
-
-canvas.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    if (e.touches.length > 0) {
-    drawing = true;
-    const pos = getPosFromClient(e.touches[0].clientX, e.touches[0].clientY);
-    drawAt(pos.x, pos.y);
-    }
-}, {passive: false});
-canvas.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    if (drawing && e.touches.length > 0) {
-    const pos = getPosFromClient(e.touches[0].clientX, e.touches[0].clientY);
-    drawAt(pos.x, pos.y);
-    }
-}, {passive: false});
-canvas.addEventListener('touchend', function(e) {
-    if (drawing) {
-    drawing = false;
-    saveState();
-    }
-});
-canvas.addEventListener('touchcancel', function(e) {
-    drawing = false;
 });

@@ -14,9 +14,10 @@ title-chn: "我是小画家"
       image-rendering: pixelated;
     }
     #display_result {
-      width: 300px;
-      font-size: 12px;
+      width: 500px;
+      font-size: 10px;
       font-family: 'Noto Sans Mono', 'Noto Sans Symbols2', monospace;
+      text-align: center;
     }
 </style>
 
