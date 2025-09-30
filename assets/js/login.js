@@ -26,7 +26,7 @@ export function loginU(username, password) {
   }
   const usernameEnc = hashDeterministically(username.trim());
   const passwordEnc = hashDeterministically(password);
-  return fetch("/assets/js/users.csv") 
+  return fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSB1I_V_uUFd6rPB-wAwPp_Mdd_JyxsBfJirghryehiXyQiBJdgEZdaTGw7-sMKRaWIxv-klM83iUgF/pub?gid=0&single=true&output=csv") 
     .then(response => response.text())
     .then(csvText => {
       const users = parseCSV(csvText);
