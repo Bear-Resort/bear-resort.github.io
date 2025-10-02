@@ -8,6 +8,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      height: 75%;
     }
     #messages {
       flex: 1;
@@ -66,7 +67,7 @@
   <div id="chat-container">
     <div id="messages"></div>
     <form id="input-form">
-      <input type="text" id="input" autocomplete="off" placeholder="iMessage" required>
+      <input type="text" id="input" autocomplete="off" placeholder="chatbot" required>
       <button type="submit">Send</button>
     </form>
   </div>
