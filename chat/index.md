@@ -8,7 +8,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      height: 75%;
+      height: 500px;
     }
     #messages {
       flex: 1;
@@ -17,7 +17,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: #f0f0f0;
+      background: var(--background-color);
       min-height: 340px;
     }
     .message {
@@ -54,7 +54,7 @@
       flex: 1;
       padding: 10px 14px;
       font-size: 16px;
-      border: 1px solid var(--background-light);
+      border: 1px solid var(--background-color);
       border-radius: 18px;
       outline: none;
       transition: border .17s;
