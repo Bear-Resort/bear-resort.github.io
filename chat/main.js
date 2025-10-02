@@ -35,6 +35,14 @@ const messagesDiv = document.getElementById("messages");
         return "Could you write a bit more?";
       } else if (text.includes("why")) {
         return "Piss yourself.";
+      } else if (text.toLowerCase().includes("beary")) {
+        return "Beary is a senior technician and associate professor in the BIAS (Bear Institute of Aeronautics and Space), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe.";
+      } else if (text.toLowerCase().includes("little bear")) {
+        return "Little Bear is a problem kid in the Bear Resort, as he always causes troubles around. However, every time when he messes around, his innocent eyes and adorable emotions always condone him from penalties.";
+      } else if (text.toLowerCase().includes("dr. b")) {
+        return "Dr. B is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off…";
+      } else if (text.toLowerCase().includes("meow-sieur")) {
+        return "Meow-sieur Chef is a cook, and he makes dishes for all the carnivores and bears in the Bear Resort. Absolutely marvelous control of knifes, so one should naturally suspect what he does before becoming a chief. FYI: You’d better call him by Big Justin (which appeared to be on his ID, probably) rather than Meow-sieur (his nickname), unless you are absolutely sure that you will not become his breakfast tomorrow.";
       } else {
         // Default response
         return "...";
