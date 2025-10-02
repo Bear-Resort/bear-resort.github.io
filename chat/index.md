@@ -33,36 +33,36 @@
     }
     .user {
       align-self: flex-end;
-      background: #007aff;
-      color: #fff;
+      background: var(--main-color);
+      color: var(--background-light);
       border-bottom-right-radius: 6px;
     }
     .computer {
       align-self: flex-start;
-      background: #e8e8ea;
-      color: #1c1c1e;
+      background: var(--background-light);
+      color: var(--text-color-dark);
       border-bottom-left-radius: 6px;
     }
     form {
       display: flex;
-      border-top: 1px solid #e0e0e0;
-      background: #fff;
+      border-top: 1px solid var(--background-light);
+      background: var(--background-light);
       padding: 10px;
     }
     input[type="text"] {
       flex: 1;
       padding: 10px 14px;
       font-size: 16px;
-      border: 1px solid #dadada;
+      border: 1px solid var(--background-light);
       border-radius: 18px;
       outline: none;
       transition: border .17s;
     }
     input[type="text"]:focus {
-      border-color: #007aff;
+      border-color: var(--secondary-light);
     }
   </style>
-
+<div style="display: flex; justify-content: center; align-items: center;">
   <div id="chat-container">
     <div id="messages"></div>
     <form id="input-form">
@@ -70,5 +70,6 @@
       <button type="submit">Send</button>
     </form>
   </div>
+</div>
 
   <script type="module" src="main.js"></script>
