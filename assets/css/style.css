@@ -66,6 +66,17 @@ h2 {
     font-size: 14pt;
 }  
 
+h3 {
+    color: var(--main-color);
+    margin-top: 1em;
+    font-size: 12pt;
+}  
+
+#content h6 {
+    text-align: center;
+    margin-top: 1em;
+}
+
 
 largertitle {
     margin-top: 1em;
