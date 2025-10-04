@@ -27,6 +27,21 @@ title: "Characters"
     - <span class="eng">Dr. B is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off...</span> <span class="chn">胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。</span>
 <br>
 
+# <img src="a-yin.png" style="height: 200px;">
+
+- <span class="eng">Ayin</span> <span class="chn">阿殷</span>
+    - <span class="eng">Ayin is an Asian Black Bear ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear)) cub. His twin brother is Ayang.</span> <span class="chn">阿殷是一头亚洲黑熊 ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear))幼崽. 他的双胞胎兄弟是阿阳.</span>
+    - <span class="eng">Ayin is the elder brother amongst the twins, and would always need to pickup the responsibilities in the family. Do not question him why his younger brother looks completely different, as this would really piss him up.</span> <span class="chn">阿殷是双胞兄弟里的老大哥，俗话说长兄如父，阿殷已是兄弟里的顶梁柱。不要问他的弟弟和他为什么长得一点儿都不像，因为这绝对会惹到他。</span>
+<br>
+
+# <img src="a-yang.png" style="height: 200px;">
+
+- <span class="eng">Ayang</span> <span class="chn">阿阳</span>
+    - <span class="eng">Ayang is a Polar Bear ([*Ursus maritimus*](https://en.wikipedia.org/wiki/Polar_bear)) cub. His twin brother is Ayin.</span> <span class="chn">阿阳是一头北极熊 ([*Ursus maritimus*](https://en.wikipedia.org/wiki/Polar_bear))幼崽. 他的双胞胎兄弟是阿殷.</span>
+    - <span class="eng">As the younger brother, Ayang is always unsatisfactory about his elder brother taking over everything. “Bro is too dominant in life,” Ayang says, as he frowns explicitly, “He is nothing like me, and I don't see why his own businesses have not exploits himself.”</span> <span class="chn">作为兄弟里的老幺，阿阳对阿殷的绝对控制表达了不满。“他总想控制一切，”阿殷皱着眉说道，“他一点儿都不像我，而且我不懂为什么他自己的那些破事儿还不够他忙的。”</span>
+<br>
+
+
 - <span class="eng">More Ursalinos members coming soon.</span> <span class="chn">更多熊手党成员即将到来。</span>
     - [<span class="eng">New!</span> <span class="chn">全新!</span>] [<span class="eng">*Name Survey*</span><span class="chn">*命名问卷*</span>](dual_survey.html)
 
