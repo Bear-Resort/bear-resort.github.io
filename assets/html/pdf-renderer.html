@@ -36,7 +36,7 @@
       <div style="text-align: center;">
         <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
           <button onclick="prevPage()">←</button>
-          <span><span class="eng">Page</span><span class="chn">页码</span>: <input type="number" id="page-num" placeholder="1" min="1"> / <span id="page-count">?</span></span>
+          <span><span class="eng">Page</span><span class="chn">页码</span>: <input type="number" id="page-num" placeholder="1" min="1" style="width: 25pt;"> / <span id="page-count">?</span></span>
           <button onclick="nextPage()">→</button>
         </div>
 
@@ -74,16 +74,28 @@
   }
 
   let pdfDoc = null;
-  let pageNum = 1;
+  let pageNum = Number(localStorage.getItem("page")) ?? 1;
   let pageCount = 0;
   let scale = 7.5;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+  document.getElementById('page-num').addEventListener("keydown", async () => {
+    await setTimeout(()=>{}, 1000);
+    const number = document.getElementById('page-num').value;
+    renderPage(number);
+  });
+
   function renderPage(num) {
+    pageNum = num % pageCount;
+    if (pageNum <= 0) {
+      pageNum += pageCount;
+    }
+    localStorage.setItem("page", pageNum.toString());
+
     loadingMsg.style.display = 'block';
 
-    pdfDoc.getPage(num).then(page => {
+    pdfDoc.getPage(number).then(page => {
       const viewport = page.getViewport({ scale: scale });
       canvas.height = viewport.height;
       canvas.width = viewport.width;
@@ -128,18 +140,6 @@
   function prevPage() {
     if (pageNum > 1) {
       queueRenderPage(pageNum - 1);
-    }
-  }
-
-  function zoomIn() {
-    scale += 0.25;
-    renderPage(pageNum);
-  }
-
-  function zoomOut() {
-    if (scale > 0.5) {
-      scale -= 0.25;
-      renderPage(pageNum);
     }
   }
 
