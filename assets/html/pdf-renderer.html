@@ -16,6 +16,7 @@
   <script type="module" src="/assets/js/lang.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
 
   <div class="topnav" style="text-align: center;">
       <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp; <span class="eng">PDF Reader</span><span class="chn">PDF 阅读器</span> 
@@ -62,6 +63,7 @@
   const url = urlParams.get('pdf');
 
   const canvas = document.getElementById('pdf-render');
+  const textLayerDiv = document.querySelector('.textLayer');
   const ctx = canvas.getContext('2d');
   const loadingMsg = document.getElementById('loading');
 
@@ -92,6 +94,16 @@
       page.render(renderContext).promise.then(() => {
         loadingMsg.style.display = 'none';
         document.getElementById('page-num').textContent = pageNum;
+        textLayerDiv.innerHTML = "";
+        
+        page.getTextContent().promise.then( (textContent) => {
+          pdfjsLib.renderTextLayer({
+                textContent: textContent,
+                container: textLayerDiv,
+                viewport: viewport,
+                textDivs: []
+            });
+        })
       });
     });
   }
