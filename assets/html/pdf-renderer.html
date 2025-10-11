@@ -104,7 +104,7 @@
 
     loadingMsg.style.display = 'block';
 
-    pdfDoc.getPage(number).then(page => {
+    pdfDoc.getPage(pageNum).then(page => {
       const viewport = page.getViewport({ scale: scale });
       canvas.height = viewport.height;
       canvas.width = viewport.width;
