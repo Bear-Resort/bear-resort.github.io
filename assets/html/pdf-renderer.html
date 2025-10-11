@@ -97,7 +97,7 @@
         document.getElementById('page-num').textContent = pageNum;
         textLayerDiv.innerHTML = "";
         
-        page.getTextContent().promise.then( (textContent) => {
+        page.getTextContent().then( textContent => {
           pdfjsLib.renderTextLayer({
                 textContent: textContent,
                 container: textLayerDiv,
