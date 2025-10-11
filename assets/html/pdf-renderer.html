@@ -76,7 +76,7 @@
   let pdfDoc = null;
   let pageNum = 1;
   let pageCount = 0;
-  let scale = 5.0;
+  let scale = 1.5;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -105,8 +105,8 @@
                 viewport: viewport,
                 textDivs: []
             });
-          textLayerDiv.style.width = `${canvas.width / 4}px`;
-          textLayerDiv.style.height = `${canvas.height / 4}px`;
+          // textLayerDiv.style.width = `${canvas.width / 4}px`;
+          // textLayerDiv.style.height = `${canvas.height / 4}px`;
         })
       });
     });
