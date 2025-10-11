@@ -84,8 +84,10 @@
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  document.getElementById('page-num').addEventListener("keydown", async () => {
-    await setTimeout(()=>{}, 1000);
+  document.getElementById('page-num').addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") {
+      return;
+    }
     const number = document.getElementById('page-num').value;
     renderPage(number);
   });
