@@ -63,6 +63,7 @@
   const urlParams = new URLSearchParams(window.location.search);
   const url = urlParams.get('pdf');
 
+  const pdfContainer = document.getElementById("pdf-viewer-container");
   const canvas = document.getElementById('pdf-render');
   const textLayerDiv = document.querySelector('.textLayer');
   const ctx = canvas.getContext('2d');
@@ -100,7 +101,7 @@
         page.getTextContent().then( textContent => {
           pdfjsLib.renderTextLayer({
                 textContent: textContent,
-                container: textLayerDiv,
+                container: pdfContainer,
                 viewport: viewport,
                 textDivs: []
             });
