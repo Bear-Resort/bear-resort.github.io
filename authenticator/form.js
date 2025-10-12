@@ -21,7 +21,7 @@ const rendercode = () => {
         alertDiv.style.display = "block";
         authoDiv.style.display = "none";
         authDiv.style.display = "none";
-    } else if (localStorage.getItem("loggedInUser") !== usr) {
+    } else if (usr !== "all" && localStorage.getItem("loggedInUser") !== usr) {
         alertDiv.style.display = "none";
         authoDiv.style.display = "none";
         authDiv.style.display = "block";
