@@ -54,11 +54,12 @@ submitBtn.addEventListener("click", (event) => {
     .then(res => res.text())
     .then(msg => {
     alert("✅ Success / 成功");
-    form.reset();
+    response.value = "";
     submitBtn.disabled = false;
     })
     .catch(err => {
         alert("❌ Failed / 失败");
+        alert("🛜 Is your internet connection all good? / 你的网络可还好？");
         submitBtn.disabled = false;
     });
 })
