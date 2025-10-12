@@ -17,6 +17,7 @@ const usr = urlParams.get('usr');
 
 
 const rendercode = () => {
+    quest.innerText = question;
     if (!isLoggedIn()) {
         alertDiv.style.display = "block";
         authoDiv.style.display = "none";
@@ -29,7 +30,6 @@ const rendercode = () => {
         alertDiv.style.display = "none";
         authoDiv.style.display = "block";
         authDiv.style.display = "none";
-        quest.innerText = question;
         response.style = "font-size: 16px; height: 39px";
     }
 }

@@ -3,7 +3,7 @@ title: "Private Form"
 ---
 
 <div style="text-align: center">
-    <h2><span lang="eng">Question:</span><span lang="chn">问题：</span></h2>
+    <h2><span class="eng">Question:</span><span class="chn">问题：</span></h2>
     <h2 id="question"></h2>
     <div id="result" style="display: none">
         <textarea id="inputBox" name="feedback" placeholder="Enter your reponse here... / 输入你的回答..." style="font-size: 16px; height: 39px;"></textarea>
