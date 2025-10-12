@@ -6,7 +6,7 @@ const gameDiv = document.getElementById('game');
 const statusDiv = document.getElementById('status');
 const resetBtn = document.getElementById('reset');
 
-const youWin = document.getElementById("you-win");
+const youWin = document.getElementById("player-win");
 const computerWin = document.getElementById("computer-win");
 const drawWin = document.getElementById("draw");
 
@@ -39,6 +39,10 @@ function setStatus(num) {
         computerWin.style.display = "none";
         youWin.style.display = "block";
         drawWin.style.display = "none";
+    } else {
+        computerWin.style.display = "none";
+        youWin.style.display = "none";
+        drawWin.style.display = "none";
     }
 }
 
@@ -46,7 +50,7 @@ function resetGame() {
     board = Array(9).fill(null);
     gameOver = false;
     render();
-    setStatus("Your turn (X)");
+    setStatus(3);
     // If you want computer to start first, uncomment below:
     // compMove();
 }
