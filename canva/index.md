@@ -31,11 +31,12 @@ title-chn: "我是小画家"
     <br><br>
     <div style="display: flex; align-items: center; flex-direction: column;">
     <canvas id="canvas" width="100" height="100"></canvas>
-    </div><br><br>
+    <br><br>
     <h3><span class="eng">Result</span><span class="chn">结果</span></h3>
     <button id="copyBtn" title="Copy output text (Cmd/Ctrl+C)"><span class="eng">Copy</span><span class="chn">拷贝</span></button>
     <br>
     <div id="display_result" readonly></div>
+    </div>
 </div>
 
 <script src="./main.js"></script>
