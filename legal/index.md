@@ -16,3 +16,5 @@ title-chn: "法务部"
 - [<span class="eng">Bear Resort Real Estate</span> <span class="chn">小熊樂園房地產</span>](/real-estate/)
 - [<span class="eng"> Pinyin Converter </span><span class="chn"> <ruby>拼<rt>pīn</rt></ruby><ruby>音<rt>yīn</rt></ruby><ruby>转<rt>zhuǎn</rt></ruby><ruby>换<rt>huàn</rt></ruby><ruby>器<rt>qì</rt></ruby> </span>](/pinyin/)
 - [<span class="eng">Steam Tunnel Explorers</span><span class="chn">蒸汽管道探险队</span>](/legal/steam-tunnelers.pdf)
+- [<span class="eng"> Draw it </span><span class="chn"> 我是小画家 </span>](/canva/)
+- [<span class="eng">Tic-Tac-Toe Game</span><span class="chn">井字棋</span>](/tic-tac-toe/)
