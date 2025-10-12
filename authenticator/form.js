@@ -30,6 +30,7 @@ const rendercode = () => {
         authoDiv.style.display = "block";
         authDiv.style.display = "none";
         quest.innerText = question;
+        response.style = "font-size: 16px; height: 39px";
     }
 }
 
@@ -57,9 +58,8 @@ submitBtn.addEventListener("click", (event) => {
     submitBtn.disabled = false;
     })
     .catch(err => {
-    alert("❌ Failed / 失败");
-    alert("🛜 This might be an issue of the internet / 也许是网络失效");
-    submitBtn.disabled = false;
+        alert("❌ Failed / 失败");
+        submitBtn.disabled = false;
     });
 })
 
