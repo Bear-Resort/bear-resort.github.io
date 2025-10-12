@@ -9,12 +9,11 @@ title: "Private Form"
         <button id="submit"><span class="eng">Submit</span><span class="chn">提交</span></button>
     </div>
     <div id="alert">
-        <span class="eng">Log in to get authenticator code.</span><span class="chn">登录以获得验证码。</span><br>
+        <span class="eng">Log in to fill this form.</span><span class="chn">登录以填写问卷。</span><br>
         <button onclick="window.open('/assets/html/login.html')"><span class="eng">Log in</span><span class="chn">登录</span></button>
     </div>
     <div id="no-auth">
-        <span class="eng">You are not authorized to fill in the form.</span><span class="chn">你无权填写本表格。</span><br>
-        <button onclick="window.open('/assets/html/login.html')"><span class="eng">Log in</span><span class="chn">登录</span></button>
+        <span class="eng">You are not authorized to fill in the form.</span><span class="chn">你无权填写本表格。</span>
     </div>
 </div>
 

@@ -13,22 +13,21 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxVHgyxO8kUy84SgOZx
 const urlParams = new URLSearchParams(window.location.search);
 
 const question = urlParams.get('quest');
-const usr = urlParams.get('usr').trim();
+const usr = urlParams.get('usr');
 
 
 const rendercode = () => {
-    if (isLoggedIn()) {
-        alertDiv.style.display = "none";
-        authoDiv.style.display = "block";
+    if (!isLoggedIn()) {
+        alertDiv.style.display = "block";
+        authoDiv.style.display = "none";
         authDiv.style.display = "none";
-        renderResult();
     } else if (localStorage.getItem("loggedInUser") !== usr) {
         alertDiv.style.display = "none";
         authoDiv.style.display = "none";
         authDiv.style.display = "block";
     } else {
-        alertDiv.style.display = "block";
-        authoDiv.style.display = "none";
+        alertDiv.style.display = "none";
+        authoDiv.style.display = "block";
         authDiv.style.display = "none";
         quest.innerText = question;
     }
