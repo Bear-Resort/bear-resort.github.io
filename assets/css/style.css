@@ -776,7 +776,7 @@ rt {
 
 .container {
     display: flex;
-    max-width: 80%;
+    max-width: 95%;
     margin: 40px auto;
     background: var(--background-light);
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
