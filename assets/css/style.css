@@ -864,3 +864,9 @@ rt {
     border: 1px solid darkred;
     color: darkslategray;
 }
+
+.choice-item button.active {
+    background: lightgray;
+    border: 1px solid rgb(0, 139, 74);
+    color: darkslategray;
+}
