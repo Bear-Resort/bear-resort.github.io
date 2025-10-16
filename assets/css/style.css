@@ -774,7 +774,7 @@ rt {
     margin: 20px auto;
 }
 
-.container {
+.block-container {
     display: flex;
     max-width: 95%;
     margin: 40px auto;
