@@ -13,40 +13,6 @@ title-chn: "数数的大转盘"
         padding: 30px;
     }
 
-    .choices-list {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 10px;
-        justify-content: flex-start;
-        height: 50px;
-        overflow-x: auto;           /* <-- enables horizontal scrolling */
-        overflow-y: hidden;         /* optional, disable vertical scroll */
-        align-items: center;        /* vertically center items */
-    }
-
-    .choice-item button {
-        background: snow;
-        border: 1px solid darkslategray;
-        cursor: pointer;
-        font-size: 12px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-left: 15px;
-        padding-right: 5px;
-        color: darkslategray;
-        white-space: nowrap;
-    }
-    .choice-item button:hover {
-        background: whitesmoke;
-        border: 1px solid darkred;
-        color: darkred;
-    }
-    .choice-item button:active {
-        background: lightgray;
-        border: 1px solid darkred;
-        color: darkslategray;
-    }
-
     #turntable-wrapper {
         margin: 28px auto 24px auto;
         display: flex;
