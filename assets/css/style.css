@@ -782,7 +782,6 @@ rt {
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     border-radius: 10px;
     overflow: hidden;
-    min-height: 320px;
 }
 .left {
     flex: 1;
