@@ -815,7 +815,7 @@ rt {
     color: var(--text-color);
 }
 @media (max-width: 900px) {
-    .container {
+    .block-container {
     flex-direction: column;
     }
     .left {
