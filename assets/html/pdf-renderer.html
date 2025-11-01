@@ -42,9 +42,9 @@
 
         <div id="loading" style="text-align: center;"><span class="eng">Loading...</span><span class="chn">加载中...</span></div>
         <div id="pdf-viewer-container" style="text-align: center;">
-          <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
-          <div class="textLayer"></div>
-        </div>
+        <canvas id="pdf-render" style="width: 85%; height: auto; border: 1px solid #ccc;"></canvas>
+        <div class="textLayer"></div>
+    </div>
       </div>
       <br><br><br>
   </div>
@@ -71,6 +71,8 @@
 
   const prevBtn = document.getElementById('prev');
   const nextBtn = document.getElementById('next');
+
+  const pageNumDisplay =document.getElementById("page-num");
 
 
   if (!url) {
@@ -148,15 +150,15 @@
           container: textLayerDiv,
           viewport: textviewport,
           textDivs: [],
+          });
         });
       });
     });
-  });
-}
+  }
 
-window.addEventListener('resize', () => {
-    if (pdfDoc) renderPage(pageNum);
-});
+  window.addEventListener('resize', () => {
+      if (pdfDoc) renderPage(pageNum);
+  });
   // function renderPage(num) {
   //   pageNum = num % pageCount;
   //   if (pageNum <= 0) {
