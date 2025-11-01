@@ -1,50 +1,63 @@
----
-layout: page
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader</title>
+    <link rel="stylesheet" href="/assets/css/variable.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/logos/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body class="day-theme">
 
-<style>
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-</style>
+  <script type="module" src="/assets/js/cookie.js"></script>
+  
+  <script type="module" src="/assets/js/lang.js"></script>
 
-<script>
-  import { updateMyLanguage } from '/assets/js/lang.js';
-  function renderPage() {
-    tn = document.getElementById("topnav");
-    bn = document.getElementById("botnav");
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
 
-    tn.innerHTML = `<img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp;
-    <span class="eng">PDF Reader</span><span class="chn">PDF 阅读器</span>`;
-
-    bn.innerHTML = `<span class="eng">When you are finished, you can just close the page.</span> <span class="chn">当你用完本界面，请直接关闭界面。</span>`;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    renderPage();
-    updateMyLanguage();
-  })
-</script>
-
-<div style="text-align: center;">
-  <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
-    <button onclick="prevPage()" id="prev">←</button>
-    <span><span class="eng">Page</span><span class="chn">页码</span>: <input type="number" id="page-num" placeholder="1" min="1" style="width: 25pt;"> / <span id="page-count">?</span></span>
-    <button onclick="nextPage()" id="next">→</button>
+  <div class="topnav" style="text-align: center;">
+      <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp; <span class="eng">PDF Reader</span><span class="chn">PDF 阅读器</span> 
   </div>
 
-  <div id="loading" style="text-align: center;"><span class="eng">Loading...</span><span class="chn">加载中...</span></div>
-  <div id="pdf-viewer-container" style="text-align: center;">
-    <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
-    <div class="textLayer"></div>
+  <div id="content" style="text-align: left;">
+       <a href="/assets/html/login.html" id="login">Log in</a>
+
+       <script src="/assets/js/forge.js"></script>
+  <script src="/assets/js/prsa.js"></script>
+  <script type="module" src="/assets/js/login.js"></script>
+
+  <script type="module" src="/assets/js/day-night.js"></script>
+
+      <br><br><br>
+
+      <div style="text-align: center;">
+        <div id="pdf-controls" style="text-align: center; margin-bottom: 10px;">
+          <button onclick="prevPage()" id="prev">←</button>
+          <span><span class="eng">Page</span><span class="chn">页码</span>: <input type="number" id="page-num" placeholder="1" min="1" style="width: 25pt;"> / <span id="page-count">?</span></span>
+          <button onclick="nextPage()" id="next">→</button>
+        </div>
+
+        <div id="loading" style="text-align: center;"><span class="eng">Loading...</span><span class="chn">加载中...</span></div>
+        <div id="pdf-viewer-container" style="text-align: center;">
+          <canvas id="pdf-render" style="width: 75%; height: auto; border: 1px solid #ccc;"></canvas>
+          <div class="textLayer"></div>
+        </div>
+      </div>
+      <br><br><br>
   </div>
-</div>
-      
-<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <div id="lang">Eng</div>
+  <div id="day-night">🌞</div>
+
+  <div class="botnav" style="text-align: center;">
+    <span class="eng">When you finish, please close the page.</span><span class="chn">当你用完本界面，请直接关闭界面。</span>
+  </div>
+
+  <script src="/assets/js/link.js"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
@@ -67,7 +80,7 @@ layout: page
   let pdfDoc = null;
   let pageNum = Number(localStorage.getItem("page")) ?? 1;
   let pageCount = 0;
-  let scale = 5;
+  let scale = 7.5;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -88,7 +101,7 @@ layout: page
     const container = document.getElementById('pdf-viewer-container');
     const containerWidth = container.offsetWidth;
     return containerWidth / originalPdfWidth;
-  }
+}
 
   function renderPage(num) {
   pageNum = num % pageCount;
@@ -144,7 +157,6 @@ layout: page
 window.addEventListener('resize', () => {
     if (pdfDoc) renderPage(pageNum);
 });
-
   // function renderPage(num) {
   //   pageNum = num % pageCount;
   //   if (pageNum <= 0) {
