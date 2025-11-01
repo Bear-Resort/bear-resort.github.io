@@ -1,4 +1,37 @@
-<!DOCTYPE html>
+---
+layout: page
+---
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<script>
+  import { updateMyLanguage } from '/assets/js/lang.js';
+  function renderPage() {
+    tn = document.getElementById("topnav");
+    bn = document.getElementById("botnav");
+    document.getElementById("ttl").style.display = "none";
+
+    tn.innerHTML = `<img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="eng">Temporary Window</span> <span class="chn">临时窗口</span>`;
+
+    bn.innerHTML = `<span class="eng">When you are finished, you can just close the page.</span> <span class="chn">当你用完本界面，请直接关闭界面。</span>`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderPage();
+    updateMyLanguage();
+  })
+</script>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +47,7 @@
   <script type="module" src="/assets/js/lang.js"></script>
   <script type="module" src="/assets/js/day-night.js"></script>
   <div class="topnav" style="text-align: center;">
-      <img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle; display: inline-block;"> <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> &nbsp; &nbsp; &nbsp; &nbsp;
-      <span class="eng">Temporary Window</span> <span class="chn">临时窗口</span>
+      
   </div>
 
   <div id="content" style="text-align: left;">
@@ -55,15 +87,7 @@
 
   <script src="/assets/js/textarea.js"></script>
 
-  <style>
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+  
 
 </body>
-</html>
+</html> -->
