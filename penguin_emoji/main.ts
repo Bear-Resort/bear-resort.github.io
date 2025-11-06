@@ -1,6 +1,3 @@
-import "./style.css";
-
-// OOP implementation of the Meme Scripts
 class MemeScript {
     #baseURL = "https://www.shutterstock.com/image-illustration";
 
