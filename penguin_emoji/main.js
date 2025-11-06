@@ -1,7 +1,22 @@
 class MemeScript {
     #baseURL = "https://www.shutterstock.com/image-illustration";
 
-    #imgs: string[] = [
+    #imgs;
+
+    // elements on the document
+    #inputBox;
+    #memeSection;
+    #leftBtn;
+    #rightBtn;
+
+    #currIdx;
+
+    constructor() {
+        // Get the elements on the page
+        this.#inputBox = document.getElementById(
+            "input-text",
+        );
+        this.#imgs = [
         "3d-render-academic-penguin-lifting-260nw-199269428",
         "3d-render-academic-penguin-dressed-260nw-199269425",
         "3d-render-academic-penguin-magnifying-260nw-199269422",
@@ -23,80 +38,70 @@ class MemeScript {
         "3d-render-penguin-glasses-listening-260nw-183668288",
         "3d-render-penguin-wearing-glasses-260nw-183668285"
     ]
-
-    // elements on the document
-    #inputBox: HTMLInputElement;
-    #memeSection: HTMLElement;
-    #leftBtn: HTMLButtonElement;
-    #rightBtn: HTMLButtonElement;
-
-    #currIdx: number;
-
-    constructor() {
-        // Get the elements on the page
-        this.#inputBox = document.getElementById(
-            "input-text",
-        ) as HTMLInputElement;
-        this.#leftBtn = document.getElementById("left") as HTMLButtonElement;
-        this.#rightBtn = document.getElementById("right") as HTMLButtonElement;
-        this.#memeSection = document.getElementById("meme") as HTMLElement;
+        this.#leftBtn = document.getElementById("left");
+        this.#rightBtn = document.getElementById("right");
+        this.#memeSection = document.getElementById("meme");
         this.#currIdx = 0;
 
         // event listener for enter on below
         this.#inputBox.addEventListener(
             "keydown",
-            this.#handleRefresh
+            this.#handleRefresh.bind(this)
         );
-        this.#leftBtn.addEventListener("click", this.#handleLeft);
-        this.#rightBtn.addEventListener("click", this.#handleRight);
+        this.#leftBtn.addEventListener("click", this.#handleLeft.bind(this));
+        this.#rightBtn.addEventListener("click", this.#handleRight.bind(this));
+
+        document.addEventListener("DOMContentLoaded", this.#handleRefresh.bind(this))
     }
 
     // refresh the page with new inpit
-    #handleRefresh() {
+    async #handleRefresh() {
         // clear the page
         this.#memeSection.innerHTML = "";
-        const imgURL: string = `${this.#baseURL}/${this.#imgs[this.#currIdx]}.jpg`
+        const imgURL = `${this.#baseURL}/${this.#imgs[this.#currIdx]}.jpg`
 
+        setTimeout(() => {
             // use the image url and make the image
-            const imgDiv: HTMLImageElement = this.#makeImage(imgURL);
+            const imgDiv = this.#makeImage(imgURL);
 
             // get the input strings, could throw error
-            const str: string = this.#inputBox.textContent;
+            const str = this.#inputBox.value;
 
             // make the string divisions
-            const txtDiv: HTMLElement[] = this.#makeStrings(str);
+            const txtDiv = this.#makeStrings(str);
 
             // append to HTML
-            this.#memeSection.append(...txtDiv, imgDiv);
+            this.#memeSection.append(imgDiv, ...txtDiv);
+        }, 1);
     }
 
     #handleLeft() {
-        this.#currIdx = (this.#currIdx - 1) % this.#imgs.length;
-        this.#handleRefresh;
+        this.#currIdx = (this.#currIdx - 1 + this.#imgs.length) % this.#imgs.length;
+        this.#handleRefresh();
     }
 
     #handleRight() {
-        this.#currIdx = (this.#currIdx + 1) % this.#imgs.length;
-        this.#handleRefresh;
+        this.#currIdx = (this.#currIdx + 1 + this.#imgs.length) % this.#imgs.length;
+        this.#handleRefresh();
     }
 
     // return image element from url
-    #makeImage(url: string): HTMLImageElement {
-        const imgDiv: HTMLImageElement = document.createElement("img");
+    #makeImage(url) {
+        const imgDiv = document.createElement("img");
         imgDiv.src = url;
         return imgDiv;
     }
 
     // make the string HTML element
-    #makeStrings(txt: string): HTMLElement[] {
+    #makeStrings(txt) {
         // Background border for the bottom text
-        const txtDivBg: HTMLElement = document.createElement("h2");
-        txtDivBg.innerText = txt;
+        const txtDivBg = document.createElement("h2");
+        txtDivBg.innerHTML = txt;
         txtDivBg.classList.add("bottom", "background");
 
         // the bottom text
-        const txtDiv: HTMLElement = document.createElement("h2");
-        txtDiv.innerText = txt;
+        const txtDiv = document.createElement("h2");
+        txtDiv.innerHTML = txt;
         txtDiv.classList.add("bottom");
 
         // return all the elements
