@@ -1,0 +1,46 @@
+---
+layout: default
+title: "Penguin Emoji"
+title-chn: "企鹅表情包"
+---
+
+<style>
+    h2 {
+        color: white;
+        font-size: 30pt;
+    }
+
+    h2.background {
+        -webkit-text-stroke: 6px darkred;
+    }
+
+    #meme {
+        background-color: black;
+        position: relative;
+        text-align: center;
+        /* Source [1] for centering */
+    }
+    .bottom {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    img {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<div style="text-align: center;">
+    <input
+        id="input-text"
+        placeholder="Input text"
+        type="text"
+    />
+    <br>
+    <button id="left">⇐</button>
+    <button id="right">⇒</button>
+</div>
+
+<div id="meme" class="meme-section w-[90%] mx-auto"></div>
