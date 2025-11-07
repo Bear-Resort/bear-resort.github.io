@@ -36,7 +36,24 @@ class MemeScript {
         "3d-render-penguin-glasses-football-260nw-183668294",
         "3d-render-penguin-wearing-glasses-260nw-183668291",
         "3d-render-penguin-glasses-listening-260nw-183668288",
-        "3d-render-penguin-wearing-glasses-260nw-183668285"
+        "3d-render-penguin-wearing-glasses-260nw-183668285",
+        "3d-render-penguin-glasses-wearing-260nw-183668282",
+        "3d-render-penguin-glasses-wearing-260nw-183668309",
+        "3d-render-penguin-chef-offering-260nw-183668306",
+        "3d-render-penguin-glasses-wearing-260nw-183668303",
+        "3d-render-penguin-wearing-glasses-260nw-183668300",
+        "3d-render-penguin-glasses-drinking-260nw-183668297",
+        "3d-render-penguin-wearing-glasses-260nw-183668324",
+        "3d-render-penguin-glasses-holding-260nw-183668240",
+        "3d-render-penguin-wearing-glasses-260nw-183668318",
+        "3d-render-penguin-glasses-wearing-260nw-183668309",
+        "3d-render-penguin-chef-offering-260nw-183668306",
+        "3d-render-penguin-glasses-wearing-260nw-183668303",
+        "3d-render-penguin-wearing-glasses-260nw-183668300",
+        "3d-render-penguin-glasses-drinking-260nw-183668297",
+        "3d-render-penguin-wearing-glasses-260nw-183668324",
+        "3d-render-penguin-glasses-holding-260nw-183668240",
+        "3d-render-penguin-wearing-glasses-260nw-183668318"
     ]
         this.#leftBtn = document.getElementById("left");
         this.#rightBtn = document.getElementById("right");
