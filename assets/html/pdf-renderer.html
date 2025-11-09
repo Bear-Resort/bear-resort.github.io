@@ -80,7 +80,7 @@
   }
 
   let pdfDoc = null;
-  let pageNum = Number(localStorage.getItem("page")) ?? 1;
+  let pageNum = Number(localStorage.getItem("page") ?? "1");
   let pageCount = 0;
   let scale = 7.5;
 
