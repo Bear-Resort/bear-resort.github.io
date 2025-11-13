@@ -142,7 +142,7 @@ function startCountdownWT(time) {
 }
 
 function startCountdownWD(date) {
-    if (date < new Date.now()) {
+    if (date < Date.now()) {
         alert("This event occurs in the past.");
         return;
     }
