@@ -148,7 +148,6 @@ function startCountdownWD(date) {
     }
     isPaused = false;
     localStorage.setItem('isPaused', false);
-    if (time <= 0) return;
     endTimestamp = date;
     localStorage.setItem('endTimestamp', endTimestamp);
     showTimerUI(true);
