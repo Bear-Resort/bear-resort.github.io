@@ -56,6 +56,7 @@ title: "Timer"
         <button id="startButton"><span class="eng">Start</span><span class="chn">开始</span></button>
         <br><br>
         <span class="eng"><b>Quick Starts</b></span><span class="chn"><b>快速开始</b></span><br>
+        <button id="hibernate"><img src="hibernate.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Hibernate (till spring)</span><span class="chn">冬眠（直至春天）</span></button> &nbsp; &nbsp;
         <button id="quickNap"><img src="quick-nap.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp; &nbsp;
         <button id="studyBreak"><img src="study-break.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp; &nbsp;
         <button id="milkTea"><img src="milk-tea.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Coffee Break</span><span class="chn">浅酌一口</span> (5')</button> &nbsp; &nbsp;

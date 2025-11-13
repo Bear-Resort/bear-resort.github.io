@@ -12,6 +12,7 @@ const secondsInput = document.getElementById('secondsInput');
 
 // buttons
 const startButton = document.getElementById('startButton');
+const hibernate = document.getElementById('hibernate');
 const quickNap = document.getElementById('quickNap');
 const studyBreak = document.getElementById('studyBreak');
 const milkTea = document.getElementById('milkTea');
@@ -140,6 +141,22 @@ function startCountdownWT(time) {
     localStorage.setItem('refresh', Date.now().toString());
 }
 
+function startCountdownWD(date) {
+    if (date < new Date.now()) {
+        alert("This event occurs in the past.");
+        return;
+    }
+    isPaused = false;
+    localStorage.setItem('isPaused', false);
+    if (time <= 0) return;
+    endTimestamp = date;
+    localStorage.setItem('endTimestamp', endTimestamp);
+    showTimerUI(true);
+    updateTimerDisplay(time);
+    runCountdownLoop();
+    localStorage.setItem('refresh', Date.now().toString());
+}
+
 function togglePauseResume() {
     isPaused = localStorage.getItem('isPaused')  === "true";
     isPaused = !isPaused;
@@ -226,6 +243,9 @@ function initializeTimer() {
 
 // button functions
 startButton.addEventListener('click', startCountdown);
+hibernate.addEventListener('click', () => {
+    startCountdownWD(new Date("2026.2.3"));
+})
 quickNap.addEventListener('click', () => startCountdownWT(900));
 studyBreak.addEventListener('click', () => startCountdownWT(600));
 milkTea.addEventListener('click', () => startCountdownWT(300));
