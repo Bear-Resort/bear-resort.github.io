@@ -151,6 +151,7 @@ function startCountdownWD(date) {
     endTimestamp = date;
     localStorage.setItem('endTimestamp', endTimestamp);
     showTimerUI(true);
+    let time = date - Date.now()
     updateTimerDisplay(time);
     runCountdownLoop();
     localStorage.setItem('refresh', Date.now().toString());
