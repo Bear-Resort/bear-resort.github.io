@@ -160,7 +160,7 @@ function startCountdownWD(date) {
     isPaused = false;
     localStorage.setItem('isPaused', false);
     endTimestamp = date;
-    localStorage.setItem('endTimestamp', endTimestamp);
+    localStorage.setItem('endTimestamp', endTimestamp.toDateString());
     showTimerUI(true);
     let time = date - Date.now()
     updateTimerDisplay(time);
