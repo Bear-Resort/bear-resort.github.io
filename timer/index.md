@@ -56,16 +56,16 @@ title: "Timer"
         <button id="startButton"><span class="eng">Start</span><span class="chn">开始</span></button>
         <br><br>
         <span class="eng"><b>Quick Starts</b></span><span class="chn"><b>快速开始</b></span><br>
-        <button id="quickNap"><img src="quick-nap.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp; &nbsp;
-        <button id="studyBreak"><img src="study-break.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp; &nbsp;
-        <button id="milkTea"><img src="milk-tea.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Coffee Break</span><span class="chn">浅酌一口</span> (5')</button> &nbsp; &nbsp;
-        <button id="goonSession"><img src="confused.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
-        <br>
+        <button id="quickNap"><img src="quick-nap.gif" style="width: 75px; height: 75px;" /><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp; &nbsp;
+        <button id="studyBreak"><img src="study-break.gif" style="width: 75px; height: 75px;" /><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp; &nbsp;
+        <button id="milkTea"><img src="milk-tea.gif" style="width: 75px; height: 75px;" /><span class="eng">Coffee Break</span><span class="chn">浅酌一口</span> (5')</button> &nbsp; &nbsp;
+        <button id="goonSession"><img src="confused.gif" style="width: 75px; height: 75px;" /><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
+        <br><br>
         <span class="eng"><b>Seasonal Specials</b></span><span class="chn"><b>季节限定</b></span><br>
         <!-- <button id="hibernate"><img src="hibernate.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Spring Festival</span><span class="chn">春节</span></button> &nbsp; &nbsp; -->
-        <button id="hibernate"><img src="hibernate.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Hibernate</span><span class="chn">冬眠</span></button> &nbsp; &nbsp;
-        <button id="christmas"><img src="christmas.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Christmas</span><span class="chn">圣诞</span></button> &nbsp; &nbsp;
-        <button id="thanksgiving"><img src="thanksgiving.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Thanksgiving</span><span class="chn">感恩</span></button> &nbsp; &nbsp;
+        <button id="hibernate"><img src="hibernate.gif" style="width: 75px; height: 75px;" /><span class="eng">Hibernate</span><span class="chn">冬眠</span></button> &nbsp; &nbsp;
+        <button id="christmas"><img src="christmas.gif" style="width: 75px; height: 75px;" /><span class="eng">Christmas</span><span class="chn">圣诞</span></button> &nbsp; &nbsp;
+        <button id="thanksgiving"><img src="thanksgiving.gif" style="width: 75px; height: 75px;" /><span class="eng">Thanksgiving</span><span class="chn">感恩</span></button> &nbsp; &nbsp;
     </div>
 </div>
 <div id="controls">
