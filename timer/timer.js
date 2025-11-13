@@ -83,7 +83,14 @@ function runCountdownLoop() {
             bear_stop.style.display = 'none';
             bear_progress.style.display = 'block';
             endTimestamp = localStorage.getItem('endTimestamp');
-            const timeLeft = Math.max(0, Math.floor((endTimestamp - Date.now()) / 1000));
+
+            let theDate = parseInt(endTimestamp)
+            if (Number.isNaN(theDate)) {
+                theDate = new Date(endTimestamp)
+            }
+            
+            const timeLeft = Math.max(0, Math.floor((theDate - Date.now()) / 1000));
+            
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
