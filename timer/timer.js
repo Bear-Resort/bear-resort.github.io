@@ -256,13 +256,13 @@ function initializeTimer() {
 startButton.addEventListener('click', startCountdown);
 
 hibernate.addEventListener('click', () => {
-    startCountdownWD(new Date("2026.2.3"));
+    startCountdownWD(new Date("Tue Feb 03 2026"));
 });
 thanksgiving.addEventListener('click', () => {
-    startCountdownWD(new Date("2025.11.27"));
+    startCountdownWD(new Date("Thu Nov 27 2025"));
 });
 christmas.addEventListener('click', () => {
-    startCountdownWD(new Date("2025.12.25"));
+    startCountdownWD(new Date("Thu Dec 25 2025"));
 });
 
 quickNap.addEventListener('click', () => startCountdownWT(900));
