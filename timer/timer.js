@@ -12,7 +12,11 @@ const secondsInput = document.getElementById('secondsInput');
 
 // buttons
 const startButton = document.getElementById('startButton');
+
 const hibernate = document.getElementById('hibernate');
+const thanksgiving = document.getElementById('thanksgiving');
+const christmas = document.getElementById('christmas');
+
 const quickNap = document.getElementById('quickNap');
 const studyBreak = document.getElementById('studyBreak');
 const milkTea = document.getElementById('milkTea');
@@ -90,7 +94,7 @@ function runCountdownLoop() {
             }
             
             const timeLeft = Math.max(0, Math.floor((theDate - Date.now()) / 1000));
-            
+
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 timerDisplay.innerHTML = "00:00:00";
@@ -250,9 +254,17 @@ function initializeTimer() {
 
 // button functions
 startButton.addEventListener('click', startCountdown);
+
 hibernate.addEventListener('click', () => {
     startCountdownWD(new Date("2026.2.3"));
-})
+});
+thanksgiving.addEventListener('click', () => {
+    startCountdownWD(new Date("2025.11.27"));
+});
+christmas.addEventListener('click', () => {
+    startCountdownWD(new Date("2025.12.25"));
+});
+
 quickNap.addEventListener('click', () => startCountdownWT(900));
 studyBreak.addEventListener('click', () => startCountdownWT(600));
 milkTea.addEventListener('click', () => startCountdownWT(300));
