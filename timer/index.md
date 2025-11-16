@@ -87,4 +87,4 @@ title: "Timer"
 </div>
 
 <script type="module" src="timer.js"></script>
-<script src="gif.js"></script>
+<!-- <script src="gif.js"></script> -->
