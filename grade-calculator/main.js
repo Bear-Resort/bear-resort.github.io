@@ -294,7 +294,7 @@ function updateGoalMessage() {
         });
         let remainingRatio = totalRatio - sumRatiosWithGrades;
         let { total } = computeTotalGrade();
-        msg = `Current weighted grade: <b>${total.toFixed(2)}</b><br>`;
+        msg = `<span class="eng">Current grade</span><span class="chn">當前成績</span>: <b>${total.toFixed(2)}</b><br>`;
         if (remainingRatio <= 0) {
             msg += (total >= goal)
                 ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
