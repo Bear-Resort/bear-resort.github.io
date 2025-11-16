@@ -358,5 +358,5 @@ Object.assign(window, {
 const goalSlider = document.getElementById("goal-slider");
 
 goalSlider.addEventListener("input", () => {
-    updateGoalValue(goalSlider.input);
+    updateGoalValue(goalSlider.value);
 })
