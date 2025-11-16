@@ -324,5 +324,5 @@ window.onload = function() {
 };
 
 
-addCate = document.getElementById("add-category");
+const addCate = document.getElementById("add-category");
 addCate?.addEventListener("click", addCategory);
