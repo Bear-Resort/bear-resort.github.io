@@ -59,7 +59,7 @@ title-chn: "成绩计算器"
 <div style="margin: 0 auto; width: fit-content;">
     <div class="slider-group">
     <label for="goal-slider"><span class="eng">Aimed grade</span><span class="chn">目標成績</span>:</label>
-    <input id="goal-slider" type="range" min="0" max="100" value="93" oninput="updateGoalValue(this.value)">
+    <input id="goal-slider" type="range" min="0" max="100" value="93">
     <span id="goal-value" class="slider-value">93</span>
   </div>
   </div>

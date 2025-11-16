@@ -354,3 +354,9 @@ Object.assign(window, {
   saveSubEdit,
   cancelSubEdit,
 });
+
+const goalSlider = document.getElementById("goal-slider");
+
+goalSlider.addEventListener("input", () => {
+    updateGoalValue(goalSlider.input);
+})
