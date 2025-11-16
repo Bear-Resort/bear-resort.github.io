@@ -59,7 +59,7 @@ function renderSubAssignments(cat, catIdx) {
     td.colSpan = 4;
     td.style.textAlign = 'left';
     td.style.paddingLeft = '24px';
-    const newCld = document.createElement(div);
+    const newCld = document.createElement("div");
     newCld.innerHTML = `<span class="eng">Assignments for </span><span class="chn">作業給</span>"${getCategoryDisplayName(cat, catIdx)}":`;
     td.appendChild(newCld);
     const subTable = document.createElement('table');
