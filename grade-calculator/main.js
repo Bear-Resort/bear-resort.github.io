@@ -326,3 +326,16 @@ window.onload = function() {
 
 const addCate = document.getElementById("add-category");
 addCate?.addEventListener("click", addCategory);
+
+Object.assign(window, {
+  cancelEdit,
+  saveEdit,
+  editCategory,
+  deleteCategory,
+  addCategory,
+  addSubAssignment,
+  editSubAssignment,
+  deleteSubAssignment,
+  saveSubEdit,
+  cancelSubEdit,
+});
