@@ -59,7 +59,9 @@ function renderSubAssignments(cat, catIdx) {
     td.colSpan = 4;
     td.style.textAlign = 'left';
     td.style.paddingLeft = '24px';
-    td.appendChild(document.createTextNode(`<span class="eng">Assignments for </span><span class="chn">作業給</span>"${getCategoryDisplayName(cat, catIdx)}":`));
+    const newCld = document.createElement(div);
+    newCld.innerHTML = `<span class="eng">Assignments for </span><span class="chn">作業給</span>"${getCategoryDisplayName(cat, catIdx)}":`;
+    td.appendChild(newCld);
     const subTable = document.createElement('table');
     subTable.className = 'sub-assignment-table';
 
@@ -184,15 +186,27 @@ function saveSubEdit(catIdx, subIdx) {
     outOf = (outOf === "") ? "" : parseFloat(outOf);
 
     if (outOf !== "" && (isNaN(outOf) || outOf <= 0)) {
-    alert("Out Of must be a positive number.");
-    return;
+        if (updateMyLanguage() === "Eng") {
+            alert("Out of must be a positive number.");
+        } else {
+            alert("總分應該是正數.");
+        }
+        return;
     }
     if (grade !== "" && (isNaN(grade) || grade < 0)) {
-    alert("Grade must be a non-negative number.");
-    return;
+        if (updateMyLanguage() === "Eng") {
+            alert("Grade must be a non-negative number.");
+        } else {
+            alert("成績不應是負數.");
+        }
+        return;
     }
-    if (grade !== "" && outOf === "") {
-    alert("Please enter 'Out Of'.");
+    if (grade == "" || outOf === "") {
+    if (updateMyLanguage() === "Eng") {
+            alert("You need to enter the grades.");
+        } else {
+            alert("你需要輸入成績.");
+        }
     return;
     }
     sub.name = name.trim();
@@ -246,10 +260,10 @@ function updateGoalMessage() {
     let msg = "";
     const totalRatio = categories.reduce((sum, cat) => sum + (+cat.ratio || 0), 0);
     if (categories.length === 0) {
-    msg = "Add categories and their ratios (% of grade) to start.";
+    msg = `<span class="eng">Enter in Categories to start</span><span class="chn">輸入類別以開始</span>`;
     }
     else if (totalRatio !== 100) {
-    msg = "Warning: Ratios across categories do not sum to 100%.";
+    msg = `<span class="eng">The current grade does not add up to 100%</span><span class="chn">成績比例之和並非100%</span>`;
     }
     else {
     let anyGrades = false;
@@ -261,8 +275,7 @@ function updateGoalMessage() {
     }
 
     if (!anyGrades) {
-        msg = "No grades entered yet.<br>";
-        msg += `To reach a total of <b>${goal}</b>, you need at least <b>${goal}</b> percent in each category (if you get the same percent everywhere).`;
+        msg = `<span class="eng">No grades entered yet</span><span class="chn">暫無成績</span><br>`;
     } else {
         let sumWeighted = 0;
         let sumRatiosWithGrades = 0;
@@ -283,29 +296,31 @@ function updateGoalMessage() {
         let { total } = computeTotalGrade();
         msg = `Current weighted grade: <b>${total.toFixed(2)}</b><br>`;
         if (remainingRatio <= 0) {
-        msg += (total >= goal)
-            ? `<span style="color:green">You're on track!</span>`
-            : `<span style="color:#d08">You need to improve to reach at least ${goal}.</span>`;
+            msg += (total >= goal)
+                ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
+                : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
         } else {
         let need = (goal - sumWeighted) / remainingRatio * 100;
         need = Math.max(0, need);
         let needText = need.toFixed(2) + "%";
         if (missingCats.length > 0) {
-            msg += `<span style="color:#a52a2a">To reach a total of ${goal}, you must get at least <b>${needText}</b> in: `;
+            msg += `<span class="eng">To reach</span><span class="chn">以望得以</span> ${goal}, <span class="eng">you gotta get</span><span class="chn">你需要得到</span> <b>${needText}</b> <span class="eng">in</span><span class="chn">在</span>: `;
             msg += missingCats.map(idx => `<b>${getCategoryDisplayName(categories[idx], idx)}</b>`).join(', ');
             msg += `</span>`;
             if (need > 100)
-            msg += `<br><span style="color:#c00">Warning: It's not possible to reach ${goal} with your current grades.</span>`;
+            msg += `<br>
+        <span class="eng">Warning: Given current grades, not possible to obtain</span><span class="chn">警告：基於當前成績，是得不到</span> ${goal} <span class="eng">for grade.</span><span class="chn">分的。</span>`;
         }
         else {
             msg += (total >= goal)
-            ? `<span style="color:green">You're on track!</span>`
-            : `<span style="color:#d08">You need to improve to reach at least ${goal}.</span>`;
+                ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
+                : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
         }
         }
     }
     }
     document.getElementById('goal-message').innerHTML = msg;
+    updateMyLanguage();
 }
 
 // Slider logic
