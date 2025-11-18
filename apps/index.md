@@ -93,7 +93,7 @@ title-chn: "软件库"
     <div class="app-name"><span class="eng">Penguin Emoji</span><span class="chn">企鹅表情包</span></div>
     <div class="app-desc"><span class="eng">Generate Penguin Emoji</span><span class="chn">生成随机企鹅表情包</span></div>
 </a>
-<a class="app-card" href="/failure_test/" target="_blank">
+<a class="app-card" href="/failure_test/failure_test.html" target="_blank">
     <img class="app-img" src="/failure_test/no.png" alt="Failure">
     <div class="app-name"><span class="eng">Failure Test</span><span class="chn">废物测试</span></div>
     <div class="app-desc"><span class="eng">Test How Failure you are</span><span class="chn">看看你有多废物</span></div>
