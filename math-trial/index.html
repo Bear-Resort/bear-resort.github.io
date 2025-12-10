@@ -1,0 +1,659 @@
+---
+title: "Math Trial"
+---
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+    };
+</script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .total {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .title {
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .total-credits {
+        font-size: 1.2em;
+        color: #667eea;
+        font-weight: bold;
+    }
+
+    .streak {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .streak-label {
+        margin-right: 10px;
+        font-weight: bold;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .streak-row {
+        display: flex;
+        gap: 5px;
+    }
+
+    .streak-day {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+
+    .streak-correct {
+        background-color: #4CAF50;
+    }
+
+    .streak-incorrect {
+        background-color: #f44336;
+    }
+
+    .streak-missing {
+        background-color: #9e9e9e;
+    }
+
+    .question-type {
+        text-align: center;
+        font-size: 1.5em;
+        color: #764ba2;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .question {
+        font-size: 1.3em;
+        color: #333;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .choices {
+        display: grid;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .choice {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1em;
+    }
+
+    .choice:hover {
+        background: #e9ecef;
+        border-color: #667eea;
+        transform: translateY(-2px);
+    }
+
+    .choice.disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .choice.correct {
+        background: #d4edda;
+        border-color: #4CAF50;
+    }
+
+    .choice.incorrect {
+        background: #f8d7da;
+        border-color: #f44336;
+    }
+
+    .already-answered {
+        text-align: center;
+        font-size: 1.2em;
+        color: #667eea;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .loading {
+        text-align: center;
+        font-size: 1.2em;
+        color: #667eea;
+        padding: 40px;
+    }
+
+    .error {
+        text-align: center;
+        font-size: 1.2em;
+        color: #f44336;
+        padding: 40px;
+    }
+
+    .data-source {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #e3f2fd;
+        border-radius: 8px;
+        font-size: 0.9em;
+        color: #1565c0;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 30px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-title {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .modal-correct {
+        color: #4CAF50;
+    }
+
+    .modal-incorrect {
+        color: #f44336;
+    }
+
+    .modal-message {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .modal-button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .modal-button:hover {
+        background: #5a67d8;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 2em;
+        }
+
+        .stats {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .streak {
+            justify-content: center;
+        }
+    }
+</style>
+<div class="total">
+<div class="container">
+    <div class="header">
+        <h1 class="title">Daily Math Challenge</h1>
+    </div>
+    
+    <div class="stats">
+        <div class="total-credits">Total Credits: <span id="creditsCount">0</span></div>
+        <div class="streak">
+            <span class="streak-label">Last 7 Days:</span>
+            <div class="streak-row" id="streakDisplay"></div>
+        </div>
+    </div>
+
+    <div id="dataSource" class="data-source" style="display: none;"></div>
+
+    <div id="content">
+        <div class="loading">Loading today's challenge...</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="resultModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <p id="modalMessage" class="modal-message"></p>
+        <button class="modal-button" onclick="closeModal()">Come back tomorrow!</button>
+    </div>
+</div>
+</div>
+
+<script>
+    // Configuration - Your Google Sheets CSV URL
+    const GOOGLE_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSaYzo5RFcoj-xsueGWH6_1bmPdPnVKjvRyazy22KvvK977sQMjXU86U0gU_rNjTqrS_UNVuzHAsDCQ/pub?gid=0&single=true&output=csv';
+    
+    // CORS Proxy URLs (try these in order if one fails)
+    const CORS_PROXIES = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?',
+        'https://cors-anywhere.herokuapp.com/'
+    ];
+    
+    // Test data - will be used if all CSV loading attempts fail
+    const TEST_DATA = [
+        {
+            date: getTodayDateString(),
+            type: "King of Analysis",
+            question: "Which of the following embedding is compact embedding?",
+            "choice A": "\\(L^2(0,1)\\to H^1(0,1)\\)",
+            "choice B": "\\(L^3(0,1)\\to H^1(0,1)\\)",
+            "choice C": "\\(H^1(0,1)\\to L^2(0,1)\\)",
+            "choice D": "\\(H^1(0,1)\\to L^3(0,1)\\)",
+            correct: "C"
+        },
+        {
+            date: getTomorrowDateString(),
+            type: "Empress of Algebra",
+            question: "Which of following group is not a field?",
+            "choice A": "$\\mathbf{Z}/7$",
+            "choice B": "$\\mathbf{Z}/17$",
+            "choice C": "$\\mathbf{Z}/57$",
+            "choice D": "$\\mathbf{Z}/67$",
+            correct: "C"
+        }
+    ];
+    
+    let quizData = [];
+    let todayQuestion = null;
+    let usingTestData = false;
+
+    // Get today's date in MM/DD format
+    function getTodayDateString() {
+        const today = new Date();
+        return `${today.getMonth() + 1}/${today.getDate()}`;
+    }
+
+    // Get tomorrow's date in MM/DD format
+    function getTomorrowDateString() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`;
+    }
+
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCreditsDisplay();
+        updateStreakDisplay();
+        loadQuizData();
+    });
+
+    // Load quiz data from CSV with CORS proxy fallback
+    async function loadQuizData() {
+        // Try direct access first
+        try {
+            const response = await fetch(GOOGLE_SHEETS_CSV_URL);
+            if (response.ok) {
+                const csvText = await response.text();
+                quizData = parseCSV(csvText);
+                usingTestData = false;
+                updateDataSourceDisplay();
+                displayTodayQuestion();
+                return;
+            }
+        } catch (error) {
+            console.log('Direct access failed, trying CORS proxies...');
+        }
+
+        // Try CORS proxies
+        for (const proxy of CORS_PROXIES) {
+            try {
+                console.log(`Trying proxy: ${proxy}`);
+                const proxyUrl = proxy + encodeURIComponent(GOOGLE_SHEETS_CSV_URL);
+                const response = await fetch(proxyUrl);
+                
+                if (response.ok) {
+                    const csvText = await response.text();
+                    quizData = parseCSV(csvText);
+                    usingTestData = false;
+                    updateDataSourceDisplay();
+                    displayTodayQuestion();
+                    return;
+                }
+            } catch (error) {
+                console.log(`Proxy ${proxy} failed:`, error);
+                continue;
+            }
+        }
+
+        // If all methods fail, use test data
+        console.log('All loading methods failed, using test data');
+        quizData = TEST_DATA;
+        usingTestData = true;
+        updateDataSourceDisplay();
+        displayTodayQuestion();
+    }
+
+    // Update data source display
+    function updateDataSourceDisplay() {
+        const dataSourceElement = document.getElementById('dataSource');
+        if (usingTestData) {
+            dataSourceElement.innerHTML = '📝 Using test data - Could not load from Google Sheets (CORS issue)';
+            dataSourceElement.style.display = 'block';
+        } else {
+            // Hide the data source display when successfully loaded from Google Sheets
+            dataSourceElement.style.display = 'none';
+        }
+    }
+
+    // Parse CSV data
+    function parseCSV(csvText) {
+        const lines = csvText.split('\n').filter(line => line.trim());
+        if (lines.length === 0) return [];
+        
+        const headers = parseCSVLine(lines[0]).map(h => h.trim());
+        const data = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const values = parseCSVLine(lines[i]);
+            const row = {};
+            headers.forEach((header, index) => {
+                row[header] = values[index] ? values[index].trim().replace(/^"|"$/g, '') : '';
+            });
+            if (row.date) { // Only add rows with a date
+                data.push(row);
+            }
+        }
+        return data;
+    }
+
+    // Parse CSV line handling quotes and commas
+    function parseCSVLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        let i = 0;
+        
+        while (i < line.length) {
+            const char = line[i];
+            
+            if (char === '"') {
+                if (inQuotes && line[i + 1] === '"') {
+                    // Handle escaped quotes
+                    current += '"';
+                    i += 2;
+                    continue;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (char === ',' && !inQuotes) {
+                result.push(current);
+                current = '';
+            } else {
+                current += char;
+            }
+            i++;
+        }
+        result.push(current);
+        return result;
+    }
+
+    // Get today's date in MM/DD format
+    function getTodayDate() {
+        return getTodayDateString();
+    }
+
+    // Display today's question
+    function displayTodayQuestion() {
+        const today = getTodayDate();
+        todayQuestion = quizData.find(q => q.date === today);
+
+        if (!todayQuestion) {
+            document.getElementById('content').innerHTML = 
+                '<div class="error">No challenge available for today. Check back tomorrow!</div>';
+            return;
+        }
+
+        // Check if already answered today
+        const answered = localStorage.getItem(`answered_${today}`);
+        if (answered) {
+            displayAlreadyAnswered();
+            return;
+        }
+
+        displayQuestion();
+    }
+
+    // Display the question interface
+    function displayQuestion() {
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <div class="question-type">${todayQuestion.type}</div>
+            <div class="question">${todayQuestion.question}</div>
+            <div class="choices">
+                <div class="choice" onclick="selectChoice('A')">${todayQuestion['choice A']}</div>
+                <div class="choice" onclick="selectChoice('B')">${todayQuestion['choice B']}</div>
+                <div class="choice" onclick="selectChoice('C')">${todayQuestion['choice C']}</div>
+                <div class="choice" onclick="selectChoice('D')">${todayQuestion['choice D']}</div>
+            </div>
+        `;
+
+        // Render MathJax
+        if (window.MathJax) {
+            MathJax.typesetPromise([content]);
+        }
+    }
+
+    // Display already answered message
+    function displayAlreadyAnswered() {
+        const today = getTodayDate();
+        const userAnswer = localStorage.getItem(`answered_${today}`);
+        const isCorrect = userAnswer === todayQuestion.correct;
+        
+        document.getElementById('content').innerHTML = `
+            <div class="question-type">${todayQuestion.type}</div>
+            <div class="question">${todayQuestion.question}</div>
+            <div class="choices">
+                <div class="choice ${userAnswer === 'A' ? (isCorrect ? 'correct' : 'incorrect') : ''} disabled">${todayQuestion['choice A']}</div>
+                <div class="choice ${userAnswer === 'B' ? (isCorrect ? 'correct' : 'incorrect') : ''} disabled">${todayQuestion['choice B']}</div>
+                <div class="choice ${userAnswer === 'C' ? (isCorrect ? 'correct' : 'incorrect') : ''} disabled">${todayQuestion['choice C']}</div>
+                <div class="choice ${userAnswer === 'D' ? (isCorrect ? 'correct' : 'incorrect') : ''} disabled">${todayQuestion['choice D']}</div>
+            </div>
+            <div class="already-answered">
+                You already answered today's challenge! Come back tomorrow for a new one.
+            </div>
+        `;
+
+        // Render MathJax
+        if (window.MathJax) {
+            MathJax.typesetPromise([document.getElementById('content')]);
+        }
+    }
+
+    // Handle choice selection
+    function selectChoice(choice) {
+        const today = getTodayDate();
+        
+        // Prevent multiple answers
+        if (localStorage.getItem(`answered_${today}`)) {
+            return;
+        }
+
+        // Store the answer
+        localStorage.setItem(`answered_${today}`, choice);
+
+        // Check if correct
+        const isCorrect = choice === todayQuestion.correct;
+
+        // Update credits
+        if (isCorrect) {
+            let credits = parseInt(localStorage.getItem('totalCredits') || '0');
+            credits++;
+            localStorage.setItem('totalCredits', credits.toString());
+            updateCreditsDisplay();
+        }
+
+        // Update streak
+        updateStreak(isCorrect);
+
+        // Show result modal
+        showResultModal(isCorrect);
+
+        // Update display
+        displayAlreadyAnswered();
+    }
+
+    // Show result modal
+    function showResultModal(isCorrect) {
+        const modal = document.getElementById('resultModal');
+        const title = document.getElementById('modalTitle');
+        const message = document.getElementById('modalMessage');
+
+        if (isCorrect) {
+            title.textContent = 'Correct! 🎉';
+            title.className = 'modal-title modal-correct';
+            message.textContent = 'Great job! You earned 1 credit. Come back tomorrow for another challenge!';
+        } else {
+            title.textContent = 'Incorrect 😔';
+            title.className = 'modal-title modal-incorrect';
+            message.textContent = `The correct answer was ${todayQuestion.correct}. Better luck tomorrow!`;
+        }
+
+        modal.style.display = 'block';
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('resultModal').style.display = 'none';
+    }
+
+    // Update credits display
+    function updateCreditsDisplay() {
+        const credits = localStorage.getItem('totalCredits') || '0';
+        document.getElementById('creditsCount').textContent = credits;
+    }
+
+    // Update streak for the last 7 days
+    function updateStreak(isCorrect) {
+        const today = getTodayDate();
+        let streak = JSON.parse(localStorage.getItem('streak') || '{}');
+        
+        streak[today] = isCorrect;
+        localStorage.setItem('streak', JSON.stringify(streak));
+        
+        updateStreakDisplay();
+    }
+
+    // Display streak for last 7 days in a row
+    function updateStreakDisplay() {
+        const streakDisplay = document.getElementById('streakDisplay');
+        const streak = JSON.parse(localStorage.getItem('streak') || '{}');
+        
+        streakDisplay.innerHTML = '';
+        
+        // Get last 7 days and display them in a row
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date();
+            date.setDate(date.getDate() - i);
+            const dateStr = `${date.getMonth() + 1}/${date.getDate()}`;
+            
+            const dayElement = document.createElement('div');
+            dayElement.className = 'streak-day';
+            
+            if (streak.hasOwnProperty(dateStr)) {
+                if (streak[dateStr]) {
+                    dayElement.className += ' streak-correct';
+                    dayElement.textContent = '✓';
+                } else {
+                    dayElement.className += ' streak-incorrect';
+                    dayElement.textContent = '✗';
+                }
+            } else {
+                dayElement.className += ' streak-missing';
+                dayElement.textContent = '?';
+            }
+            
+            streakDisplay.appendChild(dayElement);
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('resultModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+</script>
