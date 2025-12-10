@@ -205,7 +205,7 @@ title-chn: "推荐信模拟器"
 }
 button {
     display: inline-block;
-    background: #B56AFB;
+    background: #6ac4ea;
     color: #fff;
     padding: 11px 18px;
     border:none;
@@ -223,7 +223,7 @@ button:disabled {
     cursor: not-allowed;
 }
 button.giveup {
-    background: #FF3C3C;
+    background: #cc4444;
 }
 .hand-hint {
     position: absolute;
@@ -271,7 +271,7 @@ button.giveup {
 .result-msg {
     font-size: 22px;
     margin-top: 32px;
-    color: #246;
+    color: rgb(70, 110, 150);
     font-weight: 600;
     letter-spacing: 0.05em;
 }
@@ -495,11 +495,11 @@ function cardPolishHandler(e) {
             updateCardVisuals(card, gameState.tier, gameState.polishCount);
             if (gameState.tier==='legend') {
                 updateCardVisuals(card, gameState.tier, gameState.polishCount, true);
-                finishGame('You received a LEGEND tier letter! Principal writes you a glowing review!', true);
+                finishGame('You received a LEGEND tier letter! Strongest recommendation ever!', true);
                 showDrawIfFinalized();
             } else if (gameState.polishCount >= gameState.maxPolishes) {
                 updateCardVisuals(card, gameState.tier, gameState.polishCount, true);
-                finishGame('All polishes used!', true);
+                finishGame('You have used all changes to polish! Are you good with this?', true);
                 showDrawIfFinalized();
             } else {
                 document.getElementById('giveUpBtn').disabled = false;
