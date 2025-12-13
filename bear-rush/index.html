@@ -239,7 +239,7 @@ title: "Bear Rush"
 
     // Calculate game speed based on score - NO SPEED CAP
     function calculateGameSpeed() {
-        const speedMultiplier = 1 + Math.floor(score / 100) * 0.15;
+        const speedMultiplier = 1.25 + Math.floor(score / 100) * 0.15;
         gameSpeed = baseGameSpeed * speedMultiplier;
     }
 
