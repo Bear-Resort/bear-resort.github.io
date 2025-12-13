@@ -1,0 +1,884 @@
+---
+title: "Bear Rush"
+---
+
+<style>
+    .body {
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(to bottom, #87CEEB, #98FB98);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+    .game-container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    canvas {
+        border: 3px solid #654321;
+        border-radius: 10px;
+        background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #228B22 100%);
+        cursor: pointer;
+    }
+    
+    .score {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--main-color-light);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        margin-bottom: 10px;
+    }
+
+    .mobile-controls {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .control-button {
+        width: 80px;
+        height: 80px;
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .jump-btn {
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    .jump-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    .jump-btn.active {
+        transform: translateY(2px) scale(0.95);
+        background: linear-gradient(45deg, #45a049, #3d8b40);
+        box-shadow: 0 2px 10px rgba(76, 175, 80, 0.6);
+    }
+
+    .dodge-btn {
+        background: linear-gradient(45deg, #2196F3, #1976D2);
+    }
+
+    .dodge-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+    }
+
+    .dodge-btn.active {
+        transform: translateY(2px) scale(0.95);
+        background: linear-gradient(45deg, #1976D2, #1565C0);
+        box-shadow: 0 2px 10px rgba(33, 150, 243, 0.6);
+    }
+
+    .button-label {
+        margin-top: 5px;
+        font-size: 14px;
+        color: var(--text-color);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+        .control-button {
+            width: 90px;
+            height: 90px;
+            font-size: 28px;
+        }
+        
+        .mobile-controls {
+            gap: 40px;
+        }
+    }
+</style>
+<div class="body">
+<div class="game-container">
+    <div class="score">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    
+    <div class="mobile-controls">
+        <div>
+            <button class="control-button jump-btn" id="jumpBtn">
+                ⬆️
+            </button>
+            <div class="button-label">JUMP</div>
+        </div>
+        <div>
+            <button class="control-button dodge-btn" id="dodgeBtn">
+                ⬇️
+            </button>
+            <div class="button-label">DODGE</div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreElement = document.getElementById('score');
+    const jumpBtn = document.getElementById('jumpBtn');
+    const dodgeBtn = document.getElementById('dodgeBtn');
+
+    // Game variables
+    let baseGameSpeed = 5;
+    let gameSpeed = 5;
+    let score = 0;
+    let gameRunning = true;
+    let gameOver = false;
+    let gameLoopId = null;
+    let gameOverTime = 0;
+    let canRestart = false;
+    
+    // Background movement variables
+    let backgroundOffset = 0;
+    let cloudOffset = 0;
+    let groundOffset = 0;
+    let treeOffset = 0;
+
+    // Player object - optimized for bear.gif animation
+    const player = {
+        x: 100,
+        y: 280,
+        width: 80,
+        height: 80,
+        normalHeight: 80,
+        slideHeight: 35,
+        velocityY: 0,
+        jumping: false,
+        dodging: false,
+        grounded: true,
+        image: new Image(),
+        imageLoaded: false,
+        // Jump physics that scale with speed
+        baseJumpVelocity: -11.5,
+        baseGravity: 0.7
+    };
+
+    // Load player image
+    player.image.src = 'bear.gif';
+    player.image.onload = function() {
+        player.imageLoaded = true;
+        console.log('Bear.gif loaded successfully! Animation will play.');
+    };
+    player.image.onerror = function() {
+        console.log('Could not load bear.gif, using fallback graphics');
+        player.imageLoaded = false;
+    };
+
+    // Game objects arrays
+    let obstacles = [];
+    let gaps = [];
+    let knives = [];
+
+    // Ground level
+    const groundY = 340;
+
+    // Button state management
+    function setButtonActive(button, active) {
+        if (active) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    }
+
+    // Jump action
+    function performJump() {
+        if (player.grounded && !player.dodging) {
+            const physics = getJumpPhysics();
+            player.velocityY = physics.jumpVelocity;
+            player.jumping = true;
+            player.grounded = false;
+            setButtonActive(jumpBtn, true);
+            
+            setTimeout(() => setButtonActive(jumpBtn, false), 150);
+        }
+    }
+
+    // Dodge action
+    function performDodge() {
+        if (player.grounded) {
+            player.dodging = true;
+            player.height = player.slideHeight;
+            player.y = groundY - player.height;
+            setButtonActive(dodgeBtn, true);
+        }
+    }
+
+    // Stop dodge action
+    function stopDodge() {
+        player.dodging = false;
+        player.height = player.normalHeight;
+        if (player.grounded) {
+            player.y = groundY - player.height;
+        }
+        setButtonActive(dodgeBtn, false);
+    }
+
+    // Calculate game speed based on score - NO SPEED CAP
+    function calculateGameSpeed() {
+        const speedMultiplier = 1 + Math.floor(score / 100) * 0.15;
+        gameSpeed = baseGameSpeed * speedMultiplier;
+    }
+
+    // Calculate jump physics based on current speed
+    function getJumpPhysics() {
+        const speedRatio = gameSpeed / baseGameSpeed;
+        const gravity = player.baseGravity * (1 + (speedRatio - 1) * 0.8);
+        const jumpVelocity = player.baseJumpVelocity * (1 + (speedRatio - 1) * 0.4);
+        return { gravity, jumpVelocity };
+    }
+
+    // Initialize game
+    function initGame() {
+        baseGameSpeed = 5;
+        gameSpeed = 5;
+        score = 0;
+        gameRunning = true;
+        gameOver = false;
+        gameOverTime = 0;
+        canRestart = false;
+        
+        backgroundOffset = 0;
+        cloudOffset = 0;
+        groundOffset = 0;
+        treeOffset = 0;
+        
+        if (gameLoopId) {
+            cancelAnimationFrame(gameLoopId);
+            gameLoopId = null;
+        }
+        
+        // Reset player
+        player.x = 100;
+        player.height = player.normalHeight;
+        player.y = groundY - player.height;
+        player.velocityY = 0;
+        player.jumping = false;
+        player.dodging = false;
+        player.grounded = true;
+        
+        // Clear all obstacles
+        obstacles = [];
+        gaps = [];
+        knives = [];
+        
+        // Reset UI
+        scoreElement.textContent = '0';
+        setButtonActive(jumpBtn, false);
+        setButtonActive(dodgeBtn, false);
+        
+        console.log('Game initialized - ready to start!');
+    }
+
+    // Restart game function - with silent restart delay check
+    function restartGame() {
+        if (gameOver && !canRestart) {
+            // Silently ignore restart attempts during delay
+            return;
+        }
+        
+        console.log('Restarting game...');
+        initGame();
+        startGameLoop();
+    }
+
+    // Start game loop function
+    function startGameLoop() {
+        if (gameLoopId) {
+            cancelAnimationFrame(gameLoopId);
+        }
+        console.log('Starting game loop...');
+        gameLoop();
+    }
+
+    // Initialize the game on load
+    initGame();
+
+    // Keyboard input handling
+    const keys = {};
+    
+    document.addEventListener('keydown', (e) => {
+        if (['ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+            e.preventDefault();
+        }
+        
+        keys[e.code] = true;
+        
+        // If game is over, try to restart (will be silently blocked if too early)
+        if (gameOver) {
+            restartGame();
+            return;
+        }
+        
+        if (!gameRunning) return;
+        
+        if (e.code === 'ArrowUp') {
+            performJump();
+        }
+        
+        if (e.code === 'ArrowDown') {
+            performDodge();
+        }
+
+        if (e.code === 'KeyR') {
+            restartGame();
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (['ArrowUp', 'ArrowDown'].includes(e.code)) {
+            e.preventDefault();
+        }
+        
+        keys[e.code] = false;
+        
+        if (e.code === 'ArrowDown') {
+            stopDodge();
+        }
+    });
+
+    // Mobile button event handlers
+    jumpBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        if (gameOver) {
+            restartGame();
+        } else {
+            performJump();
+        }
+    });
+
+    jumpBtn.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        if (gameOver) {
+            restartGame();
+        } else {
+            performJump();
+        }
+    });
+
+    dodgeBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        if (gameOver) {
+            restartGame();
+        } else {
+            performDodge();
+        }
+    });
+
+    dodgeBtn.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        if (gameOver) {
+            restartGame();
+        } else {
+            performDodge();
+        }
+    });
+
+    dodgeBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        if (!gameOver) {
+            stopDodge();
+        }
+    });
+
+    dodgeBtn.addEventListener('mouseup', function(e) {
+        e.preventDefault();
+        if (!gameOver) {
+            stopDodge();
+        }
+    });
+
+    // Prevent context menu on long press
+    jumpBtn.addEventListener('contextmenu', e => e.preventDefault());
+    dodgeBtn.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Canvas click handling for restart
+    canvas.addEventListener('click', function(e) {
+        if (gameOver) {
+            restartGame();
+        }
+    });
+
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        if (gameOver) {
+            restartGame();
+        }
+    });
+
+    // Create obstacles
+    function createObstacle() {
+        const obstacle = {
+            x: canvas.width,
+            y: groundY - 40,
+            width: 25,
+            height: 40,
+            type: 'box'
+        };
+        obstacles.push(obstacle);
+    }
+
+    // Create gaps in the road
+    function createGap() {
+        const gap = {
+            x: canvas.width,
+            y: groundY,
+            width: 75,
+            height: 60
+        };
+        gaps.push(gap);
+    }
+
+    // Create thrown knives
+    function createKnife() {
+        const knife = {
+            x: canvas.width,
+            y: groundY - 70,
+            width: 45,
+            height: 20,
+            speed: gameSpeed + 3,
+            rotation: 0
+        };
+        knives.push(knife);
+    }
+
+    // Spawn obstacles, gaps, and knives
+    let obstacleTimer = 0;
+    function spawnObstacles() {
+        obstacleTimer++;
+        
+        const speedRatio = gameSpeed / baseGameSpeed;
+        const baseSpawnRate = 90;
+        const spawnRate = Math.max(30, baseSpawnRate - (speedRatio - 1) * 20);
+        
+        if (obstacleTimer > spawnRate) {
+            const rand = Math.random();
+            const obstacleChance = Math.min(0.5, 0.35 + (speedRatio - 1) * 0.05);
+            const knifeChance = Math.min(0.4, 0.3 + (speedRatio - 1) * 0.04);
+            
+            if (rand < obstacleChance) {
+                createObstacle();
+            } else if (rand < obstacleChance + 0.3) {
+                createGap();
+            } else {
+                createKnife();
+            }
+            obstacleTimer = 0;
+        }
+    }
+
+    // Update background movement
+    function updateBackground() {
+        backgroundOffset += gameSpeed * 0.3;
+        cloudOffset += gameSpeed * 0.5;
+        treeOffset += gameSpeed * 0.8;
+        groundOffset += gameSpeed;
+    }
+
+    // Update player physics
+    function updatePlayer() {
+        player.x = 100;
+
+        if (!player.grounded) {
+            const physics = getJumpPhysics();
+            player.velocityY += physics.gravity;
+            player.y += player.velocityY;
+        }
+
+        if (player.y >= groundY - player.height) {
+            player.y = groundY - player.height;
+            player.velocityY = 0;
+            player.grounded = true;
+            player.jumping = false;
+        }
+    }
+
+    // Update obstacles
+    function updateObstacles() {
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            obstacles[i].x -= gameSpeed;
+            
+            if (obstacles[i].x + obstacles[i].width < 0) {
+                obstacles.splice(i, 1);
+                score += 10;
+                calculateGameSpeed();
+            }
+        }
+
+        for (let i = gaps.length - 1; i >= 0; i--) {
+            gaps[i].x -= gameSpeed;
+            
+            if (gaps[i].x + gaps[i].width < 0) {
+                gaps.splice(i, 1);
+                score += 15;
+                calculateGameSpeed();
+            }
+        }
+
+        for (let i = knives.length - 1; i >= 0; i--) {
+            knives[i].x -= knives[i].speed;
+            knives[i].rotation += 0.4;
+            
+            if (knives[i].x + knives[i].width < 0) {
+                knives.splice(i, 1);
+                score += 25;
+                calculateGameSpeed();
+            }
+        }
+    }
+
+    // Collision detection
+    function checkCollisions() {
+        for (let obstacle of obstacles) {
+            if (player.x + 8 < obstacle.x + obstacle.width &&
+                player.x + player.width - 8 > obstacle.x &&
+                player.y + 8 < obstacle.y + obstacle.height &&
+                player.y + player.height - 8 > obstacle.y) {
+                endGame();
+                return;
+            }
+        }
+
+        for (let gap of gaps) {
+            if (player.x + player.width - 15 > gap.x &&
+                player.x + 15 < gap.x + gap.width &&
+                player.y + player.height >= gap.y) {
+                endGame();
+                return;
+            }
+        }
+
+        for (let knife of knives) {
+            if (player.x + 3 < knife.x + knife.width &&
+                player.x + player.width - 3 > knife.x &&
+                player.y + 3 < knife.y + knife.height &&
+                player.y + player.height - 3 > knife.y) {
+                
+                if (!player.dodging || (player.y + player.height) > (knife.y + 5)) {
+                    endGame();
+                    return;
+                }
+            }
+        }
+    }
+
+    // Draw moving background with simplified tree system
+    function drawBackground() {
+        // Sky gradient (static)
+        const gradient = ctx.createLinearGradient(0, 0, 0, groundY);
+        gradient.addColorStop(0, '#87CEEB');
+        gradient.addColorStop(0.7, '#B0E0E6');
+        gradient.addColorStop(1, '#90EE90');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, groundY);
+
+        // Moving mountains (distant background)
+        ctx.fillStyle = 'rgba(105, 105, 105, 0.6)';
+        const mountainSpacing = 300;
+        for (let i = -2; i < Math.ceil(canvas.width / mountainSpacing) + 2; i++) {
+            const x = (i * mountainSpacing - (backgroundOffset % mountainSpacing));
+            ctx.beginPath();
+            ctx.moveTo(x, groundY);
+            ctx.lineTo(x + 100, groundY - 80);
+            ctx.lineTo(x + 200, groundY - 60);
+            ctx.lineTo(x + 300, groundY);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Moving clouds
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        const cloudSpacing = 200;
+        for (let i = -2; i < Math.ceil(canvas.width / cloudSpacing) + 2; i++) {
+            const x = i * cloudSpacing - (cloudOffset % cloudSpacing);
+            ctx.beginPath();
+            ctx.arc(x, 80, 30, 0, Math.PI * 2);
+            ctx.arc(x + 25, 80, 35, 0, Math.PI * 2);
+            ctx.arc(x + 50, 80, 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Additional cloud layer
+            ctx.beginPath();
+            ctx.arc(x + 100, 60, 25, 0, Math.PI * 2);
+            ctx.arc(x + 120, 60, 30, 0, Math.PI * 2);
+            ctx.arc(x + 140, 60, 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Trees
+        const bigTreeSpacing = 120;
+        
+        // Draw big trees
+        for (let i = -2; i < Math.ceil(canvas.width / bigTreeSpacing) + 2; i++) {
+            const bigTreeX = i * bigTreeSpacing - (treeOffset % bigTreeSpacing);
+            
+            ctx.fillStyle = '#654321';
+            ctx.fillRect(bigTreeX + 10, groundY - 45, 12, 45);
+            
+            ctx.fillStyle = '#006400';
+            ctx.beginPath();
+            ctx.arc(bigTreeX + 16, groundY - 55, 22, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Draw small trees
+        for (let i = -2; i < Math.ceil(canvas.width / bigTreeSpacing) + 1; i++) {
+            const smallTreeX = (i * bigTreeSpacing + bigTreeSpacing/2) - (treeOffset % bigTreeSpacing);
+            
+            ctx.fillStyle = '#654321';
+            ctx.fillRect(smallTreeX + 2, groundY - 28, 8, 28);
+            
+            ctx.fillStyle = '#228B22';
+            ctx.beginPath();
+            ctx.arc(smallTreeX + 6, groundY - 33, 15, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Draw moving ground
+    function drawGround() {
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+        
+        ctx.fillStyle = '#32CD32';
+        const grassSpacing = 40;
+        for (let i = -1; i < Math.ceil(canvas.width / grassSpacing) + 1; i++) {
+            const x = i * grassSpacing - (groundOffset % grassSpacing);
+            ctx.fillRect(x, groundY, 20, 10);
+            
+            ctx.fillStyle = '#228B22';
+            for (let j = 0; j < 5; j++) {
+                const grassX = x + j * 4 + 2;
+                ctx.fillRect(grassX, groundY, 2, 8);
+            }
+            ctx.fillStyle = '#32CD32';
+        }
+        
+        ctx.fillStyle = '#8B4513';
+        const dirtSpacing = 60;
+        for (let i = -1; i < Math.ceil(canvas.width / dirtSpacing) + 1; i++) {
+            const x = i * dirtSpacing - (groundOffset % dirtSpacing);
+            ctx.fillRect(x + 10, groundY + 15, 8, 4);
+            ctx.fillRect(x + 25, groundY + 25, 6, 3);
+        }
+    }
+
+    // Draw functions
+    function drawPlayer() {
+        ctx.save();
+        
+        if (player.jumping) {
+            ctx.shadowColor = 'rgba(255, 215, 0, 0.5)';
+            ctx.shadowBlur = 12;
+        }
+        
+        if (player.dodging) {
+            ctx.shadowColor = 'rgba(0, 255, 255, 0.6)';
+            ctx.shadowBlur = 12;
+        }
+        
+        if (player.imageLoaded && player.image.complete) {
+            ctx.drawImage(player.image, player.x, player.y, player.width, player.height);
+        } else {
+            // Fallback bear drawing
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            
+            ctx.fillStyle = '#654321';
+            ctx.beginPath();
+            ctx.arc(player.x + 20, player.y + 12, 10, 0, Math.PI * 2);
+            ctx.arc(player.x + 60, player.y + 12, 10, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = '#D2691E';
+            ctx.fillRect(player.x + 12, player.y + 20, 56, 35);
+            
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(player.x + 25, player.y + 32, 4, 0, Math.PI * 2);
+            ctx.arc(player.x + 55, player.y + 32, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(player.x + 40, player.y + 42, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        ctx.restore();
+    }
+
+    // Draw obstacles
+    function drawObstacles() {
+        for (let obstacle of obstacles) {
+            ctx.fillStyle = '#FF4500';
+            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            
+            ctx.strokeStyle = '#8B0000';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            
+            ctx.fillStyle = '#FF6347';
+            ctx.fillRect(obstacle.x + 2, obstacle.y + 2, obstacle.width - 4, obstacle.height - 4);
+            
+            ctx.fillStyle = '#FFFF00';
+            for (let i = 0; i < obstacle.height; i += 8) {
+                ctx.fillRect(obstacle.x + 2, obstacle.y + i, obstacle.width - 4, 2);
+            }
+            
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('!', obstacle.x + obstacle.width/2, obstacle.y + obstacle.height/2 + 6);
+        }
+    }
+
+    function drawGaps() {
+        ctx.fillStyle = '#87CEEB';
+        for (let gap of gaps) {
+            ctx.fillRect(gap.x, gap.y, gap.width, gap.height);
+            
+            ctx.fillStyle = '#228B22';
+            ctx.fillRect(gap.x - 5, gap.y, 5, 10);
+            ctx.fillRect(gap.x + gap.width, gap.y, 5, 10);
+            ctx.fillStyle = '#87CEEB';
+        }
+    }
+
+    function drawKnives() {
+        for (let knife of knives) {
+            ctx.save();
+            
+            ctx.translate(knife.x + knife.width/2, knife.y + knife.height/2);
+            ctx.rotate(knife.rotation);
+            
+            ctx.fillStyle = '#C0C0C0';
+            ctx.fillRect(-knife.width/2, -knife.height/2, knife.width * 0.7, knife.height);
+            
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(knife.width * 0.2, -knife.height/2, knife.width * 0.3, knife.height);
+            
+            ctx.fillStyle = '#E6E6FA';
+            ctx.fillRect(-knife.width/2, -knife.height/4, knife.width * 0.7, knife.height/2);
+            
+            ctx.globalAlpha = 0.5;
+            ctx.fillStyle = '#FF4444';
+            ctx.fillRect(-knife.width/2 - 20, -knife.height/2, 15, knife.height);
+            ctx.globalAlpha = 1.0;
+            
+            ctx.restore();
+            
+            if (knife.x < 300) {
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.4)';
+                ctx.fillRect(knife.x - 20, knife.y - 10, knife.width + 40, knife.height + 20);
+            }
+            
+            if (knife.x < 400) {
+                ctx.strokeStyle = 'rgba(255, 255, 0, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(knife.x, knife.y + knife.height/2);
+                ctx.lineTo(0, knife.y + knife.height/2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+        }
+    }
+
+    // Game over function - WITH SILENT 3-SECOND DELAY
+    function endGame() {
+        gameRunning = false;
+        gameOver = true;
+        gameOverTime = Date.now();
+        canRestart = false;
+        
+        console.log('Game Over! Final score:', score);
+        
+        if (gameLoopId) {
+            cancelAnimationFrame(gameLoopId);
+            gameLoopId = null;
+        }
+        
+        // Silently enable restart after 3 seconds
+        setTimeout(() => {
+            canRestart = true;
+            console.log('Restart now available (silent)');
+        }, 3000);
+        
+        // Draw simple game over screen
+        drawGameOverScreen();
+    }
+
+    // Draw clean game over screen without countdown
+    function drawGameOverScreen() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'white';
+        ctx.font = '48px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Game Over!', canvas.width / 2, canvas.height / 2 - 50);
+        
+        ctx.font = '24px Arial';
+        ctx.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2 + 10);
+        
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#FFD700';
+        ctx.fillText('Click anywhere or press any key to play again', canvas.width / 2, canvas.height / 2 + 60);
+    }
+
+    // Main game loop
+    function gameLoop() {
+        if (gameLoopId) {
+            cancelAnimationFrame(gameLoopId);
+        }
+        
+        if (!gameRunning) {
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        updateBackground();
+        drawBackground();
+        drawGround();
+        updatePlayer();
+        updateObstacles();
+        spawnObstacles();
+        checkCollisions();
+        drawGaps();
+        drawObstacles();
+        drawKnives();
+        drawPlayer();
+
+        scoreElement.textContent = score;
+
+        if (gameRunning) {
+            gameLoopI = requestAnimationFrame(gameLoop);
+        }
+    }
+
+    startGameLoop();
+</script>
