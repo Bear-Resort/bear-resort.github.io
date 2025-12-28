@@ -3,11 +3,6 @@ title: "2025 Certificate"
 ---
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
     .theBody {
         min-height: 100vh;
@@ -15,6 +10,9 @@ title: "2025 Certificate"
         justify-content: center;
         align-items: center;
         padding: 20px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .container {
@@ -78,15 +76,15 @@ title: "2025 Certificate"
     }*/
 
     .event-display {
-        background: #fff3e0;
+        background: var(--secondary-light);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
-        border-left: 4px solid #ff4500;
+        border-left: 4px solid var(--main-color-light);
     }
 
     .event-display strong {
-        color: #ff4500;
+        color: var(--main-color-light);
     }
 
     /* Modal Styles */
@@ -425,42 +423,6 @@ title: "2025 Certificate"
         font-style: italic;
         z-index: 2;
         line-height: 1.4;
-    }
-
-    .download-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        width: 60px;
-        height: 60px;
-        padding: 0;
-        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-        color: white;
-        border: none;
-        border-radius: 12px;
-        font-size: 28px;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .download-btn:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    .download-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    .download-btn:active {
-        transform: translateY(-1px) scale(1.02);
     }
 
     /* Responsive scaling */
