@@ -3,15 +3,13 @@ title: "2025 Certificate"
 ---
 
 <style>
-    * {
+    /* * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-    }
+    } */
 
     .theBody {
-/*        font-family: 'Georgia', serif;*/
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         display: flex;
         justify-content: center;
@@ -20,7 +18,7 @@ title: "2025 Certificate"
     }
 
     .container {
-        background: white;
+        background: var(--background-light);
         padding: 40px;
         border-radius: 15px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -28,15 +26,8 @@ title: "2025 Certificate"
         width: 100%;
     }
 
-    h1 {
-        color: #ff4500;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
     .subtitle {
         text-align: center;
-        color: #666;
         margin-bottom: 30px;
         font-size: 14px;
     }
@@ -48,14 +39,13 @@ title: "2025 Certificate"
     label {
         display: block;
         margin-bottom: 8px;
-        color: #333;
         font-weight: bold;
     }
 
     input {
-        width: 100%;
+        /* width: 100%; */
         padding: 12px;
-        border: 2px solid #ddd;
+        /* border: 2px solid #ddd; */
         border-radius: 8px;
         font-size: 16px;
         transition: border-color 0.3s;
@@ -63,7 +53,7 @@ title: "2025 Certificate"
 
     input:focus {
         outline: none;
-        border-color: #ff4500;
+        border-color: var(--main-color);
     }
 
     /*button {
