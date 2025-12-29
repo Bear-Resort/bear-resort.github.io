@@ -43,6 +43,13 @@ title: "Characters"
 - <span class="eng">Ayang is a Polar Bear ([*Ursus maritimus*](https://en.wikipedia.org/wiki/Polar_bear)) cub. His twin brother is Ayin.</span> <span class="chn">阿阳是一头北极熊 ([*Ursus maritimus*](https://en.wikipedia.org/wiki/Polar_bear))幼崽. 他的双胞胎兄弟是阿殷.</span>
 - <span class="eng">As the younger brother, Ayang is always unsatisfactory about his elder brother taking over everything. “Bro is too dominant in life,” Ayang says, as he frowns explicitly, “He is nothing like me, and I don't see why his own businesses have not exploits himself.”</span> <span class="chn">作为兄弟里的老幺，阿阳对阿殷的绝对控制表达了不满。“他总想控制一切，”阿殷皱着眉说道，“他一点儿都不像我，而且我不懂为什么他自己的那些破事儿还不够他忙的。”</span>
 
+### <span class="eng">Uncle V</span> <span class="chn">维维叔</span>
+
+###### <img src="uncle-v.png" style="height: 200px;">
+
+- <span class="eng">Uncle V is an Asian Black Bear ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear)). He is the father of Ayin.</span><span class="chn">维维叔是一头亚洲黑熊 ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear)). 他是阿殷的父亲.</span>
+- <span class="eng">Uncle V has switched to a fully vegetarian diet as he became the ambassador for the Ursalinos. “Being vegetarian makes me seems a lot more friendly, and I serve as the figure of our gang,” says Uncle V, as he crams a whole apple inside his mouth. Apparently, being vegetarian is not really effective in maintaining fit (c.f. Dr. B).</span> <span class="chn">维维叔自当选熊手党的大使后便坚持素食。“做一个素食主义者让我看起来更友善。毕竟我可是咱们帮的形象，”维维叔边说边把一整个苹果塞进嘴里。显然，吃素对保持体型而言并不见效(详见:胖胖博士)。</span>
+
 <br>
 
 - <span class="eng">More Ursalinos members coming soon.</span> <span class="chn">更多熊手党成员即将到来。</span>
