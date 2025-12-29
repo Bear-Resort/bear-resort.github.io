@@ -5,7 +5,7 @@ title: "2025 Certificate"
 <style>
 
     .theBody {
-        min-height: 100vh;
+        min-height: 25vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -43,7 +43,6 @@ title: "2025 Certificate"
     input {
         width: 100%;
         padding: 12px;
-        /* border: 2px solid #ddd; */
         border-radius: 8px;
         font-size: 16px;
         transition: border-color 0.3s;
@@ -53,27 +52,6 @@ title: "2025 Certificate"
         outline: none;
         border-color: var(--main-color);
     }
-
-    /*button {
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(135deg, #ff4500 0%, #ff6347 100%);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-
-    button:hover {
-        transform: translateY(-2px);
-    }
-
-    button:active {
-        transform: translateY(0);
-    }*/
 
     .event-display {
         background: var(--secondary-light);
@@ -529,25 +507,25 @@ title: "2025 Certificate"
 
 <div class="theBody">
     <div class="container">
-        <h1>2025 Summary Certificate</h1>
-        <p class="subtitle">Generate your personalized achievement certificate!</p>
+        <h1><span class="eng">2025 Summary Certificate</span><span class="chn">2025年度证书</span></h1>
+        <p class="subtitle"><span class="eng">Recognize your achievements with a certificate!</span><span class="chn">以证书记录你的成就!</span></p>
         
         <div class="event-display">
-            <strong>Event:</strong> <span id="eventDisplay">Loading...</span>
+            <strong><span class="eng">Event:</span><span class="chn">事件:</span></strong> <span id="eventDisplay">Loading...</span>
         </div>
 
         <form id="certificateForm">
             <div class="form-group">
-                <label for="userName">Your Name:</label>
+                <label for="userName"><span class="eng">Your Name:</span><span class="chn">你的名字:</span></label>
                 <input type="text" id="userName" placeholder="Enter your name" required>
             </div>
 
             <div class="form-group">
-                <label for="eventCount">Number of Times:</label>
+                <label for="eventCount"><span class="eng">Number of Times:</span><span class="chn">年度次数:</span></label>
                 <input type="number" id="eventCount" placeholder="How many times?" min="1" required>
             </div>
 
-            <button type="submit">Generate Certificate</button>
+            <button type="submit"><span class="eng">Generate Certificate</span><span class="chn">生成奖状</span></button>
         </form>
     </div>
 
