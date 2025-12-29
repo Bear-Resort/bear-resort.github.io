@@ -118,4 +118,19 @@ title-chn: "软件库"
     <div class="app-name"><span class="eng">Pinyin</span><span class="chn">拼音</span></div>
     <div class="app-desc"><span class="eng">Add Pinyin to Chinese</span><span class="chn">给中文加拼音</span></div>
 </a>
+<a class="app-card" href="/chars/" target="_blank">
+    <img class="app-img" src="/chars/beary.png" alt="characterrs">
+    <div class="app-name"><span class="eng">Characters</span><span class="chn">角色大全</span></div>
+    <div class="app-desc"><span class="eng">All characters in the resort</span><span class="chn">乐园里的全部角色</span></div>
+</a>
+<a class="app-card" href="/bear-rush/" target="_blank">
+    <img class="app-img" src="/bear-rush/bear.gif" alt="rush">
+    <div class="app-name"><span class="eng">Bear Rush</span><span class="chn">小熊快跑</span></div>
+    <div class="app-desc"><span class="eng">Bear rush game</span><span class="chn">小熊快跑游戏</span></div>
+</a>
+<a class="app-card" href="/rec/" target="_blank">
+    <img class="app-img" src="/rec/index.png" alt="rec">
+    <div class="app-name"><span class="eng">LOR Simulator</span><span class="chn">推荐信模拟器</span></div>
+    <div class="app-desc"><span class="eng">Simulate Letter of Recommendation</span><span class="chn">模拟推荐信</span></div>
+</a>
 </div>
