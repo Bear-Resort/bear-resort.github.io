@@ -17,6 +17,8 @@ title-chn: "表情包"
 
 ## <span class="eng">Season 2: Mathy's Turntable</span><span class="chn">第二季: 數數的大轉盤</span>
 
+<img src="S2.png" height="100"><br>
+
 <span class="eng">A (unproven) proposition prevailing among chinese netizens is that all emotions of human can be classified into one of five types, classic, filial, win, irascible, and numbed. Mathy included an extra lose to account for more aggressiveness.</span>
 <span class="chn">在中國網路上的一個(未證明)的命題為，人類的感情可以被歸類於典、孝、贏、急和麻的一種。數數還貼心地加入了輸，讓這套表情包更富有攻擊力。</span>
 
@@ -33,11 +35,11 @@ title-chn: "表情包"
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
 - <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/little_bear.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/A9HGgcn#wechat_redirect)
 
-## <span class="eng">Season 4: Giant Panda Dr. B</span><span class="chn">第四季: 大熊貓胖胖博士</span>
+## <span class="eng">Season 4: Giant Panda Dr. Chubie</span><span class="chn">第四季: 大熊貓胖胖博士</span>
 
 <img src="S4.png" height="100"><br>
 
-<span class="eng">Dr. B, a giant panda, is a workout fanatic and also a doctor. To be honest, we don't know if he possesses a medical degree, or Doctor of Philosophy, or both. We only observe that he went to the medical school and got crazy-ish after coming out of that blackbox. He has a benzene reactor on his chest that he rarely takes off, unless he is facing some worries that most middle-aged bears face...</span>
+<span class="eng">Dr. Chubie, a giant panda, is a workout fanatic and also a doctor. To be honest, we don't know if he possesses a medical degree, or Doctor of Philosophy, or both. We only observe that he went to the medical school and got crazy-ish after coming out of that blackbox. He has a benzene reactor on his chest that he rarely takes off, unless he is facing some worries that most middle-aged bears face...</span>
 <span class="chn">大熊猫胖胖博士是一头健身狂魔，沒人晓得他是到底医生还是博士，又或许都是？讲真的，我们只知道他进入医学院这个黑洞后就变得疯疯癫癫的。他胸部裝著一個高级苯反应堆，只是他几乎從不取下它，除非他在面对大多数中年熊都要面对的困扰...</span>
 
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
@@ -57,10 +59,20 @@ title-chn: "表情包"
 
 <img src="S6.png" height="100"><br>
 
-<span class="eng">Ayin and Ayang are twin brothers. The two bearthers love messing   around in the Bear Resort.</span>
+<span class="eng">Ayin and Ayang are twin brothers. The two bearthers love messing around in the Bear Resort.</span>
 <span class="chn">阿殷和阿杨是一对儿双胞兄弟。两“熊”弟最喜欢在小熊樂園里上蹿下跳、四处捣蛋！</span>
 
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
 - <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/twin-bearthers.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/AJmsMqf#wechat_redirect)
+
+## <span class="eng">Season 7: Uncle V, The Black Bear Ambassador</span><span class="chn">第七季: 黑熊大使维维叔</span>
+
+<img src="S7.png" height="100"><br>
+
+<span class="eng">Uncle V is the vegetarian Black Bear Ambassador. Apparently, a vegetarian diet does not address the middle-aged bear situation.</span>
+<span class="chn">维维叔是热爱锻炼的中年素食黑熊大使. 显然, 素食解决不了中年熊的烦恼.</span>
+
+- <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
+- <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/uncle_v.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/AmWev6x#wechat_redirect)
 
 
