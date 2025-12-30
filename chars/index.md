@@ -23,12 +23,12 @@ title: "Characters"
 - <span class="eng">Little Bear is a problem kid in the Bear Resort, as he always causes troubles around. However, every time when he messes around, his innocent eyes and adorable emotions always condone him from penalties.</span> <span class="chn">小小熊是小熊樂園里的问题青年，因为他处处闯祸。尽管如此，每当他搞砸了，他的无辜眼神和可爱表情总能为他脱罪。</span>
 
 
-### <span class="eng">Dr. B</span> <span class="chn">胖胖博士</span> ([<span class="eng">*Survey Results*</span><span class="chn">*问卷结果*</span>](https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm))
+### <span class="eng">Dr. Chubie</span> <span class="chn">胖胖博士</span> ([<span class="eng">*Survey Results*</span><span class="chn">*问卷结果*</span>](https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm))
 
 ###### <img src="dr-b.png" style="height: 200px;">
 
-- <span class="eng">Dr. B is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He owns a dual identity, serving in both the Ursalinos and the Meowstars.</span> <span class="chn">胖胖博士是一头大熊猫 ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda))。他拥有双重身份，同属于熊手党和喵星人。</span>
-- <span class="eng">Dr. B is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off...</span> <span class="chn">胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。</span>
+- <span class="eng">Dr. Chubie is a Giant panda ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda)). He owns a dual identity, serving in both the Ursalinos and the Meowstars.</span> <span class="chn">胖胖博士是一头大熊猫 ([*Ailuropoda melanoleuca*](https://en.wikipedia.org/wiki/Giant_panda))。他拥有双重身份，同属于熊手党和喵星人。</span>
+- <span class="eng">Dr. Chubie is a workout fanatic and is also a doctor (although we don’t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off...</span> <span class="chn">胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。</span>
 
 ### <span class="eng">Ayin</span> <span class="chn">阿殷</span>
 ###### <img src="a-yin.png" style="height: 200px;">
@@ -48,7 +48,7 @@ title: "Characters"
 ###### <img src="uncle-v.png" style="height: 200px;">
 
 - <span class="eng">Uncle V is an Asian Black Bear ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear)). He is the father of Ayin.</span><span class="chn">维维叔是一头亚洲黑熊 ([*Ursus thibetanus*](https://en.wikipedia.org/wiki/Asian_black_bear)). 他是阿殷的父亲.</span>
-- <span class="eng">Uncle V has switched to a fully vegetarian diet as he became the ambassador for the Ursalinos. “Being vegetarian makes me seems a lot more friendly, and I serve as the figure of our gang,” says Uncle V, as he crams a whole apple inside his mouth. Apparently, being vegetarian is not really effective in maintaining fit (c.f. Dr. B).</span> <span class="chn">维维叔自当选熊手党的大使后便坚持素食。“做一个素食主义者让我看起来更友善。毕竟我可是咱们帮的形象，”维维叔边说边把一整个苹果塞进嘴里。显然，吃素对保持体型而言并不见效(详见:胖胖博士)。</span>
+- <span class="eng">Uncle V has switched to a fully vegetarian diet as he became the ambassador for the Ursalinos. “Being vegetarian makes me seems a lot more friendly, and I serve as the figure of our gang,” says Uncle V, as he crams a whole apple inside his mouth. Apparently, being vegetarian is not really effective in maintaining fit (c.f. Dr. Chubie).</span> <span class="chn">维维叔自当选熊手党的大使后便坚持素食。“做一个素食主义者让我看起来更友善。毕竟我可是咱们帮的形象，”维维叔边说边把一整个苹果塞进嘴里。显然，吃素对保持体型而言并不见效(详见:胖胖博士)。</span>
 
 <br>
 
