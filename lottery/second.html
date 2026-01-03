@@ -278,8 +278,14 @@
             width: 280px;
         }
 
+        .slot-container.count-5 {
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .slot-container.count-5 .slot {
-            width: 200px;
+            width: 300px;
         }
 
         .slot {
@@ -292,7 +298,6 @@
         }
 
         .slot-name {
-            font-size: 28px;
             font-weight: bold;
             color: #DC143C;
             margin-bottom: 10px;
@@ -300,7 +305,10 @@
             animation: rolling 0.1s linear infinite;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
+            word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes rolling {
@@ -329,6 +337,7 @@
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
         }
 
         .draw-btn:hover:not(:disabled) {
@@ -345,6 +354,7 @@
         .results {
             display: none;
             margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .results h2 {
@@ -361,6 +371,17 @@
             flex-wrap: nowrap;
         }
 
+        .winners-grid.count-1,
+        .winners-grid.count-3 {
+            flex-wrap: nowrap;
+        }
+
+        .winners-grid.count-5 {
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
         .winners-grid.count-1 .winner-card {
             width: 350px;
         }
@@ -370,7 +391,7 @@
         }
 
         .winners-grid.count-5 .winner-card {
-            width: 210px;
+            width: 300px;
         }
 
         .winner-card {
@@ -389,11 +410,15 @@
 
         .winner-card h3 {
             color: #8B0000;
-            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
+            word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 32px;
         }
 
         .winner-card p {
@@ -466,19 +491,11 @@
         /* Responsive adjustments */
         @media (max-width: 1200px) {
             .slot-container.count-5 .slot {
-                width: 180px;
+                width: 280px;
             }
             
             .winners-grid.count-5 .winner-card {
-                width: 180px;
-            }
-            
-            .slot-name {
-                font-size: 24px;
-            }
-            
-            .winner-card h3 {
-                font-size: 20px;
+                width: 280px;
             }
         }
 
@@ -678,6 +695,24 @@
             }, 3000);
         }
 
+        // Calculate font size based on text length
+        function calculateFontSize(text, maxWidth) {
+            const baseSize = 28;
+            const minSize = 16;
+            const charWidth = 20; // Approximate width per character
+            
+            const estimatedWidth = text.length * charWidth;
+            
+            if (estimatedWidth <= maxWidth) {
+                return baseSize;
+            }
+            
+            const ratio = maxWidth / estimatedWidth;
+            const calculatedSize = Math.max(baseSize * ratio, minSize);
+            
+            return Math.floor(calculatedSize);
+        }
+
         // Fetch candidates from CSV
         async function fetchCandidates() {
             try {
@@ -776,7 +811,14 @@
             rollingInterval = setInterval(() => {
                 for (let i = 0; i < selectedCount; i++) {
                     const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
-                    document.getElementById(`slotName${i}`).textContent = randomCandidate.name;
+                    const slotNameEl = document.getElementById(`slotName${i}`);
+                    slotNameEl.textContent = randomCandidate.name;
+                    
+                    // Calculate and set font size
+                    const slotWidth = slotNameEl.parentElement.offsetWidth - 40; // Subtract padding
+                    const fontSize = calculateFontSize(randomCandidate.name, slotWidth);
+                    slotNameEl.style.fontSize = fontSize + 'px';
+                    
                     document.getElementById(`slotEmail${i}`).textContent = randomCandidate.email;
                 }
             }, 100);
@@ -804,9 +846,16 @@
                 winners.push(winner);
 
                 // Update slot with final winner
-                document.getElementById(`slotName${i}`).textContent = winner.name;
+                const slotNameEl = document.getElementById(`slotName${i}`);
+                slotNameEl.textContent = winner.name;
+                slotNameEl.style.animation = 'none';
+                
+                // Calculate and set final font size
+                const slotWidth = slotNameEl.parentElement.offsetWidth - 40;
+                const fontSize = calculateFontSize(winner.name, slotWidth);
+                slotNameEl.style.fontSize = fontSize + 'px';
+                
                 document.getElementById(`slotEmail${i}`).textContent = winner.email;
-                document.getElementById(`slotName${i}`).style.animation = 'none';
             }
 
             // Save to localStorage
@@ -839,10 +888,18 @@
                     card.className = 'winner-card';
                     card.style.animationDelay = `${index * 0.2}s`;
                     card.innerHTML = `
-                        <h3>🎊 ${winner.name}</h3>
+                        <h3 class="winner-name">🎊 ${winner.name}</h3>
                         <p>📧 ${winner.email}</p>
                     `;
                     winnersList.appendChild(card);
+                    
+                    // Calculate and set font size for winner name
+                    setTimeout(() => {
+                        const nameEl = card.querySelector('.winner-name');
+                        const cardWidth = card.offsetWidth - 40;
+                        const fontSize = calculateFontSize(winner.name, cardWidth);
+                        nameEl.style.fontSize = fontSize + 'px';
+                    }, 100);
                 });
 
                 results.style.display = 'block';
