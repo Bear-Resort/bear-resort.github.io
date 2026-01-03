@@ -280,12 +280,18 @@
 
         .slot-container.count-5 {
             flex-wrap: wrap;
-            max-width: 700px;
+            max-width: 980px;
             margin: 0 auto;
         }
 
         .slot-container.count-5 .slot {
             width: 300px;
+        }
+
+        /* Make first 3 items fill the first row, then 2 items in second row */
+        .slot-container.count-5 .slot:nth-child(4),
+        .slot-container.count-5 .slot:nth-child(5) {
+            margin-top: 0;
         }
 
         .slot {
@@ -378,8 +384,31 @@
 
         .winners-grid.count-5 {
             flex-wrap: wrap;
-            max-width: 700px;
+            max-width: 980px;
             margin: 0 auto;
+            justify-content: center;
+        }
+
+        /* Force 3 items in first row, 2 in second row for count-5 */
+        .winners-grid.count-5 .winner-card:nth-child(1),
+        .winners-grid.count-5 .winner-card:nth-child(2),
+        .winners-grid.count-5 .winner-card:nth-child(3) {
+            flex: 0 0 calc(33.333% - 10px);
+            max-width: 300px;
+        }
+
+        .winners-grid.count-5 .winner-card:nth-child(4),
+        .winners-grid.count-5 .winner-card:nth-child(5) {
+            flex: 0 0 calc(50% - 7.5px);
+            max-width: 300px;
+        }
+
+        /* Ensure the second row is centered */
+        .winners-grid.count-5::after {
+            content: '';
+            flex: 0 0 100%;
+            height: 0;
+            order: 4;
         }
 
         .winners-grid.count-1 .winner-card {
@@ -387,10 +416,6 @@
         }
 
         .winners-grid.count-3 .winner-card {
-            width: 300px;
-        }
-
-        .winners-grid.count-5 .winner-card {
             width: 300px;
         }
 
@@ -494,8 +519,15 @@
                 width: 280px;
             }
             
-            .winners-grid.count-5 .winner-card {
-                width: 280px;
+            .winners-grid.count-5 .winner-card:nth-child(1),
+            .winners-grid.count-5 .winner-card:nth-child(2),
+            .winners-grid.count-5 .winner-card:nth-child(3) {
+                max-width: 280px;
+            }
+            
+            .winners-grid.count-5 .winner-card:nth-child(4),
+            .winners-grid.count-5 .winner-card:nth-child(5) {
+                max-width: 280px;
             }
         }
 
@@ -513,9 +545,17 @@
                 width: 250px;
             }
             
-            .winners-grid.count-3 .winner-card,
-            .winners-grid.count-5 .winner-card {
+            .winners-grid.count-3 .winner-card {
                 width: 250px;
+            }
+            
+            .winners-grid.count-5 .winner-card:nth-child(1),
+            .winners-grid.count-5 .winner-card:nth-child(2),
+            .winners-grid.count-5 .winner-card:nth-child(3),
+            .winners-grid.count-5 .winner-card:nth-child(4),
+            .winners-grid.count-5 .winner-card:nth-child(5) {
+                flex: 0 0 250px;
+                max-width: 250px;
             }
         }
 
@@ -551,9 +591,17 @@
             }
             
             .winners-grid.count-1 .winner-card,
-            .winners-grid.count-3 .winner-card,
-            .winners-grid.count-5 .winner-card {
+            .winners-grid.count-3 .winner-card {
                 width: 100%;
+                max-width: 300px;
+            }
+            
+            .winners-grid.count-5 .winner-card:nth-child(1),
+            .winners-grid.count-5 .winner-card:nth-child(2),
+            .winners-grid.count-5 .winner-card:nth-child(3),
+            .winners-grid.count-5 .winner-card:nth-child(4),
+            .winners-grid.count-5 .winner-card:nth-child(5) {
+                flex: 0 0 100%;
                 max-width: 300px;
             }
         }
@@ -640,8 +688,8 @@
         // ============================================
         // CONFIGURATION - Hardcoded URLs
         // ============================================
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTs7DBoNo_gEWEO2nmk8D7pPcjWy7UNDWA8T9gHvCbmewtiAKNI5_k8joQcKRcK7Usb4SLyUF6SYPr_/pub?gid=0&single=true&output=csv';
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRBl1jdXpNMz2IQyJCYLLJcB55njkmH0XRE8jAbmUlFBGDRJfYG9VFnndDbNoPK9Tbqw/exec';
+        const CSV_URL = 'YOUR_WEB_APP_URL_HERE';
+        const GOOGLE_SCRIPT_URL = 'YOUR_WEB_APP_URL_HERE';
 
         // ============================================
         // Global variables
