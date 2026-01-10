@@ -252,13 +252,16 @@ function getMotivation(idx = null) {
 
     // Figure out month labels for each index
     let monthLabels = Array(10).fill('');
+    // correct up to here
     console.log(brodyDays);
     for(let i=0; i<10; ++i){
       const d = new Date(brodyDays[i]);
+      console.log(d);
       if(i === 0) {
         monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
       }else{
         const prev = new Date(brodyDays[i-1]);
+        console.log(prev);
         if(d.getMonth() !== prev.getMonth()){
           monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
         }
