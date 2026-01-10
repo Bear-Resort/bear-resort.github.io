@@ -261,7 +261,7 @@ function getMotivation(idx = null) {
       if(i === 0) {
         monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
       } else {1
-        if(d.getDay() === 1){
+        if(d.getDate() === 1){
           monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
         }
       }
