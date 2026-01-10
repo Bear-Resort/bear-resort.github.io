@@ -269,6 +269,7 @@ function getMotivation(idx = null) {
     const todayKey = getBrodyDayKey(new Date());
     // Render: 10 blocks horizontally, month label on top of relevant blocks
     for(let i=0; i<10; ++i){
+        const dayKey = brodyDays[i];
         const [year, month, day] = brodyDays[i].split('-').map(Number);
         const d = new Date(year, month - 1, day); 
         const checked = checkedIn.includes(dayKey);
