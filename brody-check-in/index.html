@@ -255,7 +255,9 @@ function getMotivation(idx = null) {
     // correct up to here
     console.log(brodyDays);
     for(let i=0; i<10; ++i){
-      const d = new Date(brodyDays[i]);
+    //   const d = new Date(brodyDays[i]);
+    const [year, month, day] = brodyDays[i].split('-').map(Number);
+const d = new Date(year, month - 1, day); // month is 0-based!
       console.log(d);
       if(i === 0) {
         monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
