@@ -1,0 +1,383 @@
+---
+title: "Brody Check-in"
+title-chn: "Brody签到器"
+---
+
+<style>
+body {
+  background: var(--background-color);
+  margin: 0; padding: 0;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.container {
+  background: var(--background-light);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  padding: 32px 24px 22px 24px;
+  margin-top: 32px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+h1 {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+#checkin-btn {
+  margin: 12px 0;
+  font-size: 1.15rem;
+  padding: 14px 32px;
+  /* background: #3475fa; */
+  /* color: #fff; */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+#checkin-btn:disabled {
+  /* background: #a3b6db; */
+  /* color: #eee; */
+  cursor: not-allowed;
+}
+#msg {
+  margin: 10px 0 20px 0;
+  color: #c44b26;
+  font-size: .98rem;
+  min-height: 20px;
+}
+.streak-calendar-wrap {
+  width: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  margin-top: 12px;
+}
+.streak-calendar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  min-height: 80px;
+  margin-bottom: 10px;
+}
+@media (max-width: 550px) {
+  .container {width: 99vw; min-width: 0;}
+  .streak-day {width: 38px; height: 33px; font-size: 0.81em;}
+  .streak-day-stack {min-width: 38px;}
+  .month-label {font-size: 0.74em;}
+  .streak-calendar {gap: 6px;}
+}
+.streak-day-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  min-width: 64px;
+}
+.month-label {
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--dark-secondary);
+  text-align: center;
+  margin-bottom: 3px;
+  letter-spacing: 1.5px;
+  margin-top: -2px;
+  min-height: 22px;
+  /* keep some space even if no month label */
+}
+.streak-day {
+  width: 64px; height: 54px;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #e1e1e1;
+  color: #444;
+  font-weight: bold;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+  font-size: 1rem;
+  transition: box-shadow 0.18s;
+  margin: 0 auto;
+}
+.streak-day .day-week {
+  font-size: 0.97em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.streak-day .day-num {
+  font-size: 1.12em;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0;
+}
+.streak-day.checked {
+  background: #00a84c;
+  color: #fff;
+  box-shadow: 0 0 0 2px #23b25e;
+}
+.streak-day.checked .day-week,
+.streak-day.checked .day-num {
+  color: #fff;
+}
+.streak-day.today {
+  border: 2.5px solid #40acff;
+  box-shadow: 0 0 6px rgba(64,123,255,0.15);
+  background: #7fccf6;
+}
+.streak-day.checked.today {
+  background: #38905f;
+}
+.motivation {
+  width: 100%;
+  margin: 22px 0 0 0;
+  font-size: 1.09em;
+  color: #31745d;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+@media (max-width: 550px) {
+  .container {width: 99vw; min-width: 0;}
+  .streak-day {width: 38px; height: 33px; font-size: 0.81em;}
+  .streak-day-stack {min-width: 38px;}
+  .month-label {font-size: 0.74em;}
+}
+</style>
+</head>
+
+<div class="container">
+  <h1>Check-in @ Brody</h1>
+  <button id="checkin-btn" disabled>Check-in</button>
+  <div id="msg"></div>
+  <div class="streak-calendar-wrap">
+    <div class="streak-calendar" id="streak-calendar"></div>
+  </div>
+  <div class="motivation" id="motivation"></div>
+</div>
+
+<script>
+// Motivational sentences
+const MOTIVATIONS = [
+  "Age of 20s is the age for work hard.",
+  "Consistency breeds success.",
+  "Every day counts!",
+  "Your future is built today.",
+  "Small steps, big impact.",
+  "Keep pushing forward.",
+  "Thrive at twenty and beyond.",
+  "Momentum is everything.",
+  "Believe in your progress.",
+  "The journey is the reward."
+];
+function getMotivation(idx = null) {
+  // Change sentence a bit each minutes
+  if(idx==null){
+    idx = new Date().getMinutes() % MOTIVATIONS.length;
+  }
+  return MOTIVATIONS[idx];
+}
+
+// --------------- App logic ---------------
+(function() {
+  const BRODY_LAT = 39.32850;
+  const BRODY_LON = -76.61922;
+  const BRODY_RADIUS = 15;
+  const CHECKIN_STORAGE_KEY = 'brody_checkin_dates';
+
+  const btn = document.getElementById('checkin-btn');
+  const msgDiv = document.getElementById('msg');
+  const streakDiv = document.getElementById('streak-calendar');
+  const motivationDiv = document.getElementById('motivation');
+
+  function degreesToRadians(deg) { return deg * Math.PI / 180; }
+  function haversine(lat1, lon1, lat2, lon2) {
+    const earthRadius = 6371000;
+    const dLat = degreesToRadians(lat2 - lat1);
+    const dLon = degreesToRadians(lon2 - lon1);
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return earthRadius * c;
+  }
+  function getBrodyDayKey(date) {
+    let d = new Date(date);
+    if (d.getHours() < 2) d.setDate(d.getDate() - 1);
+    return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0');
+  }
+  function getPastBrodyDays(today = new Date()) {
+    let days = [];
+    for (let i=9; i>=0; i--) {
+      let d = new Date(today);
+      d.setDate(d.getDate() - i);
+      days.push(getBrodyDayKey(d));
+    }
+    return days;
+  }
+  function getCheckedInDates() {
+    let list = [];
+    try {
+      let raw = localStorage.getItem(CHECKIN_STORAGE_KEY);
+      if (raw) list = JSON.parse(raw);
+    } catch (e) {}
+    return Array.isArray(list) ? list : [];
+  }
+  function addCheckedInDate(dayKey) {
+    let data = getCheckedInDates();
+    if (!data.includes(dayKey)) {
+      data.push(dayKey);
+      localStorage.setItem(CHECKIN_STORAGE_KEY, JSON.stringify(data));
+    }
+  }
+  // ---- Streak Calendar Drawing ----
+  function drawStreakCalendar() {
+    const checkedIn = getCheckedInDates();
+    const brodyDays = getPastBrodyDays();
+    streakDiv.innerHTML = '';
+
+    // Figure out month labels for each index
+    let monthLabels = Array(10).fill('');
+    for(let i=0; i<10; ++i){
+      const d = new Date(brodyDays[i]);
+      if(i === 0) {
+        monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
+      }else{
+        const prev = new Date(brodyDays[i-1]);
+        if(d.getMonth() !== prev.getMonth()){
+          monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
+        }
+      }
+    }
+    const todayKey = getBrodyDayKey(new Date());
+    // Render: 10 blocks horizontally, month label on top of relevant blocks
+    for(let i=0; i<10; ++i){
+      const dayKey = brodyDays[i];
+      const d = new Date(dayKey);
+      const checked = checkedIn.includes(dayKey);
+      const isToday = dayKey === todayKey;
+
+      let stack = document.createElement('div');
+      stack.className = 'streak-day-stack';
+      // Month label
+      let mLabel = document.createElement('div');
+      mLabel.className = 'month-label';
+      mLabel.innerHTML = monthLabels[i]? monthLabels[i] : "&nbsp;";
+      stack.appendChild(mLabel);
+      // Day square
+      let cell = document.createElement('div');
+      cell.className = 'streak-day' +
+        (checked ? ' checked' : '') +
+        (isToday ? ' today' : '');
+
+      let weekSpan = document.createElement('span');
+      weekSpan.className = 'day-week';
+      weekSpan.textContent = d.toLocaleDateString(undefined, { weekday:'short' });
+      let daySpan = document.createElement('span');
+      daySpan.className = 'day-num';
+      daySpan.textContent = d.getDate();
+      cell.appendChild(weekSpan);
+      cell.appendChild(daySpan);
+
+      stack.appendChild(cell);
+      streakDiv.appendChild(stack);
+    }
+  }
+
+  function isOperatingNow(date=new Date()){
+    let hr = date.getHours(), min = date.getMinutes();
+    let t = hr * 60 + min;
+    return !(t >= 120 && t < 450); // 2:00am to 7:30am
+  }
+  function alreadyCheckedInToday() {
+    let checkedDates = getCheckedInDates();
+    let todayKey = getBrodyDayKey(new Date());
+    return checkedDates.includes(todayKey);
+  }
+  let userLocation = undefined;
+  let locationPermissionDenied = false;
+  let userInRange = false;
+
+  function updateButtonAndMsg() {
+    let now = new Date();
+    if (!isOperatingNow(now)) {
+      btn.disabled = true;
+      msgDiv.textContent = "Brody is not operating right now";
+      return;
+    }
+    if (alreadyCheckedInToday()) {
+      btn.disabled = true;
+      msgDiv.textContent = "You have already checked in";
+      return;
+    }
+    if (locationPermissionDenied) {
+      btn.disabled = true;
+      msgDiv.textContent = "Location permission denied. Please allow location access.";
+      return;
+    }
+    if (typeof userLocation === 'undefined') {
+      btn.disabled = true;
+      msgDiv.textContent = "Waiting for location...";
+      return;
+    }
+    if (!userInRange) {
+      btn.disabled = true;
+      msgDiv.textContent = "You are not in range for check-in.";
+      return;
+    }
+    btn.disabled = false;
+    msgDiv.textContent = "";
+  }
+  function checkLocationRange(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    userLocation = {lat, lon};
+    let dist = haversine(lat, lon, BRODY_LAT, BRODY_LON);
+    userInRange = dist <= BRODY_RADIUS;
+    updateButtonAndMsg();
+  }
+  function locationError(err) {
+    locationPermissionDenied = true;
+    userLocation = undefined;
+    userInRange = false;
+    updateButtonAndMsg();
+  }
+  function obtainLocation() {
+    if (!navigator.geolocation) {
+      locationPermissionDenied = true;
+      updateButtonAndMsg();
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      checkLocationRange,
+      locationError,
+      { enableHighAccuracy:true, timeout:10000, maximumAge:60000 }
+    );
+  }
+  function tryUpdateLocationLoop() {
+    obtainLocation();
+    setInterval(() => obtainLocation(), 180000);
+  }
+  btn.addEventListener('click', function() {
+    if (btn.disabled) return;
+    let dayKey = getBrodyDayKey(new Date());
+    addCheckedInDate(dayKey);
+    drawStreakCalendar();
+    updateButtonAndMsg();
+    msgDiv.textContent = "Checked in! Have a great day!";
+    btn.disabled = true;
+  });
+  drawStreakCalendar();
+  obtainLocation();
+  tryUpdateLocationLoop();
+  setInterval(()=>updateButtonAndMsg(), 60000);
+  updateButtonAndMsg();
+
+  // Motivational sentence
+  motivationDiv.textContent = getMotivation();
+})();
+</script>
