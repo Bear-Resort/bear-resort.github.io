@@ -255,16 +255,13 @@ function getMotivation(idx = null) {
     // correct up to here
     console.log(brodyDays);
     for(let i=0; i<10; ++i){
-    //   const d = new Date(brodyDays[i]);
     const [year, month, day] = brodyDays[i].split('-').map(Number);
-const d = new Date(year, month - 1, day); // month is 0-based!
+    const d = new Date(year, month - 1, day); // month is 0-based!
       console.log(d);
       if(i === 0) {
         monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
-      }else{
-        const prev = new Date(brodyDays[i-1]);
-        console.log(prev);
-        if(d.getMonth() !== prev.getMonth()){
+      } else {1
+        if(d.getDay() === 1){
           monthLabels[i] = d.toLocaleString(undefined, {month:'short'}).toUpperCase();
         }
       }
@@ -272,10 +269,10 @@ const d = new Date(year, month - 1, day); // month is 0-based!
     const todayKey = getBrodyDayKey(new Date());
     // Render: 10 blocks horizontally, month label on top of relevant blocks
     for(let i=0; i<10; ++i){
-      const dayKey = brodyDays[i];
-      const d = new Date(dayKey);
-      const checked = checkedIn.includes(dayKey);
-      const isToday = dayKey === todayKey;
+        const [year, month, day] = brodyDays[i].split('-').map(Number);
+        const d = new Date(year, month - 1, day); 
+        const checked = checkedIn.includes(dayKey);
+        const isToday = dayKey === todayKey;
 
       let stack = document.createElement('div');
       stack.className = 'streak-day-stack';
