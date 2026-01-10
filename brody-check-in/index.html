@@ -151,8 +151,8 @@ h1 {
 </head>
 
 <div class="container">
-  <h1>Check-in @ Brody</h1>
-  <button id="checkin-btn" disabled>Check-in</button>
+  <h1><span class="eng">Check-in @ Brody</span><span class="chn">Brody签到器</span></h1>
+  <button id="checkin-btn" disabled><span class="eng">Check-in</span><span class="chn">签到</span></button>
   <div id="msg"></div>
   <div class="streak-calendar-wrap">
     <div class="streak-calendar" id="streak-calendar"></div>
@@ -160,33 +160,43 @@ h1 {
   <div class="motivation" id="motivation"></div>
 </div>
 
-<script>
+<script type="module">
+
+    import { updateMyLanguage } from '/assets/js/lang.js';
 // Motivational sentences
 const MOTIVATIONS = [
   "Age of 20s is the age for work hard.",
   "Consistency breeds success.",
-  "Every day counts!",
-  "Your future is built today.",
+  "Today in Brody counts!",
   "Small steps, big impact.",
-  "Keep pushing forward.",
+  "Keep pushing forward!",
   "Thrive at twenty and beyond.",
   "Momentum is everything.",
-  "Believe in your progress.",
-  "The journey is the reward."
+  "Attention is all you need."
+];
+const MOTIVATIONS_CHN = [
+  "二十岁正是奋斗的年龄.",
+  "坚持才能成功.",
+  "今天在Brody才算数!",
+  "每天一小步, 堆积成大步.",
+  "再卷一会儿!",
+  "二十岁卷到老.",
+  "动量皆一切.",
+  "专注便是你所需."
 ];
 function getMotivation(idx = null) {
   // Change sentence a bit each minutes
   if(idx==null){
     idx = new Date().getMinutes() % MOTIVATIONS.length;
   }
-  return MOTIVATIONS[idx];
+  return {"eng": MOTIVATIONS[idx], "chn": MOTIVATIONS_CHN[idx]};
 }
 
 // --------------- App logic ---------------
 (function() {
   const BRODY_LAT = 39.32850;
   const BRODY_LON = -76.61922;
-  const BRODY_RADIUS = 15;
+  const BRODY_RADIUS = 25;
   const CHECKIN_STORAGE_KEY = 'brody_checkin_dates';
 
   const btn = document.getElementById('checkin-btn');
@@ -306,12 +316,14 @@ function getMotivation(idx = null) {
     let now = new Date();
     if (!isOperatingNow(now)) {
       btn.disabled = true;
-      msgDiv.textContent = "Brody is not operating right now";
+      msgDiv.innerHTML = `<span class="eng">Brody is not operating right now</span><span class="chn">Brody目前不在开放</span>`;
+      updateMyLanguage();
       return;
     }
     if (alreadyCheckedInToday()) {
       btn.disabled = true;
-      msgDiv.textContent = "You have already checked in";
+      msgDiv.innerHTML = `<span class="eng">You have already checked in</span><span class="chn">你已签到</span>`;
+      updateMyLanguage();
       return;
     }
     if (locationPermissionDenied) {
@@ -321,12 +333,14 @@ function getMotivation(idx = null) {
     }
     if (typeof userLocation === 'undefined') {
       btn.disabled = true;
-      msgDiv.textContent = "Waiting for location...";
+      msgDiv.innerHTML = `<span class="eng">Waiting for location...</span><span class="chn">等候位置权限中...</span>`;
+      updateMyLanguage();
       return;
     }
     if (!userInRange) {
       btn.disabled = true;
-      msgDiv.textContent = "You are not in range for check-in.";
+      msgDiv.innerHTML = `<span class="eng">You are not in range for check-in.</span><span class="chn">你不在签到位置.</span>`;
+      updateMyLanguage();
       return;
     }
     btn.disabled = false;
@@ -368,8 +382,9 @@ function getMotivation(idx = null) {
     addCheckedInDate(dayKey);
     drawStreakCalendar();
     updateButtonAndMsg();
-    msgDiv.textContent = "Checked in! Have a great day!";
     btn.disabled = true;
+    msgDiv.innerHTML = `<span class="eng">Checked in! Have fun in Brody.</span><span class="chn">签到成功！在Brody卷得开心.</span>`;
+    updateMyLanguage();
   });
   drawStreakCalendar();
   obtainLocation();
@@ -378,6 +393,8 @@ function getMotivation(idx = null) {
   updateButtonAndMsg();
 
   // Motivational sentence
-  motivationDiv.textContent = getMotivation();
+  const motivation = getMotivation();
+  motivationDiv.textContent = `<span class="eng">${motivation.eng}</span><span class="chn">${motivation.chn}</span>`;
+  updateMyLanguage();
 })();
 </script>
