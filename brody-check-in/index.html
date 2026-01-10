@@ -252,6 +252,7 @@ function getMotivation(idx = null) {
 
     // Figure out month labels for each index
     let monthLabels = Array(10).fill('');
+    console.log(brodyDays);
     for(let i=0; i<10; ++i){
       const d = new Date(brodyDays[i]);
       if(i === 0) {
