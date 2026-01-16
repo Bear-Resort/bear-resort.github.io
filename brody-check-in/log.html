@@ -3,16 +3,15 @@ title: "Brody Time Logger"
 ---
 
 <style>
-/* [Original style, unchanged for brevity, same as your code above] */
 body {
-  background: var(--background-color);
+  background: var(--background-color, #f2fafb);
   margin: 0; padding: 0;
   min-height: 100vh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
 }
 .container {
-  background: var(--background-light);
+  background: var(--background-light, #fff);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.08);
   padding: 32px 24px 22px 24px;
@@ -33,9 +32,13 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  background: #3475fa;
+  color: #fff;
   transition: background 0.2s;
 }
 #checkin-btn:disabled {
+  background: #a3b6db;
+  color: #eee;
   cursor: not-allowed;
 }
 #msg {
@@ -44,38 +47,150 @@ h1 {
   font-size: .98rem;
   min-height: 20px;
 }
-.streak-calendar-wrap {
-  width: 100%;
-  display: flex; flex-direction: column; align-items: center;
-  margin-top: 12px;
+#timer {
+  margin: 16px 0 12px 0;
+  font-size: 1.2em;
+  color: #036b30;
+  font-weight: bold;
+  min-height: 24px;
 }
-.streak-calendar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 8px;
+.motivation {
   width: 100%;
-  min-height: 80px;
-  margin-bottom: 10px;
+  margin-top: 16px;
+  font-size: 1.06em;
+  color: #498f76;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: center;
 }
-/* ... retain all your original CSS for calendar/motivation ... */
+/* Custom popup */
+#alert-bg {
+  display: none; position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.18); z-index: 9999;
+  align-items: center; justify-content: center;
+}
+#alert-box {
+  background: #fff; border-radius: 14px; padding: 36px 28px 22px 28px;
+  font-size: 1.07em;
+  max-width: 98vw; min-width: 260px; max-width: 410px;
+  box-shadow: 0 8px 44px rgba(17,25,51,0.18);
+  position: relative;
+  text-align: left;
+}
+#alert-box button {
+  margin-top: 22px; padding: 9px 40px;
+  background: #3071ed; color: #fff;
+  border: none; font-weight: bold;
+  border-radius: 7px; font-size: 1em; cursor: pointer;
+}
+#alert-title {
+  font-size: 1.15em; font-weight: bold; color: #207030; margin-bottom: 12px;
+}
+@media (max-width: 450px) {
+  #alert-box {padding: 18px 8vw;}
+}
 </style>
 
 <div class="container">
   <h1>Brody Stay Logger</h1>
   <button id="checkin-btn" disabled>Start</button>
   <div id="msg"></div>
-  <div class="streak-calendar-wrap">
-    <div class="streak-calendar" id="streak-calendar"></div>
-  </div>
+  <div id="timer"></div>
   <div class="motivation" id="motivation"></div>
 </div>
 
-<!-- Language switcher/other stuff if you have, not included for brevity -->
+<!-- Custom alert box -->
+<div id="alert-bg">
+  <div id="alert-box">
+    <div id="alert-title"></div>
+    <div id="alert-content"></div>
+    <button id="alert-ok">OK</button>
+  </div>
+</div>
 
 <script type="module">
-// --- [ MOTIVATION LINES ] ---
+// --- [ Custom alert as html dialog ] ---
+function customAlert(html, title="Brody Session Ended") {
+  const bg = document.getElementById('alert-bg');
+  const box = document.getElementById('alert-box');
+  const ok = document.getElementById('alert-ok');
+  document.getElementById('alert-title').innerHTML = title;
+  document.getElementById('alert-content').innerHTML = html;
+  bg.style.display = 'flex';
+  function close() {
+    bg.style.display = 'none';
+    ok.removeEventListener('click', close);
+  }
+  ok.focus();
+  ok.addEventListener('click', close);
+}
+
+// -------------------------------
+// CONSTANTS & UTILS
+// -------------------------------
+const BRODY_LAT = 39.32850;
+const BRODY_LON = -76.61922;
+const BRODY_RADIUS = 25; // meters
+
+const CHECKIN_DAYS_KEY = 'brody_checkin_dates';
+const SESSION_KEY = 'brody_time_session';
+
+function degreesToRadians(deg) { return deg * Math.PI / 180; }
+function haversine(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const dLat = degreesToRadians(lat2 - lat1);
+  const dLon = degreesToRadians(lon2 - lon1);
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+// For Brody calendar/check-in, dayKey is always in local time, for user's time zone.
+// If current hour is 0 or 1 (midnight to 2am, exclusive), use yesterday as the day
+function getBrodyDayKey(date) {
+  let d = new Date(date);
+  let hr = d.getHours();
+  if (hr < 2) d.setDate(d.getDate() - 1);
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0');
+}
+function prettyDuration(ms) {
+  if (!ms || ms < 60000) return '0 min';
+  let s = Math.floor(ms/1000);
+  let h = Math.floor(s/3600); s = s%3600;
+  let m = Math.floor(s/60); s = s%60;
+  let x = "";
+  if (h) x += `${h} hr `;
+  if (m || h) x += `${m} min `;
+  x += `${s} sec`;
+  return x.trim();
+}
+function getDisplayDate(date) {
+  if (!date) return '-';
+  date = new Date(date);
+  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+}
+
+// For check-in calendar
+function getCheckedInDates() {
+  // Returns Array of keys like ["2023-11-29", ...]
+  try {
+    let raw = localStorage.getItem(CHECKIN_DAYS_KEY);
+    if (raw && typeof raw === "string") {
+      let arr = JSON.parse(raw);
+      if (Array.isArray(arr)) return arr;
+    }
+  } catch (e) {}
+  return [];
+}
+function addCheckedInDate(dayKey) {
+  let arr = getCheckedInDates();
+  if (!arr.includes(dayKey)) arr.push(dayKey);
+  localStorage.setItem(CHECKIN_DAYS_KEY, JSON.stringify(arr));
+}
+
+// --- MOTIVATION
 const MOTIVATIONS = [
   "Consistency breeds success.",
   "Today in Brody counts!",
@@ -90,146 +205,30 @@ function getMotivation(idx = null) {
   if (idx == null) idx = new Date().getMinutes() % MOTIVATIONS.length;
   return MOTIVATIONS[idx];
 }
-// --- [ LOCATION & BRODY CONSTANTS ] ---
-const BRODY_LAT = 39.32850;
-const BRODY_LON = -76.61922;
-const BRODY_RADIUS = 25; // meters
 
-const STORAGE_PREFIX = 'brody_'; // to avoid collision with other keys
-const CHECKIN_KEY = STORAGE_PREFIX + 'checkin_dates';
-const SESSION_KEY = STORAGE_PREFIX + 'session'; // stores {startTime, validTime, dayKey}
-
-// --- [ UTILS ] ---
-function degreesToRadians(deg) { return deg * Math.PI / 180; }
-function haversine(lat1, lon1, lat2, lon2) {
-  // Returns distance in meters
-  const R = 6371000; // m
-  const dLat = degreesToRadians(lat2 - lat1);
-  const dLon = degreesToRadians(lon2 - lon1);
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}
-// For consistency, use local time for dayKey
-function getBrodyDayKey(date) {
-  let d = new Date(date);
-  let hr = d.getHours();
-  // If current hour is 0 or 1 (midnight to 2am, exclusive) use yesterday
-  if (hr < 2) d.setDate(d.getDate() - 1);
-  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0');
-}
-function getDisplayDate(date) {
-  // Local time, formatted
-  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-}
-function parseDateSafe(val) { return val ? new Date(val) : null; }
-
-function prettyDuration(ms) {
-  if (!ms || ms < 60000) return '0 min';
-  let s = Math.floor(ms/1000);
-  let h = Math.floor(s/3600); s = s%3600;
-  let m = Math.floor(s/60);
-  let str = `${m} min`;
-  if (h) str = `${h} hr ` + str;
-  return str;
-}
-
-// --- [ STREAK CALENDAR - you can extend/adapt this to show total time if desired] ---
-function getPastBrodyDays(today = new Date()) {
-  let days = [];
-  for (let i=9; i>=0; i--) {
-    let d = new Date(today);
-    d.setDate(d.getDate() - i);
-    days.push(getBrodyDayKey(d));
-  }
-  return days;
-}
-function getCheckedInDates() {
-  let map = {};
-  try {
-    let raw = localStorage.getItem(CHECKIN_KEY);
-    if (raw && typeof raw === "string") map = JSON.parse(raw);
-  } catch (e) {}
-  return map && typeof map === "object" ? map : {};
-}
-function addCheckedInDate(dayKey, ms, start, end) {
-  // ms: milliseconds duration, start/end: timestamp string
-  const checked = getCheckedInDates();
-  checked[dayKey] = {
-    minutes: Math.round((ms||1)/60000),
-    start: start ? new Date(start).toISOString() : null,
-    end: end ? new Date(end).toISOString() : null
-  };
-  localStorage.setItem(CHECKIN_KEY, JSON.stringify(checked));
-}
-function drawStreakCalendar() {
-  const checkedIn = getCheckedInDates();
-  const brodyDays = getPastBrodyDays();
-  let div = document.getElementById('streak-calendar');
-  div.innerHTML = '';
-  // Month labels for each
-  let monthLabels = Array(10).fill('');
-  for(let i=0; i<10; ++i){
-    const [y, m, d] = brodyDays[i].split('-').map(Number);
-    const dd = new Date(y, m-1, d);
-    if(i===0 || dd.getDate()===1) {
-      monthLabels[i] = dd.toLocaleString(undefined, {month:'short'}).toUpperCase();
-    }
-  }
-  const todayKey = getBrodyDayKey(new Date());
-  for(let i=0; i<10; ++i){
-    const dayKey = brodyDays[i];
-    const [y,m,d] = dayKey.split('-').map(Number);
-    const dd = new Date(y, m-1, d);
-    const info = checkedIn[dayKey];
-    const isToday = dayKey===todayKey;
-    let stack = document.createElement('div');
-    stack.className = 'streak-day-stack';
-    let mLabel = document.createElement('div');
-    mLabel.className = 'month-label';
-    mLabel.innerHTML = monthLabels[i]? monthLabels[i] : "&nbsp;";
-    stack.appendChild(mLabel);
-    let cell = document.createElement('div');
-    cell.className = 'streak-day' +
-      (info ? ' checked' : '') + (isToday ? ' today' : '');
-
-    let weekSpan = document.createElement('span');
-    weekSpan.className = 'day-week';
-    weekSpan.textContent = dd.toLocaleDateString(undefined, { weekday:'short' });
-    let daySpan = document.createElement('span');
-    daySpan.className = 'day-num';
-    daySpan.textContent = dd.getDate();
-    cell.appendChild(weekSpan);
-    cell.appendChild(daySpan);
-    // minutes
-    if (info && info.minutes>0) {
-      let minDiv = document.createElement('div');
-      minDiv.style.fontSize = '0.98em';
-      minDiv.style.marginTop = '2px';
-      minDiv.textContent = `${info.minutes} min`;
-      cell.appendChild(minDiv);
-    }
-
-    stack.appendChild(cell);
-    div.appendChild(stack);
-  }
-}
-
-// --- [ TIME WINDOW CONTROL ] ---
+// Brody opening hours NOT BETWEEN 2AM–7:30AM
 function isOperatingNow(date=new Date()){
   let hr = date.getHours(), min = date.getMinutes();
   let t = hr * 60 + min;
-  return !(t >= 120 && t < 450); // 2:00am to 7:30am
+  return !(t >= 120 && t < 450); // 2:00am to 7:30am excluded
 }
-// --- [ MAIN LOGIC ] ---
-let userLocation = undefined, locationErr = false, userInRange = false;
-let locationTimer = null;
-let periodicTimer = null;
-let session = null; // {startTime, validTime, dayKey}
 
-// To handle localstorage get/set for session, so everything is robust
+// Only 1 check-in per day
+function alreadyCheckedInForToday() {
+  let dates = getCheckedInDates();
+  let todayKey = getBrodyDayKey(new Date());
+  return dates.includes(todayKey);
+}
+
+// -------------------------------
+// STATE VARS
+// -------------------------------
+let userLocation = undefined, locationErr = false, userInRange = false;
+let session = null;
+let periodicTimer = null;
+let clockTimer = null;
+
+// SESSION = { startTime (timestamp), validTime (timestamp), dayKey }
 function getSession() {
   try {
     const raw = localStorage.getItem(SESSION_KEY);
@@ -250,7 +249,6 @@ function clearSession() {
   localStorage.removeItem(SESSION_KEY);
 }
 
-// Location check and update logic
 function updateLocationState(position) {
   const lat = position.coords.latitude, lon = position.coords.longitude;
   userLocation = {lat, lon};
@@ -277,30 +275,28 @@ function obtainLocation() {
   );
 }
 
-// --- [ SESSION LOGGING ] ---
-// Periodically called (every 15min or on events), as long as session is open
+// -------- PERIODIC SESSION CONTROL --------
+// Called every 15min or on leave/resume - keep session robust
 function periodicSessionTick(force_now=false) {
   const now = new Date();
   if (!isOperatingNow(now)) {
-    // Off hours, terminate session now!
     if (session) terminateSession(false, "Brody is closed, session auto-terminated.");
     return;
   }
-  // Location check (async, but we can use last known in userLocation)
+  // If out of Brody, force session termination
   if (!userLocation || !userInRange) {
-    // Out of location, terminate session (don't update validTime)
     if (session) terminateSession(false, "Moved out of Brody, session terminated.");
     return;
   }
   // Update validTime if still in range
   if (session) {
-    let newValid = now.getTime(); // in milliseconds
+    let newValid = now.getTime();
     session.validTime = newValid;
     setSession(session);
-    // (No notification popup until user leaves, unless forced: see terminateSession)
   }
 }
-// --- [ SESSION HANDLERS ] ---
+
+// -------- SESSION LOGIC --------
 function startSession() {
   const now = new Date();
   const startMs = now.getTime();
@@ -311,125 +307,144 @@ function startSession() {
     dayKey: dayKey
   };
   setSession(session);
-  updateUI();
-  // Set periodic timer (every 15min), also check on browser resume/refresh/etc
+  // Check in for Brody on this day immediately
+  addCheckedInDate(dayKey);
+
+  // Start periodic timers
   if (periodicTimer) clearInterval(periodicTimer);
   periodicTimer = setInterval(periodicSessionTick, 15*60*1000); // 15min
+  if (clockTimer) clearInterval(clockTimer);
+  clockTimer = setInterval(updateClock, 1000); // update seconds
+
+  updateUI();
+  updateClock();
 }
+
 function terminateSession(userAction=true, popupMsg) {
   if (!session) return;
   const now = new Date();
-  // If in Brody, update validTime to now (for user-initiated leave)
+  // If leaving and still in Brody, update validTime to now
   let validTime = session.validTime;
   let leaveTime = now.getTime();
-  if (userAction && userInRange) {
-    validTime = leaveTime;
-  }
-  // Compute time stayed
-  const startTime = session.startTime;
-  let timeStayedMs = Math.max(validTime - startTime, 0);
-  // Only log if spent at least 1 min inside
-  if (timeStayedMs >= 60000) {
-    // Save checkin info for dayKey
-    addCheckedInDate(session.dayKey, timeStayedMs, new Date(startTime), new Date(validTime));
-  }
-  drawStreakCalendar();
-  // Popup dialog/alert
-  let msg = "";
-  if (timeStayedMs < 60000) {
-    msg = "You spent less than 1 min in Brody.";
-  } else {
-    msg = `You stayed in Brody for: ${prettyDuration(timeStayedMs)}\nStart: ${getDisplayDate(new Date(startTime))}\nEnd: ${getDisplayDate(new Date(validTime))}`;
-  }
-  if (popupMsg) {
-    msg = popupMsg + "\n\n" + msg;
-  }
-  alert(msg);
+  if (userAction && userInRange) validTime = leaveTime;
+  let startTime = session.startTime;
+  let msStayed = Math.max(validTime - startTime, 0);
 
+  // Save check-in day
+  addCheckedInDate(session.dayKey);
+
+  // Prepare popup
+  let s = `<div>
+    <div><strong>Start:</strong> ${getDisplayDate(new Date(startTime))}</div>
+    <div><strong>Final Valid Time:</strong> ${getDisplayDate(new Date(validTime))}</div>
+    <div style="margin:8px 0 10px 0;"><strong>Elapsed:</strong> ${prettyDuration(msStayed)}</div>
+  </div>`;
+  if (popupMsg) {
+    s = `<div>${popupMsg}</div><hr style="margin:15px 0;">` + s;
+  }
+  customAlert(s);
+
+  // Stop timers
   clearSession();
   session = null;
   if (periodicTimer) clearInterval(periodicTimer);
   periodicTimer = null;
+  if (clockTimer) clearInterval(clockTimer);
+  clockTimer = null;
   updateUI();
+  updateClock();
 }
 
-function alreadyHaveSession() {
-  return !!getSession();
+// How long you've "legitimately" stayed (between start and last valid time)
+// Returns formatted text or "" if no session
+function getSessionElapsedString() {
+  if (!session) return "";
+  let delta = Math.max(session.validTime - session.startTime, 0);
+  return `You have stayed in Brody for ${prettyDuration(delta)}.`;
 }
-// --- [ UI ] ---
+
+function updateClock() {
+  let timerDiv = document.getElementById('timer');
+  if (session) {
+    timerDiv.textContent = getSessionElapsedString();
+  } else {
+    timerDiv.textContent = "";
+  }
+}
+
+// --- UI LOGIC
 function updateUI() {
   const btn = document.getElementById('checkin-btn');
   const msg = document.getElementById('msg');
+  session = getSession();
 
   const now = new Date();
   if (!isOperatingNow(now)) {
-    // Not during Brody open hours: kill session if ongoing
     btn.disabled = true;
-    btn.textContent = 'Start';
-    msg.textContent = "Brody is not open between 2:00-7:30AM.";
-    if(session) terminateSession(false,"Brody is closed, session auto-terminated.");
+    btn.textContent = "Start";
+    msg.textContent = "Brody is not open between 2:00–7:30AM.";
+    // No session allowed, terminate any active
+    if (session) terminateSession(false,"Brody is closed, session auto-terminated.");
+    updateClock();
     return;
   }
   if (locationErr) {
     btn.disabled = true;
-    btn.textContent = 'Start';
+    btn.textContent = "Start";
     msg.textContent = "Location permission denied or unavailable.";
+    updateClock();
     return;
   }
   if (typeof userLocation === 'undefined') {
     btn.disabled = true;
-    btn.textContent = 'Start';
+    btn.textContent = "Start";
     msg.textContent = "Waiting for location...";
+    updateClock();
     return;
   }
   if (!userInRange) {
     btn.disabled = true;
     btn.textContent = session ? "Leave" : "Start";
-    msg.textContent = "You are not within Brody range.";
+    msg.textContent = "You are not within Brody's range.";
+    updateClock();
     return;
   }
-
-  // Are we IN a session?
-  session = getSession();
+  // In Brody and can interact
   if (session) {
     btn.disabled = false;
     btn.textContent = "Leave";
-    msg.textContent = "Click leave when you're done!";
+    msg.textContent = "Click Leave to end your session!";
+    updateClock();
   } else {
-    // If already checked in today, prevent duplicate session
-    const todayKey = getBrodyDayKey(now);
-    const checkedIn = getCheckedInDates();
-    if (checkedIn && checkedIn[todayKey]) {
-      btn.textContent = "Start";
-      btn.disabled = true;
-      msg.textContent = "You have already logged a session today.";
-      return;
-    }
+    // Only allow start if not already checked in today
+    let todayKey = getBrodyDayKey(now);
+    let already = alreadyCheckedInForToday();
     btn.textContent = "Start";
-    btn.disabled = false;
-    msg.textContent = "Ready to start session at Brody!";
+    if (already) {
+      btn.disabled = true;
+      msg.textContent = "You have already checked in today.";
+    } else {
+      btn.disabled = false;
+      msg.textContent = "Ready to start session at Brody!";
+    }
+    updateClock();
   }
 }
 
-// --- [ APP INIT ] ---
+// --- INIT APP
 function init() {
-  // initial calendar and motivation
-  drawStreakCalendar();
   document.getElementById('motivation').textContent = getMotivation();
-
-  if (locationTimer) clearInterval(locationTimer);
-  // Try get location on load, and every 3min for UI
   obtainLocation();
-  locationTimer = setInterval(obtainLocation, 180*1000);
+  setInterval(obtainLocation, 180*1000);
 
-  // On resume (every 1min), check session
+  // Every minute, do periodic checks
   setInterval(() => {
-    obtainLocation(); // trigger periodic location update as well
+    obtainLocation();
     if (session) periodicSessionTick();
     updateUI();
+    updateClock();
   }, 60000);
 
-  // On start/leave btn
   document.getElementById('checkin-btn').addEventListener('click', () => {
     session = getSession();
     if (!session) {
@@ -439,16 +454,19 @@ function init() {
     }
   });
 
-  updateUI();
-
-  // On page visibility/resume, extra check, for resilience
+  // On resume, check on visibility, for resilience
   document.addEventListener('visibilitychange', function() {
     if (!document.hidden) {
       obtainLocation();
-      if (session) periodicSessionTick(true); // forcibly check on resume
+      if (session) periodicSessionTick(true);
       updateUI();
+      updateClock();
     }
   });
+
+  updateUI();
+  updateClock();
 }
 init();
+
 </script>
