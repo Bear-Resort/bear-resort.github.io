@@ -96,7 +96,7 @@ h1 {
   <h1>Brody Stay Logger</h1>
   <button id="checkin-btn" disabled>Start</button>
   <div id="msg"></div>
-  <div id="timer"></div>
+  <div id="theTimer"></div>
   <div class="motivation" id="motivation"></div>
 </div>
 
@@ -163,7 +163,7 @@ function prettyDuration(ms) {
   let x = "";
   if (h) x += `${h} hr `;
   if (m || h) x += `${m} min `;
-  x += `${s} sec`;
+//   x += `${s} sec`;
   return x.trim();
 }
 function getDisplayDate(date) {
@@ -312,7 +312,7 @@ function startSession() {
 
   // Start periodic timers
   if (periodicTimer) clearInterval(periodicTimer);
-  periodicTimer = setInterval(periodicSessionTick, 15*60*1000); // 15min
+  periodicTimer = setInterval(periodicSessionTick, 1*60*1000); // 15min
   if (clockTimer) clearInterval(clockTimer);
   clockTimer = setInterval(updateClock, 1000); // update seconds
 
@@ -364,7 +364,7 @@ function getSessionElapsedString() {
 }
 
 function updateClock() {
-  let timerDiv = document.getElementById('timer');
+  let timerDiv = document.getElementById('theTimer');
   if (session) {
     timerDiv.textContent = getSessionElapsedString();
   } else {
