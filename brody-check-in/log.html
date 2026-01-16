@@ -374,7 +374,7 @@ function terminateSession(userAction=true, popupMsg) {
 function getSessionElapsedString() {
   if (!session) return "";
   let delta = Math.max(session.validTime - session.startTime, 0);
-  return `You have stayed in Brody for ${prettyDuration(delta)}.`;
+  return `You have stayed in ${inBrody ? "Brody" : "Annex"} for ${prettyDuration(delta)}.`;
 }
 
 function updateClock() {
