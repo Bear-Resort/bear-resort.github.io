@@ -416,6 +416,10 @@ function updateUI() {
     updateClock();
     return;
   }
+  if (userInRange && !annexInRange) {
+    inBrody = false;
+    document.getElementById("logger").innerText = "Brody Stay Logger"
+  }
   if (!userInRange && annexInRange) {
     inBrody = false;
     document.getElementById("logger").innerText = "Annex Stay Logger"
@@ -443,7 +447,7 @@ function updateUI() {
     //   msg.textContent = "You have already checked in today.";
     // } else {
       btn.disabled = false;
-      msg.textContent = "Ready to start session at Brody!";
+      msg.textContent = `Ready to start session at ${inBrody ? "Brody" : "Annex"}!`;
     // }
     updateClock();
   }
