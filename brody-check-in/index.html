@@ -199,6 +199,12 @@ function getMotivation(idx = null) {
   const BRODY_LAT = 39.32850;
   const BRODY_LON = -76.61922;
   const BRODY_RADIUS = 25;
+
+  const ANNEX_LAT = 39.33018;
+  const ANNEX_LON = -76.62224;
+  const ANNEX_RADIUS = 25;
+
+
   const CHECKIN_STORAGE_KEY = 'brody_checkin_dates';
 
   const btn = document.getElementById('checkin-btn');
@@ -317,6 +323,7 @@ function getMotivation(idx = null) {
   let userLocation = undefined;
   let locationPermissionDenied = false;
   let userInRange = false;
+  let annexInRange = false;
 
   function updateButtonAndMsg() {
     let now = new Date();
@@ -343,7 +350,7 @@ function getMotivation(idx = null) {
       updateMyLanguage();
       return;
     }
-    if (!userInRange) {
+    if (!userInRange && !annexInRange) {
       btn.disabled = true;
       msgDiv.innerHTML = `<span class="eng">You are not in range for check-in.</span><span class="chn">你不在签到位置.</span>`;
       updateMyLanguage();
@@ -358,12 +365,16 @@ function getMotivation(idx = null) {
     userLocation = {lat, lon};
     let dist = haversine(lat, lon, BRODY_LAT, BRODY_LON);
     userInRange = dist <= BRODY_RADIUS;
+    dist = haversine(lat, lon, ANNEX_LAT, ANNEX_LON);
+    annexInRange = dist <= ANNEX_RADIUS
+    
     updateButtonAndMsg();
   }
   function locationError(err) {
     locationPermissionDenied = true;
     userLocation = undefined;
     userInRange = false;
+    annexInRange = false;
     updateButtonAndMsg();
   }
   function obtainLocation() {
@@ -389,7 +400,11 @@ function getMotivation(idx = null) {
     drawStreakCalendar();
     updateButtonAndMsg();
     btn.disabled = true;
-    msgDiv.innerHTML = `<span class="eng">Checked in! Have fun in Brody.</span><span class="chn">签到成功！在Brody卷得开心.</span>`;
+    if (userInRange) {
+      msgDiv.innerHTML = `<span class="eng">Checked in! Have fun in Brody.</span><span class="chn">签到成功！在Brody卷得开心.</span>`;
+    } else if (annexInRange) {
+      msgDiv.innerHTML = `<span class="eng">Checked in! Have fun in Annex.</span><span class="chn">签到成功！在Annex卷得开心.</span>`;
+    }
     updateMyLanguage();
   });
   drawStreakCalendar();
