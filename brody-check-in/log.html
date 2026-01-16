@@ -285,12 +285,12 @@ function periodicSessionTick(force_now=false) {
     return;
   }
   // If out of Brody, force session termination
-  if (!userLocation || !userInRange) {
+  if (userLocation && !userInRange) {
     if (session) terminateSession(false, "Moved out of Brody, session terminated.");
     return;
   }
   // Update validTime if still in range
-  if (session) {
+  if (userLocation && session) {
     let newValid = now.getTime();
     session.validTime = newValid;
     setSession(session);
