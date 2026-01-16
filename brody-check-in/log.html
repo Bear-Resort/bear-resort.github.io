@@ -420,13 +420,13 @@ function updateUI() {
     let todayKey = getBrodyDayKey(now);
     let already = alreadyCheckedInForToday();
     btn.textContent = "Start";
-    if (already) {
-      btn.disabled = true;
-      msg.textContent = "You have already checked in today.";
-    } else {
+    // if (already) {
+    //   btn.disabled = true;
+    //   msg.textContent = "You have already checked in today.";
+    // } else {
       btn.disabled = false;
       msg.textContent = "Ready to start session at Brody!";
-    }
+    // }
     updateClock();
   }
 }
