@@ -417,7 +417,7 @@ function updateUI() {
     return;
   }
   if (userInRange && !annexInRange) {
-    inBrody = false;
+    inBrody = true;
     document.getElementById("logger").innerText = "Brody Stay Logger"
   }
   if (!userInRange && annexInRange) {
