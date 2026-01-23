@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Inclement Weather Warning: January 2026"
 ---
 
