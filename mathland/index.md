@@ -8,6 +8,8 @@ title-chn: "数学之境"
 
 <span class="chn">您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。</span>
 
+- <span class="eng">If you are interested in deeper math, please visit </span><span class="chn">如果你对深入的数学感兴趣，请访问</span>[<span class="eng">Homomorphism Convergence</span><span class="chn">同态与收敛</span>](/homomorphism-convergence/)
+
 # <img src="/logos/mathland.gif" height="250"><br>
 
 ## <span class="eng">Bear Resort Scratch Paper</span><span class="chn">小熊樂園演算紙</span>
