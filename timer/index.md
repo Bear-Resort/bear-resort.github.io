@@ -59,7 +59,7 @@ title: "Timer"
         <button id="quickNap"><img id="quick-nap-gif" src="quick-nap.gif" style="width: 75px; height: 75px;" /><span class="eng">Quick Nap</span><span class="chn">小眯一下</span> (15')</button> &nbsp; &nbsp;
         <button id="studyBreak"><img id="study-break-gif" src="study-break.gif" style="width: 75px; height: 75px;" /><span class="eng">Study Break</span><span class="chn">学习小憩</span> (10')</button> &nbsp; &nbsp;
         <button id="milkTea"><img id="milk-tea-gif" src="milk-tea.gif" style="width: 75px; height: 75px;" /><span class="eng">Coffee Break</span><span class="chn">浅酌一口</span> (5')</button> &nbsp; &nbsp;
-        <button id="goonSession"><img id="confused-gif" src="confused.gif" style="width: 75px; height: 75px;" /><span class="eng">Goon Session</span><span class="chn">发呆时刻</span> (1')</button>
+        <button id="goonSession"><img id="confused-gif" src="confused.gif" style="width: 75px; height: 75px;" /><span class="eng">Doing Nothing</span><span class="chn">发呆时刻</span> (1')</button>
         <br><br>
         <span class="eng"><b>Seasonal Specials</b></span><span class="chn"><b>季节限定</b></span><br>
         <!-- <button id="hibernate"><img src="hibernate.gif" style="width: 75px; height: 75px;" /><br><span class="eng">Spring Festival</span><span class="chn">春节</span></button> &nbsp; &nbsp; -->
