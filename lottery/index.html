@@ -12,11 +12,27 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF6347 100%);
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
+            background-image: url('image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* Overlay for better readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
         }
 
         /* Fireworks Canvas */
@@ -30,51 +46,6 @@
             z-index: 1;
         }
 
-        /* Lanterns */
-        .lantern {
-            position: fixed;
-            width: 60px;
-            height: 80px;
-            background: linear-gradient(to bottom, #FFD700 0%, #FF6347 50%, #DC143C 100%);
-            border-radius: 10px;
-            animation: sway 3s ease-in-out infinite;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-
-        .lantern::before {
-            content: '福';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #8B0000;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .lantern::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 15px;
-            background: #FFD700;
-            border-radius: 50%;
-        }
-
-        .lantern-1 { top: 20px; left: 10%; animation-delay: 0s; }
-        .lantern-2 { top: 20px; right: 10%; animation-delay: 1s; }
-        .lantern-3 { top: 20px; left: 30%; animation-delay: 0.5s; }
-        .lantern-4 { top: 20px; right: 30%; animation-delay: 1.5s; }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
         /* Container */
         .container {
             position: relative;
@@ -82,13 +53,16 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Header */
         .header {
             text-align: center;
-            color: #FFD700;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #8B4513;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
             margin-bottom: 30px;
             padding-top: 40px;
         }
@@ -96,35 +70,146 @@
         .header h1 {
             font-size: 48px;
             margin-bottom: 10px;
+            color: #4F361B;
             animation: glow 2s ease-in-out infinite;
+            padding: 15px 30px;
+            border-radius: 20px;
+            display: inline-block;
+            background: rgba(255, 215, 200, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        button {
+            font-family: font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
+            transform: translateY(0px);
         }
 
         @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF6347; }
-            50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF6347; }
+            0%, 100% { 
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 215, 0, 0.6);
+                border-color: #8B4513;
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.8);
+                border-color: #A0522D;
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), inset 0 0 30px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .header p {
+            color: #5C3317;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         /* Reset Button */
         .reset-btn {
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 100;
             padding: 10px 20px;
-            background: #FFD700;
-            color: #8B0000;
-            border: none;
+            background: rgba(255, 255, 255, 0.4);
+            color: #5C3317;
+            border: 2px solid rgba(139, 69, 19, 0.6);
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         .reset-btn:hover {
-            background: #FFA500;
+            background: rgba(255, 215, 0, 0.5);
             transform: scale(1.05);
+            border-color: #8B4513;
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .play-stop-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 69, 19, 0.6);
+            border: 2px solid #8B4513;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-stop-btn:hover {
+            background: rgba(139, 69, 19, 0.8);
+            transform: scale(1.1);
+        }
+
+        .play-stop-btn:active {
+            transform: scale(0.95);
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(139, 69, 19, 0.3);
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #8B4513;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #8B4513;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-control label {
+            color: #5C3317;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            min-width: 35px;
         }
 
         /* Fetch Section - Top Left Corner */
@@ -133,18 +218,22 @@
             top: 20px;
             left: 20px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.4);
             padding: 15px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             max-width: 220px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.4);
         }
 
         .fetch-info {
-            color: #8B0000;
+            color: #5C3317;
             font-size: 12px;
             margin-bottom: 10px;
             font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         .candidates-info {
@@ -152,13 +241,14 @@
             padding: 8px;
             border-radius: 8px;
             margin-bottom: 10px;
-            border: 2px solid #FFD700;
+            border: 2px solid rgba(139, 69, 19, 0.5);
         }
 
         .candidates-info p {
-            color: #8B0000;
+            color: #5C3317;
             font-size: 11px;
             margin: 3px 0;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         .candidates-info .total {
@@ -167,22 +257,27 @@
         }
 
         .fetch-btn {
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
             width: 100%;
             padding: 10px;
-            background: linear-gradient(135deg, #DC143C 0%, #FF6347 100%);
-            color: white;
-            border: none;
+            background: rgba(220, 20, 60, 0.5);
+            color: #FFFFFF;
+            border: 2px solid rgba(139, 0, 0, 0.6);
             border-radius: 8px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .fetch-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: rgba(220, 20, 60, 0.7);
         }
 
         /* Notification */
@@ -191,8 +286,8 @@
             top: 100px;
             left: 50%;
             transform: translateX(-50%);
-            background: #FFD700;
-            color: #8B0000;
+            background: rgba(255, 215, 0, 0.5);
+            color: #5C3317;
             padding: 15px 30px;
             border-radius: 10px;
             font-weight: bold;
@@ -200,6 +295,10 @@
             z-index: 1000;
             display: none;
             animation: slideDown 0.5s ease-out;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.6);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
         }
 
         @keyframes slideDown {
@@ -209,52 +308,72 @@
 
         /* Lottery Section */
         .lottery-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.4);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-top: auto;
             margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
         }
 
         .count-selector {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .count-selector label {
             display: block;
-            color: #8B0000;
+            color: #5C3317;
             font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
         }
 
         .count-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .count-btn {
-            padding: 15px 30px;
-            background: white;
-            color: #DC143C;
-            border: 3px solid #DC143C;
-            border-radius: 15px;
-            font-size: 20px;
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.6);
+            color: #5C3317;
+            border: 2px solid rgba(139, 69, 19, 0.5);
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .count-btn.active {
-            background: #DC143C;
-            color: white;
-            transform: scale(1.1);
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #5C3317;
+            transform: scale(1.2);
+            border: 3px solid #8B4513;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.4);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 18px;
         }
 
         .count-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            background: rgba(255, 215, 0, 0.4);
+            border-color: #8B4513;
+        }
+
+        .count-btn.active:hover {
+            transform: scale(1.2);
         }
 
         /* Slot Machine */
@@ -278,25 +397,9 @@
             width: 280px;
         }
 
-        .slot-container.count-5 {
-            flex-wrap: wrap;
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .slot-container.count-5 .slot {
-            width: 300px;
-        }
-
-        /* Make first 3 items fill the first row, then 2 items in second row */
-        .slot-container.count-5 .slot:nth-child(4),
-        .slot-container.count-5 .slot:nth-child(5) {
-            margin-top: 0;
-        }
-
         .slot {
-            background: white;
-            border: 4px solid #FFD700;
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #8B4513;
             border-radius: 15px;
             padding: 30px 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -332,23 +435,28 @@
 
         /* Draw Button */
         .draw-btn {
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
             width: 100%;
             padding: 20px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #8B0000;
-            border: none;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.7) 0%, rgba(255, 165, 0, 0.7) 100%);
+            color: #5C3317;
+            border: 3px solid #8B4513;
             border-radius: 15px;
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            margin-top: 30px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .draw-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 165, 0, 0.9) 100%);
         }
 
         .draw-btn:disabled {
@@ -359,15 +467,16 @@
         /* Results */
         .results {
             display: none;
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .results h2 {
-            color: #8B0000;
+            color: #5C3317;
             text-align: center;
             margin-bottom: 20px;
             font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .winners-grid {
@@ -375,40 +484,6 @@
             justify-content: center;
             gap: 15px;
             flex-wrap: nowrap;
-        }
-
-        .winners-grid.count-1,
-        .winners-grid.count-3 {
-            flex-wrap: nowrap;
-        }
-
-        .winners-grid.count-5 {
-            flex-wrap: wrap;
-            max-width: 980px;
-            margin: 0 auto;
-            justify-content: center;
-        }
-
-        /* Force 3 items in first row, 2 in second row for count-5 */
-        .winners-grid.count-5 .winner-card:nth-child(1),
-        .winners-grid.count-5 .winner-card:nth-child(2),
-        .winners-grid.count-5 .winner-card:nth-child(3) {
-            flex: 0 0 calc(33.333% - 10px);
-            max-width: 300px;
-        }
-
-        .winners-grid.count-5 .winner-card:nth-child(4),
-        .winners-grid.count-5 .winner-card:nth-child(5) {
-            flex: 0 0 calc(50% - 7.5px);
-            max-width: 300px;
-        }
-
-        /* Ensure the second row is centered */
-        .winners-grid.count-5::after {
-            content: '';
-            flex: 0 0 100%;
-            height: 0;
-            order: 4;
         }
 
         .winners-grid.count-1 .winner-card {
@@ -420,12 +495,15 @@
         }
 
         .winner-card {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 165, 0, 0.9) 100%);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.5s ease-out;
             flex-shrink: 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 3px solid #8B4513;
         }
 
         @keyframes fadeIn {
@@ -434,7 +512,7 @@
         }
 
         .winner-card h3 {
-            color: #8B0000;
+            color: #5C3317;
             font-weight: bold;
             margin-bottom: 10px;
             overflow: hidden;
@@ -444,6 +522,7 @@
             align-items: center;
             justify-content: center;
             min-height: 32px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .winner-card p {
@@ -452,6 +531,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
         }
 
         /* Modal */
@@ -469,12 +549,15 @@
         }
 
         .modal-content {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             max-width: 400px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .modal-content h2 {
@@ -500,12 +583,12 @@
         }
 
         .confirm-btn {
-            background: #DC143C;
+            background: rgba(220, 20, 60, 0.8);
             color: white;
         }
 
         .cancel-btn {
-            background: #ccc;
+            background: rgba(204, 204, 204, 0.8);
             color: #333;
         }
 
@@ -514,23 +597,6 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 1200px) {
-            .slot-container.count-5 .slot {
-                width: 280px;
-            }
-            
-            .winners-grid.count-5 .winner-card:nth-child(1),
-            .winners-grid.count-5 .winner-card:nth-child(2),
-            .winners-grid.count-5 .winner-card:nth-child(3) {
-                max-width: 280px;
-            }
-            
-            .winners-grid.count-5 .winner-card:nth-child(4),
-            .winners-grid.count-5 .winner-card:nth-child(5) {
-                max-width: 280px;
-            }
-        }
-
         @media (max-width: 992px) {
             .slot-container {
                 flex-wrap: wrap;
@@ -540,22 +606,12 @@
                 flex-wrap: wrap;
             }
             
-            .slot-container.count-3 .slot,
-            .slot-container.count-5 .slot {
+            .slot-container.count-3 .slot {
                 width: 250px;
             }
             
             .winners-grid.count-3 .winner-card {
                 width: 250px;
-            }
-            
-            .winners-grid.count-5 .winner-card:nth-child(1),
-            .winners-grid.count-5 .winner-card:nth-child(2),
-            .winners-grid.count-5 .winner-card:nth-child(3),
-            .winners-grid.count-5 .winner-card:nth-child(4),
-            .winners-grid.count-5 .winner-card:nth-child(5) {
-                flex: 0 0 250px;
-                max-width: 250px;
             }
         }
 
@@ -583,9 +639,40 @@
                 font-size: 12px;
             }
 
+            .audio-control {
+                padding: 10px;
+            }
+
+            .volume-slider {
+                width: 80px;
+            }
+
+            .play-stop-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+                padding: 10px 20px;
+            }
+
+            .count-selector label {
+                font-size: 16px;
+            }
+
+            .count-btn {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+
+            .count-btn.active {
+                font-size: 16px;
+            }
+
             .slot-container.count-1 .slot,
-            .slot-container.count-3 .slot,
-            .slot-container.count-5 .slot {
+            .slot-container.count-3 .slot {
                 width: 100%;
                 max-width: 300px;
             }
@@ -595,27 +682,12 @@
                 width: 100%;
                 max-width: 300px;
             }
-            
-            .winners-grid.count-5 .winner-card:nth-child(1),
-            .winners-grid.count-5 .winner-card:nth-child(2),
-            .winners-grid.count-5 .winner-card:nth-child(3),
-            .winners-grid.count-5 .winner-card:nth-child(4),
-            .winners-grid.count-5 .winner-card:nth-child(5) {
-                flex: 0 0 100%;
-                max-width: 300px;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Fireworks Canvas -->
     <canvas id="fireworks"></canvas>
-
-    <!-- Lanterns -->
-    <div class="lantern lantern-1"></div>
-    <div class="lantern lantern-2"></div>
-    <div class="lantern lantern-3"></div>
-    <div class="lantern lantern-4"></div>
 
     <!-- Fetch Section - Top Left Corner -->
     <div class="fetch-section">
@@ -629,6 +701,13 @@
 
     <!-- Reset Button -->
     <button class="reset-btn" onclick="showResetModal()">🔄 重置数据</button>
+
+    <!-- Audio Control -->
+    <div class="audio-control">
+        <button class="play-stop-btn" id="playStopBtn" onclick="toggleAudio()">▶️</button>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+        <label id="volumeLabel">50%</label>
+    </div>
 
     <!-- Notification -->
     <div class="notification" id="notification"></div>
@@ -660,7 +739,6 @@
                 <div class="count-buttons">
                     <button class="count-btn active" data-count="1" onclick="selectCount(1)">1人</button>
                     <button class="count-btn" data-count="3" onclick="selectCount(3)">3人</button>
-                    <button class="count-btn" data-count="5" onclick="selectCount(5)">5人</button>
                 </div>
             </div>
 
@@ -681,7 +759,7 @@
 
     <!-- Audio -->
     <audio id="lotteryMusic" loop>
-        <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADhAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v////////////////////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQCgAAAAAAAAAOE09VPzwAAAAAAAAAAAAAAAAAAAAD/+xDEAAPAAAGkAAAAIAAANIAAAARMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+        <source src="audio.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -699,13 +777,51 @@
         let selectedCount = 1;
         let isDrawing = false;
         let rollingInterval;
+        let isAudioPlaying = false;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadDrawnCandidates();
             initFireworks();
             updateCandidatesInfo();
+            initAudioControl();
         });
+
+        // Initialize audio control
+        function initAudioControl() {
+            const music = document.getElementById('lotteryMusic');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeLabel = document.getElementById('volumeLabel');
+            
+            // Set initial volume
+            music.volume = volumeSlider.value / 100;
+            
+            // Volume slider event listener
+            volumeSlider.addEventListener('input', function() {
+                music.volume = this.value / 100;
+                volumeLabel.textContent = this.value + '%';
+            });
+        }
+
+        // Toggle audio play/stop
+        function toggleAudio() {
+            const music = document.getElementById('lotteryMusic');
+            const playStopBtn = document.getElementById('playStopBtn');
+            
+            if (isAudioPlaying) {
+                music.pause();
+                playStopBtn.textContent = '▶️';
+                isAudioPlaying = false;
+            } else {
+                music.play().then(() => {
+                    playStopBtn.textContent = '⏸️';
+                    isAudioPlaying = true;
+                }).catch(error => {
+                    console.log('Audio play failed:', error);
+                    showNotification('❌ 音频播放失败');
+                });
+            }
+        }
 
         // Load drawn candidates from localStorage
         function loadDrawnCandidates() {
@@ -848,10 +964,6 @@
                 slotContainer.appendChild(slot);
             }
 
-            // Play music
-            const music = document.getElementById('lotteryMusic');
-            music.play();
-
             // Trigger fireworks
             triggerFireworks();
 
@@ -880,10 +992,6 @@
 
         // Show results
         async function showResults() {
-            const music = document.getElementById('lotteryMusic');
-            music.pause();
-            music.currentTime = 0;
-
             // Select winners
             const winners = [];
             const availableCandidates = [...candidates];
