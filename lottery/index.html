@@ -80,7 +80,7 @@
         }
 
         button {
-            font-family: font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
+            font-family: 'Songti SC', 'STXingkai', 'Kaiti SC', 'KaiTi', 'STKaiti', 'BiauKai', '楷体', serif;
             transform: translateY(0px);
         }
 
@@ -778,6 +778,9 @@
         let isDrawing = false;
         let rollingInterval;
         let isAudioPlaying = false;
+        let fireworksActive = false;
+        let fireworkInterval;
+        let animationFrameId;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -992,6 +995,9 @@
 
         // Show results
         async function showResults() {
+            // Stop fireworks
+            stopFireworks();
+
             // Select winners
             const winners = [];
             const availableCandidates = [...candidates];
@@ -1121,8 +1127,6 @@
             });
         }
 
-        let fireworksActive = false;
-
         function triggerFireworks() {
             if (fireworksActive) return;
             fireworksActive = true;
@@ -1150,6 +1154,12 @@
             }
 
             function animate() {
+                if (!fireworksActive) {
+                    // Clear canvas completely when stopping
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    return;
+                }
+
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -1175,17 +1185,29 @@
                 ctx.globalAlpha = 1;
 
                 if (fireworksActive) {
-                    requestAnimationFrame(animate);
+                    animationFrameId = requestAnimationFrame(animate);
                 }
             }
 
-            const fireworkInterval = setInterval(createFirework, 300);
+            fireworkInterval = setInterval(createFirework, 300);
             animate();
+        }
 
-            setTimeout(() => {
-                fireworksActive = false;
+        function stopFireworks() {
+            fireworksActive = false;
+            if (fireworkInterval) {
                 clearInterval(fireworkInterval);
-            }, 4000);
+                fireworkInterval = null;
+            }
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            
+            // Clear the canvas completely
+            const canvas = document.getElementById('fireworks');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
     </script>
 </body>
