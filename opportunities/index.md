@@ -61,8 +61,8 @@ title-chn: "机会"
 <div class="opportunities-intro">
   <h1><span class="eng">Opportunities</span><span class="chn">机会</span></h1>
   <p>
-    <span class="eng">A simple list of potential hackathons and useful tools for our website members.</span>
-    <span class="chn">给网站成员准备的黑客松与实用工具机会清单。</span>
+    <span class="eng">A simple list of potential hackathons and useful tools for fellow bears.</span>
+    <span class="chn">给小熊乐园里的小熊们准备的黑客松与实用工具清单。大多数由鼠鼠从小红书扒下。</span>
   </p>
 </div>
 
