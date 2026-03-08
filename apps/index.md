@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 title: "Apps"
 title-chn: "软件库"
@@ -78,6 +78,12 @@ title-chn: "软件库"
     <div class="app-name"><span class="eng">Timer</span><span class="chn">计时器</span></div>
     <div class="app-desc"><span class="eng">Ready, Set, Countdown</span><span class="chn">倒计时，启动</span></div>
 </a>
+
+<a class="app-card" href="/opportunities/" target="_blank">
+    <img class="app-img" src="/logos/future-tech.png" alt="opportunities">
+    <div class="app-name"><span class="eng">Opportunities</span><span class="chn">机会看板</span></div>
+    <div class="app-desc"><span class="eng">Hackathons and tools to try</span><span class="chn">黑客松和工具推荐</span></div>
+</a>
 <a class="app-card" href="/turntable/" target="_blank">
     <img class="app-img" src="/turntable/img.gif" alt="Turntable">
     <div class="app-name"><span class="eng">Mathy's Turntable</span><span class="chn">数数的大转盘</span></div>
@@ -134,3 +140,4 @@ title-chn: "软件库"
     <div class="app-desc"><span class="eng">Simulate Letter of Recommendation</span><span class="chn">模拟推荐信</span></div>
 </a>
 </div>
+
