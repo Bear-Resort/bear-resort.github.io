@@ -1,3 +1,11 @@
 
 .DS_Store
 */test*
+
+# Jekyll / Bundler
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+Gemfile.lock
