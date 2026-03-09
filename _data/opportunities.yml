@@ -170,7 +170,7 @@ calendar_events:
     category: "deadline"
   - title: "Resort Gathering"
     title_chn: "Resort 聚会"
-    start_date: "2026-03-20"
+    start_date: "2026-04-03"
     category: "resort"
   - title: "GitLab AI Hackathon Deadline"
     title_chn: "GitLab AI 黑客松截止"
@@ -198,3 +198,4 @@ calendar_events:
     title_chn: "德勤量子挑战赛总决赛（波士顿）"
     start_date: "2026-06-25"
     category: "hackathon"
+
