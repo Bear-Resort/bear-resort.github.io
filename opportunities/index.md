@@ -133,6 +133,16 @@ title-chn: "机会"
     color: var(--main-color);
   }
 
+  .today-banner {
+    margin: 0.2rem 0 0.9rem 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--secondary-light);
+    border-radius: 12px;
+    background: linear-gradient(120deg, var(--background-color) 0%, var(--secondary-light) 100%);
+    font-size: 0.86rem;
+    color: var(--main-color);
+  }
+
   .cal-nav {
     border: 1px solid var(--secondary-light);
     background: var(--background-color);
@@ -184,6 +194,7 @@ title-chn: "机会"
   .day-cell.today {
     border-color: var(--main-color-light);
     box-shadow: inset 0 0 0 1px var(--main-color-light);
+    background: linear-gradient(180deg, var(--background-light) 0%, var(--background-color) 100%);
   }
 
   .day-cell.selected {
@@ -191,10 +202,40 @@ title-chn: "机会"
     box-shadow: inset 0 0 0 1px var(--main-color);
   }
 
-  .dot-row {
+  .marker-stack {
     margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+  }
+
+  .stripe {
+    height: 6px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .stripe.start {
+    border-radius: 999px 3px 3px 999px;
+  }
+
+  .stripe.mid {
+    border-radius: 3px;
+  }
+
+  .stripe.end {
+    border-radius: 3px 999px 999px 3px;
+  }
+
+  .stripe.hackathon { background: linear-gradient(90deg, #77c3ff, #2c91d9); }
+  .stripe.deadline { background: linear-gradient(90deg, #f4b17a, #e07a2a); }
+  .stripe.resort { background: linear-gradient(90deg, #8ce7b7, #2cba72); }
+
+  .dot-row {
     display: flex;
     gap: 0.2rem;
+    align-items: center;
   }
 
   .dot {
@@ -222,6 +263,17 @@ title-chn: "机会"
     gap: 0.3rem;
   }
 
+  .legend-stripe {
+    width: 16px;
+    height: 6px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  .legend-stripe.hackathon {
+    background: linear-gradient(90deg, #77c3ff, #2c91d9);
+  }
+
   .agenda {
     margin-top: 1rem;
     border-top: 1px solid var(--secondary-light);
@@ -246,6 +298,17 @@ title-chn: "机会"
   .agenda-date {
     color: var(--main-color-light);
     font-size: 0.78rem;
+  }
+
+  .countdown-pill {
+    display: inline-block;
+    margin-top: 0.2rem;
+    padding: 0.14rem 0.52rem;
+    font-size: 0.74rem;
+    border: 1px solid var(--secondary-light);
+    border-radius: 999px;
+    color: var(--main-color);
+    background: var(--background-light);
   }
 
   .tools-grid {
@@ -332,8 +395,8 @@ title-chn: "机会"
 
 ## <span class="eng">Calendar</span><span class="chn">日历</span>
 <p class="section-note">
-  <span class="eng">Minimal event calendar. Add/edit dates in <code>_data/opportunities.yml</code> under <code>calendar_events</code>.</span>
-  <span class="chn">极简事件日历。可在 <code>_data/opportunities.yml</code> 的 <code>calendar_events</code> 中维护重要日期。</span>
+  <span class="eng">Minimal event calendar. Multi-day events now show stripe bars, and agenda shows countdown from today.</span>
+  <span class="chn">极简事件日历。跨天事件使用条纹显示，下方会显示距离今天还有多少天。</span>
 </p>
 
 <div class="calendar-shell">
@@ -342,6 +405,8 @@ title-chn: "机会"
     <div id="cal-title" class="calendar-title"></div>
     <button class="cal-nav" id="cal-next" aria-label="Next Month">&rsaquo;</button>
   </div>
+
+  <div id="today-banner" class="today-banner"></div>
 
   <div class="weekday-row">
     <div class="weekday">Sun</div>
@@ -356,9 +421,10 @@ title-chn: "机会"
   <div id="calendar-grid" class="calendar-grid"></div>
 
   <div class="legend">
-    <span><i class="dot hackathon"></i><span class="eng">Hackathon</span><span class="chn">黑客松</span></span>
+    <span><i class="legend-stripe hackathon"></i><span class="eng">Multi-day span</span><span class="chn">跨天事件</span></span>
+    <span><i class="dot hackathon"></i><span class="eng">Single-day hackathon</span><span class="chn">单日黑客松</span></span>
     <span><i class="dot deadline"></i><span class="eng">Deadline</span><span class="chn">截止日</span></span>
-    <span><i class="dot resort"></i><span class="eng">Resort Event</span><span class="chn">Resort 活动</span></span>
+    <span><i class="dot resort"></i><span class="eng">Resort event</span><span class="chn">Resort 活动</span></span>
   </div>
 
   <div class="agenda" id="agenda"></div>
@@ -381,7 +447,13 @@ title-chn: "机会"
   const calendarEvents = {{ site.data.opportunities.calendar_events | jsonify }};
   const eventMap = {};
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+  function normalizeDate(dateObj) {
+    const d = new Date(dateObj);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
 
   function toIso(dateObj) {
     const y = dateObj.getFullYear();
@@ -391,54 +463,137 @@ title-chn: "机会"
   }
 
   function parseDate(dateStr) {
-    return new Date(`${dateStr}T00:00:00`);
+    return normalizeDate(new Date(`${dateStr}T00:00:00`));
   }
 
   function addDays(dateObj, days) {
     const result = new Date(dateObj);
     result.setDate(result.getDate() + days);
-    return result;
+    return normalizeDate(result);
+  }
+
+  function dayDiff(fromDate, toDate) {
+    return Math.round((toDate.getTime() - fromDate.getTime()) / MS_PER_DAY);
+  }
+
+  function formatLongDate(dateObj) {
+    return dateObj.toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
   }
 
   function expandEvents() {
     calendarEvents.forEach((event) => {
       const start = parseDate(event.start_date);
-      const end = event.end_date ? parseDate(event.end_date) : parseDate(event.start_date);
+      const end = event.end_date ? parseDate(event.end_date) : start;
+      const isSpan = dayDiff(start, end) > 0;
+      const startIso = toIso(start);
+      const endIso = toIso(end);
 
       for (let d = new Date(start); d <= end; d = addDays(d, 1)) {
         const key = toIso(d);
         if (!eventMap[key]) {
           eventMap[key] = [];
         }
-        eventMap[key].push(event);
+
+        let spanPosition = "single";
+        if (isSpan) {
+          if (key === startIso) {
+            spanPosition = "start";
+          } else if (key === endIso) {
+            spanPosition = "end";
+          } else {
+            spanPosition = "mid";
+          }
+        }
+
+        eventMap[key].push({
+          ...event,
+          isSpan,
+          spanPosition,
+          category: event.category || "hackathon"
+        });
       }
     });
   }
 
-  expandEvents();
-
-  let viewDate;
-  if (calendarEvents.length > 0) {
-    const first = parseDate(calendarEvents[0].start_date);
-    viewDate = new Date(first.getFullYear(), first.getMonth(), 1);
-  } else {
-    const now = new Date();
-    viewDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  function getTodayDate() {
+    return normalizeDate(new Date());
   }
 
-  let selectedIso = null;
+  function relativeTextForEvent(event, todayDate) {
+    const start = parseDate(event.start_date);
+    const end = event.end_date ? parseDate(event.end_date) : start;
+    const toStart = dayDiff(todayDate, start);
+    const toEnd = dayDiff(todayDate, end);
 
-  function getMonthRange(yr, mon) {
-    const first = new Date(yr, mon, 1);
-    const last = new Date(yr, mon + 1, 0);
-    return { first, last };
+    if (toStart > 0) {
+      return `In ${toStart} day${toStart === 1 ? "" : "s"}`;
+    }
+    if (toStart === 0) {
+      return "Starts today";
+    }
+    if (toEnd >= 0) {
+      return "Happening now";
+    }
+
+    const endedAgo = Math.abs(toEnd);
+    return `Ended ${endedAgo} day${endedAgo === 1 ? "" : "s"} ago`;
   }
 
-  function renderAgenda(isoDate) {
+  function getNextOrCurrentEvent(todayDate) {
+    const candidates = calendarEvents
+      .map((event) => {
+        const start = parseDate(event.start_date);
+        const end = event.end_date ? parseDate(event.end_date) : start;
+        return { ...event, _start: start, _end: end };
+      })
+      .filter((event) => dayDiff(todayDate, event._end) >= 0)
+      .sort((a, b) => a._start - b._start);
+
+    return candidates[0] || null;
+  }
+
+  function renderTodayBanner(todayDate) {
+    const banner = document.getElementById("today-banner");
+    const todayLabel = formatLongDate(todayDate);
+    const nextEvent = getNextOrCurrentEvent(todayDate);
+
+    if (!nextEvent) {
+      banner.innerHTML = `<strong>Today:</strong> ${todayLabel}`;
+      return;
+    }
+
+    const relative = relativeTextForEvent(nextEvent, todayDate);
+    banner.innerHTML = `<strong>Today:</strong> ${todayLabel} &nbsp;|&nbsp; <strong>Next:</strong> ${nextEvent.title} (${relative})`;
+  }
+
+  function findFirstEventInMonth(year, month) {
+    const first = calendarEvents
+      .map((event) => parseDate(event.start_date))
+      .filter((dateObj) => dateObj.getFullYear() === year && dateObj.getMonth() === month)
+      .sort((a, b) => a - b)[0];
+
+    return first ? toIso(first) : null;
+  }
+
+  function pickDefaultSelectionForMonth(year, month, todayDate) {
+    if (todayDate.getFullYear() === year && todayDate.getMonth() === month) {
+      return toIso(todayDate);
+    }
+
+    return findFirstEventInMonth(year, month) || toIso(new Date(year, month, 1));
+  }
+
+  function renderAgenda(isoDate, todayDate) {
     const agenda = document.getElementById("agenda");
     const events = (eventMap[isoDate] || []).slice().sort((a, b) => a.title.localeCompare(b.title));
+    const headingDate = formatLongDate(parseDate(isoDate));
 
-    let html = `<h4><span class="eng">${isoDate}</span><span class="chn">${isoDate}</span></h4>`;
+    let html = `<h4>${headingDate}</h4>`;
 
     if (!events.length) {
       html += `<div class="agenda-item"><span class="eng">No events.</span><span class="chn">暂无事件。</span></div>`;
@@ -446,25 +601,46 @@ title-chn: "机会"
       return;
     }
 
-    events.forEach((evt) => {
+    events.forEach((event) => {
       html += `<div class="agenda-item">
-          <div><span class="eng">${evt.title}</span><span class="chn">${evt.title_chn || evt.title}</span></div>
-          <div class="agenda-date">${evt.start_date}${evt.end_date ? " -> " + evt.end_date : ""}</div>
+          <div><span class="eng">${event.title}</span><span class="chn">${event.title_chn || event.title}</span></div>
+          <div class="agenda-date">${event.start_date}${event.end_date ? " -> " + event.end_date : ""}</div>
+          <div class="countdown-pill">${relativeTextForEvent(event, todayDate)}</div>
         </div>`;
     });
 
     agenda.innerHTML = html;
   }
 
+  function getMonthRange(year, month) {
+    const first = new Date(year, month, 1);
+    const last = new Date(year, month + 1, 0);
+    return { first, last };
+  }
+
+  expandEvents();
+
+  const todayDate = getTodayDate();
+  const firstCalendarDate = calendarEvents.length > 0
+    ? parseDate(calendarEvents[0].start_date)
+    : todayDate;
+
+  let viewDate = new Date(firstCalendarDate.getFullYear(), firstCalendarDate.getMonth(), 1);
+  let selectedIso = null;
+
   function renderCalendar() {
     const grid = document.getElementById("calendar-grid");
     const title = document.getElementById("cal-title");
-    const y = viewDate.getFullYear();
-    const m = viewDate.getMonth();
+    const year = viewDate.getFullYear();
+    const month = viewDate.getMonth();
 
-    title.textContent = `${monthNames[m]} ${y}`;
+    title.textContent = `${monthNames[month]} ${year}`;
 
-    const { first, last } = getMonthRange(y, m);
+    if (!selectedIso) {
+      selectedIso = pickDefaultSelectionForMonth(year, month, todayDate);
+    }
+
+    const { first, last } = getMonthRange(year, month);
     const startPad = first.getDay();
     const totalDays = last.getDate();
 
@@ -476,11 +652,10 @@ title-chn: "机会"
       grid.appendChild(empty);
     }
 
-    const now = new Date();
-    const todayIso = toIso(new Date(now.getFullYear(), now.getMonth(), now.getDate()));
+    const todayIso = toIso(todayDate);
 
-    for (let d = 1; d <= totalDays; d += 1) {
-      const dateObj = new Date(y, m, d);
+    for (let day = 1; day <= totalDays; day += 1) {
+      const dateObj = new Date(year, month, day);
       const iso = toIso(dateObj);
       const events = eventMap[iso] || [];
 
@@ -491,39 +666,44 @@ title-chn: "机会"
       if (iso === todayIso) {
         cell.classList.add("today");
       }
+
       if (selectedIso === iso) {
         cell.classList.add("selected");
       }
 
-      cell.innerHTML = `<span class="day-num">${d}</span><div class="dot-row"></div>`;
-      const dotRow = cell.querySelector(".dot-row");
+      cell.innerHTML = `<span class="day-num">${day}</span><div class="marker-stack"></div>`;
+      const markerStack = cell.querySelector(".marker-stack");
 
-      events.slice(0, 3).forEach((evt) => {
-        const dot = document.createElement("i");
-        dot.className = `dot ${evt.category || "hackathon"}`;
-        dotRow.appendChild(dot);
+      const spanEvents = events.filter((event) => event.isSpan).slice(0, 2);
+      spanEvents.forEach((event) => {
+        const stripe = document.createElement("i");
+        stripe.className = `stripe ${event.category} ${event.spanPosition}`;
+        stripe.title = event.title;
+        markerStack.appendChild(stripe);
       });
+
+      const singleEvents = events.filter((event) => !event.isSpan).slice(0, 3);
+      if (singleEvents.length > 0) {
+        const dotRow = document.createElement("div");
+        dotRow.className = "dot-row";
+        singleEvents.forEach((event) => {
+          const dot = document.createElement("i");
+          dot.className = `dot ${event.category}`;
+          dot.title = event.title;
+          dotRow.appendChild(dot);
+        });
+        markerStack.appendChild(dotRow);
+      }
 
       cell.addEventListener("click", () => {
         selectedIso = iso;
         renderCalendar();
-        renderAgenda(iso);
       });
 
       grid.appendChild(cell);
     }
 
-    if (!selectedIso) {
-      const monthFirstEvent = calendarEvents
-        .map((evt) => evt.start_date)
-        .find((iso) => {
-          const dObj = parseDate(iso);
-          return dObj.getFullYear() === y && dObj.getMonth() === m;
-        });
-      selectedIso = monthFirstEvent || toIso(new Date(y, m, 1));
-      renderAgenda(selectedIso);
-      renderCalendar();
-    }
+    renderAgenda(selectedIso, todayDate);
   }
 
   document.getElementById("cal-prev").addEventListener("click", () => {
@@ -538,5 +718,6 @@ title-chn: "机会"
     renderCalendar();
   });
 
+  renderTodayBanner(todayDate);
   renderCalendar();
 </script>
