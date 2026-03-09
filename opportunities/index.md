@@ -382,6 +382,9 @@ title-chn: "机会"
           <a class="visit-btn" href="{{ item.link }}" target="_blank" rel="noopener">
             <span class="eng">Visit website</span><span class="chn">访问官网</span>
           </a>
+          <a class="visit-btn alt" href="/opportunities/details/#{{ item.name | slugify }}">
+            <span class="eng">Details</span><span class="chn">详情</span>
+          </a>
           {% if item.rules_link %}
             <a class="visit-btn alt" href="{{ item.rules_link }}" target="_blank" rel="noopener">
               <span class="eng">Contest rules</span><span class="chn">比赛规则</span>
@@ -721,3 +724,4 @@ title-chn: "机会"
   renderTodayBanner(todayDate);
   renderCalendar();
 </script>
+

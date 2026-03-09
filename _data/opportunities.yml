@@ -11,8 +11,10 @@
     start_date: "2026-03-16"
     end_date: "2026-04-10"
     status: "Open"
-    summary: "Quantum + sustainability challenge with student teams and finalist prizes."
-    link: "https://www.linkedin.com/events/742490091376865280/?viewAsMember=true"
+    summary: "Build a quantum + machine learning approach for wildfire risk and insurance modeling in California."
+    link: "https://us.ekipa.de/deloitte-quantum-2026"
+    register_link: "https://app.ekipa.de/deloitte-quantum-2026"
+    info_link: "https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/consulting/2026/qsc-contest-rules.pdf"
     rules_link: "https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/consulting/2026/qsc-contest-rules.pdf"
     source: "Flyer provided by user"
 
