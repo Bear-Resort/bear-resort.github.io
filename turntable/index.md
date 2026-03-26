@@ -1,6 +1,6 @@
 ---
 title: "Mathy's Turntable"
-title-chn: "数数的大转盘"
+title-chn: '数数的大转盘'
 ---
 
 <style>

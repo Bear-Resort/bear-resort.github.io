@@ -1,0 +1,26 @@
+{
+  "name": "bear-resort.github.io",
+  "version": "1.0.0",
+  "description": "This branch (`codex/hackathon`) adds a redesigned Opportunities page for Bear Resort.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier . --write --ignore-unknown",
+    "format:check": "prettier . --check --ignore-unknown",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bear-Resort/bear-resort.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bear-Resort/bear-resort.github.io/issues"
+  },
+  "homepage": "https://github.com/Bear-Resort/bear-resort.github.io#readme",
+  "devDependencies": {
+    "prettier": "^3.8.1"
+  }
+}

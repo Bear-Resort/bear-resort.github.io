@@ -1,7 +1,7 @@
 ﻿---
 layout: page
-title: "Opportunities"
-title-chn: "机会"
+title: 'Opportunities'
+title-chn: '机会'
 ---
 
 <style>
@@ -360,6 +360,7 @@ title-chn: "机会"
 </div>
 
 ## <span class="eng">Hackathons</span><span class="chn">黑客松</span>
+
 <p class="section-note">
   <span class="eng">Hover a card to flip. Back side has the website button.</span>
   <span class="chn">鼠标悬停卡片可翻转，背面可直接访问官网。</span>
@@ -394,6 +395,7 @@ title-chn: "机会"
 </div>
 
 ## <span class="eng">Calendar</span><span class="chn">日历</span>
+
 <p class="section-note">
   <span class="eng">Minimal event calendar. Multi-day events now show stripe bars, and agenda shows countdown from today.</span>
   <span class="chn">极简事件日历。跨天事件使用条纹显示，下方会显示距离今天还有多少天。</span>
@@ -431,6 +433,7 @@ title-chn: "机会"
 </div>
 
 ## <span class="eng">Interesting Tools You Should Try</span><span class="chn">值得尝试的工具</span>
+
 <div class="tools-grid">
   {% for item in site.data.opportunities.tools %}
     <div class="tool-card">

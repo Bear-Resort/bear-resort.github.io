@@ -1,6 +1,6 @@
 ---
-title: "Draw it!"
-title-chn: "我是小画家"
+title: 'Draw it!'
+title-chn: '我是小画家'
 ---
 
 <style>

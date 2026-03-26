@@ -1,16 +1,16 @@
 ---
-title: "Character Survey: Dual Brothers"
+title: 'Character Survey: Dual Brothers'
 ---
 
-# <span class="eng">Bear Resort Character Survey: Dual Brothers</span> <span class="chn">小熊樂園角色问卷：双胞熊弟</span> 
+# <span class="eng">Bear Resort Character Survey: Dual Brothers</span> <span class="chn">小熊樂園角色问卷：双胞熊弟</span>
 
 <span class="eng">The Bear Resort will be welcoming two brand new bears this time. These two bears happens to be twins, although they do not look anyhow alike (the creator also doesn't know why).</span>
 
-<span class="chn">小熊樂園将一次迎来两头全新小熊。这两头熊弟是一对儿双胞胎，尽管他们看起来完全不一样（作者也不晓得为什么）。</span> 
+<span class="chn">小熊樂園将一次迎来两头全新小熊。这两头熊弟是一对儿双胞胎，尽管他们看起来完全不一样（作者也不晓得为什么）。</span>
 
 <span class="eng">Now, the brothers badly need some names. So it is up to you! By July 20th, we will be collecting some names for these brothers!</span>
 
-<span class="chn">现在，两兄弟急需一些名字。由此，我们向大伙儿征集名字！到7月20日，我们会收集大家给兄弟们起的名字。</span> 
+<span class="chn">现在，两兄弟急需一些名字。由此，我们向大伙儿征集名字！到7月20日，我们会收集大家给兄弟们起的名字。</span>
 
 # <img src="dual.png" style="height: 200px;">
 

@@ -1,5 +1,5 @@
 ---
-title: "User Center"
+title: 'User Center'
 ---
 
 <div class="container">

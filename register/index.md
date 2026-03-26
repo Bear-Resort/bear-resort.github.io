@@ -1,5 +1,5 @@
 ---
-title: "Join Fandom"
+title: 'Join Fandom'
 ---
 
 <div class="container">

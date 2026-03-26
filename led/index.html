@@ -1,602 +1,603 @@
 ---
 layout: default
-title: "LED Simulator"
-title-chn: "LED 模拟器"
+title: 'LED Simulator'
+title-chn: 'LED 模拟器'
 ---
 
 <div class="led-page">
-    <style>
-        .led-page {
-            margin: 0 -20px;
-            min-height: 80vh;
-            background-color: #000000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+  <style>
+    .led-page {
+      margin: 0;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-        .led-page .led-container {
-            background-color: #111;
-            padding: 15px;
-            border-radius: 12px;
-            border: 3px solid #222;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0,0,0,0.5);
-        }
+    .led-page .led-container {
+      background-color: #111;
+      padding: 15px;
+      border-radius: 12px;
+      border: 3px solid #222;
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+      width: fit-content;
+      max-width: min(100%, 95vw);
+      overflow: hidden;
+    }
 
-        .led-page #ledCanvas {
-            display: block;
-            border-radius: 4px;
-            background-color: #050505;
-        }
+    .led-page #ledCanvas {
+      display: block;
+      border-radius: 4px;
+      background-color: #050505;
+      max-width: 100%;
+      height: auto;
+    }
 
-        .led-page #textCanvas {
-            display: none;
-        }
+    .led-page #textCanvas {
+      display: none;
+    }
 
-        .led-page .controls {
-            margin-top: 25px;
-        }
+    .led-page .controls {
+      margin-top: 25px;
+    }
 
-        .led-page .edit-btn {
-            background-color: #ff8c00;
-            color: #000;
-            border: none;
-            padding: 14px 40px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .led-page .edit-btn {
+      padding: 14px 40px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .led-page .edit-btn:hover {
-            background-color: #ffaa33;
-            box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
-            transform: translateY(-2px);
-        }
+    /* Modal Styles */
+    .led-page .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        .led-page .edit-btn:active {
-            transform: translateY(0);
-        }
+    .led-page .modal-overlay.active {
+      display: flex;
+    }
 
-        /* Modal Styles */
-        .led-page .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    .led-page .modal {
+      background-color: #141414;
+      border: 2px solid #ff8c00;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 550px;
+      box-shadow: 0 0 50px rgba(255, 140, 0, 0.2);
+    }
 
-        .led-page .modal-overlay.active {
-            display: flex;
-        }
+    .led-page .modal h2 {
+      color: #ff8c00;
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+    }
 
-        .led-page .modal {
-            background-color: #141414;
-            border: 2px solid #ff8c00;
-            border-radius: 15px;
-            padding: 30px;
-            width: 90%;
-            max-width: 550px;
-            box-shadow: 0 0 50px rgba(255, 140, 0, 0.2);
-        }
+    .led-page .modal textarea {
+      width: 100%;
+      height: 140px;
+      background-color: #0a0a0a;
+      border: 2px solid #333;
+      color: #ff8c00;
+      padding: 15px;
+      font-size: 16px;
+      font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', Arial, sans-serif;
+      border-radius: 8px;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
 
-        .led-page .modal h2 {
-            color: #ff8c00;
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: 600;
-        }
+    .led-page .modal textarea:focus {
+      outline: none;
+      border-color: #ff8c00;
+    }
 
-        .led-page .modal textarea {
-            width: 100%;
-            height: 140px;
-            background-color: #0a0a0a;
-            border: 2px solid #333;
-            color: #ff8c00;
-            padding: 15px;
-            font-size: 16px;
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', Arial, sans-serif;
-            border-radius: 8px;
-            resize: vertical;
-            transition: border-color 0.3s;
-        }
+    .led-page .modal textarea::placeholder {
+      color: #555;
+    }
 
-        .led-page .modal textarea:focus {
-            outline: none;
-            border-color: #ff8c00;
-        }
+    .led-page .settings-section {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #0a0a0a;
+      border-radius: 8px;
+      border: 1px solid #222;
+    }
 
-        .led-page .modal textarea::placeholder {
-            color: #555;
-        }
+    .led-page .settings-section h3 {
+      color: #ff8c00;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .led-page .settings-section {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #0a0a0a;
-            border-radius: 8px;
-            border: 1px solid #222;
-        }
+    .led-page .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
 
-        .led-page .settings-section h3 {
-            color: #ff8c00;
-            font-size: 14px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .led-page .setting-row:last-child {
+      margin-bottom: 0;
+    }
 
-        .led-page .setting-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
+    .led-page .setting-row label {
+      color: #aaa;
+      font-size: 14px;
+      flex: 1;
+    }
 
-        .led-page .setting-row:last-child {
-            margin-bottom: 0;
-        }
+    .led-page .setting-row input[type='range'] {
+      flex: 2;
+      margin: 0 15px;
+      accent-color: #ff8c00;
+      height: 6px;
+    }
 
-        .led-page .setting-row label {
-            color: #aaa;
-            font-size: 14px;
-            flex: 1;
-        }
+    .led-page .setting-row .value-display {
+      color: #ff8c00;
+      font-weight: bold;
+      min-width: 35px;
+      text-align: right;
+      font-size: 14px;
+    }
 
-        .led-page .setting-row input[type="range"] {
-            flex: 2;
-            margin: 0 15px;
-            accent-color: #ff8c00;
-            height: 6px;
-        }
+    .led-page .modal-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      justify-content: center;
+    }
 
-        .led-page .setting-row .value-display {
-            color: #ff8c00;
-            font-weight: bold;
-            min-width: 35px;
-            text-align: right;
-            font-size: 14px;
-        }
+    .led-page .modal-btn {
+      padding: 12px 35px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .led-page .modal-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            justify-content: center;
-        }
+    .led-page .modal-btn.save {
+      background-color: #ff8c00;
+      color: #000;
+    }
 
-        .led-page .modal-btn {
-            padding: 12px 35px;
-            font-size: 15px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    .led-page .modal-btn.save:hover {
+      background-color: #ffaa33;
+    }
 
-        .led-page .modal-btn.save {
-            background-color: #ff8c00;
-            color: #000;
-        }
+    .led-page .modal-btn.cancel {
+      background-color: transparent;
+      color: #888;
+      border: 2px solid #333;
+    }
 
-        .led-page .modal-btn.save:hover {
-            background-color: #ffaa33;
-        }
+    .led-page .modal-btn.cancel:hover {
+      border-color: #555;
+      color: #aaa;
+    }
 
-        .led-page .modal-btn.cancel {
-            background-color: transparent;
-            color: #888;
-            border: 2px solid #333;
-        }
+    .led-page .instructions {
+      color: #666;
+      font-size: 12px;
+      margin-top: 15px;
+      line-height: 1.8;
+    }
 
-        .led-page .modal-btn.cancel:hover {
-            border-color: #555;
-            color: #aaa;
-        }
+    .led-page .instructions code {
+      background-color: #1a1a1a;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #ff8c00;
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+    }
+  </style>
 
-        .led-page .instructions {
-            color: #666;
-            font-size: 12px;
-            margin-top: 15px;
-            line-height: 1.8;
-        }
+  <div class="led-container">
+    <canvas id="ledCanvas"></canvas>
+  </div>
 
-        .led-page .instructions code {
-            background-color: #1a1a1a;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #ff8c00;
-            font-family: 'Consolas', monospace;
-            font-size: 11px;
-        }
-    </style>
+  <canvas id="textCanvas"></canvas>
 
-    <div class="led-container">
-        <canvas id="ledCanvas"></canvas>
-    </div>
+  <div class="controls">
+    <button class="edit-btn" id="editBtn">
+      <span class="eng">Edit Display</span><span class="chn">修改文字</span>
+    </button>
+  </div>
 
-    <canvas id="textCanvas"></canvas>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2>Edit Display</h2>
+      <textarea id="textInput" placeholder="Enter your message... 输入文字..."></textarea>
 
-    <div class="controls">
-        <button class="edit-btn" id="editBtn"><span class="eng">Edit Display</span><span class="chn">修改文字</span></button>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <h2>Edit Display</h2>
-            <textarea id="textInput" placeholder="Enter your message... 输入文字..."></textarea>
-
-            <div class="settings-section">
-                <h3><span class="eng">Setting</span><span class="chn">设置</span></h3>
-                <div class="setting-row">
-                    <label><span class="eng">Speed</span><span class="chn">速度</span></label>
-                    <input type="range" id="speedSlider" min="1" max="30" value="1">
-                    <span class="value-display" id="speedValue">1</span>
-                </div>
-                <div class="setting-row">
-                    <label><span class="eng">Glow</span><span class="chn">亮度</span></label>
-                    <input type="range" id="glowSlider" min="0" max="20" value="0">
-                    <span class="value-display" id="glowValue">0</span>
-                </div>
-            </div>
-
-            <div class="instructions">
-                <code>\\</code> <span class="eng">New message after current one completes</span><span class="chn">等待前一信息消失</span> &nbsp;|&nbsp;
-                <code>\hspace{n}</code> <span class="eng">Add n pixels of space</span><span class="chn">增加n格空格</span>
-            </div>
-
-            <div class="modal-buttons">
-                <button class="modal-btn cancel" id="cancelBtn"><span class="eng">Cancel</span><span class="chn">取消</span></button>
-                <button class="modal-btn save" id="saveBtn"><span class="eng">Apply</span><span class="chn">应用</span></button>
-            </div>
+      <div class="settings-section">
+        <h3><span class="eng">Setting</span><span class="chn">设置</span></h3>
+        <div class="setting-row">
+          <label><span class="eng">Speed</span><span class="chn">速度</span></label>
+          <input type="range" id="speedSlider" min="1" max="30" value="1" />
+          <span class="value-display" id="speedValue">1</span>
         </div>
+        <div class="setting-row">
+          <label><span class="eng">Glow</span><span class="chn">亮度</span></label>
+          <input type="range" id="glowSlider" min="0" max="20" value="0" />
+          <span class="value-display" id="glowValue">0</span>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <code>\\</code> <span class="eng">New message after current one completes</span
+        ><span class="chn">等待前一信息消失</span> &nbsp;|&nbsp; <code>\hspace{n}</code>
+        <span class="eng">Add n pixels of space</span><span class="chn">增加n格空格</span>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="modal-btn cancel" id="cancelBtn">
+          <span class="eng">Cancel</span><span class="chn">取消</span>
+        </button>
+        <button class="modal-btn save" id="saveBtn">
+          <span class="eng">Apply</span><span class="chn">应用</span>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
-        let scrollSpeed = 1;
-        let glowIntensity = 0;
+  <script>
+    // ============================================
+    // CONFIGURATION
+    // ============================================
+    let scrollSpeed = 1;
+    let glowIntensity = 0;
 
-        const CONFIG = {
-            cols: 320,
-            rows: 48,
-            ledSize: 3,
-            ledGap: 0.5,
-            fontSize: 40,
-            fontFamily: '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Hiragino Sans", Arial, sans-serif',
-            litColor: [255, 140, 0],
-            darkColor: [20, 18, 12],
-            frameRate: 60
-        };
+    const CONFIG = {
+      cols: 320,
+      rows: 48,
+      ledSize: 3,
+      ledGap: 0.5,
+      fontSize: 40,
+      fontFamily:
+        '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Hiragino Sans", Arial, sans-serif',
+      litColor: [255, 140, 0],
+      darkColor: [20, 18, 12],
+      frameRate: 60,
+    };
 
-        // ============================================
-        // LED Screen Class
-        // ============================================
-        class LEDScreen {
-            constructor(config) {
-                this.config = config;
-                this.cols = config.cols;
-                this.rows = config.rows;
+    // ============================================
+    // LED Screen Class
+    // ============================================
+    class LEDScreen {
+      constructor(config) {
+        this.config = config;
+        this.cols = config.cols;
+        this.rows = config.rows;
 
-                this.canvas = document.getElementById('ledCanvas');
-                this.ctx = this.canvas.getContext('2d');
+        this.canvas = document.getElementById('ledCanvas');
+        this.ctx = this.canvas.getContext('2d');
 
-                this.textCanvas = document.getElementById('textCanvas');
-                this.textCtx = this.textCanvas.getContext('2d', { willReadFrequently: true });
+        this.textCanvas = document.getElementById('textCanvas');
+        this.textCtx = this.textCanvas.getContext('2d', { willReadFrequently: true });
 
-                this.messages = [];
-                this.currentMessageIndex = 0;
-                this.scrollOffset = 0;
-                this.currentBitmap = null;
-                this.currentBitmapWidth = 0;
-                this.animationId = null;
-                this.lastTime = 0;
+        this.messages = [];
+        this.currentMessageIndex = 0;
+        this.scrollOffset = 0;
+        this.currentBitmap = null;
+        this.currentBitmapWidth = 0;
+        this.animationId = null;
+        this.lastTime = 0;
 
-                // Pre-calculate LED positions
-                this.ledPositions = [];
-                this.initCanvas();
-                this.setText('Welcome to Bear Resort! \\\\ 欢迎光临小熊樂園！');
-            }
+        // Pre-calculate LED positions
+        this.ledPositions = [];
+        this.initCanvas();
+        this.setText('Welcome to Bear Resort! \\\\ 欢迎光临小熊樂園！');
+      }
 
-            initCanvas() {
-                const totalLedSize = this.config.ledSize + this.config.ledGap;
-                this.canvas.width = this.cols * totalLedSize + this.config.ledGap;
-                this.canvas.height = this.rows * totalLedSize + this.config.ledGap;
+      initCanvas() {
+        const totalLedSize = this.config.ledSize + this.config.ledGap;
+        this.canvas.width = this.cols * totalLedSize + this.config.ledGap;
+        this.canvas.height = this.rows * totalLedSize + this.config.ledGap;
 
-                this.textCanvas.height = this.rows;
+        this.textCanvas.height = this.rows;
 
-                // Pre-calculate all LED center positions
-                for (let row = 0; row < this.rows; row++) {
-                    for (let col = 0; col < this.cols; col++) {
-                        const x = col * totalLedSize + this.config.ledGap + this.config.ledSize / 2;
-                        const y = row * totalLedSize + this.config.ledGap + this.config.ledSize / 2;
-                        this.ledPositions.push({ x, y, row, col });
-                    }
-                }
-            }
+        // Pre-calculate all LED center positions
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            const x = col * totalLedSize + this.config.ledGap + this.config.ledSize / 2;
+            const y = row * totalLedSize + this.config.ledGap + this.config.ledSize / 2;
+            this.ledPositions.push({ x, y, row, col });
+          }
+        }
+      }
 
-            textToBitmap(text) {
-                const fontSize = this.config.fontSize;
-                const fontFamily = this.config.fontFamily;
+      textToBitmap(text) {
+        const fontSize = this.config.fontSize;
+        const fontFamily = this.config.fontFamily;
 
-                this.textCtx.font = `bold ${fontSize}px ${fontFamily}`;
-                const metrics = this.textCtx.measureText(text);
-                const textWidth = Math.ceil(metrics.width) + 40;
+        this.textCtx.font = `bold ${fontSize}px ${fontFamily}`;
+        const metrics = this.textCtx.measureText(text);
+        const textWidth = Math.ceil(metrics.width) + 40;
 
-                this.textCanvas.width = textWidth;
-                this.textCanvas.height = this.rows;
+        this.textCanvas.width = textWidth;
+        this.textCanvas.height = this.rows;
 
-                this.textCtx.fillStyle = '#000000';
-                this.textCtx.fillRect(0, 0, textWidth, this.rows);
+        this.textCtx.fillStyle = '#000000';
+        this.textCtx.fillRect(0, 0, textWidth, this.rows);
 
-                this.textCtx.font = `bold ${fontSize}px ${fontFamily}`;
-                this.textCtx.fillStyle = '#ffffff';
-                this.textCtx.textBaseline = 'middle';
-                this.textCtx.textAlign = 'left';
-                this.textCtx.fillText(text, 10, this.rows / 2);
+        this.textCtx.font = `bold ${fontSize}px ${fontFamily}`;
+        this.textCtx.fillStyle = '#ffffff';
+        this.textCtx.textBaseline = 'middle';
+        this.textCtx.textAlign = 'left';
+        this.textCtx.fillText(text, 10, this.rows / 2);
 
-                const imageData = this.textCtx.getImageData(0, 0, textWidth, this.rows);
-                const data = imageData.data;
+        const imageData = this.textCtx.getImageData(0, 0, textWidth, this.rows);
+        const data = imageData.data;
 
-                const bitmap = new Uint8Array(textWidth * this.rows);
-                for (let i = 0; i < data.length; i += 4) {
-                    const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
-                    bitmap[i / 4] = brightness > 60 ? 1 : 0;
-                }
-
-                return { bitmap, width: textWidth, height: this.rows };
-            }
-
-            parseText(text) {
-                const lines = text.split(/\\\\/);
-                this.messages = lines.map(line => this.parseLine(line));
-                this.currentMessageIndex = 0;
-                this.loadCurrentMessage();
-            }
-
-            parseLine(line) {
-                const segments = [];
-                const hspaceRegex = /\\hspace\{(\d+)\}/g;
-                let lastIndex = 0;
-                let match;
-
-                while ((match = hspaceRegex.exec(line)) !== null) {
-                    if (match.index > lastIndex) {
-                        const textBefore = line.substring(lastIndex, match.index);
-                        if (textBefore) {
-                            segments.push({ type: 'text', content: textBefore });
-                        }
-                    }
-                    segments.push({ type: 'hspace', pixels: parseInt(match[1]) });
-                    lastIndex = match.index + match[0].length;
-                }
-
-                if (lastIndex < line.length) {
-                    segments.push({ type: 'text', content: line.substring(lastIndex) });
-                }
-
-                if (segments.length === 0) {
-                    segments.push({ type: 'text', content: ' ' });
-                }
-
-                return segments;
-            }
-
-            segmentsToBitmap(segments) {
-                const bitmaps = [];
-                let totalWidth = 0;
-
-                for (const segment of segments) {
-                    if (segment.type === 'text' && segment.content.trim()) {
-                        const result = this.textToBitmap(segment.content);
-                        bitmaps.push({ ...result, type: 'bitmap' });
-                        totalWidth += result.width;
-                    } else if (segment.type === 'hspace') {
-                        bitmaps.push({ type: 'space', width: segment.pixels });
-                        totalWidth += segment.pixels;
-                    } else if (segment.type === 'text') {
-                        bitmaps.push({ type: 'space', width: 30 });
-                        totalWidth += 30;
-                    }
-                }
-
-                const combined = new Uint8Array(totalWidth * this.rows);
-                let offsetX = 0;
-
-                for (const item of bitmaps) {
-                    if (item.type === 'bitmap') {
-                        for (let y = 0; y < this.rows; y++) {
-                            for (let x = 0; x < item.width; x++) {
-                                combined[y * totalWidth + offsetX + x] = item.bitmap[y * item.width + x];
-                            }
-                        }
-                        offsetX += item.width;
-                    } else if (item.type === 'space') {
-                        offsetX += item.width;
-                    }
-                }
-
-                return { bitmap: combined, width: totalWidth, height: this.rows };
-            }
-
-            loadCurrentMessage() {
-                if (this.messages.length === 0) return;
-
-                const currentSegments = this.messages[this.currentMessageIndex];
-                const result = this.segmentsToBitmap(currentSegments);
-                this.currentBitmap = result.bitmap;
-                this.currentBitmapWidth = result.width;
-                this.scrollOffset = 0;
-            }
-
-            setText(text) {
-                this.parseText(text);
-                this.startAnimation();
-            }
-
-            render(timestamp) {
-                if (!this.lastTime) this.lastTime = timestamp;
-                const deltaTime = (timestamp - this.lastTime) / 1000;
-                this.lastTime = timestamp;
-
-                this.scrollOffset += scrollSpeed * deltaTime * 60;
-
-                if (this.scrollOffset > this.cols + this.currentBitmapWidth) {
-                    this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
-                    this.loadCurrentMessage();
-                }
-
-                // Clear canvas
-                this.ctx.fillStyle = '#050505';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-                const ledSize = this.config.ledSize;
-                const ledRadius = ledSize / 2;
-                const [litR, litG, litB] = this.config.litColor;
-                const [darkR, darkG, darkB] = this.config.darkColor;
-
-                // Batch draw LEDs
-                for (const led of this.ledPositions) {
-                    const bitmapX = Math.floor(led.col - this.cols + this.scrollOffset);
-                    let isLit = false;
-
-                    if (bitmapX >= 0 && bitmapX < this.currentBitmapWidth && this.currentBitmap) {
-                        isLit = this.currentBitmap[led.row * this.currentBitmapWidth + bitmapX] === 1;
-                    }
-
-                    if (isLit) {
-                        // Glow effect
-                        if (glowIntensity > 0) {
-                            const glowRadius = ledSize * (1 + glowIntensity * 0.15);
-                            const gradient = this.ctx.createRadialGradient(
-                                led.x, led.y, 0,
-                                led.x, led.y, glowRadius
-                            );
-                            gradient.addColorStop(0, `rgba(${litR}, ${litG}, ${litB}, ${0.4 + glowIntensity * 0.02})`);
-                            gradient.addColorStop(0.5, `rgba(${litR}, ${litG}, ${litB}, ${0.1 + glowIntensity * 0.01})`);
-                            gradient.addColorStop(1, 'rgba(255, 140, 0, 0)');
-                            this.ctx.fillStyle = gradient;
-                            this.ctx.beginPath();
-                            this.ctx.arc(led.x, led.y, glowRadius, 0, Math.PI * 2);
-                            this.ctx.fill();
-                        }
-
-                        // Lit LED
-                        this.ctx.fillStyle = `rgb(${litR}, ${litG}, ${litB})`;
-                    } else {
-                        // Dark LED
-                        this.ctx.fillStyle = `rgb(${darkR}, ${darkG}, ${darkB})`;
-                    }
-
-                    this.ctx.beginPath();
-                    this.ctx.arc(led.x, led.y, ledRadius, 0, Math.PI * 2);
-                    this.ctx.fill();
-                }
-
-                this.animationId = requestAnimationFrame((t) => this.render(t));
-            }
-
-            startAnimation() {
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                }
-                this.lastTime = 0;
-                this.animationId = requestAnimationFrame((t) => this.render(t));
-            }
-
-            stopAnimation() {
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                    this.animationId = null;
-                }
-            }
+        const bitmap = new Uint8Array(textWidth * this.rows);
+        for (let i = 0; i < data.length; i += 4) {
+          const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          bitmap[i / 4] = brightness > 60 ? 1 : 0;
         }
 
-        // ============================================
-        // Initialize
-        // ============================================
-        const ledScreen = new LEDScreen(CONFIG);
+        return { bitmap, width: textWidth, height: this.rows };
+      }
 
-        // DOM Elements
-        const editBtn = document.getElementById('editBtn');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const textInput = document.getElementById('textInput');
-        const saveBtn = document.getElementById('saveBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const speedSlider = document.getElementById('speedSlider');
-        const speedValue = document.getElementById('speedValue');
-        const glowSlider = document.getElementById('glowSlider');
-        const glowValue = document.getElementById('glowValue');
+      parseText(text) {
+        const lines = text.split(/\\\\/);
+        this.messages = lines.map((line) => this.parseLine(line));
+        this.currentMessageIndex = 0;
+        this.loadCurrentMessage();
+      }
 
-        let currentText = 'Welcome to Bear Resort! \\\\ 欢迎光临小熊樂園！';
+      parseLine(line) {
+        const segments = [];
+        const hspaceRegex = /\\hspace\{(\d+)\}/g;
+        let lastIndex = 0;
+        let match;
 
-        // Initialize slider displays
-        speedValue.textContent = scrollSpeed;
-        glowValue.textContent = glowIntensity;
-        speedSlider.value = scrollSpeed;
-        glowSlider.value = glowIntensity;
-
-        editBtn.addEventListener('click', () => {
-            textInput.value = currentText;
-            speedSlider.value = scrollSpeed;
-            speedValue.textContent = scrollSpeed;
-            glowSlider.value = glowIntensity;
-            glowValue.textContent = glowIntensity;
-            modalOverlay.classList.add('active');
-            textInput.focus();
-        });
-
-        saveBtn.addEventListener('click', () => {
-            currentText = textInput.value;
-            scrollSpeed = parseInt(speedSlider.value);
-            glowIntensity = parseInt(glowSlider.value);
-            ledScreen.setText(currentText);
-            modalOverlay.classList.remove('active');
-        });
-
-        cancelBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-        });
-
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
+        while ((match = hspaceRegex.exec(line)) !== null) {
+          if (match.index > lastIndex) {
+            const textBefore = line.substring(lastIndex, match.index);
+            if (textBefore) {
+              segments.push({ type: 'text', content: textBefore });
             }
-        });
+          }
+          segments.push({ type: 'hspace', pixels: parseInt(match[1]) });
+          lastIndex = match.index + match[0].length;
+        }
 
-        speedSlider.addEventListener('input', (e) => {
-            speedValue.textContent = e.target.value;
-        });
+        if (lastIndex < line.length) {
+          segments.push({ type: 'text', content: line.substring(lastIndex) });
+        }
 
-        glowSlider.addEventListener('input', (e) => {
-            glowValue.textContent = e.target.value;
-        });
+        if (segments.length === 0) {
+          segments.push({ type: 'text', content: ' ' });
+        }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                modalOverlay.classList.remove('active');
+        return segments;
+      }
+
+      segmentsToBitmap(segments) {
+        const bitmaps = [];
+        let totalWidth = 0;
+
+        for (const segment of segments) {
+          if (segment.type === 'text' && segment.content.trim()) {
+            const result = this.textToBitmap(segment.content);
+            bitmaps.push({ ...result, type: 'bitmap' });
+            totalWidth += result.width;
+          } else if (segment.type === 'hspace') {
+            bitmaps.push({ type: 'space', width: segment.pixels });
+            totalWidth += segment.pixels;
+          } else if (segment.type === 'text') {
+            bitmaps.push({ type: 'space', width: 30 });
+            totalWidth += 30;
+          }
+        }
+
+        const combined = new Uint8Array(totalWidth * this.rows);
+        let offsetX = 0;
+
+        for (const item of bitmaps) {
+          if (item.type === 'bitmap') {
+            for (let y = 0; y < this.rows; y++) {
+              for (let x = 0; x < item.width; x++) {
+                combined[y * totalWidth + offsetX + x] = item.bitmap[y * item.width + x];
+              }
             }
-            if (e.key === 'Enter' && e.ctrlKey && modalOverlay.classList.contains('active')) {
-                saveBtn.click();
+            offsetX += item.width;
+          } else if (item.type === 'space') {
+            offsetX += item.width;
+          }
+        }
+
+        return { bitmap: combined, width: totalWidth, height: this.rows };
+      }
+
+      loadCurrentMessage() {
+        if (this.messages.length === 0) return;
+
+        const currentSegments = this.messages[this.currentMessageIndex];
+        const result = this.segmentsToBitmap(currentSegments);
+        this.currentBitmap = result.bitmap;
+        this.currentBitmapWidth = result.width;
+        this.scrollOffset = 0;
+      }
+
+      setText(text) {
+        this.parseText(text);
+        this.startAnimation();
+      }
+
+      render(timestamp) {
+        if (!this.lastTime) this.lastTime = timestamp;
+        const deltaTime = (timestamp - this.lastTime) / 1000;
+        this.lastTime = timestamp;
+
+        this.scrollOffset += scrollSpeed * deltaTime * 60;
+
+        if (this.scrollOffset > this.cols + this.currentBitmapWidth) {
+          this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
+          this.loadCurrentMessage();
+        }
+
+        // Clear canvas
+        this.ctx.fillStyle = '#050505';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        const ledSize = this.config.ledSize;
+        const ledRadius = ledSize / 2;
+        const [litR, litG, litB] = this.config.litColor;
+        const [darkR, darkG, darkB] = this.config.darkColor;
+
+        // Batch draw LEDs
+        for (const led of this.ledPositions) {
+          const bitmapX = Math.floor(led.col - this.cols + this.scrollOffset);
+          let isLit = false;
+
+          if (bitmapX >= 0 && bitmapX < this.currentBitmapWidth && this.currentBitmap) {
+            isLit = this.currentBitmap[led.row * this.currentBitmapWidth + bitmapX] === 1;
+          }
+
+          if (isLit) {
+            // Glow effect
+            if (glowIntensity > 0) {
+              const glowRadius = ledSize * (1 + glowIntensity * 0.15);
+              const gradient = this.ctx.createRadialGradient(
+                led.x,
+                led.y,
+                0,
+                led.x,
+                led.y,
+                glowRadius
+              );
+              gradient.addColorStop(
+                0,
+                `rgba(${litR}, ${litG}, ${litB}, ${0.4 + glowIntensity * 0.02})`
+              );
+              gradient.addColorStop(
+                0.5,
+                `rgba(${litR}, ${litG}, ${litB}, ${0.1 + glowIntensity * 0.01})`
+              );
+              gradient.addColorStop(1, 'rgba(255, 140, 0, 0)');
+              this.ctx.fillStyle = gradient;
+              this.ctx.beginPath();
+              this.ctx.arc(led.x, led.y, glowRadius, 0, Math.PI * 2);
+              this.ctx.fill();
             }
-        });
-    </script>
+
+            // Lit LED
+            this.ctx.fillStyle = `rgb(${litR}, ${litG}, ${litB})`;
+          } else {
+            // Dark LED
+            this.ctx.fillStyle = `rgb(${darkR}, ${darkG}, ${darkB})`;
+          }
+
+          this.ctx.beginPath();
+          this.ctx.arc(led.x, led.y, ledRadius, 0, Math.PI * 2);
+          this.ctx.fill();
+        }
+
+        this.animationId = requestAnimationFrame((t) => this.render(t));
+      }
+
+      startAnimation() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+        }
+        this.lastTime = 0;
+        this.animationId = requestAnimationFrame((t) => this.render(t));
+      }
+
+      stopAnimation() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+          this.animationId = null;
+        }
+      }
+    }
+
+    // ============================================
+    // Initialize
+    // ============================================
+    const ledScreen = new LEDScreen(CONFIG);
+
+    // DOM Elements
+    const editBtn = document.getElementById('editBtn');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const textInput = document.getElementById('textInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const speedSlider = document.getElementById('speedSlider');
+    const speedValue = document.getElementById('speedValue');
+    const glowSlider = document.getElementById('glowSlider');
+    const glowValue = document.getElementById('glowValue');
+
+    let currentText = 'Welcome to Bear Resort! \\\\ 欢迎光临小熊樂園！';
+
+    // Initialize slider displays
+    speedValue.textContent = scrollSpeed;
+    glowValue.textContent = glowIntensity;
+    speedSlider.value = scrollSpeed;
+    glowSlider.value = glowIntensity;
+
+    editBtn.addEventListener('click', () => {
+      textInput.value = currentText;
+      speedSlider.value = scrollSpeed;
+      speedValue.textContent = scrollSpeed;
+      glowSlider.value = glowIntensity;
+      glowValue.textContent = glowIntensity;
+      modalOverlay.classList.add('active');
+      textInput.focus();
+    });
+
+    saveBtn.addEventListener('click', () => {
+      currentText = textInput.value;
+      scrollSpeed = parseInt(speedSlider.value);
+      glowIntensity = parseInt(glowSlider.value);
+      ledScreen.setText(currentText);
+      modalOverlay.classList.remove('active');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
+    });
+
+    speedSlider.addEventListener('input', (e) => {
+      speedValue.textContent = e.target.value;
+    });
+
+    glowSlider.addEventListener('input', (e) => {
+      glowValue.textContent = e.target.value;
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        modalOverlay.classList.remove('active');
+      }
+      if (e.key === 'Enter' && e.ctrlKey && modalOverlay.classList.contains('active')) {
+        saveBtn.click();
+      }
+    });
+  </script>
 </div>

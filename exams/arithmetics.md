@@ -1,5 +1,5 @@
 ---
 layout: exam
-title: "Arithmetics Exam"
-filename: "arithmetics.csv"
+title: 'Arithmetics Exam'
+filename: 'arithmetics.csv'
 ---

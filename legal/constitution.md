@@ -1,12 +1,12 @@
 ---
-title: "Bear Resort Constitution"
+title: 'Bear Resort Constitution'
 ---
 
 # Defining Bears – The Constitution of Bear Resort <br> 小熊樂園憲法
 
 ## Introduction <br> 簡介
 
-As a modern institution, the Bear Resort embodies a constitution as the bases of such place. In general, the article “Defining Bears - The Constitution of Bear Resort” can be considered as the axioms of the world within Bear Resort. 
+As a modern institution, the Bear Resort embodies a constitution as the bases of such place. In general, the article “Defining Bears - The Constitution of Bear Resort” can be considered as the axioms of the world within Bear Resort.
 
 <br>
 
@@ -20,7 +20,7 @@ Article 2. All additional laws and boundaries shall not violate the Constitution
 
 Article 3. Any amendment, addition, or cancelation to Section 1, 2, and 3 of the Constitution of Bear Resort is strictly prohibited.
 
-Article 4. Any violations to Article 3, Section 1 should be immediately terminated and restored, while violators should be prosecuted. 
+Article 4. Any violations to Article 3, Section 1 should be immediately terminated and restored, while violators should be prosecuted.
 
 Article 5. Specifically for Article 3 and 4, Section 1, amendment, addition, or cancelation are temporarily allowed only during the composition of the constitution, and addition is allowed only to the additional protection of more sections.
 
@@ -32,7 +32,7 @@ Article 5. Specifically for Article 3 and 4, Section 1, amendment, addition, or 
 
 第三款 任何對於憲法第一、二、三章的修改、添加和取消是嚴令禁止的。
 
-第四款 任何對與第一章第三款的違反應當立即被終止並復原，違反者需被起訴。 
+第四款 任何對與第一章第三款的違反應當立即被終止並復原，違反者需被起訴。
 
 第五款 針對第一章第三、四款，僅在憲法編寫期間允許被修改、添加和取消，或為了保護更多章時與許被增加。
 
@@ -40,11 +40,11 @@ Article 5. Specifically for Article 3 and 4, Section 1, amendment, addition, or 
 
 Article 1. A large, heavy mammal (family Ursidae), walking with its feet, with thick fur and short tail is a bear.
 
-Article 2. A large, heavy, cumbersome man with a burly physique and a large amount of body hair is a bear. 
+Article 2. A large, heavy, cumbersome man with a burly physique and a large amount of body hair is a bear.
 
 Article 3. An object with name containing “bear”, “xiong”, “oso”, “🐻” or the meaning of bear (generally in pronunciation) is a bear.
 
-Article 4. An unalive object with similar characteristics of Article 1, 2, and 3, Section 2 is a bear. 
+Article 4. An unalive object with similar characteristics of Article 1, 2, and 3, Section 2 is a bear.
 
 Article 5. Except for Article 1, 2, 3, and 4, Section 2, other objects are not bears.
 
@@ -56,7 +56,7 @@ Article 5. Except for Article 1, 2, 3, and 4, Section 2, other objects are not b
 
 第三款 任何名字中帶有“bear”、“xiong”、 “oso“、 ”🐻“ 或相同與熊意思的（讀音一致即可）是熊。
 
-第四款 任何無生命的物體如果符合第二章第一、二、三款定義的特徵是熊。 
+第四款 任何無生命的物體如果符合第二章第一、二、三款定義的特徵是熊。
 
 第五款 除第二章第一、二、三、四款外，其他的均不為熊。
 
@@ -68,9 +68,9 @@ Article 2. Bears can be adopted as pets only if they are treated well and are wi
 
 Article 3. Bear pets cannot be abandoned except the bear and the owner both agree.
 
-Article 4. Bears are partially responsible for their massive living expenses. 
+Article 4. Bears are partially responsible for their massive living expenses.
 
-Article 5. Bears and human may not harm each other. 
+Article 5. Bears and human may not harm each other.
 
 Article 6. Mutilation is strictly prohibited, even if the object the person or bear themself. Harming yourself is not an acceptable approach to punish anyone who harmed you.
 
@@ -78,7 +78,7 @@ Article 6. Mutilation is strictly prohibited, even if the object the person or b
 
 第一款 對於人類、小熊和動物的辱罵和歧視是明令禁止的。
 
-第二款 只有黨小熊被妥善對待並同意時，小熊才能成為寵物。 
+第二款 只有黨小熊被妥善對待並同意時，小熊才能成為寵物。
 
 第三款 任何主人不得隨意拋棄小熊，除非獲得了雙方的同意。
 
@@ -102,7 +102,7 @@ Article 4. All humans and bears do not have the right to harm, threaten, or murd
 
 第一款 人類、小熊和動物的可以在區域內和平生活。
 
-第二款 所有人類和小熊擁有平等投票權和被選舉權。 
+第二款 所有人類和小熊擁有平等投票權和被選舉權。
 
 第三款 所有人類和小熊可以工作、學習並取得報酬。
 

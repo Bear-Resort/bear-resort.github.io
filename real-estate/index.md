@@ -1,5 +1,5 @@
 ---
-title: "Real Estate Map"
+title: 'Real Estate Map'
 ---
 
 <style>

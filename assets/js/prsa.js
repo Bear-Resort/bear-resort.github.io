@@ -9,9 +9,9 @@ AhZyE+cx8PDqjzqaqlUdlbpiaBi/WxNsLh+xQsjdNHtLC2g1vYkp9KIT4+bYyCyG
 -----END PUBLIC KEY-----`);
 
 function encodeRSA(myStr) {
-    const message = myStr;
-    const encrypted = publicKey.encrypt(message, "RSA-OAEP");
-    return forge.util.encode64(encrypted);
+  const message = myStr;
+  const encrypted = publicKey.encrypt(message, 'RSA-OAEP');
+  return forge.util.encode64(encrypted);
 }
 
 function hashDeterministically(str) {
@@ -23,7 +23,7 @@ function hashDeterministically(str) {
 function stringToHash(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash = (hash << 5) - hash + str.charCodeAt(i);
     hash |= 0;
   }
   return -Math.abs(hash << 2);

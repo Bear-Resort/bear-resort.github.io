@@ -1,23 +1,25 @@
-const tableBody = document.querySelector("#ratioTable tbody");
-const addRowBtn = document.getElementById("addRowBtn");
-const totalAmountInput = document.getElementById("totalAmountInput");
+const tableBody = document.querySelector('#ratioTable tbody');
+const addRowBtn = document.getElementById('addRowBtn');
+const totalAmountInput = document.getElementById('totalAmountInput');
 
 // Getters & setters
 function getRatios() {
-  return Array.from(tableBody.querySelectorAll(".ratioInput"))
-    .map(input => parseFloat(input.value) || 0);
+  return Array.from(tableBody.querySelectorAll('.ratioInput')).map(
+    (input) => parseFloat(input.value) || 0
+  );
 }
 function setRatios(ratios) {
-  tableBody.querySelectorAll(".ratioInput").forEach((input, idx) => {
+  tableBody.querySelectorAll('.ratioInput').forEach((input, idx) => {
     input.value = ratios[idx];
   });
 }
 function getAmounts() {
-  return Array.from(tableBody.querySelectorAll(".amountInput"))
-    .map(input => parseFloat(input.value) || 0);
+  return Array.from(tableBody.querySelectorAll('.amountInput')).map(
+    (input) => parseFloat(input.value) || 0
+  );
 }
 function setAmounts(amounts) {
-  tableBody.querySelectorAll(".amountInput").forEach((input, idx) => {
+  tableBody.querySelectorAll('.amountInput').forEach((input, idx) => {
     const val = amounts[idx];
     input.value = Number.isInteger(val) ? val : parseFloat(val.toFixed(3));
   });
@@ -40,7 +42,7 @@ function onRatioInput(idx) {
     totalAmountInput.value = 0;
     return;
   }
-  amounts[idx] = ratios[idx] / sumRatios * total;
+  amounts[idx] = (ratios[idx] / sumRatios) * total;
   setAmounts(amounts);
   // Update totalAmountInput to exact new total
   totalAmountInput.value = calcTotalAmount();
@@ -55,8 +57,8 @@ function onAmountInput(idx) {
   const sumRatios = ratios.reduce((a, b) => a + b, 0);
   if (sumRatios === 0) return;
   // New total required so that (rowRatio/sumRatios)*total = targetAmount
-  const newTotal = targetAmount * sumRatios / rowRatio;
-  const newAmounts = ratios.map(r => r / sumRatios * newTotal);
+  const newTotal = (targetAmount * sumRatios) / rowRatio;
+  const newAmounts = ratios.map((r) => (r / sumRatios) * newTotal);
   setAmounts(newAmounts);
   totalAmountInput.value = calcTotalAmount();
 }
@@ -66,52 +68,52 @@ function onTotalAmountInput() {
   const ratios = getRatios();
   const sumRatios = ratios.reduce((a, b) => a + b, 0);
   let total = parseFloat(totalAmountInput.value) || 0;
-  const amounts = (sumRatios > 0) ? ratios.map(r => r / sumRatios * total) : ratios.map(() => 0);
+  const amounts = sumRatios > 0 ? ratios.map((r) => (r / sumRatios) * total) : ratios.map(() => 0);
   setAmounts(amounts);
   totalAmountInput.value = calcTotalAmount();
 }
 
 // Add a row
-function addRow(ratio = 1, name = "") {
-  const tr = document.createElement("tr");
+function addRow(ratio = 1, name = '') {
+  const tr = document.createElement('tr');
   // Name
-  const nameTd = document.createElement("td");
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  nameInput.className = "nameInput";
+  const nameTd = document.createElement('td');
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.className = 'nameInput';
   nameInput.value = name;
   nameTd.appendChild(nameInput);
   // Ratio
-  const ratioTd = document.createElement("td");
-  const ratioInput = document.createElement("input");
-  ratioInput.type = "number";
-  ratioInput.className = "ratioInput";
+  const ratioTd = document.createElement('td');
+  const ratioInput = document.createElement('input');
+  ratioInput.type = 'number';
+  ratioInput.className = 'ratioInput';
   ratioInput.value = ratio;
-  ratioInput.min = "0";
-  ratioInput.step = "any";
-  ratioInput.addEventListener("input", function() {
+  ratioInput.min = '0';
+  ratioInput.step = 'any';
+  ratioInput.addEventListener('input', function () {
     const idx = Array.from(tableBody.children).indexOf(tr);
     onRatioInput(idx);
   });
   ratioTd.appendChild(ratioInput);
   // Amount (float, 3 decimals allowed)
-  const amountTd = document.createElement("td");
-  const amountInput = document.createElement("input");
-  amountInput.type = "number";
-  amountInput.className = "amountInput";
-  amountInput.min = "0";
-  amountInput.step = "0.001";
-  amountInput.value = "0";
-  amountInput.addEventListener("input", function() {
+  const amountTd = document.createElement('td');
+  const amountInput = document.createElement('input');
+  amountInput.type = 'number';
+  amountInput.className = 'amountInput';
+  amountInput.min = '0';
+  amountInput.step = '0.001';
+  amountInput.value = '0';
+  amountInput.addEventListener('input', function () {
     const idx = Array.from(tableBody.children).indexOf(tr);
     onAmountInput(idx);
   });
   amountTd.appendChild(amountInput);
   // Remove
-  const removeTd = document.createElement("td");
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "🗑️";
-  removeBtn.onclick = function() {
+  const removeTd = document.createElement('td');
+  const removeBtn = document.createElement('button');
+  removeBtn.textContent = '🗑️';
+  removeBtn.onclick = function () {
     tableBody.removeChild(tr);
     if (tableBody.children.length < 2) {
       addRow();
@@ -144,4 +146,4 @@ addRowBtn.onclick = function () {
   onTotalAmountInput();
 };
 
-totalAmountInput.addEventListener("input", onTotalAmountInput);
+totalAmountInput.addEventListener('input', onTotalAmountInput);

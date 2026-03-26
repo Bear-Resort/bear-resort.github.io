@@ -1,67 +1,99 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/css/variable.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="shortcut icon" href="/logos/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/variable.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="shortcut icon" href="/logos/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
     <meta name="google-site-verification" content="EfOxTB7twKAtQEkRpjlL2D_gJ-melQlIKajbeng2hLg" />
-</head>
-<body class="day-theme">
-  <script type="module" src="/assets/js/cookie.js"></script>
-  <script type="module" src="/assets/js/login.js"></script>
-  <script type="module" src="/assets/js/lang.js"></script>
-  <script type="module" src="/assets/js/day-night.js"></script>
-  <div class="topnav" div="topnav" style="text-align: center;">
-    <a href="/apps/"><img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle;"></a> &nbsp;
-    <a href="/index.html" id="home"> <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a> |
-    <a href="/archive/" id="archive"><span class="eng">Archive</span><span class="chn">归档</span></a> |
-    <a href="/mathland/" id="mathland"><span class="eng">Mathland</span><span class="chn">数学之境</span></a> |
-    <a href="/legal/" id="legal"><span class="eng">Legal</span><span class="chn">法务部</span></a> |
-    <a href="/emoji/" id="emoji"><span class="eng">Emoji</span><span class="chn">表情包</span></a> |
-    <a href="/opportunities/" id="opportunities"><span class="eng">Opportunities</span><span class="chn">机会</span></a> | 
-    <a href="/fans_only/" id="fans-only"><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a> |
-    <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a> 
-  </div>
-
-  <div id="dynamic-island" style="display: none;"></div>
-  <div id="day-night">🌞</div>
-
-  <div id="content" style="text-align: left;">
-    <br><br><br>
-
-    <div style="text-align: center;" id="ttl">
-        <largertitle><span class="eng">{{ page.title }}</span><span class="chn"> {{ page.title-chn }}</span></largertitle>
+  </head>
+  <body class="day-theme">
+    <script type="module" src="/assets/js/cookie.js"></script>
+    <script type="module" src="/assets/js/login.js"></script>
+    <script type="module" src="/assets/js/lang.js"></script>
+    <script type="module" src="/assets/js/day-night.js"></script>
+    <div class="topnav" div="topnav" style="text-align: center">
+      <a href="/apps/"
+        ><img src="/logos/default-bear.gif" width="25" height="25" style="vertical-align: middle"
+      /></a>
+      &nbsp;
+      <a href="/index.html" id="home">
+        <span class="eng">Bear Resort</span><span class="chn">小熊樂園</span></a
+      >
+      |
+      <a href="/archive/" id="archive"
+        ><span class="eng">Archive</span><span class="chn">归档</span></a
+      >
+      |
+      <a href="/mathland/" id="mathland"
+        ><span class="eng">Mathland</span><span class="chn">数学之境</span></a
+      >
+      |
+      <a href="/legal/" id="legal"><span class="eng">Legal</span><span class="chn">法务部</span></a>
+      |
+      <a href="/emoji/" id="emoji"><span class="eng">Emoji</span><span class="chn">表情包</span></a>
+      |
+      <a href="/opportunities/" id="opportunities"
+        ><span class="eng">Opportunities</span><span class="chn">机会</span></a
+      >
+      |
+      <a href="/fans_only/" id="fans-only"
+        ><span class="eng">Fans Only</span><span class="chn">粉丝专享</span></a
+      >
+      |
+      <a href="https://www.instagram.com/bear_resort/" target="_blank">Instagram</a>
     </div>
 
-    <br>
+    <div id="dynamic-island" style="display: none"></div>
+    <div id="day-night">🌞</div>
 
-    {{ content }}
+    <div id="content" style="text-align: left">
+      <br /><br /><br />
 
-    <br><br><br>
+      <div style="text-align: center" id="ttl">
+        <largertitle
+          ><span class="eng">{{ page.title }}</span
+          ><span class="chn"> {{ page.title-chn }}</span></largertitle
+        >
+      </div>
 
-    <a href="/assets/html/login.html" id="login"><span class="eng">Log in</span><span class="chn">登录</span></a>
-    <div id="lang">Eng</div>
+      <br />
 
-  </div>
+      {{ content }}
 
-    <div class="botnav" id="botnav" style="text-align: center;">
-      <span class="eng">Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>.</span> <span class="chn">联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。</span>
+      <br /><br /><br />
+
+      <a href="/assets/html/login.html" id="login"
+        ><span class="eng">Log in</span><span class="chn">登录</span></a
+      >
+      <div id="lang">Eng</div>
+    </div>
+
+    <div class="botnav" id="botnav" style="text-align: center">
+      <span class="eng">Contact us with <a href="mailto:bear.resort.01@gmail.com">email</a>.</span>
+      <span class="chn">联系我们通过<a href="mailto:bear.resort.01@gmail.com">电邮</a>。</span>
     </div>
 
     <div id="result-modal" style="display: none">
-    <div id="result-box">
-      <div id="result-text"></div>
-      <button id="close-modal-btn">×</button>
+      <div id="result-box">
+        <div id="result-text"></div>
+        <button id="close-modal-btn">×</button>
+      </div>
     </div>
-  </div>
 
     <script src="/assets/js/link.js"></script>
     <script src="/assets/js/alert.js"></script>
-    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/node-forge@1.3.1/dist/forge.min.js"></script>
 
     <script src="/assets/js/login.js"></script>
@@ -73,31 +105,30 @@
     <script src="/assets/js/dynamic-island.js"></script>
 
     <script>
-    if ("{{ page.title }}" === "Home") {
-      activeLink = document.getElementById("home");
-    }
-    if ("{{ page.title }}" === "Archive") {
-      activeLink = document.getElementById("archive");
-    }
-    if ("{{ page.title }}" === "Mathland") {
-      activeLink = document.getElementById("mathland");
-    }
-    if ("{{ page.title }}" === "Legal") {
-      activeLink = document.getElementById("legal");
-    }
-    if ("{{ page.title }}" === "Emoji") {
-      activeLink = document.getElementById("emoji");
-    }
-    if ("{{ page.title }}" === "Fans Only") {
-      activeLink = document.getElementById("fans-only");
-    }
-    if ("{{ page.title }}" === "Opportunities") {
-      activeLink = document.getElementById("opportunities");
-    }
-    if (activeLink) {
-      activeLink.classList.add("active");
-    }
-  </script>
-</body>
-
+      if ('{{ page.title }}' === 'Home') {
+        activeLink = document.getElementById('home');
+      }
+      if ('{{ page.title }}' === 'Archive') {
+        activeLink = document.getElementById('archive');
+      }
+      if ('{{ page.title }}' === 'Mathland') {
+        activeLink = document.getElementById('mathland');
+      }
+      if ('{{ page.title }}' === 'Legal') {
+        activeLink = document.getElementById('legal');
+      }
+      if ('{{ page.title }}' === 'Emoji') {
+        activeLink = document.getElementById('emoji');
+      }
+      if ('{{ page.title }}' === 'Fans Only') {
+        activeLink = document.getElementById('fans-only');
+      }
+      if ('{{ page.title }}' === 'Opportunities') {
+        activeLink = document.getElementById('opportunities');
+      }
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    </script>
+  </body>
 </html>

@@ -6,17 +6,17 @@ let aimedGrade = 93;
 
 // CATEGORY NAME HELPER
 function getCategoryDisplayName(cat, idx) {
-    return cat.name && cat.name.trim() ? cat.name : `Category ${idx + 1}`;
+  return cat.name && cat.name.trim() ? cat.name : `Category ${idx + 1}`;
 }
 
 // Rendering
 function renderCategories() {
-    const tbody = document.getElementById('category-tbody');
-    tbody.innerHTML = '';
-    categories.forEach((cat, idx) => {
+  const tbody = document.getElementById('category-tbody');
+  tbody.innerHTML = '';
+  categories.forEach((cat, idx) => {
     const tr = document.createElement('tr');
     if (cat.editing) {
-        tr.innerHTML = `
+      tr.innerHTML = `
         <td>
             <input type="text" value="${cat.name}" id="cat-name-${idx}" placeholder="(optional)">
         </td>
@@ -30,8 +30,8 @@ function renderCategories() {
         </td>
         `;
     } else {
-        let weighted = computeCategoryWeightedScore(cat);
-        tr.innerHTML = `
+      let weighted = computeCategoryWeightedScore(cat);
+      tr.innerHTML = `
         <td>${getCategoryDisplayName(cat, idx)}</td>
         <td>${cat.ratio}</td>
         <td>${typeof weighted === 'number' ? weighted.toFixed(2) : '-'}</td>
@@ -45,27 +45,27 @@ function renderCategories() {
     tbody.appendChild(tr);
 
     if (!cat.editing && Array.isArray(cat.subs) && cat.subs.length > 0) {
-        const subTable = renderSubAssignments(cat, idx);
-        tbody.appendChild(subTable);
+      const subTable = renderSubAssignments(cat, idx);
+      tbody.appendChild(subTable);
     }
-    });
-    updateGoalMessage();
-    updateMyLanguage();
+  });
+  updateGoalMessage();
+  updateMyLanguage();
 }
 
 function renderSubAssignments(cat, catIdx) {
-    const subTr = document.createElement('tr');
-    const td = document.createElement('td');
-    td.colSpan = 4;
-    td.style.textAlign = 'left';
-    td.style.paddingLeft = '24px';
-    const newCld = document.createElement("div");
-    newCld.innerHTML = `<span class="eng">Assignments for </span><span class="chn">作業給</span>"${getCategoryDisplayName(cat, catIdx)}":`;
-    td.appendChild(newCld);
-    const subTable = document.createElement('table');
-    subTable.className = 'sub-assignment-table';
+  const subTr = document.createElement('tr');
+  const td = document.createElement('td');
+  td.colSpan = 4;
+  td.style.textAlign = 'left';
+  td.style.paddingLeft = '24px';
+  const newCld = document.createElement('div');
+  newCld.innerHTML = `<span class="eng">Assignments for </span><span class="chn">作業給</span>"${getCategoryDisplayName(cat, catIdx)}":`;
+  td.appendChild(newCld);
+  const subTable = document.createElement('table');
+  subTable.className = 'sub-assignment-table';
 
-    subTable.innerHTML = `
+  subTable.innerHTML = `
     <thead>
         <tr>
         <th><span class="eng">Name</span><span class="chn">名稱</span></th>
@@ -76,8 +76,10 @@ function renderSubAssignments(cat, catIdx) {
         </tr>
     </thead>
     <tbody>
-        ${cat.subs.map((sub, subIdx) => sub.editing
-        ? `<tr>
+        ${cat.subs
+          .map((sub, subIdx) =>
+            sub.editing
+              ? `<tr>
             <td><input type="text" value="${sub.name}" id="sub-name-${catIdx}-${subIdx}" placeholder="(optional)"></td>
             <td><input type="number" min="0" id="sub-grade-${catIdx}-${subIdx}" value="${sub.grade}"></td>
             <td><input type="number" min="1" id="sub-outof-${catIdx}-${subIdx}" value="${sub.outOf}"></td>
@@ -87,7 +89,7 @@ function renderSubAssignments(cat, catIdx) {
                 <button onclick="cancelSubEdit(${catIdx},${subIdx})"><span class="eng">Cancel</span><span class="chn">取消</span></button>
             </td>
             </tr>`
-        : `<tr>
+              : `<tr>
             <td>${sub.name ? sub.name : '<span style="color:#aaa"><span class="eng">(Untitled)</span><span class="chn">(未命名)</span></span>'}</td>
             <td>${sub.grade || '-'}</td>
             <td>${sub.outOf || '-'}</td>
@@ -97,250 +99,256 @@ function renderSubAssignments(cat, catIdx) {
                 <button onclick="deleteSubAssignment(${catIdx},${subIdx})"><span class="eng">Delete</span><span class="chn">刪除</span></button>
             </td>
             </tr>`
-        ).join('')}
+          )
+          .join('')}
     </tbody>
     `;
-    td.appendChild(subTable);
-    if (cat.subs.length === 0) {
+  td.appendChild(subTable);
+  if (cat.subs.length === 0) {
     const none = document.createElement('div');
     none.style.color = '#ccc';
     none.style.fontSize = '0.98em';
     none.textContent = `<span class="eng">No assignments</span><span class="chn">尚無作業</span>`;
     td.appendChild(none);
-    }
-    subTr.appendChild(td);
-    return subTr;
+  }
+  subTr.appendChild(td);
+  return subTr;
 }
 
 // Event Handlers
 function addCategory() {
-    categories.push({
-    name: "",
+  categories.push({
+    name: '',
     ratio: 0,
     editing: true,
     subs: [],
-    });
-    renderCategories();
+  });
+  renderCategories();
 }
 function editCategory(idx) {
-    categories[idx].editing = true;
-    renderCategories();
+  categories[idx].editing = true;
+  renderCategories();
 }
 function deleteCategory(idx) {
-    if (confirm(updateMyLanguage() === "Eng" ? "Delete this category?" : "刪除類別嗎？")) {
+  if (confirm(updateMyLanguage() === 'Eng' ? 'Delete this category?' : '刪除類別嗎？')) {
     categories.splice(idx, 1);
     renderCategories();
-    }
+  }
 }
 function saveEdit(idx) {
-    const name = document.getElementById(`cat-name-${idx}`).value;
-    let ratio = parseFloat(document.getElementById(`cat-ratio-${idx}`).value);
-    if (isNaN(ratio) || ratio <= 0 || ratio > 100) {
-        if (updateMyLanguage() === "Eng") {
-            alert("Ratio must be a number between 0 and 100.");
-        } else {
-            alert("比例應當在0到100之間.");
-        }
-    return;
+  const name = document.getElementById(`cat-name-${idx}`).value;
+  let ratio = parseFloat(document.getElementById(`cat-ratio-${idx}`).value);
+  if (isNaN(ratio) || ratio <= 0 || ratio > 100) {
+    if (updateMyLanguage() === 'Eng') {
+      alert('Ratio must be a number between 0 and 100.');
+    } else {
+      alert('比例應當在0到100之間.');
     }
-    categories[idx].name = name.trim() ? name.trim() : "";
-    categories[idx].ratio = Math.max(0, Math.min(100, ratio));
-    categories[idx].editing = false;
-    renderCategories();
+    return;
+  }
+  categories[idx].name = name.trim() ? name.trim() : '';
+  categories[idx].ratio = Math.max(0, Math.min(100, ratio));
+  categories[idx].editing = false;
+  renderCategories();
 }
 function cancelEdit(idx) {
-    if (!categories[idx].name && categories[idx].ratio === 0 && categories[idx].subs.length === 0) {
+  if (!categories[idx].name && categories[idx].ratio === 0 && categories[idx].subs.length === 0) {
     categories.splice(idx, 1);
-    } else {
+  } else {
     categories[idx].editing = false;
-    }
-    renderCategories();
+  }
+  renderCategories();
 }
 
 function addSubAssignment(catIdx) {
-    let cat = categories[catIdx];
-    cat.subs.push({
-    name: "",
-    grade: "",
-    outOf: "",
+  let cat = categories[catIdx];
+  cat.subs.push({
+    name: '',
+    grade: '',
+    outOf: '',
     editing: true,
-    });
-    renderCategories();
+  });
+  renderCategories();
 }
 function editSubAssignment(catIdx, subIdx) {
-    categories[catIdx].subs[subIdx].editing = true;
-    renderCategories();
+  categories[catIdx].subs[subIdx].editing = true;
+  renderCategories();
 }
 function deleteSubAssignment(catIdx, subIdx) {
-    if (confirm(updateMyLanguage() === "Eng" ? "Delete this assignment?" : "刪除作業嗎？")) {
+  if (confirm(updateMyLanguage() === 'Eng' ? 'Delete this assignment?' : '刪除作業嗎？')) {
     categories[catIdx].subs.splice(subIdx, 1);
     renderCategories();
-    }
+  }
 }
 function saveSubEdit(catIdx, subIdx) {
-    const sub = categories[catIdx].subs[subIdx];
-    const name = document.getElementById(`sub-name-${catIdx}-${subIdx}`).value;
-    let grade = document.getElementById(`sub-grade-${catIdx}-${subIdx}`).value;
-    let outOf = document.getElementById(`sub-outof-${catIdx}-${subIdx}`).value;
-    grade = (grade === "") ? "" : parseFloat(grade);
-    outOf = (outOf === "") ? "" : parseFloat(outOf);
+  const sub = categories[catIdx].subs[subIdx];
+  const name = document.getElementById(`sub-name-${catIdx}-${subIdx}`).value;
+  let grade = document.getElementById(`sub-grade-${catIdx}-${subIdx}`).value;
+  let outOf = document.getElementById(`sub-outof-${catIdx}-${subIdx}`).value;
+  grade = grade === '' ? '' : parseFloat(grade);
+  outOf = outOf === '' ? '' : parseFloat(outOf);
 
-    if (outOf !== "" && (isNaN(outOf) || outOf <= 0)) {
-        if (updateMyLanguage() === "Eng") {
-            alert("Out of must be a positive number.");
-        } else {
-            alert("總分應該是正數.");
-        }
-        return;
+  if (outOf !== '' && (isNaN(outOf) || outOf <= 0)) {
+    if (updateMyLanguage() === 'Eng') {
+      alert('Out of must be a positive number.');
+    } else {
+      alert('總分應該是正數.');
     }
-    if (grade !== "" && (isNaN(grade) || grade < 0)) {
-        if (updateMyLanguage() === "Eng") {
-            alert("Grade must be a non-negative number.");
-        } else {
-            alert("成績不應是負數.");
-        }
-        return;
-    }
-    if (grade == "" || outOf === "") {
-    if (updateMyLanguage() === "Eng") {
-            alert("You need to enter the grades.");
-        } else {
-            alert("你需要輸入成績.");
-        }
     return;
+  }
+  if (grade !== '' && (isNaN(grade) || grade < 0)) {
+    if (updateMyLanguage() === 'Eng') {
+      alert('Grade must be a non-negative number.');
+    } else {
+      alert('成績不應是負數.');
     }
-    sub.name = name.trim();
-    sub.grade = grade;
-    sub.outOf = outOf;
-    sub.editing = false;
-    renderCategories();
+    return;
+  }
+  if (grade == '' || outOf === '') {
+    if (updateMyLanguage() === 'Eng') {
+      alert('You need to enter the grades.');
+    } else {
+      alert('你需要輸入成績.');
+    }
+    return;
+  }
+  sub.name = name.trim();
+  sub.grade = grade;
+  sub.outOf = outOf;
+  sub.editing = false;
+  renderCategories();
 }
 function cancelSubEdit(catIdx, subIdx) {
-    const sub = categories[catIdx].subs[subIdx];
-    if (!sub.name && (sub.grade === "" || sub.grade == null) && (sub.outOf === "" || sub.outOf == null)) {
+  const sub = categories[catIdx].subs[subIdx];
+  if (
+    !sub.name &&
+    (sub.grade === '' || sub.grade == null) &&
+    (sub.outOf === '' || sub.outOf == null)
+  ) {
     categories[catIdx].subs.splice(subIdx, 1);
-    } else {
+  } else {
     sub.editing = false;
-    }
-    renderCategories();
+  }
+  renderCategories();
 }
 
 // Calculation
 function computeCategoryWeightedScore(cat) {
-    if (!cat.subs || cat.subs.length === 0) return undefined;
-    let validSubs = cat.subs.filter(sub => sub.grade !== "" && sub.outOf);
-    if (validSubs.length === 0) return undefined;
-    let weighted = 0;
-    let sum = 0, possible = 0;
-    for (let sub of validSubs) {
+  if (!cat.subs || cat.subs.length === 0) return undefined;
+  let validSubs = cat.subs.filter((sub) => sub.grade !== '' && sub.outOf);
+  if (validSubs.length === 0) return undefined;
+  let weighted = 0;
+  let sum = 0,
+    possible = 0;
+  for (let sub of validSubs) {
     sum += sub.grade;
     possible += sub.outOf;
-    }
-    let percent = (possible > 0) ? (sum / possible) : 0;
-    weighted = percent * cat.ratio;
-    return weighted * 100 / 100;
+  }
+  let percent = possible > 0 ? sum / possible : 0;
+  weighted = percent * cat.ratio;
+  return (weighted * 100) / 100;
 }
 
 function computeTotalGrade() {
-    let total = 0;
-    let totalRatio = 0;
-    for (let cat of categories) {
+  let total = 0;
+  let totalRatio = 0;
+  for (let cat of categories) {
     if (!cat.ratio) continue;
     let weighted = computeCategoryWeightedScore(cat);
     if (typeof weighted === 'number') {
-        total += weighted;
-        totalRatio += cat.ratio;
+      total += weighted;
+      totalRatio += cat.ratio;
     }
-    }
-    return { total, totalRatio: categories.reduce((r, c) => r + (c.ratio || 0), 0) };
+  }
+  return { total, totalRatio: categories.reduce((r, c) => r + (c.ratio || 0), 0) };
 }
 
 function updateGoalMessage() {
-    let goal = aimedGrade * 1;
-    let msg = "";
-    const totalRatio = categories.reduce((sum, cat) => sum + (+cat.ratio || 0), 0);
-    if (categories.length === 0) {
+  let goal = aimedGrade * 1;
+  let msg = '';
+  const totalRatio = categories.reduce((sum, cat) => sum + (+cat.ratio || 0), 0);
+  if (categories.length === 0) {
     msg = `<span class="eng">Enter in Categories to start</span><span class="chn">輸入類別以開始</span>`;
-    }
-    else if (totalRatio !== 100) {
+  } else if (totalRatio !== 100) {
     msg = `<span class="eng">The current grade does not add up to 100%</span><span class="chn">成績比例之和並非100%</span>`;
-    }
-    else {
+  } else {
     let anyGrades = false;
     for (let cat of categories) {
-        if (cat.subs && cat.subs.some(sub => sub.grade !== "" && sub.outOf !== "")) {
+      if (cat.subs && cat.subs.some((sub) => sub.grade !== '' && sub.outOf !== '')) {
         anyGrades = true;
         break;
-        }
+      }
     }
 
     if (!anyGrades) {
-        msg = `<span class="eng">No grades entered yet</span><span class="chn">暫無成績</span><br>`;
+      msg = `<span class="eng">No grades entered yet</span><span class="chn">暫無成績</span><br>`;
     } else {
-        let sumWeighted = 0;
-        let sumRatiosWithGrades = 0;
-        let missingCats = [];
-        categories.forEach((cat, idx) => {
-        let hasGrades = cat.subs && cat.subs.some(sub => sub.grade !== "" && sub.outOf !== "");
+      let sumWeighted = 0;
+      let sumRatiosWithGrades = 0;
+      let missingCats = [];
+      categories.forEach((cat, idx) => {
+        let hasGrades = cat.subs && cat.subs.some((sub) => sub.grade !== '' && sub.outOf !== '');
         if (hasGrades) {
-            let weighted = computeCategoryWeightedScore(cat);
-            if (typeof weighted === 'number') {
+          let weighted = computeCategoryWeightedScore(cat);
+          if (typeof weighted === 'number') {
             sumWeighted += weighted;
-            sumRatiosWithGrades += (+cat.ratio || 0);
-            }
+            sumRatiosWithGrades += +cat.ratio || 0;
+          }
         } else {
-            missingCats.push(idx);
+          missingCats.push(idx);
         }
-        });
-        let remainingRatio = totalRatio - sumRatiosWithGrades;
-        let { total } = computeTotalGrade();
-        msg = `<span class="eng">Current grade</span><span class="chn">當前成績</span>: <b>${total.toFixed(2)}</b><br>`;
-        if (remainingRatio <= 0) {
-            msg += (total >= goal)
-                ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
-                : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
-        } else {
-        let need = (goal - sumWeighted) / remainingRatio * 100;
+      });
+      let remainingRatio = totalRatio - sumRatiosWithGrades;
+      let { total } = computeTotalGrade();
+      msg = `<span class="eng">Current grade</span><span class="chn">當前成績</span>: <b>${total.toFixed(2)}</b><br>`;
+      if (remainingRatio <= 0) {
+        msg +=
+          total >= goal
+            ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
+            : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
+      } else {
+        let need = ((goal - sumWeighted) / remainingRatio) * 100;
         need = Math.max(0, need);
-        let needText = need.toFixed(2) + "%";
+        let needText = need.toFixed(2) + '%';
         if (missingCats.length > 0) {
-            msg += `<span class="eng">To reach</span><span class="chn">以望得以</span> ${goal}, <span class="eng">you gotta get</span><span class="chn">你需要得到</span> <b>${needText}</b> <span class="eng">in</span><span class="chn">在</span>: `;
-            msg += missingCats.map(idx => `<b>${getCategoryDisplayName(categories[idx], idx)}</b>`).join(', ');
-            msg += `</span>`;
-            if (need > 100)
+          msg += `<span class="eng">To reach</span><span class="chn">以望得以</span> ${goal}, <span class="eng">you gotta get</span><span class="chn">你需要得到</span> <b>${needText}</b> <span class="eng">in</span><span class="chn">在</span>: `;
+          msg += missingCats
+            .map((idx) => `<b>${getCategoryDisplayName(categories[idx], idx)}</b>`)
+            .join(', ');
+          msg += `</span>`;
+          if (need > 100)
             msg += `<br>
         <span class="eng">Warning: Given current grades, not possible to obtain</span><span class="chn">警告：基於當前成績，是得不到</span> ${goal} <span class="eng">for grade.</span><span class="chn">分的。</span>`;
+        } else {
+          msg +=
+            total >= goal
+              ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
+              : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
         }
-        else {
-            msg += (total >= goal)
-                ? `<span class="eng">You're on track!</span><span class="chn">穩了！</span>`
-                : `<span class="eng">Gotta work hard to obtain </span><span class="chn">得加把勁兒來到達</span>${goal}.`;
-        }
-        }
+      }
     }
-    }
-    document.getElementById('goal-message').innerHTML = msg;
-    updateMyLanguage();
+  }
+  document.getElementById('goal-message').innerHTML = msg;
+  updateMyLanguage();
 }
 
 // Slider logic
 function updateGoalValue(val) {
-    aimedGrade = Math.round(val);
-    document.getElementById('goal-slider').value = aimedGrade;
-    document.getElementById('goal-value').textContent = aimedGrade;
-    updateGoalMessage();
+  aimedGrade = Math.round(val);
+  document.getElementById('goal-slider').value = aimedGrade;
+  document.getElementById('goal-value').textContent = aimedGrade;
+  updateGoalMessage();
 }
 
 // -- Init / initial value
-window.onload = function() {
-    document.getElementById('goal-slider').value = aimedGrade;
-    document.getElementById('goal-value').textContent = aimedGrade;
-    renderCategories();
+window.onload = function () {
+  document.getElementById('goal-slider').value = aimedGrade;
+  document.getElementById('goal-value').textContent = aimedGrade;
+  renderCategories();
 };
 
-
-const addCate = document.getElementById("add-category");
-addCate?.addEventListener("click", addCategory);
+const addCate = document.getElementById('add-category');
+addCate?.addEventListener('click', addCategory);
 
 Object.assign(window, {
   cancelEdit,
@@ -355,8 +363,8 @@ Object.assign(window, {
   cancelSubEdit,
 });
 
-const goalSlider = document.getElementById("goal-slider");
+const goalSlider = document.getElementById('goal-slider');
 
-goalSlider.addEventListener("input", () => {
-    updateGoalValue(goalSlider.value);
-})
+goalSlider.addEventListener('input', () => {
+  updateGoalValue(goalSlider.value);
+});

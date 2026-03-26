@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Archive"
-title-chn: "归档"
+title: 'Archive'
+title-chn: '归档'
 ---
 
 <span class="eng">The Bear Resort was not built in one day. Hence, through our progress of development, many designs are no longer compatible. Thus, we compile them here.</span>
@@ -15,7 +15,6 @@ title-chn: "归档"
 <span class="eng">We have been using some old webpages prior to switching to `github`.</span>
 
 <span class="chn">我們在转至`github`前有使用其他的平台。</span>
-
 
 - [<span class="eng">Old Page Archive</span><span class="chn">老的网址</span>](https://sites.google.com/view/bear-resort/home)
 - [<span class="eng">Older Page Archive</span><span class="chn">更老的网址</span>](https://livejohnshopkins.sharepoint.com/sites/mathland/bear_resort)
@@ -34,7 +33,6 @@ title-chn: "归档"
 - [<span class="eng">The News Live Show</span><span class="chn">新闻直播秀</span>](语言-新闻秀.pdf)
 - <span class="eng">Adventure of the Blue Car</span><span class="chn">小蓝车奇遇记</span>
 
-
 <!-- ## Here are our departments <br> 这里是我们的部门
 - <img src="/logos/study-abroad.png" width="100" height="100"> Study Abroad Club / 留學俱樂部
 - <img src="/logos/space-traveler.png" width="100" height="100"> Space Travelers / 宇宙旅行團
@@ -42,6 +40,6 @@ title-chn: "归档"
 - <img src="/logos/literati-writer.png" width="100" height="100"> Literati's Abode / 文創風雅居
 - <img src="/logos/future-tech.png" width="100" height="100"> Future Tech City / 未來科學城
 - <img src="/logos/endeavor-cook.png" width="100" height="100"> Endeavor's Kitchen / 美食步行街
-- <img src="/logos/sports-athlete.png" width="100" height="100"> Stadium of Athletes / 體院運動場 
+- <img src="/logos/sports-athlete.png" width="100" height="100"> Stadium of Athletes / 體院運動場
 - <img src="/logos/math-subspce.png" width="100" height="100"> Math Subspace / 純數子空間
 - <img src="/logos/king-domain.png" width="100" height="100"> Bear King's Domain / 域屬於熊王 -->

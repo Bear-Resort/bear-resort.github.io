@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Emoji"
-title-chn: "表情包"
+title: 'Emoji'
+title-chn: '表情包'
 ---
 
 ## <span class="eng">Season 1: Daily Life in Bear Resort</span><span class="chn">第一季: 小熊樂園日常</span>
@@ -74,5 +74,3 @@ title-chn: "表情包"
 
 - <span class="eng">Author: Mathy.</span><span class="chn">作者：数数。</span>
 - <span class="eng">Download</span><span class="chn">下载</span>: <img src="/emoji/uncle_v.bmp" width="200" height="200"> [<span class="eng">Link</span><span class="chn">链接</span>](https://w.url.cn/s/AmWev6x#wechat_redirect)
-
-

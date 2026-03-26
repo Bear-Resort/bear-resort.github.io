@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Public Hashing Encoder"
+title: 'Public Hashing Encoder'
 ---
 
 This Public Hashing Encoder encodes the cipher based on the public key.

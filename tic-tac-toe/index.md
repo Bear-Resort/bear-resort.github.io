@@ -1,5 +1,5 @@
 ---
-title: "Tic-Tac-Toe Game"
+title: 'Tic-Tac-Toe Game'
 ---
 
 <style>

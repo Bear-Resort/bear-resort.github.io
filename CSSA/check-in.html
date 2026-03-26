@@ -1,136 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Event Check-In</title>
-  <style>
-    body { font-family: "SimSun", "Songti SC", sans-serif; padding: 2em; }
-    input, button { font-size: 16px; padding: 10px; margin-top: 10px; }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Check-In</title>
+    <style>
+      body {
+        font-family: 'SimSun', 'Songti SC', sans-serif;
+        padding: 2em;
+      }
+      input,
+      button {
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 10px;
+      }
 
-    input {
-    font-family: 'Merriweather', serif;
-    font-size: 12px;
-    }
+      input {
+        font-family: 'Merriweather', serif;
+        font-size: 12px;
+      }
 
-    h1 {
-    color:rgb(129, 34, 24);
-    text-align: center;
-    margin-top: 1em;
-    font-size: 22pt;
-}
+      h1 {
+        color: rgb(129, 34, 24);
+        text-align: center;
+        margin-top: 1em;
+        font-size: 22pt;
+      }
 
-button {
-    font-family: 'Merriweather', serif;
-    font-size: 16px;
-    padding: 10px 25px;
-    color: #f7ed9f; /* Light text color */
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
-  
-    background: linear-gradient(to bottom, #842f26 0%, #701713 100%); /* Inverse gradient on hover */
-    border: 1px solid #4d2a0d; /* Dark brown border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Top inner highlight */
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3),    /* Bottom inner shadow */
-        0 2px 6px rgba(0, 0, 0, 0.4);          /* Outer shadow */
+      button {
+        font-family: 'Merriweather', serif;
+        font-size: 16px;
+        padding: 10px 25px;
+        color: #f7ed9f; /* Light text color */
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); /* Subtle text shadow for embossed look */
 
-    cursor: pointer;
-    transition: all 0.2s ease; /* Smooth transition for hover and active states */
-    overflow: hidden; /* Prevents inner shadow or pseudo-element from going out of bounds */
-    transform: translateY(0px);
-}
+        background: linear-gradient(
+          to bottom,
+          #842f26 0%,
+          #701713 100%
+        ); /* Inverse gradient on hover */
+        border: 1px solid #4d2a0d; /* Dark brown border */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+          /* Top inner highlight */ inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+          /* Bottom inner shadow */ 0 2px 6px rgba(0, 0, 0, 0.4); /* Outer shadow */
 
-button::before {
-    content: "";
-    position: absolute; /* Ensure it's positioned over the button */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 45%; /* Control the height of the glossy effect */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1)); /* Glossy effect */
-    border-top-left-radius: 8px; /* Match the button border radius */
-    border-top-right-radius: 8px;
-    pointer-events: none; /* Prevent interaction with the pseudo-element */
-}
+        cursor: pointer;
+        transition: all 0.2s ease; /* Smooth transition for hover and active states */
+        overflow: hidden; /* Prevents inner shadow or pseudo-element from going out of bounds */
+        transform: translateY(0px);
+      }
 
-button:hover {
-    background: linear-gradient(to bottom,#701713 0%, #842f26 100%); /* Inverse gradient on hover */
-    box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.3), /* Light inner shadow */
-        inset 0 -1px 0 rgba(0, 0, 0, 0.5), /* Bottom shadow */
-        0 5px 10px rgba(0, 0, 0, 0.6); /* Stronger outer shadow on hover */
-    transform: translateY(0px);
-}
+      button::before {
+        content: '';
+        position: absolute; /* Ensure it's positioned over the button */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 45%; /* Control the height of the glossy effect */
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.6),
+          rgba(255, 255, 255, 0.1)
+        ); /* Glossy effect */
+        border-top-left-radius: 8px; /* Match the button border radius */
+        border-top-right-radius: 8px;
+        pointer-events: none; /* Prevent interaction with the pseudo-element */
+      }
 
-button:active {
-    background: linear-gradient(to bottom, #812218 0%,#842f26 100%); /* Active state with inverse gradient */
-    box-shadow: 
-        inset 0 2px 3px rgba(0, 0, 0, 0.5),  /* Deeper inner shadow for active press effect */
-        inset 0 -3px 4px rgba(0, 0, 0, 0.6), /* Stronger bottom inner shadow */
-        0 1px 4px rgba(0, 0, 0, 0.5);        /* More pronounced outer shadow */
-    transform: translateY(2px); /* Simulate the pressing down effect */
-}
+      button:hover {
+        background: linear-gradient(
+          to bottom,
+          #701713 0%,
+          #842f26 100%
+        ); /* Inverse gradient on hover */
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+          /* Light inner shadow */ inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+          /* Bottom shadow */ 0 5px 10px rgba(0, 0, 0, 0.6); /* Stronger outer shadow on hover */
+        transform: translateY(0px);
+      }
 
-button:disabled {
-    background-color: #443f39; /* Muted background when disabled */
-    color: #443f39; /* Muted text color */
-    cursor: default; /* Disable cursor interaction */
-}
-  </style>
-</head>
-<body>
+      button:active {
+        background: linear-gradient(
+          to bottom,
+          #812218 0%,
+          #842f26 100%
+        ); /* Active state with inverse gradient */
+        box-shadow:
+          inset 0 2px 3px rgba(0, 0, 0, 0.5),
+          /* Deeper inner shadow for active press effect */ inset 0 -3px 4px rgba(0, 0, 0, 0.6),
+          /* Stronger bottom inner shadow */ 0 1px 4px rgba(0, 0, 0, 0.5); /* More pronounced outer shadow */
+        transform: translateY(2px); /* Simulate the pressing down effect */
+      }
 
-  <h1>JHUCSSA 2025新生见面会 北京研究生场签到</h1>
-  <form id="survey-form">
-  <div style="width: 75%; margin: 0 auto; text-align: center;">
-    <p>
-        欢迎来到由JHUCSSA举办的新生会活动. 请在签到完成后有序进入会场! <br> <br>
-        姓名（需与报名问卷一致）: <br>
-        <input type="text" name="name" placeholder="请输入..." required>
-        <br>
-    </p>
-    <button type="submit" id="submitBtn">签到</button><br>
-    </div>
-  </form>
-  <img src="bluejay.png" alt="Blue Jay" width="300" style="float: left; padding: 0;" />
-    <img src="qr-code.jpg" alt="Blue Jay" width="300" style="float: right; padding: 0;" />
-  <p id="result"></p>
+      button:disabled {
+        background-color: #443f39; /* Muted background when disabled */
+        color: #443f39; /* Muted text color */
+        cursor: default; /* Disable cursor interaction */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JHUCSSA 2025新生见面会 北京研究生场签到</h1>
+    <form id="survey-form">
+      <div style="width: 75%; margin: 0 auto; text-align: center">
+        <p>
+          欢迎来到由JHUCSSA举办的新生会活动. 请在签到完成后有序进入会场! <br />
+          <br />
+          姓名（需与报名问卷一致）: <br />
+          <input type="text" name="name" placeholder="请输入..." required />
+          <br />
+        </p>
+        <button type="submit" id="submitBtn">签到</button><br />
+      </div>
+    </form>
+    <img src="bluejay.png" alt="Blue Jay" width="300" style="float: left; padding: 0" />
+    <img src="qr-code.jpg" alt="Blue Jay" width="300" style="float: right; padding: 0" />
+    <p id="result"></p>
 
-  <script>
-    const AUTH_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
-    const CHECKED_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
+    <script>
+      const AUTH_CSV =
+        'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsl8uAbmwgAYNhQpAQbezszI-jXEl8AugPcCkaAvpPL1_ZNEzxa1pupiYPagQjW4tSnkw4iCUR-AJk/pub?output=csv';
+      const CHECKED_CSV =
+        'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMjQxf0ZHsyvMPwdrz34tXxKJ6XGOwLfPxurecZeU8pt6n8f9sUgplEvPej5O8EnJvn_uZArw1QoIK/pub?output=csv';
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec';
 
-    let authorized = {};
-    let checkedIn = new Set();
+      let authorized = {};
+      let checkedIn = new Set();
 
-    async function loadCSVs() {
+      async function loadCSVs() {
         const [authText, checkedText] = await Promise.all([
-        fetch(AUTH_CSV).then(r => r.text()),
-        fetch(CHECKED_CSV).then(r => r.text())
+          fetch(AUTH_CSV).then((r) => r.text()),
+          fetch(CHECKED_CSV).then((r) => r.text()),
         ]);
 
-        authText.split('\n').slice(1).forEach(line => {
-        const [name, count] = line.trim().split(',');
-        if (name) authorized[name.toLowerCase()] = parseInt(count || 1);
-        });
+        authText
+          .split('\n')
+          .slice(1)
+          .forEach((line) => {
+            const [name, count] = line.trim().split(',');
+            if (name) authorized[name.toLowerCase()] = parseInt(count || 1);
+          });
 
-        checkedText.split('\n').slice(1).forEach(line => {
+        checkedText
+          .split('\n')
+          .slice(1)
+          .forEach((line) => {
             const parts = line.trim().split(',');
-            const name = (parts[1] || "").toLowerCase().trim(); // Get second column
+            const name = (parts[1] || '').toLowerCase().trim(); // Get second column
             if (name) checkedIn.add(name);
-        });
+          });
 
-        console.log("Loaded authorized:", authorized);
-        console.log("Loaded checked-in:", checkedIn);
-    }
+        console.log('Loaded authorized:', authorized);
+        console.log('Loaded checked-in:', checkedIn);
+      }
 
-    document.addEventListener('DOMContentLoaded', loadCSVs);
+      document.addEventListener('DOMContentLoaded', loadCSVs);
 
-    const form = document.getElementById('survey-form');
-    const submitBtn = document.getElementById('submitBtn');
+      const form = document.getElementById('survey-form');
+      const submitBtn = document.getElementById('submitBtn');
 
-    form.addEventListener('submit', async function (e) {
+      form.addEventListener('submit', async function (e) {
         e.preventDefault();
         submitBtn.disabled = true;
 
@@ -142,36 +175,39 @@ button:disabled {
         let finalName = nameRaw;
 
         if (!authorized[name]) {
-            finalName += "111";
-            alert("❌ 没有找到此报名.");
+          finalName += '111';
+          alert('❌ 没有找到此报名.');
         } else if (authorized[name] < 0) {
-            alert(`❓ 欢迎! 请与工作人员确认学生信息。入场人数 ${-authorized[name]} 人.`);
+          alert(`❓ 欢迎! 请与工作人员确认学生信息。入场人数 ${-authorized[name]} 人.`);
         } else if (checkedIn.has(name)) {
-            finalName += "000";
-            alert(`⚠️ 此参与者已签到. 入场人数 ${authorized[name]} 人.`);
+          finalName += '000';
+          alert(`⚠️ 此参与者已签到. 入场人数 ${authorized[name]} 人.`);
         } else {
-            alert(`✅ 欢迎! 入场人数 ${authorized[name]} 人.`);
+          alert(`✅ 欢迎! 入场人数 ${authorized[name]} 人.`);
         }
 
         const formData = { name: finalName };
 
-        fetch("https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-        })
-        .then(res => res.text())
-        .then(msg => {
-        console.log("✅ 已记录!");
-        form.reset();
-        submitBtn.disabled = false;
-        })
-        .catch(err => {
-        alert("❌ 出现了一些问题!");
-        submitBtn.disabled = false;
-        });
-    });
-</script>
-</body>
+        fetch(
+          'https://script.google.com/macros/s/AKfycbym8hiMV7FpcwzHKeckPTwaVxxoGv_-XrDtfFP4T7cXROPQS6jUlowgA60aJAbOkYGV/exec',
+          {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          }
+        )
+          .then((res) => res.text())
+          .then((msg) => {
+            console.log('✅ 已记录!');
+            form.reset();
+            submitBtn.disabled = false;
+          })
+          .catch((err) => {
+            alert('❌ 出现了一些问题!');
+            submitBtn.disabled = false;
+          });
+      });
+    </script>
+  </body>
 </html>

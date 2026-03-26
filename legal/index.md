@@ -1,13 +1,12 @@
 ---
 layout: page
-title: "Legal"
-title-chn: "法务部"
+title: 'Legal'
+title-chn: '法务部'
 ---
 
 <span class="eng">The <i>legal</i> department deals with the legitimate and court stuffs inside the Bear Resort.</span>
 
 <span class="chn">小熊樂園<i>法务部</i>处理小熊樂園内部的司法和官司问题。</span>
-
 
 # <img src="/logos/legal.gif" height="200"><br>
 

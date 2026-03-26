@@ -1,96 +1,121 @@
 ---
-title: "Brody Time Logger"
+title: 'Brody Time Logger'
 ---
 
 <style>
-body {
-  background: var(--background-color, #f2fafb);
-  margin: 0; padding: 0;
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-}
-.container {
-  background: var(--background-light, #fff);
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.08);
-  padding: 32px 24px 22px 24px;
-  margin-top: 32px;
-  text-align: center;
-  display: flex; flex-direction: column; align-items: center;
-}
-h1 {
-  margin-bottom: 24px;
-  font-size: 2rem;
-  font-weight: 600;
-}
-#checkin-btn {
-  margin: 12px 0;
-  font-size: 1.15rem;
-  padding: 14px 32px;
-  /* background: #3475fa; */
-  /* color: #fff; */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-#checkin-btn:disabled {
-  background: #a3b6db;
-  color: #eee;
-  cursor: not-allowed;
-}
-#msg {
-  margin: 10px 0 20px 0;
-  color: #c65836;
-  font-size: .98rem;
-  min-height: 20px;
-}
-#timer {
-  margin: 16px 0 12px 0;
-  font-size: 1.2em;
-  color: #036b30;
-  font-weight: bold;
-  min-height: 24px;
-}
-.motivation {
-  width: 100%;
-  margin-top: 16px;
-  font-size: 1.06em;
-  color: #498f76;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-/* Custom popup */
-#alert-bg {
-  display: none; position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.18); z-index: 9999;
-  align-items: center; justify-content: center;
-}
-#alert-box {
-  background: #fff; border-radius: 14px; padding: 36px 28px 22px 28px;
-  font-size: 1.07em;
-  max-width: 98vw; min-width: 260px; max-width: 410px;
-  box-shadow: 0 8px 44px rgba(17,25,51,0.18);
-  position: relative;
-  text-align: left;
-  color: #000;
-}
-#alert-box button {
-  margin-top: 22px; padding: 9px 40px;
-  background: #3071ed; color: #fff;
-  border: none; font-weight: bold;
-  border-radius: 7px; font-size: 1em; cursor: pointer;
-}
-#alert-title {
-  font-size: 1.15em; font-weight: bold; color: #207030; margin-bottom: 12px;
-}
-@media (max-width: 450px) {
-  #alert-box {padding: 18px 8vw;}
-}
+  body {
+    background: var(--background-color, #f2fafb);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    background: var(--background-light, #fff);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    padding: 32px 24px 22px 24px;
+    margin-top: 32px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  #checkin-btn {
+    margin: 12px 0;
+    font-size: 1.15rem;
+    padding: 14px 32px;
+    /* background: #3475fa; */
+    /* color: #fff; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  #checkin-btn:disabled {
+    background: #a3b6db;
+    color: #eee;
+    cursor: not-allowed;
+  }
+  #msg {
+    margin: 10px 0 20px 0;
+    color: #c65836;
+    font-size: 0.98rem;
+    min-height: 20px;
+  }
+  #timer {
+    margin: 16px 0 12px 0;
+    font-size: 1.2em;
+    color: #036b30;
+    font-weight: bold;
+    min-height: 24px;
+  }
+  .motivation {
+    width: 100%;
+    margin-top: 16px;
+    font-size: 1.06em;
+    color: #498f76;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+  /* Custom popup */
+  #alert-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.18);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  #alert-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 36px 28px 22px 28px;
+    font-size: 1.07em;
+    max-width: 98vw;
+    min-width: 260px;
+    max-width: 410px;
+    box-shadow: 0 8px 44px rgba(17, 25, 51, 0.18);
+    position: relative;
+    text-align: left;
+    color: #000;
+  }
+  #alert-box button {
+    margin-top: 22px;
+    padding: 9px 40px;
+    background: #3071ed;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 7px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  #alert-title {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #207030;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 450px) {
+    #alert-box {
+      padding: 18px 8vw;
+    }
+  }
 </style>
 
 <div class="container">
@@ -109,386 +134,410 @@ h1 {
     <button id="alert-ok">OK</button>
   </div>
 </div>
-<div style="text-align: center;"><a href="index.html">Back to check-in calendar.</a></div>
+<div style="text-align: center"><a href="index.html">Back to check-in calendar.</a></div>
 
 <script type="module">
-// --- [ Custom alert as html dialog ] ---
-function customAlert(html, title=inBrody ? "Brody Session Ended" : "Annex Session Ended") {
-  const bg = document.getElementById('alert-bg');
-  const box = document.getElementById('alert-box');
-  const ok = document.getElementById('alert-ok');
-  document.getElementById('alert-title').innerHTML = title;
-  document.getElementById('alert-content').innerHTML = html;
-  bg.style.display = 'flex';
-  function close() {
-    bg.style.display = 'none';
-    ok.removeEventListener('click', close);
-  }
-  ok.focus();
-  ok.addEventListener('click', close);
-}
-
-// -------------------------------
-// CONSTANTS & UTILS
-// -------------------------------
-const BRODY_LAT = 39.32850;
-const BRODY_LON = -76.61922;
-const BRODY_RADIUS = 25; // meters
-
-const ANNEX_LAT = 39.33018;
-const ANNEX_LON = -76.62224;
-const ANNEX_RADIUS = 25;
-
-const CHECKIN_DAYS_KEY = 'brody_checkin_dates';
-const SESSION_KEY = 'brody_time_session';
-
-function degreesToRadians(deg) { return deg * Math.PI / 180; }
-function haversine(lat1, lon1, lat2, lon2) {
-  const R = 6371000;
-  const dLat = degreesToRadians(lat2 - lat1);
-  const dLon = degreesToRadians(lon2 - lon1);
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}
-// For Brody calendar/check-in, dayKey is always in local time, for user's time zone.
-// If current hour is 0 or 1 (midnight to 2am, exclusive), use yesterday as the day
-function getBrodyDayKey(date) {
-  let d = new Date(date);
-  let hr = d.getHours();
-  if (hr < 2) d.setDate(d.getDate() - 1);
-  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0');
-}
-function prettyDuration(ms) {
-  if (!ms || ms < 60000) return '0 min';
-  let s = Math.floor(ms/1000);
-  let h = Math.floor(s/3600); s = s%3600;
-  let m = Math.floor(s/60); s = s%60;
-  let x = "";
-  if (h) x += `${h} hr `;
-  if (m || h) x += `${m} min `;
-//   x += `${s} sec`;
-  return x.trim();
-}
-function getDisplayDate(date) {
-  if (!date) return '-';
-  date = new Date(date);
-  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-}
-
-// For check-in calendar
-function getCheckedInDates() {
-  // Returns Array of keys like ["2023-11-29", ...]
-  try {
-    let raw = localStorage.getItem(CHECKIN_DAYS_KEY);
-    if (raw && typeof raw === "string") {
-      let arr = JSON.parse(raw);
-      if (Array.isArray(arr)) return arr;
+  // --- [ Custom alert as html dialog ] ---
+  function customAlert(html, title = inBrody ? 'Brody Session Ended' : 'Annex Session Ended') {
+    const bg = document.getElementById('alert-bg');
+    const box = document.getElementById('alert-box');
+    const ok = document.getElementById('alert-ok');
+    document.getElementById('alert-title').innerHTML = title;
+    document.getElementById('alert-content').innerHTML = html;
+    bg.style.display = 'flex';
+    function close() {
+      bg.style.display = 'none';
+      ok.removeEventListener('click', close);
     }
-  } catch (e) {}
-  return [];
-}
-function addCheckedInDate(dayKey) {
-  let arr = getCheckedInDates();
-  if (!arr.includes(dayKey)) arr.push(dayKey);
-  localStorage.setItem(CHECKIN_DAYS_KEY, JSON.stringify(arr));
-}
+    ok.focus();
+    ok.addEventListener('click', close);
+  }
 
-// --- MOTIVATION
-const MOTIVATIONS = [
-  "Consistency breeds success.",
-  "Today in Brody counts!",
-  "Small steps, big impact.",
-  "Keep pushing forward!",
-  "Momentum is everything.",
-  "Attention is all you need.",
-  "Stay strong, stay productive!",
-  "Your future will thank you."
-];
-function getMotivation(idx = null) {
-  if (idx == null) idx = new Date().getMinutes() % MOTIVATIONS.length;
-  return MOTIVATIONS[idx];
-}
+  // -------------------------------
+  // CONSTANTS & UTILS
+  // -------------------------------
+  const BRODY_LAT = 39.3285;
+  const BRODY_LON = -76.61922;
+  const BRODY_RADIUS = 25; // meters
 
-// Brody opening hours NOT BETWEEN 2AM–7:30AM
-function isOperatingNow(date=new Date()){
-  let hr = date.getHours(), min = date.getMinutes();
-  let t = hr * 60 + min;
-  return !(t >= 120 && t < 450); // 2:00am to 7:30am excluded
-}
+  const ANNEX_LAT = 39.33018;
+  const ANNEX_LON = -76.62224;
+  const ANNEX_RADIUS = 25;
 
-// Only 1 check-in per day
-function alreadyCheckedInForToday() {
-  let dates = getCheckedInDates();
-  let todayKey = getBrodyDayKey(new Date());
-  return dates.includes(todayKey);
-}
+  const CHECKIN_DAYS_KEY = 'brody_checkin_dates';
+  const SESSION_KEY = 'brody_time_session';
 
-// -------------------------------
-// STATE VARS
-// -------------------------------
-let userLocation = undefined, locationErr = false, userInRange, annexInRange = false;
-let session = null;
-let periodicTimer = null;
-let clockTimer = null;
+  function degreesToRadians(deg) {
+    return (deg * Math.PI) / 180;
+  }
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const dLat = degreesToRadians(lat2 - lat1);
+    const dLon = degreesToRadians(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(degreesToRadians(lat1)) *
+        Math.cos(degreesToRadians(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+  // For Brody calendar/check-in, dayKey is always in local time, for user's time zone.
+  // If current hour is 0 or 1 (midnight to 2am, exclusive), use yesterday as the day
+  function getBrodyDayKey(date) {
+    let d = new Date(date);
+    let hr = d.getHours();
+    if (hr < 2) d.setDate(d.getDate() - 1);
+    return (
+      d.getFullYear() +
+      '-' +
+      String(d.getMonth() + 1).padStart(2, '0') +
+      '-' +
+      String(d.getDate()).padStart(2, '0')
+    );
+  }
+  function prettyDuration(ms) {
+    if (!ms || ms < 60000) return '0 min';
+    let s = Math.floor(ms / 1000);
+    let h = Math.floor(s / 3600);
+    s = s % 3600;
+    let m = Math.floor(s / 60);
+    s = s % 60;
+    let x = '';
+    if (h) x += `${h} hr `;
+    if (m || h) x += `${m} min `;
+    //   x += `${s} sec`;
+    return x.trim();
+  }
+  function getDisplayDate(date) {
+    if (!date) return '-';
+    date = new Date(date);
+    return (
+      date.toLocaleDateString() +
+      ' ' +
+      date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    );
+  }
 
-let inBrody = true;
+  // For check-in calendar
+  function getCheckedInDates() {
+    // Returns Array of keys like ["2023-11-29", ...]
+    try {
+      let raw = localStorage.getItem(CHECKIN_DAYS_KEY);
+      if (raw && typeof raw === 'string') {
+        let arr = JSON.parse(raw);
+        if (Array.isArray(arr)) return arr;
+      }
+    } catch (e) {}
+    return [];
+  }
+  function addCheckedInDate(dayKey) {
+    let arr = getCheckedInDates();
+    if (!arr.includes(dayKey)) arr.push(dayKey);
+    localStorage.setItem(CHECKIN_DAYS_KEY, JSON.stringify(arr));
+  }
 
-// SESSION = { startTime (timestamp), validTime (timestamp), dayKey }
-function getSession() {
-  try {
-    const raw = localStorage.getItem(SESSION_KEY);
-    if (!raw) return null;
-    const s = JSON.parse(raw);
-    if (!s || !s.startTime || !s.validTime || !s.dayKey || !s.inBrody) return null;
-    return {
-      startTime: s.startTime,
-      validTime: s.validTime,
-      dayKey: s.dayKey,
-      inBrody: s.inBrody
+  // --- MOTIVATION
+  const MOTIVATIONS = [
+    'Consistency breeds success.',
+    'Today in Brody counts!',
+    'Small steps, big impact.',
+    'Keep pushing forward!',
+    'Momentum is everything.',
+    'Attention is all you need.',
+    'Stay strong, stay productive!',
+    'Your future will thank you.',
+  ];
+  function getMotivation(idx = null) {
+    if (idx == null) idx = new Date().getMinutes() % MOTIVATIONS.length;
+    return MOTIVATIONS[idx];
+  }
+
+  // Brody opening hours NOT BETWEEN 2AM–7:30AM
+  function isOperatingNow(date = new Date()) {
+    let hr = date.getHours(),
+      min = date.getMinutes();
+    let t = hr * 60 + min;
+    return !(t >= 120 && t < 450); // 2:00am to 7:30am excluded
+  }
+
+  // Only 1 check-in per day
+  function alreadyCheckedInForToday() {
+    let dates = getCheckedInDates();
+    let todayKey = getBrodyDayKey(new Date());
+    return dates.includes(todayKey);
+  }
+
+  // -------------------------------
+  // STATE VARS
+  // -------------------------------
+  let userLocation = undefined,
+    locationErr = false,
+    userInRange,
+    annexInRange = false;
+  let session = null;
+  let periodicTimer = null;
+  let clockTimer = null;
+
+  let inBrody = true;
+
+  // SESSION = { startTime (timestamp), validTime (timestamp), dayKey }
+  function getSession() {
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      const s = JSON.parse(raw);
+      if (!s || !s.startTime || !s.validTime || !s.dayKey || !s.inBrody) return null;
+      return {
+        startTime: s.startTime,
+        validTime: s.validTime,
+        dayKey: s.dayKey,
+        inBrody: s.inBrody,
+      };
+    } catch (e) {
+      return null;
     }
-  } catch(e) { return null; }
-}
-function setSession(obj) {
-  localStorage.setItem(SESSION_KEY, JSON.stringify(obj));
-}
-function clearSession() {
-  localStorage.removeItem(SESSION_KEY);
-}
+  }
+  function setSession(obj) {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(obj));
+  }
+  function clearSession() {
+    localStorage.removeItem(SESSION_KEY);
+  }
 
-function updateLocationState(position) {
-  const lat = position.coords.latitude, lon = position.coords.longitude;
-  userLocation = {lat, lon};
-  const dist = haversine(lat, lon, BRODY_LAT, BRODY_LON);
-  userInRange = dist <= BRODY_RADIUS;
-  const aDist = haversine(lat, lon, ANNEX_LAT, ANNEX_LON);
-  annexInRange = aDist <= ANNEX_RADIUS;
-  inBrody = dist <= BRODY_RADIUS;
-  locationErr = false;
-  updateUI();
-}
-function locationError(err) {
-  locationErr = true;
-  userLocation = undefined;
-  userInRange = false;
-  annexInRange = false;
-  updateUI();
-}
-function obtainLocation() {
-  if (!navigator.geolocation) {
-    locationErr = true; updateUI();
-    return;
+  function updateLocationState(position) {
+    const lat = position.coords.latitude,
+      lon = position.coords.longitude;
+    userLocation = { lat, lon };
+    const dist = haversine(lat, lon, BRODY_LAT, BRODY_LON);
+    userInRange = dist <= BRODY_RADIUS;
+    const aDist = haversine(lat, lon, ANNEX_LAT, ANNEX_LON);
+    annexInRange = aDist <= ANNEX_RADIUS;
+    inBrody = dist <= BRODY_RADIUS;
+    locationErr = false;
+    updateUI();
   }
-  navigator.geolocation.getCurrentPosition(
-    updateLocationState,
-    locationError,
-    {enableHighAccuracy:true, timeout:10000, maximumAge:60000}
-  );
-}
+  function locationError(err) {
+    locationErr = true;
+    userLocation = undefined;
+    userInRange = false;
+    annexInRange = false;
+    updateUI();
+  }
+  function obtainLocation() {
+    if (!navigator.geolocation) {
+      locationErr = true;
+      updateUI();
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(updateLocationState, locationError, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 60000,
+    });
+  }
 
-// -------- PERIODIC SESSION CONTROL --------
-// Called every 15min or on leave/resume - keep session robust
-function periodicSessionTick(force_now=false) {
-  const now = new Date();
-  if (!isOperatingNow(now)) {
-    if (session) terminateSession(false, "Brody is closed, session auto-terminated.");
-    return;
+  // -------- PERIODIC SESSION CONTROL --------
+  // Called every 15min or on leave/resume - keep session robust
+  function periodicSessionTick(force_now = false) {
+    const now = new Date();
+    if (!isOperatingNow(now)) {
+      if (session) terminateSession(false, 'Brody is closed, session auto-terminated.');
+      return;
+    }
+    // If out of Brody, force session termination
+    if (userLocation && !userInRange) {
+      if (session) terminateSession(false, 'Moved out of Brody, session terminated.');
+      return;
+    }
+    // Update validTime if still in range
+    if (userLocation && session) {
+      let newValid = now.getTime();
+      session.validTime = newValid;
+      setSession(session);
+    }
   }
-  // If out of Brody, force session termination
-  if (userLocation && !userInRange) {
-    if (session) terminateSession(false, "Moved out of Brody, session terminated.");
-    return;
-  }
-  // Update validTime if still in range
-  if (userLocation && session) {
-    let newValid = now.getTime();
-    session.validTime = newValid;
+
+  // -------- SESSION LOGIC --------
+  function startSession() {
+    const now = new Date();
+    const startMs = now.getTime();
+    const dayKey = getBrodyDayKey(now);
+    session = {
+      startTime: startMs,
+      validTime: startMs,
+      dayKey: dayKey,
+      inBrody: inBrody,
+    };
     setSession(session);
+    // Check in for Brody on this day immediately
+    addCheckedInDate(dayKey);
+
+    // Start periodic timers
+    if (periodicTimer) clearInterval(periodicTimer);
+    periodicTimer = setInterval(periodicSessionTick, 1 * 60 * 1000); // 15min
+    if (clockTimer) clearInterval(clockTimer);
+    clockTimer = setInterval(updateClock, 1000); // update seconds
+
+    updateUI();
+    updateClock();
   }
-}
 
-// -------- SESSION LOGIC --------
-function startSession() {
-  const now = new Date();
-  const startMs = now.getTime();
-  const dayKey = getBrodyDayKey(now);
-  session = {
-    startTime: startMs,
-    validTime: startMs,
-    dayKey: dayKey,
-    inBrody: inBrody
-  };
-  setSession(session);
-  // Check in for Brody on this day immediately
-  addCheckedInDate(dayKey);
+  function terminateSession(userAction = true, popupMsg) {
+    if (!session) return;
+    const now = new Date();
+    // If leaving and still in Brody, update validTime to now
+    let validTime = session.validTime;
+    let leaveTime = now.getTime();
+    if (userAction && userInRange) validTime = leaveTime;
+    let startTime = session.startTime;
+    let msStayed = Math.max(validTime - startTime, 0);
 
-  // Start periodic timers
-  if (periodicTimer) clearInterval(periodicTimer);
-  periodicTimer = setInterval(periodicSessionTick, 1*60*1000); // 15min
-  if (clockTimer) clearInterval(clockTimer);
-  clockTimer = setInterval(updateClock, 1000); // update seconds
+    // Save check-in day
+    addCheckedInDate(session.dayKey);
 
-  updateUI();
-  updateClock();
-}
-
-function terminateSession(userAction=true, popupMsg) {
-  if (!session) return;
-  const now = new Date();
-  // If leaving and still in Brody, update validTime to now
-  let validTime = session.validTime;
-  let leaveTime = now.getTime();
-  if (userAction && userInRange) validTime = leaveTime;
-  let startTime = session.startTime;
-  let msStayed = Math.max(validTime - startTime, 0);
-
-  // Save check-in day
-  addCheckedInDate(session.dayKey);
-
-  // Prepare popup
-  let s = `<div>
+    // Prepare popup
+    let s = `<div>
     <div><strong>Start:</strong> ${getDisplayDate(new Date(startTime))}</div>
     <div><strong>Final Valid Time:</strong> ${getDisplayDate(new Date(validTime))}</div>
     <div style="margin:8px 0 10px 0;"><strong>Elapsed:</strong> ${prettyDuration(msStayed)}</div>
   </div>`;
-  if (popupMsg) {
-    s = `<div>${popupMsg}</div><hr style="margin:15px 0;">` + s;
-  }
-  customAlert(s);
+    if (popupMsg) {
+      s = `<div>${popupMsg}</div><hr style="margin:15px 0;">` + s;
+    }
+    customAlert(s);
 
-  // Stop timers
-  clearSession();
-  session = null;
-  if (periodicTimer) clearInterval(periodicTimer);
-  periodicTimer = null;
-  if (clockTimer) clearInterval(clockTimer);
-  clockTimer = null;
-  updateUI();
-  updateClock();
-}
-
-// How long you've "legitimately" stayed (between start and last valid time)
-// Returns formatted text or "" if no session
-function getSessionElapsedString() {
-  if (!session) return "";
-  let delta = Math.max(session.validTime - session.startTime, 0);
-  return `You have stayed in ${inBrody ? "Brody" : "Annex"} for ${prettyDuration(delta)}.`;
-}
-
-function updateClock() {
-  let timerDiv = document.getElementById('theTimer');
-  if (session) {
-    timerDiv.textContent = getSessionElapsedString();
-  } else {
-    timerDiv.textContent = "";
-  }
-}
-
-// --- UI LOGIC
-function updateUI() {
-  const btn = document.getElementById('checkin-btn');
-  const msg = document.getElementById('msg');
-  session = getSession();
-
-  const now = new Date();
-  if (!isOperatingNow(now)) {
-    btn.disabled = true;
-    btn.textContent = "Start";
-    msg.textContent = "Brody is not open between 2:00–7:30AM.";
-    // No session allowed, terminate any active
-    if (session) terminateSession(false,"Brody is closed, session auto-terminated.");
-    updateClock();
-    return;
-  }
-  if (locationErr) {
-    btn.disabled = true;
-    btn.textContent = "Start";
-    msg.textContent = "Location permission denied or unavailable.";
-    updateClock();
-    return;
-  }
-  if (typeof userLocation === 'undefined') {
-    btn.disabled = true;
-    btn.textContent = "Start";
-    msg.textContent = "Waiting for location...";
-    updateClock();
-    return;
-  }
-  if (userInRange && !annexInRange) {
-    inBrody = true;
-    document.getElementById("logger").innerText = "Brody Stay Logger"
-  }
-  if (!userInRange && annexInRange) {
-    inBrody = false;
-    document.getElementById("logger").innerText = "Annex Stay Logger"
-  }
-  if (!userInRange && !annexInRange) {
-    btn.disabled = true;
-    btn.textContent = session ? "Leave" : "Start";
-    msg.textContent = "You are not within Brody's or Annex's range.";
-    updateClock();
-    return;
-  }
-  // In Brody and can interact
-  if (session) {
-    btn.disabled = false;
-    btn.textContent = "Leave";
-    msg.textContent = "Click Leave to end your session!";
-    updateClock();
-  } else {
-    // Only allow start if not already checked in today
-    let todayKey = getBrodyDayKey(now);
-    let already = alreadyCheckedInForToday();
-    btn.textContent = "Start";
-    // if (already) {
-    //   btn.disabled = true;
-    //   msg.textContent = "You have already checked in today.";
-    // } else {
-      btn.disabled = false;
-      msg.textContent = `Ready to start session at ${inBrody ? "Brody" : "Annex"}!`;
-    // }
-    updateClock();
-  }
-}
-
-// --- INIT APP
-function init() {
-  document.getElementById('motivation').textContent = getMotivation();
-  obtainLocation();
-  setInterval(obtainLocation, 180*1000);
-
-  // Every minute, do periodic checks
-  setInterval(() => {
-    obtainLocation();
-    if (session) periodicSessionTick();
+    // Stop timers
+    clearSession();
+    session = null;
+    if (periodicTimer) clearInterval(periodicTimer);
+    periodicTimer = null;
+    if (clockTimer) clearInterval(clockTimer);
+    clockTimer = null;
     updateUI();
     updateClock();
-  }, 60000);
+  }
 
-  document.getElementById('checkin-btn').addEventListener('click', () => {
-    session = getSession();
-    if (!session) {
-      startSession();
+  // How long you've "legitimately" stayed (between start and last valid time)
+  // Returns formatted text or "" if no session
+  function getSessionElapsedString() {
+    if (!session) return '';
+    let delta = Math.max(session.validTime - session.startTime, 0);
+    return `You have stayed in ${inBrody ? 'Brody' : 'Annex'} for ${prettyDuration(delta)}.`;
+  }
+
+  function updateClock() {
+    let timerDiv = document.getElementById('theTimer');
+    if (session) {
+      timerDiv.textContent = getSessionElapsedString();
     } else {
-      terminateSession(true);
+      timerDiv.textContent = '';
     }
-  });
+  }
 
-  // On resume, check on visibility, for resilience
-  document.addEventListener('visibilitychange', function() {
-    if (!document.hidden) {
-      obtainLocation();
-      if (session) periodicSessionTick(true);
-      updateUI();
+  // --- UI LOGIC
+  function updateUI() {
+    const btn = document.getElementById('checkin-btn');
+    const msg = document.getElementById('msg');
+    session = getSession();
+
+    const now = new Date();
+    if (!isOperatingNow(now)) {
+      btn.disabled = true;
+      btn.textContent = 'Start';
+      msg.textContent = 'Brody is not open between 2:00–7:30AM.';
+      // No session allowed, terminate any active
+      if (session) terminateSession(false, 'Brody is closed, session auto-terminated.');
+      updateClock();
+      return;
+    }
+    if (locationErr) {
+      btn.disabled = true;
+      btn.textContent = 'Start';
+      msg.textContent = 'Location permission denied or unavailable.';
+      updateClock();
+      return;
+    }
+    if (typeof userLocation === 'undefined') {
+      btn.disabled = true;
+      btn.textContent = 'Start';
+      msg.textContent = 'Waiting for location...';
+      updateClock();
+      return;
+    }
+    if (userInRange && !annexInRange) {
+      inBrody = true;
+      document.getElementById('logger').innerText = 'Brody Stay Logger';
+    }
+    if (!userInRange && annexInRange) {
+      inBrody = false;
+      document.getElementById('logger').innerText = 'Annex Stay Logger';
+    }
+    if (!userInRange && !annexInRange) {
+      btn.disabled = true;
+      btn.textContent = session ? 'Leave' : 'Start';
+      msg.textContent = "You are not within Brody's or Annex's range.";
+      updateClock();
+      return;
+    }
+    // In Brody and can interact
+    if (session) {
+      btn.disabled = false;
+      btn.textContent = 'Leave';
+      msg.textContent = 'Click Leave to end your session!';
+      updateClock();
+    } else {
+      // Only allow start if not already checked in today
+      let todayKey = getBrodyDayKey(now);
+      let already = alreadyCheckedInForToday();
+      btn.textContent = 'Start';
+      // if (already) {
+      //   btn.disabled = true;
+      //   msg.textContent = "You have already checked in today.";
+      // } else {
+      btn.disabled = false;
+      msg.textContent = `Ready to start session at ${inBrody ? 'Brody' : 'Annex'}!`;
+      // }
       updateClock();
     }
-  });
+  }
 
-  updateUI();
-  updateClock();
-}
-init();
+  // --- INIT APP
+  function init() {
+    document.getElementById('motivation').textContent = getMotivation();
+    obtainLocation();
+    setInterval(obtainLocation, 180 * 1000);
 
+    // Every minute, do periodic checks
+    setInterval(() => {
+      obtainLocation();
+      if (session) periodicSessionTick();
+      updateUI();
+      updateClock();
+    }, 60000);
+
+    document.getElementById('checkin-btn').addEventListener('click', () => {
+      session = getSession();
+      if (!session) {
+        startSession();
+      } else {
+        terminateSession(true);
+      }
+    });
+
+    // On resume, check on visibility, for resilience
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) {
+        obtainLocation();
+        if (session) periodicSessionTick(true);
+        updateUI();
+        updateClock();
+      }
+    });
+
+    updateUI();
+    updateClock();
+  }
+  init();
 </script>

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Grade Calculator"
-title-chn: "成绩计算器"
+title: 'Grade Calculator'
+title-chn: '成绩计算器'
 ---
 
 <style>

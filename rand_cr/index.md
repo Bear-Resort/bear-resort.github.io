@@ -1,6 +1,6 @@
 ---
-title: "Random Card Selector for Clash Royale"
-title-chn: "皇室战争随机选卡器"
+title: 'Random Card Selector for Clash Royale'
+title-chn: '皇室战争随机选卡器'
 ---
 
 # <span class="eng">Random Card Selector for Clash Royale</span><span class="chn">皇室战争随机选卡器</span>

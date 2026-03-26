@@ -1,7 +1,7 @@
 ﻿---
 layout: default
-title: "Apps"
-title-chn: "软件库"
+title: 'Apps'
+title-chn: '软件库'
 ---
 
 <style>
@@ -140,4 +140,3 @@ title-chn: "软件库"
     <div class="app-desc"><span class="eng">Simulate Letter of Recommendation</span><span class="chn">模拟推荐信</span></div>
 </a>
 </div>
-

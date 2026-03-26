@@ -1,5 +1,5 @@
 ---
-title: "Authenticator"
+title: 'Authenticator'
 ---
 
 <div style="text-align: center">

@@ -1,10 +1,10 @@
 ---
 layout: page
-title: "Mathland"
-title-chn: "数学之境"
+title: 'Mathland'
+title-chn: '数学之境'
 ---
 
-<span class="eng">One can interpret *mathland* as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.</span>
+<span class="eng">One can interpret _mathland_ as the educational department of the Bear Resort given its roots from **mathland**. Bear Resort values highly-selective individuals who have exceptional abilities in all fields.</span>
 
 <span class="chn">您可以将*数学之境*当作小熊樂園的教育部，因为其**数学之境**的起源。小熊乐园珍视有领域内专业的高档人才。</span>
 
@@ -13,25 +13,26 @@ title-chn: "数学之境"
 # <img src="/logos/mathland.gif" height="250"><br>
 
 ## <span class="eng">Bear Resort Scratch Paper</span><span class="chn">小熊樂園演算紙</span>
+
 - [<span class="eng">Blank</span><span class="chn">空白</span>](/Scratch-Paper/Blank.pdf)
 - [<span class="eng">Lined</span><span class="chn">线条</span>](/Scratch-Paper/Lined.pdf)
 - [<span class="eng">Hives</span><span class="chn">蜂巢</span>](/Scratch-Paper/Hives.pdf)
 - [<span class="eng">Chars</span><span class="chn">稿纸</span>](/Scratch-Paper/Characters.pdf)
 
-## <span class="eng">Utilities</span><span class="chn">程序</span> 
+## <span class="eng">Utilities</span><span class="chn">程序</span>
 
 <span class="eng">Although math is really not that useful, we still put these useful tools here.</span>
 
 <span class="chn">尽管数学没那么多用，这里还是一些有用的程序。</span>
 
 - [<span class="eng">Timer</span><span class="chn">计时器</span>](/timer)
-    - <span class="eng">In future updates, the timer will appear site-wide.</span><span class="chn">在未来更新中，计时器将全局显示。</span>
+  - <span class="eng">In future updates, the timer will appear site-wide.</span><span class="chn">在未来更新中，计时器将全局显示。</span>
 - [<span class="eng">Mathy's Turntable</span><span class="chn">数数的大转盘</span>](/turntable)
 - [<span class="eng">Distributor</span><span class="chn">分配器</span>](distributor.html)
 - [<span class="eng">Clash Royale Random Card Drawer</span><span class="chn">皇室战争抽卡器</span>](/rand_cr/)
 - [<span class="eng">Pengiun Emoji Generator</span><span class="chn">企鹅表情包生成器</span>](/penguin_emoji/)
 
-## <span class="eng">Bear Resort Exams</span><span class="chn">小熊樂園的考试</span> 
+## <span class="eng">Bear Resort Exams</span><span class="chn">小熊樂園的考试</span>
 
 <span class="eng">The Bear Resort Qualification Examination aims to evaluate the general capabilities of pre-members, note that the marks to qualify is much lower than the full marks on the paper. The evaluation focuses on (but not limited to) Bear Resort information, language skills, literature capabilities, mathematical logics, physics/chemistry capabilities, computer usages, and commonsense; therefore, competitors should select questions that they are comfortable with and skip the unfamiliar topics.</span>
 

@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');  // Select all PDF links
+document.addEventListener('DOMContentLoaded', function () {
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]'); // Select all PDF links
 
   // Attach click event listener to each PDF link
-  pdfLinks.forEach(link => {
+  pdfLinks.forEach((link) => {
     link.addEventListener('click', function (event) {
       event.preventDefault(); // Prevent default link behavior
       const pdfUrl = link.getAttribute('href'); // Get the href of the PDF link
@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const fansLinks = document.querySelectorAll('a[href$=".pdff"]');  // Select all PDF links
+  const fansLinks = document.querySelectorAll('a[href$=".pdff"]'); // Select all PDF links
 
   // Attach click event listener to each PDF link
-  fansLinks.forEach(link => {
+  fansLinks.forEach((link) => {
     link.addEventListener('click', function (event) {
       event.preventDefault(); // Prevent default link behavior
       const fansUrl = link.getAttribute('href').slice(0, -1); // Get the href of the PDF link
