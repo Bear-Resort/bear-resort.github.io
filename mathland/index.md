@@ -31,6 +31,7 @@ title-chn: '数学之境'
 - [<span class="eng">Distributor</span><span class="chn">分配器</span>](distributor.html)
 - [<span class="eng">Clash Royale Random Card Drawer</span><span class="chn">皇室战争抽卡器</span>](/rand_cr/)
 - [<span class="eng">Pengiun Emoji Generator</span><span class="chn">企鹅表情包生成器</span>](/penguin_emoji/)
+- [<span class="eng">LED Name Badge</span><span class="chn">LED 名牌</span>](/led/)
 
 ## <span class="eng">Bear Resort Exams</span><span class="chn">小熊樂園的考试</span>
 

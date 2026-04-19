@@ -139,4 +139,9 @@ title-chn: '软件库'
     <div class="app-name"><span class="eng">LOR Simulator</span><span class="chn">推荐信模拟器</span></div>
     <div class="app-desc"><span class="eng">Simulate Letter of Recommendation</span><span class="chn">模拟推荐信</span></div>
 </a>
+<a class="app-card" href="/led/" target="_blank">
+    <img class="app-img" src="/logos/default-bear.gif" alt="led">
+    <div class="app-name"><span class="eng">LED Name Badge</span><span class="chn">LED 名牌</span></div>
+    <div class="app-desc"><span class="eng">Create LED-style scrolling badge text</span><span class="chn">生成 LED 滚动名牌文字</span></div>
+</a>
 </div>
