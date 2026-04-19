@@ -11,7 +11,7 @@ title: 'Private Form'
     </div>
     <div id="alert">
         <span class="eng">Log in to fill this form.</span><span class="chn">登录以填写问卷。</span><br>
-        <button onclick="window.open('/assets/html/login.html')"><span class="eng">Log in</span><span class="chn">登录</span></button>
+        <button onclick="window.open('/log-in/')"><span class="eng">Log in</span><span class="chn">登录</span></button>
     </div>
     <div id="no-auth">
         <span class="eng">You are not authorized to fill in the form.</span><span class="chn">你无权填写本表格。</span>
