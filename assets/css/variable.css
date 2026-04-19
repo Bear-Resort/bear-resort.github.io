@@ -4,6 +4,9 @@
   --light-color: #f7ed9fee;
   --light-light: #e2d8b7ee;
 
-  --font-family: 'Merriweather', serif, 'Yuanti SC', 'Microsoft YaHei', sans-serif;
+  --font-family: 'Merriweather', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei',
+    'Heiti SC', Arial, sans-serif;
+  --font-family-chn: 'Yuanti SC', 'Hiragino Maru Gothic ProN', 'PingFang SC', 'Hiragino Sans GB',
+    'Noto Sans SC', 'Microsoft YaHei', 'Heiti SC', 'Arial Unicode MS', sans-serif;
   --font-code: 'Lucida Console', monospace;
 }
