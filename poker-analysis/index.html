@@ -141,19 +141,19 @@ title-chn: '扑克分析'
         <h1>🃏 Texas Hold'em Probability Calculator 🃏</h1>
         
         <div class="section">
-            <h3>Your Hole Cards (Select 2)</h3>
+            <h3>Card Pad (Select up to 7 cards total)</h3>
+            <p style="margin-top: 0;">
+                <span class="eng">First 2 selected cards are your hole cards. Any additional cards become community cards.</span>
+                <span class="chn">前 2 张选中的牌视为手牌，其余选中的牌视为公共牌。</span>
+            </p>
+            <div><strong><span class="eng">Hole Cards</span><span class="chn">手牌</span>:</strong></div>
             <div class="selected-cards" id="holeCardsDisplay"></div>
-            <div class="card-grid" id="holeCards"></div>
-        </div>
-        
-        <div class="section">
-            <h3>Community Cards (Select 0-5)</h3>
+            <div><strong><span class="eng">Community Cards</span><span class="chn">公共牌</span>:</strong></div>
             <div class="selected-cards" id="communityCardsDisplay"></div>
-            <div class="card-grid" id="communityCards"></div>
+            <div class="card-grid" id="cardPad"></div>
         </div>
         
         <div style="text-align: center;">
-            <button onclick="calculateProbabilities()" id="calcButton">Calculate Probabilities</button>
             <button onclick="resetCards()">Reset All</button>
         </div>
         
@@ -178,8 +178,7 @@ title-chn: '扑克分析'
         const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
         const suitNames = ['spades', 'hearts', 'diamonds', 'clubs'];
         
-        let holeCards = [];
-        let communityCards = [];
+        let selectedCards = [];
         let deck = [];
         
         // Initialize deck
@@ -193,7 +192,7 @@ title-chn: '扑克分析'
         }
         
         // Create card selector UI
-        function createCardSelector(containerId, type) {
+        function createCardSelector(containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
             
@@ -204,32 +203,22 @@ title-chn: '扑克分析'
                     cardDiv.className = `card ${suitNames[suits.indexOf(suit)]}`;
                     cardDiv.textContent = card;
                     cardDiv.dataset.card = card;
-                    cardDiv.onclick = () => selectCard(card, type, cardDiv);
+                    cardDiv.onclick = () => selectCard(card, cardDiv);
                     container.appendChild(cardDiv);
                 }
             }
         }
         
         // Select/deselect card
-        function selectCard(card, type, element) {
+        function selectCard(card, element) {
             if (element.classList.contains('disabled')) return;
-            
-            if (type === 'hole') {
-                if (holeCards.includes(card)) {
-                    holeCards = holeCards.filter(c => c !== card);
-                } else if (holeCards.length < 2) {
-                    holeCards.push(card);
-                } else {
-                    return;
-                }
+
+            if (selectedCards.includes(card)) {
+                selectedCards = selectedCards.filter(c => c !== card);
+            } else if (selectedCards.length < 7) {
+                selectedCards.push(card);
             } else {
-                if (communityCards.includes(card)) {
-                    communityCards = communityCards.filter(c => c !== card);
-                } else if (communityCards.length < 5) {
-                    communityCards.push(card);
-                } else {
-                    return;
-                }
+                return;
             }
             
             updateUI();
@@ -237,28 +226,17 @@ title-chn: '扑克分析'
         
         // Update UI state
         function updateUI() {
-            const allSelected = [...holeCards, ...communityCards];
+            const holeCards = selectedCards.slice(0, 2);
+            const communityCards = selectedCards.slice(2);
             
-            // Update hole cards
-            document.querySelectorAll('#holeCards .card').forEach(card => {
+            // Update card pad
+            document.querySelectorAll('#cardPad .card').forEach(card => {
                 const cardValue = card.dataset.card;
                 card.classList.remove('selected', 'disabled');
                 
-                if (holeCards.includes(cardValue)) {
+                if (selectedCards.includes(cardValue)) {
                     card.classList.add('selected');
-                } else if (allSelected.includes(cardValue)) {
-                    card.classList.add('disabled');
-                }
-            });
-            
-            // Update community cards
-            document.querySelectorAll('#communityCards .card').forEach(card => {
-                const cardValue = card.dataset.card;
-                card.classList.remove('selected', 'disabled');
-                
-                if (communityCards.includes(cardValue)) {
-                    card.classList.add('selected');
-                } else if (allSelected.includes(cardValue)) {
+                } else if (selectedCards.length >= 7) {
                     card.classList.add('disabled');
                 }
             });
@@ -266,9 +244,13 @@ title-chn: '扑克分析'
             // Update displays
             updateSelectedDisplay('holeCardsDisplay', holeCards);
             updateSelectedDisplay('communityCardsDisplay', communityCards);
-            
-            // Enable/disable calculate button
-            document.getElementById('calcButton').disabled = holeCards.length !== 2;
+
+            // Dynamically compute probabilities as soon as 2 hole cards exist.
+            if (holeCards.length === 2) {
+                calculateProbabilities();
+            } else {
+                document.getElementById('results').style.display = 'none';
+            }
         }
         
         function updateSelectedDisplay(containerId, cards) {
@@ -408,6 +390,9 @@ title-chn: '扑克分析'
         
         // Monte Carlo simulation
         function calculateProbabilities() {
+            const holeCards = selectedCards.slice(0, 2);
+            const communityCards = selectedCards.slice(2);
+
             if (holeCards.length !== 2) {
                 alert('Please select exactly 2 hole cards');
                 return;
@@ -483,16 +468,14 @@ title-chn: '扑克分析'
         }
         
         function resetCards() {
-            holeCards = [];
-            communityCards = [];
+            selectedCards = [];
             updateUI();
             document.getElementById('results').style.display = 'none';
         }
         
         // Initialize
         initializeDeck();
-        createCardSelector('holeCards', 'hole');
-        createCardSelector('communityCards', 'community');
+        createCardSelector('cardPad');
         updateUI();
     </script>
 </div>
