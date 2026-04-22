@@ -141,14 +141,10 @@ title-chn: '扑克分析'
         <h1>🃏 Texas Hold'em Probability Calculator 🃏</h1>
         
         <div class="section">
-            <h3>Card Pad (Select up to 7 cards total)</h3>
-            <p style="margin-top: 0;">
-                <span class="eng">First 2 selected cards are your hole cards. Any additional cards become community cards.</span>
-                <span class="chn">前 2 张选中的牌视为手牌，其余选中的牌视为公共牌。</span>
-            </p>
-            <div><strong><span class="eng">Hole Cards</span><span class="chn">手牌</span>:</strong></div>
+            <h3>Card Pad</h3>
+            <div><strong><span class="eng">Hole</span><span class="chn">手牌</span>:</strong></div>
             <div class="selected-cards" id="holeCardsDisplay"></div>
-            <div><strong><span class="eng">Community Cards</span><span class="chn">公共牌</span>:</strong></div>
+            <div><strong><span class="eng">Board</span><span class="chn">公共牌</span>:</strong></div>
             <div class="selected-cards" id="communityCardsDisplay"></div>
             <div class="card-grid" id="cardPad"></div>
         </div>
@@ -158,13 +154,13 @@ title-chn: '扑克分析'
         </div>
         
         <div class="results section" id="results" style="display: none;">
-            <h3>Probability of Making Each Hand</h3>
+            <h3>Probabilities</h3>
             <table class="probability-table">
                 <thead>
                     <tr>
-                        <th>Hand Ranking</th>
+                        <th>Hand</th>
                         <th>Probability</th>
-                        <th>Odds</th>
+                        <th>Ratio</th>
                         <th>Visual</th>
                     </tr>
                 </thead>
@@ -445,16 +441,25 @@ title-chn: '扑克分析'
                 'High Card'
             ];
             
-            for (let hand of handOrder) {
-                const count = handCounts[hand];
+            const sortedHands = handOrder
+                .map(hand => ({
+                    hand,
+                    count: handCounts[hand],
+                    probabilityValue: handCounts[hand] / total,
+                }))
+                .sort((a, b) => b.probabilityValue - a.probabilityValue);
+
+            for (let item of sortedHands) {
+                const hand = item.hand;
+                const count = item.count;
                 const probability = (count / total * 100).toFixed(2);
-                const odds = count > 0 ? ((total - count) / count).toFixed(1) : '∞';
+                const ratio = count > 0 ? `1 : ${(total / count).toFixed(1)}` : '1 : ∞';
                 
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td><strong>${hand}</strong></td>
                     <td>${probability}%</td>
-                    <td>${odds} to 1</td>
+                    <td>${ratio}</td>
                     <td>
                         <div style="background-color: #333; border-radius: 3px; overflow: hidden;">
                             <div class="probability-bar" style="width: ${probability}%"></div>
