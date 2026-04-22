@@ -1,0 +1,498 @@
+---
+layout: default
+title: 'Poker Analysis'
+title-chn: '扑克分析'
+---
+
+<style>
+        .poker-page {
+            max-width: 1200px;
+            margin: 80px auto 24px auto;
+            padding: 20px;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        .poker-page .container {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        
+        .poker-page h1 {
+            text-align: center;
+            color: var(--main-color);
+        }
+        
+        .poker-page .card-selector {
+            margin: 20px 0;
+        }
+        
+        .poker-page .card-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .poker-page .card {
+            padding: 10px 5px;
+            border: 2px solid #444;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .poker-page .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(255,255,255,0.3);
+        }
+        
+        .poker-page .card.selected {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #45a049;
+        }
+        
+        .poker-page .card.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .poker-page .hearts { color: #d32f2f; }
+        .poker-page .diamonds { color: #d32f2f; }
+        .poker-page .clubs { color: #000; }
+        .poker-page .spades { color: #000; }
+        
+        .poker-page .selected.hearts, .poker-page .selected.diamonds,
+        .poker-page .selected.clubs, .poker-page .selected.spades {
+            color: white;
+        }
+        
+        .poker-page .section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--secondary-light);
+            border-radius: 8px;
+        }
+        
+        .poker-page .section h3 {
+            margin-top: 0;
+            color: var(--main-color);
+        }
+        
+        .poker-page .results {
+            margin-top: 20px;
+        }
+        
+        .poker-page .probability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .poker-page .probability-table th,
+        .poker-page .probability-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+        
+        .poker-page .probability-table th {
+            background-color: var(--main-color);
+            color: var(--secondary-color);
+        }
+        
+        .poker-page .probability-table tr:hover {
+            background-color: #4d7a5d;
+        }
+        
+        .poker-page .probability-bar {
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+        
+        .poker-page .selected-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+            min-height: 40px;
+        }
+        
+        .poker-page .selected-card-display {
+            padding: 8px 12px;
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+
+<div class="poker-page">
+    <div class="container">
+        <h1>🃏 Texas Hold'em Probability Calculator 🃏</h1>
+        
+        <div class="section">
+            <h3>Your Hole Cards (Select 2)</h3>
+            <div class="selected-cards" id="holeCardsDisplay"></div>
+            <div class="card-grid" id="holeCards"></div>
+        </div>
+        
+        <div class="section">
+            <h3>Community Cards (Select 0-5)</h3>
+            <div class="selected-cards" id="communityCardsDisplay"></div>
+            <div class="card-grid" id="communityCards"></div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="calculateProbabilities()" id="calcButton">Calculate Probabilities</button>
+            <button onclick="resetCards()">Reset All</button>
+        </div>
+        
+        <div class="results section" id="results" style="display: none;">
+            <h3>Probability of Making Each Hand</h3>
+            <table class="probability-table">
+                <thead>
+                    <tr>
+                        <th>Hand Ranking</th>
+                        <th>Probability</th>
+                        <th>Odds</th>
+                        <th>Visual</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const suits = ['♠', '♥', '♦', '♣'];
+        const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
+        const suitNames = ['spades', 'hearts', 'diamonds', 'clubs'];
+        
+        let holeCards = [];
+        let communityCards = [];
+        let deck = [];
+        
+        // Initialize deck
+        function initializeDeck() {
+            deck = [];
+            for (let suit of suits) {
+                for (let rank of ranks) {
+                    deck.push(rank + suit);
+                }
+            }
+        }
+        
+        // Create card selector UI
+        function createCardSelector(containerId, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            for (let suit of suits) {
+                for (let rank of ranks) {
+                    const card = rank + suit;
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = `card ${suitNames[suits.indexOf(suit)]}`;
+                    cardDiv.textContent = card;
+                    cardDiv.dataset.card = card;
+                    cardDiv.onclick = () => selectCard(card, type, cardDiv);
+                    container.appendChild(cardDiv);
+                }
+            }
+        }
+        
+        // Select/deselect card
+        function selectCard(card, type, element) {
+            if (element.classList.contains('disabled')) return;
+            
+            if (type === 'hole') {
+                if (holeCards.includes(card)) {
+                    holeCards = holeCards.filter(c => c !== card);
+                } else if (holeCards.length < 2) {
+                    holeCards.push(card);
+                } else {
+                    return;
+                }
+            } else {
+                if (communityCards.includes(card)) {
+                    communityCards = communityCards.filter(c => c !== card);
+                } else if (communityCards.length < 5) {
+                    communityCards.push(card);
+                } else {
+                    return;
+                }
+            }
+            
+            updateUI();
+        }
+        
+        // Update UI state
+        function updateUI() {
+            const allSelected = [...holeCards, ...communityCards];
+            
+            // Update hole cards
+            document.querySelectorAll('#holeCards .card').forEach(card => {
+                const cardValue = card.dataset.card;
+                card.classList.remove('selected', 'disabled');
+                
+                if (holeCards.includes(cardValue)) {
+                    card.classList.add('selected');
+                } else if (allSelected.includes(cardValue)) {
+                    card.classList.add('disabled');
+                }
+            });
+            
+            // Update community cards
+            document.querySelectorAll('#communityCards .card').forEach(card => {
+                const cardValue = card.dataset.card;
+                card.classList.remove('selected', 'disabled');
+                
+                if (communityCards.includes(cardValue)) {
+                    card.classList.add('selected');
+                } else if (allSelected.includes(cardValue)) {
+                    card.classList.add('disabled');
+                }
+            });
+            
+            // Update displays
+            updateSelectedDisplay('holeCardsDisplay', holeCards);
+            updateSelectedDisplay('communityCardsDisplay', communityCards);
+            
+            // Enable/disable calculate button
+            document.getElementById('calcButton').disabled = holeCards.length !== 2;
+        }
+        
+        function updateSelectedDisplay(containerId, cards) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            cards.forEach(card => {
+                const cardDiv = document.createElement('div');
+                const suit = card.slice(-1);
+                cardDiv.className = `selected-card-display ${suitNames[suits.indexOf(suit)]}`;
+                cardDiv.textContent = card;
+                container.appendChild(cardDiv);
+            });
+        }
+        
+        // Card evaluation functions
+        function getRankValue(rank) {
+            const values = { 'A': 14, 'K': 13, 'Q': 12, 'J': 11, 'T': 10 };
+            return values[rank] || parseInt(rank);
+        }
+        
+        function evaluateHand(cards) {
+            if (cards.length < 5) return { rank: 0, name: 'Incomplete' };
+            
+            const ranks = cards.map(c => getRankValue(c[0]));
+            const suits = cards.map(c => c.slice(-1));
+            const rankCounts = {};
+            
+            ranks.forEach(r => rankCounts[r] = (rankCounts[r] || 0) + 1);
+            const counts = Object.values(rankCounts).sort((a, b) => b - a);
+            const uniqueRanks = [...new Set(ranks)].sort((a, b) => b - a);
+            
+            const isFlush = suits.every(s => s === suits[0]);
+            const isStraight = checkStraight(uniqueRanks);
+            
+            // Royal Flush
+            if (isFlush && isStraight && uniqueRanks[0] === 14) {
+                return { rank: 9, name: 'Royal Flush' };
+            }
+            
+            // Straight Flush
+            if (isFlush && isStraight) {
+                return { rank: 8, name: 'Straight Flush' };
+            }
+            
+            // Four of a Kind
+            if (counts[0] === 4) {
+                return { rank: 7, name: 'Four of a Kind' };
+            }
+            
+            // Full House
+            if (counts[0] === 3 && counts[1] === 2) {
+                return { rank: 6, name: 'Full House' };
+            }
+            
+            // Flush
+            if (isFlush) {
+                return { rank: 5, name: 'Flush' };
+            }
+            
+            // Straight
+            if (isStraight) {
+                return { rank: 4, name: 'Straight' };
+            }
+            
+            // Three of a Kind
+            if (counts[0] === 3) {
+                return { rank: 3, name: 'Three of a Kind' };
+            }
+            
+            // Two Pair
+            if (counts[0] === 2 && counts[1] === 2) {
+                return { rank: 2, name: 'Two Pair' };
+            }
+            
+            // One Pair
+            if (counts[0] === 2) {
+                return { rank: 1, name: 'One Pair' };
+            }
+            
+            // High Card
+            return { rank: 0, name: 'High Card' };
+        }
+        
+        function checkStraight(ranks) {
+            if (ranks.length < 5) return false;
+            
+            // Check regular straight
+            for (let i = 0; i < ranks.length - 4; i++) {
+                if (ranks[i] - ranks[i + 4] === 4) return true;
+            }
+            
+            // Check A-2-3-4-5 straight (wheel)
+            if (ranks.includes(14) && ranks.includes(5) && ranks.includes(4) && 
+                ranks.includes(3) && ranks.includes(2)) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        function getBestHand(allCards) {
+            if (allCards.length < 5) return { rank: 0, name: 'Incomplete' };
+            
+            let bestHand = { rank: -1, name: '' };
+            
+            // Generate all 5-card combinations
+            const combinations = getCombinations(allCards, 5);
+            
+            for (let combo of combinations) {
+                const hand = evaluateHand(combo);
+                if (hand.rank > bestHand.rank) {
+                    bestHand = hand;
+                }
+            }
+            
+            return bestHand;
+        }
+        
+        function getCombinations(arr, size) {
+            if (size > arr.length) return [];
+            if (size === arr.length) return [arr];
+            if (size === 1) return arr.map(item => [item]);
+            
+            const combinations = [];
+            
+            for (let i = 0; i < arr.length - size + 1; i++) {
+                const head = arr[i];
+                const tailCombos = getCombinations(arr.slice(i + 1), size - 1);
+                for (let combo of tailCombos) {
+                    combinations.push([head, ...combo]);
+                }
+            }
+            
+            return combinations;
+        }
+        
+        // Monte Carlo simulation
+        function calculateProbabilities() {
+            if (holeCards.length !== 2) {
+                alert('Please select exactly 2 hole cards');
+                return;
+            }
+            
+            const simulations = 10000;
+            const handCounts = {
+                'Royal Flush': 0,
+                'Straight Flush': 0,
+                'Four of a Kind': 0,
+                'Full House': 0,
+                'Flush': 0,
+                'Straight': 0,
+                'Three of a Kind': 0,
+                'Two Pair': 0,
+                'One Pair': 0,
+                'High Card': 0
+            };
+            
+            const knownCards = [...holeCards, ...communityCards];
+            const remainingDeck = deck.filter(c => !knownCards.includes(c));
+            const cardsNeeded = 5 - communityCards.length;
+            
+            for (let i = 0; i < simulations; i++) {
+                const shuffled = [...remainingDeck].sort(() => Math.random() - 0.5);
+                const simulatedCommunity = [...communityCards, ...shuffled.slice(0, cardsNeeded)];
+                const allCards = [...holeCards, ...simulatedCommunity];
+                
+                const bestHand = getBestHand(allCards);
+                handCounts[bestHand.name]++;
+            }
+            
+            displayResults(handCounts, simulations);
+        }
+        
+        function displayResults(handCounts, total) {
+            const resultsTable = document.getElementById('resultsTable');
+            resultsTable.innerHTML = '';
+            
+            const handOrder = [
+                'Royal Flush',
+                'Straight Flush',
+                'Four of a Kind',
+                'Full House',
+                'Flush',
+                'Straight',
+                'Three of a Kind',
+                'Two Pair',
+                'One Pair',
+                'High Card'
+            ];
+            
+            for (let hand of handOrder) {
+                const count = handCounts[hand];
+                const probability = (count / total * 100).toFixed(2);
+                const odds = count > 0 ? ((total - count) / count).toFixed(1) : '∞';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${hand}</strong></td>
+                    <td>${probability}%</td>
+                    <td>${odds} to 1</td>
+                    <td>
+                        <div style="background-color: #333; border-radius: 3px; overflow: hidden;">
+                            <div class="probability-bar" style="width: ${probability}%"></div>
+                        </div>
+                    </td>
+                `;
+                resultsTable.appendChild(row);
+            }
+            
+            document.getElementById('results').style.display = 'block';
+        }
+        
+        function resetCards() {
+            holeCards = [];
+            communityCards = [];
+            updateUI();
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        // Initialize
+        initializeDeck();
+        createCardSelector('holeCards', 'hole');
+        createCardSelector('communityCards', 'community');
+        updateUI();
+    </script>
+</div>
