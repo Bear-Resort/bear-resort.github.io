@@ -18,4 +18,4 @@ title-chn: '主页'
 
 <span class="chn">自建立伊始，小熊樂園便是许多生灵的栖息之所。看看谁是我们的成员吧。</span>
 
-# <button onclick="window.open('/chars/index.html', '_blank')"> <span class="eng">Check out the Members</span> <span class="chn">查看成员</span> </button>
+# <button onclick="window.open('/chars/index.html', '_blank')"> <span class="eng">Bear Resort Register</span> <span class="chn">小熊樂園花名册</span> </button>

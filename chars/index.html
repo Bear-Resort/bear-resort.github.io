@@ -1,0 +1,1190 @@
+---
+layout: default
+title: 'Bear Resort Register'
+title-chn: '小熊樂園花名册'
+---
+
+<div class="register-page">
+  <style>
+    #content:has(.register-page) {
+      position: fixed;
+      top: var(--register-top, 49px);
+      bottom: var(--register-bottom, 37px);
+      left: 3px;
+      right: 3px;
+      max-width: none;
+      margin: 0;
+      padding: 0 4px;
+      overflow: hidden;
+    }
+
+    #content:has(.register-page) > br {
+      display: none;
+    }
+
+    html:has(.register-page),
+    body:has(.register-page) {
+      overflow: hidden;
+      height: 100%;
+    }
+
+    body:has(.register-page) {
+      transition: background-color 0.45s ease, color 0.45s ease;
+    }
+
+    .register-page {
+      --leather-dark: #3d2817;
+      --leather-mid: #5c3d1e;
+      --leather-light: #7a5230;
+      --parchment: #f4e4c1;
+      --parchment-mid: #edd9b0;
+      --parchment-dark: #e8d4a8;
+      --gold: #c9a227;
+      --gold-light: #e8c84a;
+      --ink: #2a1a0a;
+      --ink-muted: #5a4020;
+      --ink-soft: #6a5020;
+      --slot-bg: #d4bc8a;
+      --slot-bg-end: #c4a870;
+      --slot-border: #8b6914;
+      --slot-placeholder-start: #b8a078;
+      --slot-placeholder-end: #9a8060;
+      --tab-bg-start: #6b4a28;
+      --tab-bg-end: #4a3018;
+      --tab-bg-hover-start: #8b6030;
+      --tab-bg-hover-end: #5c3a18;
+      --tab-border: #3a2008;
+      --tab-text: #d4b896;
+      --book-border: #1a0f06;
+      --book-highlight: rgba(255, 255, 255, 0.15);
+      --book-shadow: rgba(0, 0, 0, 0.45);
+      --dash-color: rgba(139, 105, 20, 0.35);
+      --tag-bg: rgba(139, 105, 20, 0.15);
+      --tag-border: rgba(139, 105, 20, 0.4);
+      --tag-dual-bg: rgba(107, 74, 31, 0.18);
+      --link-color: #6b4a1f;
+      --empty-color: #8a7040;
+      --slot-name-bg: rgba(42, 26, 10, 0.82);
+      --slot-name-text: #f4e4c1;
+      --soon-stripe-a: #c4a870;
+      --soon-stripe-b: #b89860;
+      --icon-filter: contrast(1.45) saturate(1.25) brightness(0.98);
+      --icon-outline: drop-shadow(0 0 1px rgba(255, 255, 255, 0.95))
+        drop-shadow(0 0 1px rgba(42, 26, 10, 0.85)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+      --theme-transition: background 0.45s ease, color 0.45s ease, border-color 0.45s ease,
+        box-shadow 0.45s ease;
+
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .night-theme .register-page {
+      --leather-dark: #100a04;
+      --leather-mid: #1c1208;
+      --leather-light: #2a1a0c;
+      --parchment: #2a2318;
+      --parchment-mid: #221c14;
+      --parchment-dark: #1a1510;
+      --gold: #a88620;
+      --gold-light: #d4ad38;
+      --ink: #ebe2cf;
+      --ink-muted: #c4a870;
+      --ink-soft: #a89060;
+      --slot-bg: #342a1c;
+      --slot-bg-end: #261e14;
+      --slot-border: #6a5020;
+      --slot-placeholder-start: #3a3020;
+      --slot-placeholder-end: #2a2218;
+      --tab-bg-start: #241808;
+      --tab-bg-end: #140c04;
+      --tab-bg-hover-start: #3a2810;
+      --tab-bg-hover-end: #241808;
+      --tab-border: #0c0804;
+      --tab-text: #c4a870;
+      --book-border: #080504;
+      --book-highlight: rgba(255, 255, 255, 0.06);
+      --book-shadow: rgba(0, 0, 0, 0.65);
+      --dash-color: rgba(201, 162, 39, 0.22);
+      --tag-bg: rgba(201, 162, 39, 0.14);
+      --tag-border: rgba(201, 162, 39, 0.35);
+      --tag-dual-bg: rgba(168, 134, 32, 0.16);
+      --link-color: #d4ad38;
+      --empty-color: #a89060;
+      --slot-name-bg: rgba(8, 5, 4, 0.88);
+      --slot-name-text: #ebe2cf;
+      --soon-stripe-a: #3a3020;
+      --soon-stripe-b: #2a2218;
+      --icon-filter: contrast(1.55) saturate(1.15) brightness(1.12);
+      --icon-outline: drop-shadow(0 0 1px rgba(0, 0, 0, 0.95))
+        drop-shadow(0 0 2px rgba(255, 235, 200, 0.45)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+    }
+
+    .register-page * {
+      box-sizing: border-box;
+    }
+
+    /* ── Book shell ── */
+    .almanac-book {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: linear-gradient(160deg, var(--leather-light) 0%, var(--leather-dark) 55%, var(--book-border) 100%);
+      border: 4px solid var(--book-border);
+      border-radius: 16px;
+      box-shadow:
+        inset 0 2px 0 var(--book-highlight),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+        0 8px 24px var(--book-shadow);
+      padding: 10px;
+      position: relative;
+      transition: var(--theme-transition);
+    }
+
+    .almanac-book::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      border-radius: 0 0 4px 4px;
+      opacity: 0.6;
+      transition: opacity 0.45s ease;
+    }
+
+    .night-theme .almanac-book::before {
+      opacity: 0.35;
+    }
+
+    /* ── Title banner ── */
+    .register-title {
+      flex-shrink: 0;
+      text-align: center;
+      padding: 12px 16px 8px;
+      background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+      border: 3px solid var(--gold);
+      border-radius: 10px 10px 0 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: var(--theme-transition);
+    }
+
+    .register-title h1 {
+      margin: 0;
+      font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+      line-height: 1.3;
+      transition: color 0.45s ease, text-shadow 0.45s ease;
+    }
+
+    .night-theme .register-title h1 {
+      text-shadow: none;
+    }
+
+    .register-title .subtitle {
+      margin: 5px 0 0;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+      transition: color 0.45s ease;
+    }
+
+    /* ── Category filters ── */
+    .category-tabs {
+      flex-shrink: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 10px;
+      justify-content: center;
+      background: var(--leather-mid);
+      border-left: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+      transition: var(--theme-transition);
+    }
+
+    .category-tab {
+      flex: 0 1 auto;
+      padding: 5px 14px;
+      background: rgba(0, 0, 0, 0.15);
+      border: 1.5px solid var(--tab-border);
+      border-radius: 20px;
+      color: var(--tab-text);
+      font-size: 0.74rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.25;
+      transition: background 0.2s ease, color 0.45s ease, border-color 0.45s ease,
+        box-shadow 0.45s ease;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .category-tab:hover {
+      background: rgba(0, 0, 0, 0.22);
+      color: var(--gold-light);
+      border-color: var(--gold);
+    }
+
+    .category-tab.active {
+      background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+      color: var(--ink);
+      border-color: var(--gold);
+      text-shadow: none;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .night-theme .category-tab {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .night-theme .category-tab:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ── Main parchment area ── */
+    .almanac-body {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 0;
+      background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-mid) 100%);
+      border: 3px solid var(--gold);
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 0 30px rgba(139, 105, 20, 0.1);
+      overflow: hidden;
+      transition: var(--theme-transition);
+    }
+
+    .night-theme .almanac-body {
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ── Character grid (left panel) ── */
+    .char-grid-panel {
+      padding: 6px;
+      border-right: 2px dashed var(--dash-color);
+      overflow-y: auto;
+      min-height: 0;
+      transition: border-color 0.45s ease;
+    }
+
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      align-items: start;
+    }
+
+    .char-slot {
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, var(--slot-bg) 0%, var(--slot-bg-end) 100%);
+      border: 3px solid var(--slot-border);
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.45s ease,
+        background 0.45s ease;
+    }
+
+    .char-slot.slot-static {
+      aspect-ratio: auto;
+      padding: 0;
+      line-height: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .char-slot.slot-static .slot-portrait {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+    }
+
+    .char-slot.slot-static:hover {
+      transform: scale(1.02);
+      box-shadow: none;
+      border: none;
+    }
+
+    .char-slot.slot-static.selected {
+      box-shadow: 0 0 0 2px var(--gold);
+      transform: none;
+      border: none;
+    }
+
+    .char-slot:hover {
+      transform: scale(1.05);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 10px rgba(201, 162, 39, 0.45);
+      z-index: 1;
+    }
+
+    .char-slot.selected {
+      border-color: var(--gold-light);
+      box-shadow:
+        0 0 0 2px var(--gold),
+        0 0 14px rgba(201, 162, 39, 0.55);
+      transform: scale(1.06);
+      z-index: 2;
+    }
+
+    .char-slot img.slot-portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      margin: 0;
+    }
+
+    .char-slot .slot-badges {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .slot-badge {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: block;
+      margin: 0;
+      filter: var(--icon-outline) var(--icon-filter);
+      transition: filter 0.45s ease;
+    }
+
+    .char-slot.placeholder-slot {
+      background: linear-gradient(145deg, var(--slot-placeholder-start) 0%, var(--slot-placeholder-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.45s ease;
+    }
+
+    .char-slot.placeholder-slot .placeholder-icon {
+      font-size: 2rem;
+      opacity: 0.45;
+    }
+
+    .coming-soon-slot {
+      aspect-ratio: 1;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--soon-stripe-a),
+        var(--soon-stripe-a) 6px,
+        var(--soon-stripe-b) 6px,
+        var(--soon-stripe-b) 12px
+      );
+      border: 3px dashed var(--slot-border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.55;
+      transition: background 0.45s ease, border-color 0.45s ease;
+    }
+
+    .coming-soon-slot span {
+      font-size: 0.6rem;
+      color: var(--ink-muted);
+      text-align: center;
+      line-height: 1.3;
+      padding: 4px;
+      transition: color 0.45s ease;
+    }
+
+    /* ── Detail panel (right) ── */
+    .char-detail-panel {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .detail-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--empty-color);
+      text-align: center;
+      gap: 10px;
+      padding: 20px;
+      transition: color 0.45s ease;
+    }
+
+    .detail-empty .empty-icon {
+      font-size: 3rem;
+      opacity: 0.35;
+    }
+
+    .detail-empty p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      max-width: 240px;
+    }
+
+    .char-detail {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .char-detail.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-portrait-wrap {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .detail-portrait-wrap.animated {
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: min(100%, clamp(220px, 90%, 380px));
+      aspect-ratio: 2 / 1;
+      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
+      border: none;
+      box-shadow: none;
+      transition: background 0.45s ease;
+    }
+
+    .detail-portrait-wrap.animated.portrait-beary {
+      background: linear-gradient(135deg, #1a3a5c 0%, #5a6578 100%);
+    }
+
+    .detail-portrait-wrap.animated.portrait-little-bear {
+      background: #f8c8d4;
+    }
+
+    .detail-portrait-wrap.animated.portrait-dr-chubie {
+      background: linear-gradient(135deg, #a8d8f0 0%, #9b7ed8 100%);
+    }
+
+    .detail-portrait {
+      width: clamp(100px, 18vh, 140px);
+      height: clamp(100px, 18vh, 140px);
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      display: inline-block;
+      margin: 0 auto;
+      background: var(--slot-bg);
+      transition: border-color 0.45s ease, background 0.45s ease;
+    }
+
+    .detail-portrait-wrap.animated .detail-portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .detail-portrait.placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(2.5rem, 6vh, 3.5rem);
+      background: linear-gradient(145deg, var(--slot-bg), var(--slot-bg-end));
+    }
+
+    .detail-name {
+      text-align: center;
+      margin: 0 0 4px;
+      font-size: 1.2rem;
+      color: var(--ink);
+      line-height: 1.3;
+      transition: color 0.45s ease;
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .detail-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--ink-soft);
+      transition: var(--theme-transition);
+    }
+
+    .detail-tag-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+      margin: 0;
+      filter: var(--icon-filter);
+      transition: filter 0.45s ease;
+    }
+
+    .detail-tag.dual {
+      background: var(--tag-dual-bg);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .detail-tag.dual .eng,
+    .detail-tag.dual .chn {
+      color: inherit;
+    }
+
+    .detail-links {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .detail-links a {
+      font-size: 0.78rem;
+      color: var(--link-color);
+      font-weight: bold;
+      transition: color 0.45s ease;
+    }
+
+    .detail-bio {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .detail-bio li {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--ink);
+      padding: 6px 0 6px 14px;
+      border-bottom: 1px dotted var(--dash-color);
+      position: relative;
+      transition: color 0.45s ease, border-color 0.45s ease;
+    }
+
+    .detail-bio li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.55rem;
+      top: 10px;
+      transition: color 0.45s ease;
+    }
+
+    .detail-bio li:last-child {
+      border-bottom: none;
+    }
+
+    .detail-bio a {
+      color: var(--link-color);
+      transition: color 0.45s ease;
+    }
+
+    /* ── In-book footer ── */
+    .register-book-footer {
+      flex-shrink: 0;
+      text-align: center;
+      padding: 6px 8px 2px;
+      font-size: 0.68rem;
+      color: var(--empty-color);
+      font-style: italic;
+      transition: color 0.45s ease;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .almanac-body {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 42%) minmax(0, 1fr);
+      }
+
+      .char-grid-panel {
+        border-right: none;
+        border-bottom: 2px dashed var(--dash-color);
+      }
+
+      .char-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .category-tab {
+        font-size: 0.66rem;
+        padding: 7px 3px 5px;
+      }
+    }
+  </style>
+
+  <div class="almanac-book">
+    <header class="register-title">
+      <h1>
+        <span class="eng">Bear Resort Register</span>
+        <span class="chn">小熊樂園花名册</span>
+      </h1>
+      <p class="subtitle">
+        <span class="eng">Upon its establishment, the Bear Resort has been the habitant of various creatures. Select an entry to read their record.</span>
+        <span class="chn">自建立伊始，小熊樂園便是许多生灵的栖息之所。点选条目以查阅档案。</span>
+      </p>
+    </header>
+
+    <nav class="category-tabs" role="group" aria-label="Character filters">
+      <button class="category-tab active" type="button" data-category="all" aria-pressed="true">
+        <span class="eng">All</span><span class="chn">全部</span>
+      </button>
+      <button class="category-tab" type="button" data-category="ursalinos" aria-pressed="false">
+        <span class="eng">Ursalinos</span><span class="chn">熊手党</span>
+      </button>
+      <button class="category-tab" type="button" data-category="meowstars" aria-pressed="false">
+        <span class="eng">Meowstars</span><span class="chn">喵星人</span>
+      </button>
+      <button class="category-tab" type="button" data-category="admins" aria-pressed="false">
+        <span class="eng">Administrators</span><span class="chn">管理员</span>
+      </button>
+    </nav>
+
+    <div class="almanac-body">
+      <section class="char-grid-panel" aria-label="Character roster">
+        <div class="char-grid" id="charGrid"></div>
+      </section>
+
+      <section class="char-detail-panel" aria-label="Character details">
+        <div class="detail-empty" id="detailEmpty">
+          <div class="empty-icon">📖</div>
+          <p>
+            <span class="eng">Choose a member from the roster to view their entry.</span>
+            <span class="chn">从左侧名册中选择一位成员以查看档案。</span>
+          </p>
+        </div>
+        <div class="char-detail" id="charDetail"></div>
+      </section>
+    </div>
+
+    <p class="register-book-footer">
+      <span class="eng">More members coming soon to the register.</span>
+      <span class="chn">更多成员即将加入花名册。</span>
+    </p>
+  </div>
+
+  <script type="module">
+    import { applyLanguageVisibility } from '/assets/js/lang.js';
+
+    const registerPage = document.querySelector('.register-page');
+
+    function syncNavInsets() {
+      const topNav = document.querySelector('.topnav');
+      const botNav = document.querySelector('.botnav');
+      const top = topNav ? topNav.offsetHeight : 49;
+      const bottom = botNav ? botNav.offsetHeight : 37;
+      document.documentElement.style.setProperty('--register-top', `${top}px`);
+      document.documentElement.style.setProperty('--register-bottom', `${bottom}px`);
+    }
+
+    syncNavInsets();
+    window.addEventListener('resize', syncNavInsets);
+
+    function syncLanguage() {
+      applyLanguageVisibility(registerPage);
+    }
+
+    const CHARACTERS = [
+      {
+        id: 'beary',
+        categories: ['ursalinos'],
+        nameEng: 'Beary',
+        nameChn: '小熊',
+        image: 'beary/bear-static.png',
+        imageAnimated: 'beary/beary-animated.gif',
+        slotStyle: 'static',
+        tags: [{ eng: 'Head of Ursalinos', chn: '熊手党族长' }],
+        bio: [
+          {
+            eng: 'Beary is a Brown bear (<a href="https://en.wikipedia.org/wiki/Brown_bear"><em>Ursus arctos</em></a>), and he is the head of the Ursalinos.',
+            chn: '小熊是一头棕熊 (<a href="https://en.wikipedia.org/wiki/Brown_bear"><em>Ursus arctos</em></a>)，他也是熊手党的族长。',
+          },
+          {
+            eng: 'Beary is a senior technician and associate professor in the BIAS (Bear Institute of Aeronautics and Space), where he serves as a faculty of pure mathematics and astrophysics. His research interests are upon the application of algebraic topology on multiscale structure in the universe.',
+            chn: '小熊是BIAS(熊熊航空航天局)的高级技师和副教授，也是纯数系和天体物理系的教员。他的研究主要在代数拓扑学在多尺度结构宇宙中的应用。',
+          },
+        ],
+      },
+      {
+        id: 'little-bear',
+        categories: ['ursalinos'],
+        nameEng: 'Little Bear',
+        nameChn: '小小熊',
+        image: 'little-bear/little-bear-static.png',
+        imageAnimated: 'little-bear/little-bear-animated.gif',
+        slotStyle: 'static',
+        tags: [{ eng: 'Ursalinos', chn: '熊手党' }],
+        bio: [
+          {
+            eng: 'Little Bear is a Brown bear (<a href="https://en.wikipedia.org/wiki/Brown_bear"><em>Ursus arctos</em></a>) cub, and he is the son of Beary.',
+            chn: '小小熊是一头棕熊 (<a href="https://en.wikipedia.org/wiki/Brown_bear"><em>Ursus arctos</em></a>)幼崽，他是小熊的儿子。',
+          },
+          {
+            eng: 'Little Bear is a problem kid in the Bear Resort, as he always causes troubles around. However, every time when he messes around, his innocent eyes and adorable emotions always condone him from penalties.',
+            chn: '小小熊是小熊樂園里的问题青年，因为他处处闯祸。尽管如此，每当他搞砸了，他的无辜眼神和可爱表情总能为他脱罪。',
+          },
+        ],
+      },
+      {
+        id: 'dr-chubie',
+        categories: ['ursalinos', 'meowstars'],
+        nameEng: 'Dr. Chubie',
+        nameChn: '胖胖博士',
+        image: 'dr-b/dr-b-static.png',
+        imageAnimated: 'dr-b/dr-b-animated.gif',
+        slotStyle: 'static',
+        tags: [
+          { eng: 'Dual Identity', chn: '双重身份', dual: true },
+          { eng: 'Ursalinos & Meowstars', chn: '熊手党 & 喵星人', dual: true },
+        ],
+        links: [
+          {
+            href: 'https://docs.google.com/forms/d/e/1FAIpQLSdzFX4EANLZvD9Y2l2mYN_56jX23oaFzY7fUjT8BAuToITpKQ/viewanalytics?usp=form_confirm',
+            eng: 'Survey Results',
+            chn: '问卷结果',
+          },
+        ],
+        bio: [
+          {
+            eng: 'Dr. Chubie is a Giant panda (<a href="https://en.wikipedia.org/wiki/Giant_panda"><em>Ailuropoda melanoleuca</em></a>). He owns a dual identity, serving in both the Ursalinos and the Meowstars.',
+            chn: '胖胖博士是一头大熊猫 (<a href="https://en.wikipedia.org/wiki/Giant_panda"><em>Ailuropoda melanoleuca</em></a>)。他拥有双重身份，同属于熊手党和喵星人。',
+          },
+          {
+            eng: 'Dr. Chubie is a workout fanatic and is also a doctor (although we don\'t know if he possesses a medical degree, or Doctor of Philosophy, or both). He enjoys and struggles to be the big guy. He also has a benzene reactor on his chest that he rarely takes off...',
+            chn: '胖胖博士酷愛健身，沒人知道他是医生或是博士，又或许都是？作为一个大家伙，他既享受又烦恼。他胸部裝著一個高級苯反應堆，只是他几乎從不取下它。',
+          },
+        ],
+      },
+      {
+        id: 'meow-sieur',
+        categories: ['meowstars'],
+        nameEng: 'Meow-sieur Chef',
+        nameChn: '神厨咪咪',
+        image: 'tiger/tiger-static.png',
+        imageAnimated: 'tiger/tiger-animated.gif',
+        slotStyle: 'static',
+        tags: [{ eng: 'Head of Meowstars', chn: '喵星人族长' }],
+        links: [
+          {
+            href: 'https://docs.google.com/forms/d/e/1FAIpQLSeSW_F1lZ-YPX4SVYt6Ryv5MRwZlF0ktrK1k7WABXoYVraSNQ/viewanalytics?usp=form_confirm',
+            eng: 'Survey Results',
+            chn: '问卷结果',
+          },
+        ],
+        bio: [
+          {
+            eng: 'Meow-sieur Chef is a South China Tiger (<a href="https://en.wikipedia.org/wiki/South_China_tiger"><em>P. t. amoyensis</em></a>). As the King of Beasts, he is undoubtfully the head of the Meowstars.',
+            chn: '神厨咪咪是一头华南虎。作为百兽之王，他毋庸置疑是喵星人的族长。',
+          },
+          {
+            eng: 'Meow-sieur Chef is a cook, and he makes dishes for all the carnivores and bears in the Bear Resort. Absolutely marvelous control of knifes, so one should naturally suspect what he does before becoming a chief. FYI: You\'d better call him by Big Justin (which appeared to be on his ID, probably) rather than Meow-sieur (his nickname), unless you are absolutely sure that you will not become his breakfast tomorrow.',
+            chn: '神厨咪咪是一个厨子，他为小熊樂園里的各个食肉动物和熊们准备餐点。绝佳的刀工，让人不得不怀疑他在做厨子之前干的是什么行当。小贴士：你最好叫他的真名-大哥贾斯汀，而非小名咪咪，除非你绝对知道你不会成为他明天的早餐。',
+          },
+        ],
+      },
+      {
+        id: 'ayin',
+        categories: ['ursalinos'],
+        nameEng: 'Ayin',
+        nameChn: '阿殷',
+        image: 'a-yin.png',
+        tags: [{ eng: 'Ursalinos', chn: '熊手党' }],
+        bio: [
+          {
+            eng: 'Ayin is an Asian Black Bear (<a href="https://en.wikipedia.org/wiki/Asian_black_bear"><em>Ursus thibetanus</em></a>) cub. His twin brother is Ayang.',
+            chn: '阿殷是一头亚洲黑熊 (<a href="https://en.wikipedia.org/wiki/Asian_black_bear"><em>Ursus thibetanus</em></a>)幼崽. 他的双胞胎兄弟是阿阳.',
+          },
+          {
+            eng: 'Ayin is the elder brother amongst the twins, and would always need to pickup the responsibilities in the family. Do not question him why his younger brother looks completely different, as this would really piss him up.',
+            chn: '阿殷是双胞兄弟里的老大哥，俗话说长兄如父，阿殷已是兄弟里的顶梁柱。不要问他的弟弟和他为什么长得一点儿都不像，因为这绝对会惹到他。',
+          },
+        ],
+      },
+      {
+        id: 'ayang',
+        categories: ['ursalinos'],
+        nameEng: 'Ayang',
+        nameChn: '阿阳',
+        image: 'a-yang.png',
+        tags: [{ eng: 'Ursalinos', chn: '熊手党' }],
+        bio: [
+          {
+            eng: 'Ayang is a Polar Bear (<a href="https://en.wikipedia.org/wiki/Polar_bear"><em>Ursus maritimus</em></a>) cub. His twin brother is Ayin.',
+            chn: '阿阳是一头北极熊 (<a href="https://en.wikipedia.org/wiki/Polar_bear"><em>Ursus maritimus</em></a>)幼崽. 他的双胞胎兄弟是阿殷.',
+          },
+          {
+            eng: 'As the younger brother, Ayang is always unsatisfactory about his elder brother taking over everything. "Bro is too dominant in life," Ayang says, as he frowns explicitly, "He is nothing like me, and I don\'t see why his own businesses have not exploits himself."',
+            chn: '作为兄弟里的老幺，阿阳对阿殷的绝对控制表达了不满。"他总想控制一切，"阿殷皱着眉说道，"他一点儿都不像我，而且我不懂为什么他自己的那些破事儿还不够他忙的。"',
+          },
+        ],
+      },
+      {
+        id: 'uncle-v',
+        categories: ['ursalinos'],
+        nameEng: 'Uncle V',
+        nameChn: '维维叔',
+        image: 'uncle-v.png',
+        tags: [{ eng: 'Ursalinos Ambassador', chn: '熊手党大使' }],
+        bio: [
+          {
+            eng: 'Uncle V is an Asian Black Bear (<a href="https://en.wikipedia.org/wiki/Asian_black_bear"><em>Ursus thibetanus</em></a>). He is the father of Ayin.',
+            chn: '维维叔是一头亚洲黑熊 (<a href="https://en.wikipedia.org/wiki/Asian_black_bear"><em>Ursus thibetanus</em></a>). 他是阿殷的父亲.',
+          },
+          {
+            eng: 'Uncle V has switched to a fully vegetarian diet as he became the ambassador for the Ursalinos. "Being vegetarian makes me seems a lot more friendly, and I serve as the figure of our gang," says Uncle V, as he crams a whole apple inside his mouth. Apparently, being vegetarian is not really effective in maintaining fit (c.f. Dr. Chubie).',
+            chn: '维维叔自当选熊手党的大使后便坚持素食。"做一个素食主义者让我看起来更友善。毕竟我可是咱们帮的形象，"维维叔边说边把一整个苹果塞进嘴里。显然，吃素对保持体型而言并不见效(详见:胖胖博士)。',
+          },
+        ],
+      },
+      {
+        id: 'simba',
+        categories: ['meowstars'],
+        nameEng: 'Simba',
+        nameChn: '辛巴',
+        image: 'simba.png',
+        tags: [{ eng: 'Meowstars', chn: '喵星人' }],
+        bio: [
+          {
+            eng: 'Simba is a little Ginger Cat. To be honest, at this moment, we should really double check if he is really still little.',
+            chn: '辛巴是一只小橘猫。讲真的，我们现在真的需要核实一下他真的还是小猫吗？',
+          },
+          {
+            eng: 'Simba is the pet cat of Zhaizhai. Apart from being absolutely adorable, Simba also has his own preciousness in terms of scientific research: Simba\'s trajectory contains a perfectly random component and nobody knows where he would jump to at the next time step, so his movements serve as a perfect source for simulations of Brownian motions, which happens to be something that Mathy and Mousy have been researching on.',
+            chn: '辛巴是宅宅的宠物。除了每日卖萌以外，辛巴是科研界名副其实的瑰宝：他的运动轨迹包含一个绝对随机的部分且没有任何人知道他下一刻会窜到什么地方。因此，他的动作是模拟布朗运动的绝佳资源，而这又是数数和鼠鼠长久以来的研究方向。',
+          },
+        ],
+      },
+      {
+        id: 'mathy',
+        categories: ['admins'],
+        nameEng: 'Mathy',
+        nameChn: '数数',
+        image: null,
+        placeholder: '📐',
+        tags: [{ eng: 'Administrator', chn: '管理员' }],
+        bio: [
+          {
+            eng: 'Mathy works on the bureaucracies inside the Bear Resort. The Resort does not operate from nowhere, and it did not appear just from scratch.',
+            chn: '数数要处理小熊樂園里的各个杂事儿。要知道，樂園无法自动运转，也非凭空出现的。',
+          },
+          {
+            eng: 'Known for Mathy\'s Turntable, emoji seasons, and deep involvement in Mathland\'s educational programs.',
+            chn: '以数数的大转盘、表情包系列，以及对数学之境教育项目的深度参与而著称。',
+          },
+        ],
+      },
+      {
+        id: 'zhaizhai',
+        categories: ['admins'],
+        nameEng: 'Zhaizhai',
+        nameChn: '宅宅',
+        image: null,
+        placeholder: '🎨',
+        tags: [{ eng: 'Administrator', chn: '管理员' }],
+        bio: [
+          {
+            eng: 'Zhaizhai works on the bureaucracies inside the Bear Resort. The Resort does not operate from nowhere, and it did not appear just from scratch.',
+            chn: '宅宅要处理小熊樂園里的各个杂事儿。要知道，樂園无法自动运转，也非凭空出现的。',
+          },
+          {
+            eng: 'Owner of Simba the ginger cat, and curator of the Pretty Anime Girl Zone for fans.',
+            chn: '橘猫辛巴的主人，亦为粉丝专享区美少女专区的策展人。',
+          },
+        ],
+      },
+      {
+        id: 'mousy',
+        categories: ['admins'],
+        nameEng: 'Mousy',
+        nameChn: '鼠鼠',
+        image: null,
+        placeholder: '🔧',
+        tags: [{ eng: 'Administrator', chn: '管理员' }],
+        bio: [
+          {
+            eng: 'Mousy works on the bureaucracies inside the Bear Resort. The Resort does not operate from nowhere, and it did not appear just from scratch.',
+            chn: '鼠鼠要处理小熊樂園里的各个杂事儿。要知道，樂園无法自动运转，也非凭空出现的。',
+          },
+          {
+            eng: 'Oversees the Steam Tunnel Signage Project and researches Brownian motion alongside Mathy.',
+            chn: '负责蒸汽管道指引牌项目，并与数数一同研究布朗运动。',
+          },
+        ],
+      },
+    ];
+
+    const COMING_SOON = {
+      ursalinos: { eng: 'More Ursalinos coming soon', chn: '更多熊手党成员即将到来' },
+      meowstars: { eng: 'More Meowstars landing soon', chn: '更多喵星人即将着陆' },
+    };
+
+    const FACTION_ICONS = {
+      ursalinos: 'icons/bear.png',
+      meowstars: 'icons/cat.png',
+      admins: 'icons/admin.png',
+    };
+
+    function categoryIcons(categories) {
+      return [...new Set(categories.map((c) => FACTION_ICONS[c]).filter(Boolean))];
+    }
+
+    function tagIcons(tag) {
+      if (tag.icons) return tag.icons;
+      const text = `${tag.eng} ${tag.chn}`.toLowerCase();
+      const icons = [];
+      if (text.includes('ursalino') || text.includes('熊手')) icons.push(FACTION_ICONS.ursalinos);
+      if (text.includes('meowstar') || text.includes('喵星人')) icons.push(FACTION_ICONS.meowstars);
+      if (text.includes('admin') || text.includes('管理员')) icons.push(FACTION_ICONS.admins);
+      return [...new Set(icons)];
+    }
+
+    function iconImgsHtml(icons, className) {
+      return icons.map((src) => `<img class="${className}" src="${src}" alt="">`).join('');
+    }
+
+    function slotBadgesHtml(categories) {
+      const icons = categoryIcons(categories);
+      if (!icons.length) return '';
+      return `<div class="slot-badges">${iconImgsHtml(icons, 'slot-badge')}</div>`;
+    }
+
+    function buildGridSlot(c) {
+      const slot = document.createElement('button');
+      slot.className =
+        'char-slot' +
+        (selectedId === c.id ? ' selected' : '') +
+        (c.slotStyle === 'static' ? ' slot-static' : '');
+      slot.type = 'button';
+      slot.setAttribute('aria-label', c.nameEng);
+      slot.dataset.id = c.id;
+
+      if (c.image) {
+        slot.innerHTML =
+          '<img class="slot-portrait" src="' +
+          c.image +
+          '" alt="' +
+          c.nameEng +
+          '">' +
+          slotBadgesHtml(c.categories);
+      } else {
+        slot.classList.add('placeholder-slot');
+        slot.innerHTML =
+          '<span class="placeholder-icon">' +
+          (c.placeholder || '🐻') +
+          '</span>' +
+          slotBadgesHtml(c.categories);
+      }
+
+      slot.addEventListener('click', () => selectCharacter(c.id));
+      return slot;
+    }
+
+    function getDetailImage(c) {
+      return c.imageAnimated || c.image;
+    }
+
+    function tagHtml(tag) {
+      const icons = tagIcons(tag);
+      const iconPart = icons.length ? iconImgsHtml(icons, 'detail-tag-icon') : '';
+      return (
+        `<span class="detail-tag${tag.dual ? ' dual' : ''}">` +
+        iconPart +
+        `<span class="eng">${tag.eng}</span><span class="chn">${tag.chn}</span></span>`
+      );
+    }
+
+    let activeCategory = 'all';
+    let selectedId = null;
+
+    const gridEl = document.getElementById('charGrid');
+    const detailEl = document.getElementById('charDetail');
+    const emptyEl = document.getElementById('detailEmpty');
+
+    function visibleCharacters() {
+      if (activeCategory === 'all') return CHARACTERS;
+      return CHARACTERS.filter((c) => c.categories.includes(activeCategory));
+    }
+
+    function renderGrid() {
+      const chars = visibleCharacters();
+      gridEl.innerHTML = '';
+
+      chars.forEach((c) => {
+        gridEl.appendChild(buildGridSlot(c));
+      });
+
+      if (activeCategory === 'ursalinos' || activeCategory === 'meowstars') {
+        const soon = document.createElement('div');
+        soon.className = 'coming-soon-slot';
+        const label = COMING_SOON[activeCategory];
+        soon.innerHTML =
+          '<span><span class="eng">' + label.eng + '</span><span class="chn">' + label.chn + '</span></span>';
+        gridEl.appendChild(soon);
+      }
+
+      syncLanguage();
+    }
+
+    function renderDetail(char) {
+      if (!char) {
+        detailEl.classList.remove('visible');
+        emptyEl.style.display = '';
+        return;
+      }
+
+      emptyEl.style.display = 'none';
+      detailEl.classList.add('visible');
+
+      let portraitHtml;
+      const wrapClass = char.imageAnimated
+        ? 'detail-portrait-wrap animated portrait-' + char.id
+        : 'detail-portrait-wrap';
+      if (getDetailImage(char)) {
+        portraitHtml =
+          '<img class="detail-portrait" src="' +
+          getDetailImage(char) +
+          '" alt="' +
+          char.nameEng +
+          '">';
+      } else {
+        portraitHtml =
+          '<div class="detail-portrait placeholder">' + (char.placeholder || '🐻') + '</div>';
+      }
+
+      const tagsHtml = (char.tags || []).map((t) => tagHtml(t)).join('');
+
+      const linksHtml = (char.links || [])
+        .map(
+          (l) =>
+            '<a href="' +
+            l.href +
+            '" target="_blank" rel="noopener"><span class="eng">' +
+            l.eng +
+            '</span><span class="chn">' +
+            l.chn +
+            '</span></a>'
+        )
+        .join(' · ');
+
+      const bioHtml = char.bio
+        .map(
+          (b) =>
+            '<li><span class="eng">' + b.eng + '</span><span class="chn">' + b.chn + '</span></li>'
+        )
+        .join('');
+
+      detailEl.innerHTML =
+        '<div class="' +
+        wrapClass +
+        '">' +
+        portraitHtml +
+        '</div>' +
+        '<h2 class="detail-name"><span class="eng">' +
+        char.nameEng +
+        '</span> <span class="chn">' +
+        char.nameChn +
+        '</span></h2>' +
+        (tagsHtml ? '<div class="detail-tags">' + tagsHtml + '</div>' : '') +
+        (linksHtml ? '<div class="detail-links">' + linksHtml + '</div>' : '') +
+        '<ul class="detail-bio">' +
+        bioHtml +
+        '</ul>';
+
+      detailEl.style.animation = 'none';
+      void detailEl.offsetWidth;
+      detailEl.style.animation = '';
+
+      syncLanguage();
+    }
+
+    function selectCharacter(id) {
+      selectedId = id;
+      renderGrid();
+      renderDetail(CHARACTERS.find((c) => c.id === id));
+    }
+
+    document.querySelectorAll('.category-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        activeCategory = tab.dataset.category;
+        document.querySelectorAll('.category-tab').forEach((t) => {
+          const isActive = t === tab;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-pressed', isActive);
+        });
+
+        const visible = visibleCharacters();
+        if (selectedId && !visible.find((c) => c.id === selectedId)) {
+          selectedId = null;
+          renderDetail(null);
+        }
+        renderGrid();
+        syncLanguage();
+      });
+    });
+
+    renderGrid();
+    selectCharacter('beary');
+    syncLanguage();
+  </script>
+</div>

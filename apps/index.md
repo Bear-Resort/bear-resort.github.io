@@ -1,4 +1,4 @@
-﻿---
+---
 layout: default
 title: 'Apps'
 title-chn: '软件库'
@@ -126,8 +126,8 @@ title-chn: '软件库'
 </a>
 <a class="app-card" href="/chars/" target="_blank">
     <img class="app-img" src="/chars/beary.png" alt="characterrs">
-    <div class="app-name"><span class="eng">Characters</span><span class="chn">角色大全</span></div>
-    <div class="app-desc"><span class="eng">All characters in the resort</span><span class="chn">乐园里的全部角色</span></div>
+    <div class="app-name"><span class="eng">Bear Resort Register</span><span class="chn">小熊樂園花名册</span></div>
+    <div class="app-desc"><span class="eng">Almanac of all resort members</span><span class="chn">乐园成员花名册图鉴</span></div>
 </a>
 <a class="app-card" href="/bear-rush/" target="_blank">
     <img class="app-img" src="/bear-rush/bear.gif" alt="rush">

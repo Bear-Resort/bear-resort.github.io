@@ -1,5 +1,19 @@
 const langBtn = document.getElementById('lang');
 
+function isEnglish() {
+  return langBtn.textContent === 'Eng';
+}
+
+export function applyLanguageVisibility(root = document) {
+  const showEng = isEnglish();
+  root.querySelectorAll('.eng').forEach((el) => {
+    el.style.display = showEng ? 'inline' : 'none';
+  });
+  root.querySelectorAll('.chn').forEach((el) => {
+    el.style.display = showEng ? 'none' : 'inline';
+  });
+}
+
 // Attempt to load the language from localStorage
 const savedLang = localStorage.getItem('language');
 
@@ -10,24 +24,7 @@ if (savedLang) {
   langBtn.textContent = 'Eng'; // Default to English
 }
 
-// Initialize visibility based on saved or default language
-if (langBtn.textContent === 'Eng') {
-  // Show English elements, hide Chinese elements
-  document.querySelectorAll('.eng').forEach((el) => {
-    el.style.display = 'inline';
-  });
-  document.querySelectorAll('.chn').forEach((el) => {
-    el.style.display = 'none';
-  });
-} else {
-  // Show Chinese elements, hide English elements
-  document.querySelectorAll('.eng').forEach((el) => {
-    el.style.display = 'none';
-  });
-  document.querySelectorAll('.chn').forEach((el) => {
-    el.style.display = 'inline';
-  });
-}
+applyLanguageVisibility();
 
 // Event listener for language toggle
 langBtn.addEventListener('click', () => {
@@ -39,24 +36,7 @@ langBtn.addEventListener('click', () => {
   // Store the selected language in localStorage
   localStorage.setItem('language', newLang);
 
-  // Toggle visibility of elements with the appropriate class
-  if (newLang === 'Eng') {
-    // Show English elements, hide Chinese elements
-    document.querySelectorAll('.eng').forEach((el) => {
-      el.style.display = 'inline';
-    });
-    document.querySelectorAll('.chn').forEach((el) => {
-      el.style.display = 'none';
-    });
-  } else {
-    // Show Chinese elements, hide English elements
-    document.querySelectorAll('.eng').forEach((el) => {
-      el.style.display = 'none';
-    });
-    document.querySelectorAll('.chn').forEach((el) => {
-      el.style.display = 'inline';
-    });
-  }
+  applyLanguageVisibility();
 });
 
 function updateLanguage() {
@@ -68,53 +48,10 @@ function updateLanguage() {
   // Store the selected language in localStorage
   localStorage.setItem('language', newLang);
 
-  // Toggle visibility of elements with the appropriate class
-  const engElements = document.querySelectorAll('.eng');
-  const chnElements = document.querySelectorAll('.chn');
-
-  if (newLang === 'Eng') {
-    // Show English elements, hide Chinese elements
-    engElements.forEach((el) => {
-      el.style.display = 'inline';
-    });
-    chnElements.forEach((el) => {
-      el.style.display = 'none';
-    });
-  } else {
-    // Show Chinese elements, hide English elements
-    engElements.forEach((el) => {
-      el.style.display = 'none';
-    });
-    chnElements.forEach((el) => {
-      el.style.display = 'inline';
-    });
-  }
+  applyLanguageVisibility();
 }
 
 export function updateMyLanguage() {
-  const lang = langBtn.textContent;
-
-  // Toggle visibility of elements with the appropriate class
-  const engElements = document.querySelectorAll('.eng');
-  const chnElements = document.querySelectorAll('.chn');
-
-  if (lang === 'Eng') {
-    // Show English elements, hide Chinese elements
-    engElements.forEach((el) => {
-      el.style.display = 'inline';
-    });
-    chnElements.forEach((el) => {
-      el.style.display = 'none';
-    });
-    return 'Eng';
-  } else {
-    // Show Chinese elements, hide English elements
-    engElements.forEach((el) => {
-      el.style.display = 'none';
-    });
-    chnElements.forEach((el) => {
-      el.style.display = 'inline';
-    });
-    return 'Chn';
-  }
+  applyLanguageVisibility();
+  return isEnglish() ? 'Eng' : 'Chn';
 }
