@@ -93,6 +93,14 @@ title-chn: '小熊快跑'
       box-sizing: border-box;
     }
 
+    #content .rush-page .chn {
+      font-family: 'zpix', monospace;
+      font-weight: normal;
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: unset;
+      text-rendering: auto;
+    }
+
     .rush-shell {
       flex: 1;
       min-height: 0;
@@ -130,8 +138,11 @@ title-chn: '小熊快跑'
         inset 0 0 10px rgba(255, 212, 71, 0.12);
     }
 
-    .rush-stage-title h1 {
+    /* Beat #content h1, .chn, and layout img/button defaults */
+    #content .rush-page .rush-stage-title h1 {
       margin: 0;
+      text-align: left;
+      font-family: 'zpix', monospace;
       font-size: clamp(1rem, 2.8vw, 1.45rem);
       font-weight: normal;
       letter-spacing: 0.08em;
@@ -141,6 +152,17 @@ title-chn: '小熊快跑'
         2px 2px 0 #000,
         0 0 10px rgba(255, 212, 71, 0.4);
       white-space: nowrap;
+      -webkit-font-smoothing: none;
+      -moz-osx-font-smoothing: unset;
+      text-rendering: auto;
+    }
+
+    #content .rush-page .rush-stage-title h1 .eng,
+    #content .rush-page .rush-stage-title h1 .chn {
+      font-family: inherit;
+      font-weight: inherit;
+      -webkit-font-smoothing: inherit;
+      text-rendering: inherit;
     }
 
     .stage-help-btn {
@@ -419,9 +441,12 @@ title-chn: '小熊快跑'
       min-width: 88px;
     }
 
-    .overlay-control-icon {
+    #content .rush-page .overlay-control-icon {
+      display: block;
       width: 52px;
       height: 52px;
+      max-width: none;
+      margin: 0;
       image-rendering: pixelated;
       image-rendering: crisp-edges;
       filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
@@ -531,31 +556,59 @@ title-chn: '小熊快跑'
       z-index: 4;
     }
 
-    .control-btn {
+    #content .rush-page .rush-controls button.control-btn {
       pointer-events: auto;
+      appearance: none;
+      -webkit-appearance: none;
+      position: relative;
+      display: block;
       width: clamp(64px, 14vw, 96px);
       height: clamp(64px, 14vw, 96px);
       padding: 0;
+      margin: 0;
       border: none;
+      border-radius: 0;
       background: transparent;
+      color: inherit;
+      font: inherit;
+      text-shadow: none;
+      box-shadow: none;
+      overflow: visible;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
       touch-action: manipulation;
       transition: transform 0.1s ease, filter 0.1s ease;
       filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.55));
+      transform: none;
     }
 
-    .control-btn img {
+    #content .rush-page .rush-controls button.control-btn::before {
+      content: none;
+      display: none;
+    }
+
+    #content .rush-page .rush-controls button.control-btn:hover:not(:disabled) {
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.55));
+    }
+
+    #content .rush-page .rush-controls button.control-btn img {
       display: block;
       width: 100%;
       height: 100%;
+      max-width: none;
+      margin: 0;
       image-rendering: pixelated;
       image-rendering: crisp-edges;
     }
 
-    .control-btn:active,
-    .control-btn.active {
+    #content .rush-page .rush-controls button.control-btn:active:not(:disabled),
+    #content .rush-page .rush-controls button.control-btn.active {
+      background: transparent;
+      box-shadow: none;
       transform: translateY(4px) scale(0.94);
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
     }
@@ -636,7 +689,7 @@ title-chn: '小熊快跑'
     }
 
     @media (max-width: 520px) {
-      .rush-stage-title h1 {
+      #content .rush-page .rush-stage-title h1 {
         font-size: 0.95rem;
         letter-spacing: 0.06em;
       }
