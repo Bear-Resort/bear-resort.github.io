@@ -1094,7 +1094,8 @@ title-chn: '小熊快跑'
     const RUSH_CHARACTER_ENTRIES = [
       { id: 'beary', charsId: 'beary', folder: 'img/beary' },
       { id: 'drb', charsId: 'dr-chubie', folder: 'img/drb' },
-      { id: 'goddess', folder: 'img/goddess', nameEng: 'Goddess', nameChn: '美少女神' },
+      { id: 'goddess', folder: 'img/goddess', nameEng: 'Goddess of Beauty', nameChn: '美少女神' },
+      { id: 'angel', folder: 'img/angel', nameEng: 'Mechnical Angel', nameChn: '机械天使' },
     ];
 
     const CHARACTER_SKILLS = {
@@ -1105,6 +1106,10 @@ title-chn: '小熊快跑'
       goddess: {
         eng: 'Can fly through a pit once',
         chn: '可飞越一次坑洞（不会游戏结束）',
+      },
+      angel: {
+        eng: 'Gain points by 1.25× (rounded down for each obstacle)',
+        chn: '每个障碍得分 ×1.25（向下取整）',
       },
     };
 
@@ -1157,6 +1162,7 @@ title-chn: '小熊快跑'
     const DRB_UNLOCK_SCORE = 1000;
     const PROMOTION_CODES = {
       'a34e2f8942e14764da6b734058745650453ba7c659f2f2c44d67c4a7fe9a72d5': ['goddess'],
+      'f7c5298ee252f09e3b760c2980f02c81a3094ffc6c51020ab515eeef7cae3a7c': ['angel'],
     };
 
     function loadBestScore() {
@@ -1223,7 +1229,22 @@ title-chn: '小熊快跑'
           chn: '使用促销码解锁',
         };
       }
+      if (id === 'angel') {
+        return {
+          eng: 'Unlock by promotion code',
+          chn: '使用促销码解锁',
+        };
+      }
       return null;
+    }
+
+    const OBSTACLE_SCORE_BASE = 10;
+
+    function awardObstacleScore(basePoints = OBSTACLE_SCORE_BASE) {
+      const points =
+        selectedCharacterId === 'angel' ? Math.floor(basePoints * 1.25) : basePoints;
+      score += points;
+      calculateGameSpeed();
     }
 
     function getCelebratedUnlocks() {
@@ -2140,8 +2161,7 @@ title-chn: '小熊快跑'
         obstacles[i].x -= gameSpeed;
         if (obstacles[i].x + obstacles[i].width < 0) {
           obstacles.splice(i, 1);
-          score += 10;
-          calculateGameSpeed();
+          awardObstacleScore();
         }
       }
 
@@ -2174,9 +2194,8 @@ title-chn: '小熊快跑'
           if (selectedCharacterId === 'drb' && !runSkills.obstacleBreakUsed) {
             runSkills.obstacleBreakUsed = true;
             obstacles.splice(i, 1);
-            score += 10;
+            awardObstacleScore();
             scoreElement.textContent = score;
-            calculateGameSpeed();
             continue;
           }
           endGame();
