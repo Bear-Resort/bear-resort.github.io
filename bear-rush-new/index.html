@@ -189,17 +189,34 @@ title-chn: '小熊快跑'
     }
 
     .char-panel {
-      width: min(480px, 100%);
+      width: min(560px, 100%);
     }
 
     .char-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 12px;
       margin-top: 8px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .char-grid::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .char-grid::-webkit-scrollbar-thumb {
+      background: rgba(26, 42, 58, 0.35);
+      border-radius: 4px;
     }
 
     .char-card {
+      flex: 0 0 148px;
+      scroll-snap-align: start;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -210,6 +227,87 @@ title-chn: '小熊快跑'
       background: rgba(255, 255, 255, 0.55);
       cursor: pointer;
       transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    }
+
+    .char-promo-card {
+      flex: 0 0 min(220px, 72vw);
+      scroll-snap-align: end;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 12px 10px;
+      border: 3px dashed rgba(26, 42, 58, 0.45);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.4);
+      text-align: left;
+    }
+
+    .night-theme .char-promo-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(159, 200, 247, 0.35);
+    }
+
+    .char-promo-title {
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: #1a2a3a;
+      margin: 0;
+    }
+
+    .night-theme .char-promo-title {
+      color: #eef4fb;
+    }
+
+    .char-promo-card input {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 0.78rem;
+      padding: 6px 8px;
+      border: 2px solid rgba(26, 42, 58, 0.35);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .night-theme .char-promo-card input {
+      background: rgba(0, 0, 0, 0.35);
+      border-color: rgba(159, 200, 247, 0.25);
+      color: #eef4fb;
+    }
+
+    .char-promo-card button {
+      margin: 0;
+      width: 100%;
+      font-size: 0.78rem;
+      padding: 6px 10px;
+    }
+
+    .char-promo-error,
+    .char-promo-success {
+      font-size: 0.72rem;
+      text-align: center;
+      margin: 0;
+    }
+
+    .char-promo-error {
+      color: #b42318;
+    }
+
+    .char-promo-success {
+      color: #1f7a3b;
+    }
+
+    .night-theme .char-promo-error {
+      color: #ff8a80;
+    }
+
+    .night-theme .char-promo-success {
+      color: #7dffb2;
+    }
+
+    .char-promo-error.hidden,
+    .char-promo-success.hidden {
+      display: none;
     }
 
     .night-theme .char-card {
@@ -229,6 +327,7 @@ title-chn: '小熊快跑'
     }
 
     .char-preview-wrap {
+      position: relative;
       width: 120px;
       height: 120px;
       display: flex;
@@ -260,6 +359,123 @@ title-chn: '小熊快跑'
 
     .night-theme .char-name {
       color: #eef4fb;
+    }
+
+    .char-card.locked {
+      cursor: default;
+    }
+
+    .char-card.locked:hover {
+      transform: none;
+    }
+
+    .char-card.locked .char-preview-wrap {
+      filter: grayscale(0.45) brightness(0.78);
+    }
+
+    .char-card.locked.selected {
+      border-color: rgba(26, 42, 58, 0.35);
+      box-shadow: none;
+    }
+
+    .char-lock-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 16, 24, 0.42);
+      pointer-events: none;
+    }
+
+    .char-lock-overlay.hidden {
+      display: none;
+    }
+
+    .pixel-lock {
+      width: 40px;
+      height: 40px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='5' y='1' width='6' height='1' fill='%23ffd447'/%3E%3Crect x='4' y='2' width='1' height='2' fill='%23ffd447'/%3E%3Crect x='11' y='2' width='1' height='2' fill='%23ffd447'/%3E%3Crect x='3' y='4' width='1' height='2' fill='%23ffd447'/%3E%3Crect x='12' y='4' width='1' height='2' fill='%23ffd447'/%3E%3Crect x='3' y='6' width='10' height='1' fill='%23e8bf2e'/%3E%3Crect x='4' y='7' width='8' height='6' fill='%23c9a227'/%3E%3Crect x='5' y='8' width='6' height='4' fill='%23a8841f'/%3E%3Crect x='7' y='9' width='2' height='3' fill='%23202838'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23202838'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23202838'/%3E%3C/svg%3E");
+    }
+
+    .char-lock-hint {
+      font-size: 0.68rem;
+      line-height: 1.25;
+      color: #6b4c12;
+      text-align: center;
+      padding: 0 2px;
+    }
+
+    .night-theme .char-lock-hint {
+      color: #ffd447;
+    }
+
+    .char-skill {
+      font-size: 0.64rem;
+      line-height: 1.3;
+      color: #1f436b;
+      text-align: center;
+      padding: 0 2px;
+    }
+
+    .night-theme .char-skill {
+      color: #9fc8f7;
+    }
+
+    .char-skill.hidden,
+    .char-lock-hint.hidden {
+      display: none;
+    }
+
+    .char-unlock-panel {
+      width: min(420px, 100%);
+      text-align: center;
+    }
+
+    .char-unlock-panel h2 {
+      margin-bottom: 12px;
+    }
+
+    .char-unlock-preview-wrap {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.08);
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .night-theme .char-unlock-preview-wrap {
+      background: rgba(0, 0, 0, 0.35);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .char-unlock-name {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0 0 8px;
+      color: #1a2a3a;
+    }
+
+    .night-theme .char-unlock-name {
+      color: #eef4fb;
+    }
+
+    .char-unlock-skill {
+      font-size: 0.82rem;
+      line-height: 1.4;
+      margin: 0;
+      color: #1f436b;
+    }
+
+    .night-theme .char-unlock-skill {
+      color: #9fc8f7;
     }
 
     .help-btn {
@@ -826,6 +1042,24 @@ title-chn: '小熊快跑'
     </div>
   </div>
 
+  <div class="help-modal hidden" id="charUnlockModal" role="dialog" aria-modal="true" aria-labelledby="charUnlockTitle">
+    <div class="help-panel char-unlock-panel">
+      <button class="help-close" id="charUnlockClose" type="button" aria-label="Close">×</button>
+      <h2 id="charUnlockTitle">
+        <span class="eng">Congratulations, you unlocked a new character!</span>
+        <span class="chn">恭喜，你解锁了新角色！</span>
+      </h2>
+      <div class="char-unlock-preview-wrap">
+        <canvas class="char-preview" id="charUnlockPreview" width="140" height="140"></canvas>
+      </div>
+      <p class="char-unlock-name">
+        <span class="eng" id="charUnlockNameEng"></span><span class="chn" id="charUnlockNameChn"></span>
+      </p>
+      <p class="char-unlock-skill eng" id="charUnlockSkillEng"></p>
+      <p class="char-unlock-skill chn" id="charUnlockSkillChn"></p>
+    </div>
+  </div>
+
   <div class="help-modal hidden" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
     <div class="help-panel">
       <button class="help-close" id="helpClose" type="button" aria-label="Close">×</button>
@@ -863,6 +1097,17 @@ title-chn: '小熊快跑'
       { id: 'goddess', folder: 'img/goddess', nameEng: 'Goddess', nameChn: '美少女神' },
     ];
 
+    const CHARACTER_SKILLS = {
+      drb: {
+        eng: 'Can break through the obstacles on the ground once',
+        chn: '可撞碎一次地面障碍（不会游戏结束）',
+      },
+      goddess: {
+        eng: 'Can fly through a pit once',
+        chn: '可飞越一次坑洞（不会游戏结束）',
+      },
+    };
+
     const CHARACTERS = RUSH_CHARACTER_ENTRIES.map((entry) => {
       const meta = entry.charsId ? CHAR_DATABASE.find((c) => c.id === entry.charsId) : null;
       return {
@@ -870,6 +1115,7 @@ title-chn: '小熊快跑'
         folder: entry.folder,
         nameEng: entry.nameEng ?? meta?.nameEng ?? entry.id,
         nameChn: entry.nameChn ?? meta?.nameChn ?? entry.id,
+        skill: CHARACTER_SKILLS[entry.id] ?? null,
       };
     });
     const canvas = document.getElementById('gameCanvas');
@@ -895,26 +1141,182 @@ title-chn: '小熊快跑'
     const helpBtn = document.getElementById('helpBtn');
     const helpModal = document.getElementById('helpModal');
     const helpClose = document.getElementById('helpClose');
+    const charUnlockModal = document.getElementById('charUnlockModal');
+    const charUnlockClose = document.getElementById('charUnlockClose');
+    const charUnlockPreview = document.getElementById('charUnlockPreview');
+    const charUnlockNameEng = document.getElementById('charUnlockNameEng');
+    const charUnlockNameChn = document.getElementById('charUnlockNameChn');
+    const charUnlockSkillEng = document.getElementById('charUnlockSkillEng');
+    const charUnlockSkillChn = document.getElementById('charUnlockSkillChn');
 
     const CHARACTER_KEY = 'bear-rush-new-character';
+    const BEST_SCORE_KEY = 'bear-rush-new-best';
+    const PROMO_UNLOCKS_KEY = 'bear-rush-new-promo-unlocks';
+    const CELEBRATED_UNLOCKS_KEY = 'bear-rush-new-unlock-celebrated';
+    const LEGACY_GODDESS_UNLOCK_KEY = 'bear-rush-new-goddess-unlocked';
+    const DRB_UNLOCK_SCORE = 1000;
+    const PROMOTION_CODES = {
+      'a34e2f8942e14764da6b734058745650453ba7c659f2f2c44d67c4a7fe9a72d5': ['goddess'],
+    };
 
-    const characterAssets = {};
+    function loadBestScore() {
+      const stored = parseInt(localStorage.getItem(BEST_SCORE_KEY) || '0', 10);
+      return Number.isFinite(stored) ? stored : 0;
+    }
+
+    function saveBestScore(value) {
+      localStorage.setItem(BEST_SCORE_KEY, String(value));
+    }
+
+    function getPromoUnlocks() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(PROMO_UNLOCKS_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function addPromoUnlock(charId) {
+      const unlocks = getPromoUnlocks();
+      if (!unlocks.includes(charId)) {
+        unlocks.push(charId);
+        localStorage.setItem(PROMO_UNLOCKS_KEY, JSON.stringify(unlocks));
+      }
+    }
+
+    function migrateLegacyUnlocks() {
+      if (localStorage.getItem(LEGACY_GODDESS_UNLOCK_KEY) === 'true') {
+        addPromoUnlock('goddess');
+        localStorage.removeItem(LEGACY_GODDESS_UNLOCK_KEY);
+      }
+    }
+
+    migrateLegacyUnlocks();
+
+    async function hashPromotionCode(input) {
+      const data = new TextEncoder().encode(input);
+      const digest = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    function isPromoUnlocked(id) {
+      return getPromoUnlocks().includes(id);
+    }
+
+    function isCharacterUnlocked(id) {
+      if (id === 'beary') return true;
+      if (id === 'drb') return loadBestScore() >= DRB_UNLOCK_SCORE;
+      return isPromoUnlocked(id);
+    }
+
+    function getCharacterLockHint(id) {
+      if (id === 'drb') {
+        return {
+          eng: `Reach ${DRB_UNLOCK_SCORE.toLocaleString()} points to unlock`,
+          chn: `达到 ${DRB_UNLOCK_SCORE.toLocaleString()} 分解锁`,
+        };
+      }
+      if (id === 'goddess') {
+        return {
+          eng: 'Unlock by promotion code',
+          chn: '使用促销码解锁',
+        };
+      }
+      return null;
+    }
+
+    function getCelebratedUnlocks() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(CELEBRATED_UNLOCKS_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function markUnlockCelebrated(charId) {
+      const celebrated = getCelebratedUnlocks();
+      if (!celebrated.includes(charId)) {
+        celebrated.push(charId);
+        localStorage.setItem(CELEBRATED_UNLOCKS_KEY, JSON.stringify(celebrated));
+      }
+    }
+
+    function showCharacterUnlockModal(charId) {
+      const char = CHARACTERS.find((c) => c.id === charId);
+      if (!char) return;
+      const assets = characterAssets[charId];
+      if (charUnlockPreview && assets?.run[0]) {
+        drawCharPreview(charUnlockPreview, assets.run[0]);
+      }
+      if (charUnlockNameEng) charUnlockNameEng.textContent = char.nameEng;
+      if (charUnlockNameChn) charUnlockNameChn.textContent = char.nameChn;
+      if (charUnlockSkillEng) charUnlockSkillEng.textContent = char.skill?.eng ?? '';
+      if (charUnlockSkillChn) charUnlockSkillChn.textContent = char.skill?.chn ?? '';
+      charUnlockModal.classList.remove('hidden');
+      syncLanguage();
+    }
+
+    function maybeCelebrateUnlock(charId) {
+      if (!isCharacterUnlocked(charId)) return;
+      if (getCelebratedUnlocks().includes(charId)) return;
+      markUnlockCelebrated(charId);
+      showCharacterUnlockModal(charId);
+    }
+
+    function celebratePendingUnlocks() {
+      for (const char of CHARACTERS) {
+        if (char.id === 'beary') continue;
+        if (isCharacterUnlocked(char.id) && !getCelebratedUnlocks().includes(char.id)) {
+          maybeCelebrateUnlock(char.id);
+          break;
+        }
+      }
+    }
+
+    async function redeemPromotionCode(code) {
+      const hash = await hashPromotionCode(code.trim());
+      const unlockIds = PROMOTION_CODES[hash];
+      if (!unlockIds?.length) {
+        return { ok: false };
+      }
+      const newlyUnlocked = unlockIds.filter((id) => !isCharacterUnlocked(id));
+      for (const id of unlockIds) {
+        addPromoUnlock(id);
+      }
+      return { ok: true, unlocked: unlockIds, newlyUnlocked };
+    }
+
+    function ensureSelectableCharacter() {
+      if (isCharacterUnlocked(selectedCharacterId)) return;
+      selectedCharacterId = 'beary';
+      localStorage.setItem(CHARACTER_KEY, selectedCharacterId);
+    }
+
     let selectedCharacterId = localStorage.getItem(CHARACTER_KEY) || 'beary';
     if (!CHARACTERS.some((c) => c.id === selectedCharacterId)) {
       selectedCharacterId = CHARACTERS[0].id;
     }
+    ensureSelectableCharacter();
 
+    const characterAssets = {};
     let previewAnimFrame = 0;
     let previewAnimId = null;
     let previewCharacterId = null;
 
     function isModalOpen() {
-      return !helpModal.classList.contains('hidden') || !charModal.classList.contains('hidden');
+      return (
+        !helpModal.classList.contains('hidden') ||
+        !charModal.classList.contains('hidden') ||
+        !charUnlockModal.classList.contains('hidden')
+      );
     }
 
     function closeAllModals() {
       helpModal.classList.add('hidden');
       charModal.classList.add('hidden');
+      charUnlockModal.classList.add('hidden');
       stopPreviewAnimation();
     }
 
@@ -944,8 +1346,13 @@ title-chn: '小熊快跑'
       closeAllModals();
       charModal.classList.remove('hidden');
       syncLanguage();
+      updateCharCardLocks();
       updateCharCardSelection();
-      startPreviewAnimation(selectedCharacterId);
+      if (isCharacterUnlocked(selectedCharacterId)) {
+        startPreviewAnimation(selectedCharacterId);
+      } else {
+        stopPreviewAnimation();
+      }
     });
     charClose.addEventListener('click', () => {
       charModal.classList.add('hidden');
@@ -958,9 +1365,16 @@ title-chn: '小熊快跑'
       }
     });
 
+    charUnlockClose.addEventListener('click', () => charUnlockModal.classList.add('hidden'));
+    charUnlockModal.addEventListener('click', (e) => {
+      if (e.target === charUnlockModal) charUnlockModal.classList.add('hidden');
+    });
+
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Escape') {
-        if (!charModal.classList.contains('hidden')) {
+        if (!charUnlockModal.classList.contains('hidden')) {
+          charUnlockModal.classList.add('hidden');
+        } else if (!charModal.classList.contains('hidden')) {
           charModal.classList.add('hidden');
           stopPreviewAnimation();
         } else if (!helpModal.classList.contains('hidden')) {
@@ -1034,6 +1448,7 @@ title-chn: '小熊快跑'
     }
 
     function applyCharacter(id) {
+      if (!isCharacterUnlocked(id)) return;
       const assets = characterAssets[id];
       if (!assets) return;
       selectedCharacterId = id;
@@ -1120,6 +1535,7 @@ title-chn: '小熊快跑'
     function buildCharGrid() {
       charGrid.innerHTML = '';
       for (const char of CHARACTERS) {
+        const lockHint = getCharacterLockHint(char.id);
         const card = document.createElement('button');
         card.type = 'button';
         card.className = 'char-card';
@@ -1127,21 +1543,114 @@ title-chn: '小熊快跑'
         card.innerHTML = `
           <div class="char-preview-wrap">
             <canvas class="char-preview" data-preview="${char.id}" width="120" height="120"></canvas>
+            <div class="char-lock-overlay hidden" data-lock-overlay aria-hidden="true">
+              <span class="pixel-lock"></span>
+            </div>
           </div>
           <span class="char-name eng">${char.nameEng}</span>
           <span class="char-name chn">${char.nameChn}</span>
+          ${
+            lockHint
+              ? `<span class="char-lock-hint eng">${lockHint.eng}</span><span class="char-lock-hint chn">${lockHint.chn}</span>`
+              : ''
+          }
+          ${
+            char.skill
+              ? `<span class="char-skill eng hidden">${char.skill.eng}</span><span class="char-skill chn hidden">${char.skill.chn}</span>`
+              : ''
+          }
         `;
+
         card.addEventListener('click', () => {
-          applyCharacter(char.id);
+          if (isCharacterUnlocked(char.id)) {
+            applyCharacter(char.id);
+          }
         });
+
         charGrid.appendChild(card);
       }
+
+      const promoCard = document.createElement('div');
+      promoCard.className = 'char-promo-card';
+      promoCard.innerHTML = `
+        <p class="char-promo-title eng">Enter promotion code to unlock characters</p>
+        <p class="char-promo-title chn">输入促销码解锁角色</p>
+        <input type="text" id="charPromoInput" autocomplete="off" placeholder="Promotion code / 促销码">
+        <button type="button" id="charPromoSubmit">
+          <span class="eng">Unlock</span><span class="chn">解锁</span>
+        </button>
+        <p class="char-promo-error hidden" id="charPromoError">
+          <span class="eng">Invalid promotion code</span><span class="chn">促销码无效</span>
+        </p>
+        <p class="char-promo-success hidden" id="charPromoSuccess">
+          <span class="eng">Character unlocked!</span><span class="chn">角色已解锁！</span>
+        </p>
+      `;
+      charGrid.appendChild(promoCard);
+
+      const promoInput = promoCard.querySelector('#charPromoInput');
+      const promoSubmit = promoCard.querySelector('#charPromoSubmit');
+      const promoError = promoCard.querySelector('#charPromoError');
+      const promoSuccess = promoCard.querySelector('#charPromoSuccess');
+
+      async function tryPromotionCode() {
+        if (!promoInput) return;
+        promoError?.classList.add('hidden');
+        promoSuccess?.classList.add('hidden');
+        const result = await redeemPromotionCode(promoInput.value);
+        if (!result.ok) {
+          promoError?.classList.remove('hidden');
+          return;
+        }
+        promoInput.value = '';
+        promoSuccess?.classList.remove('hidden');
+        updateCharCardLocks();
+        for (const id of result.newlyUnlocked) {
+          maybeCelebrateUnlock(id);
+        }
+        const pick = result.unlocked.find((id) => CHARACTERS.some((c) => c.id === id));
+        if (pick) {
+          applyCharacter(pick);
+          startPreviewAnimation(pick);
+        }
+      }
+
+      promoSubmit?.addEventListener('click', tryPromotionCode);
+      promoInput?.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          tryPromotionCode();
+        }
+      });
+
+      updateCharCardLocks();
       applyLanguageVisibility(rushPage);
+    }
+
+    function updateCharCardLocks() {
+      charGrid.querySelectorAll('.char-card').forEach((card) => {
+        const unlocked = isCharacterUnlocked(card.dataset.charId);
+        const overlay = card.querySelector('[data-lock-overlay]');
+        card.classList.toggle('locked', !unlocked);
+        card.disabled = false;
+        overlay?.classList.toggle('hidden', unlocked);
+        card.querySelectorAll('.char-lock-hint').forEach((hint) => {
+          hint.classList.toggle('hidden', unlocked || !getCharacterLockHint(card.dataset.charId));
+        });
+        card.querySelectorAll('.char-skill').forEach((skill) => {
+          skill.classList.toggle('hidden', !unlocked);
+        });
+        if (!unlocked) {
+          card.classList.remove('selected');
+        }
+      });
+      updateCharCardSelection();
     }
 
     function updateCharCardSelection() {
       charGrid.querySelectorAll('.char-card').forEach((card) => {
-        card.classList.toggle('selected', card.dataset.charId === selectedCharacterId);
+        const unlocked = isCharacterUnlocked(card.dataset.charId);
+        card.classList.toggle('selected', unlocked && card.dataset.charId === selectedCharacterId);
       });
     }
 
@@ -1149,6 +1658,7 @@ title-chn: '小熊快跑'
       await Promise.all(CHARACTERS.map(loadCharacterSprites));
       buildCharGrid();
       applyCharacter(selectedCharacterId);
+      celebratePendingUnlocks();
 
       const bgPaths = [
         ...SPRITE_PATHS.clouds,
@@ -1256,23 +1766,22 @@ title-chn: '小熊快跑'
     let gaps = [];
     let knives = [];
     let obstacleTimer = 0;
+    let runSkills = {
+      obstacleBreakUsed: false,
+      pitFlyUsed: false,
+    };
+
+    function resetRunSkills() {
+      runSkills.obstacleBreakUsed = false;
+      runSkills.pitFlyUsed = false;
+    }
 
     function syncLanguage() {
       applyLanguageVisibility(rushPage);
     }
 
-    const BEST_SCORE_KEY = 'bear-rush-new-best';
     const SPEED_MIN_MULT = 1.25;
     const SPEED_MAX_MULT = 2.75;
-
-    function loadBestScore() {
-      const stored = parseInt(localStorage.getItem(BEST_SCORE_KEY) || '0', 10);
-      return Number.isFinite(stored) ? stored : 0;
-    }
-
-    function saveBestScore(value) {
-      localStorage.setItem(BEST_SCORE_KEY, String(value));
-    }
 
     function speedMultiplier() {
       const tier = Math.floor(score / 100);
@@ -1299,6 +1808,12 @@ title-chn: '小熊快跑'
       if (isNewBest) saveBestScore(current);
       renderBestScore(best);
       bestScoreRow.classList.toggle('is-new-best', isNewBest);
+      if (charGrid.childElementCount) {
+        updateCharCardLocks();
+      }
+      if (isNewBest && best >= DRB_UNLOCK_SCORE) {
+        maybeCelebrateUnlock('drb');
+      }
     }
 
     function setButtonActive(button, active) {
@@ -1358,6 +1873,7 @@ title-chn: '小熊快跑'
       knives = [];
       obstacleTimer = 0;
       runAnimFrame = 0;
+      resetRunSkills();
     }
 
     function cancelDeathLoop() {
@@ -1652,8 +2168,17 @@ title-chn: '小熊快跑'
     function checkCollisions() {
       const hurtbox = playerHurtbox();
 
-      for (const obstacle of obstacles) {
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obstacle = obstacles[i];
         if (meaningfulHit(hurtbox, obstacleHurtbox(obstacle))) {
+          if (selectedCharacterId === 'drb' && !runSkills.obstacleBreakUsed) {
+            runSkills.obstacleBreakUsed = true;
+            obstacles.splice(i, 1);
+            score += 10;
+            scoreElement.textContent = score;
+            calculateGameSpeed();
+            continue;
+          }
           endGame();
           return;
         }
@@ -1661,11 +2186,23 @@ title-chn: '小熊快跑'
 
       const gapEdge = FORGIVENESS.gapEdge;
       for (const gap of gaps) {
+        if (gap.cleared) continue;
         if (
           hurtbox.x + hurtbox.width > gap.x + gapEdge &&
           hurtbox.x < gap.x + gap.width - gapEdge &&
           player.y + player.height >= gap.y
         ) {
+          if (selectedCharacterId === 'goddess' && !runSkills.pitFlyUsed) {
+            runSkills.pitFlyUsed = true;
+            gap.cleared = true;
+            const physics = getJumpPhysics();
+            player.velocityY = physics.jumpVelocity * 1.2;
+            player.jumping = true;
+            player.grounded = false;
+            player.dodging = false;
+            player.height = player.normalHeight;
+            continue;
+          }
           endGame();
           return;
         }
