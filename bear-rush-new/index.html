@@ -563,8 +563,60 @@ title-chn: '小熊快跑'
 
     .hud-left {
       display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .hud-pill-row {
+      display: flex;
       align-items: flex-start;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hud-skill-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 52px;
+      padding: 4px 0;
+    }
+
+    .hud-skill-row.hidden {
+      display: none;
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: center / 48px 48px no-repeat;
+      filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.35));
+    }
+
+    .skill-icon--shield {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' shape-rendering='crispEdges'%3E%3Crect x='11' y='1' width='2' height='1' fill='%23fff6a8'/%3E%3Crect x='10' y='2' width='4' height='1' fill='%23ffd447'/%3E%3Crect x='9' y='3' width='6' height='1' fill='%23e8bf2e'/%3E%3Crect x='8' y='4' width='8' height='1' fill='%236eb0ff'/%3E%3Crect x='7' y='5' width='10' height='1' fill='%236eb0ff'/%3E%3Crect x='6' y='6' width='12' height='1' fill='%234a90e2'/%3E%3Crect x='6' y='7' width='2' height='8' fill='%231a3464'/%3E%3Crect x='8' y='7' width='8' height='8' fill='%234a90e2'/%3E%3Crect x='16' y='7' width='2' height='8' fill='%231a3464'/%3E%3Crect x='8' y='7' width='2' height='8' fill='%232b6fd4'/%3E%3Crect x='14' y='7' width='2' height='8' fill='%236eb0ff'/%3E%3Crect x='10' y='8' width='4' height='5' fill='%23ffd447'/%3E%3Crect x='11' y='9' width='2' height='3' fill='%23fff6a8'/%3E%3Crect x='10' y='13' width='4' height='1' fill='%23c9a227'/%3E%3Crect x='7' y='15' width='10' height='1' fill='%234a90e2'/%3E%3Crect x='8' y='16' width='8' height='1' fill='%234a90e2'/%3E%3Crect x='9' y='17' width='6' height='1' fill='%232b6fd4'/%3E%3Crect x='10' y='18' width='4' height='1' fill='%232b6fd4'/%3E%3Crect x='11' y='19' width='2' height='1' fill='%231a3464'/%3E%3Crect x='11' y='20' width='2' height='1' fill='%23c9a227'/%3E%3Crect x='11' y='21' width='2' height='1' fill='%23a8841f'/%3E%3C/svg%3E");
+    }
+
+    .skill-icon--wing {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' shape-rendering='crispEdges'%3E%3Crect x='11' y='20' width='2' height='2' fill='%23fff'/%3E%3Crect x='10' y='19' width='4' height='1' fill='%23eef4fb'/%3E%3Crect x='9' y='18' width='6' height='1' fill='%23cfe8ff'/%3E%3Crect x='10' y='17' width='4' height='1' fill='%239fc8f7'/%3E%3Crect x='11' y='16' width='2' height='1' fill='%236eb0ff'/%3E%3Crect x='9' y='15' width='2' height='1' fill='%23fff'/%3E%3Crect x='13' y='15' width='2' height='1' fill='%23fff'/%3E%3Crect x='8' y='14' width='2' height='1' fill='%23fff'/%3E%3Crect x='14' y='14' width='2' height='1' fill='%23fff'/%3E%3Crect x='7' y='13' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='15' y='13' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='6' y='12' width='2' height='1' fill='%23fff'/%3E%3Crect x='16' y='12' width='2' height='1' fill='%23fff'/%3E%3Crect x='5' y='11' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='17' y='11' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='4' y='10' width='2' height='1' fill='%23fff'/%3E%3Crect x='18' y='10' width='2' height='1' fill='%23fff'/%3E%3Crect x='3' y='9' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='19' y='9' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='2' y='8' width='2' height='1' fill='%23fff'/%3E%3Crect x='20' y='8' width='2' height='1' fill='%23fff'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%239fc8f7'/%3E%3Crect x='21' y='7' width='1' height='1' fill='%239fc8f7'/%3E%3Crect x='3' y='6' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='19' y='6' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='4' y='5' width='2' height='1' fill='%23fff'/%3E%3Crect x='18' y='5' width='2' height='1' fill='%23fff'/%3E%3Crect x='5' y='4' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='17' y='4' width='2' height='1' fill='%23eef4fb'/%3E%3Crect x='6' y='3' width='2' height='1' fill='%23fff'/%3E%3Crect x='16' y='3' width='2' height='1' fill='%23fff'/%3E%3Crect x='7' y='2' width='2' height='1' fill='%239fc8f7'/%3E%3Crect x='15' y='2' width='2' height='1' fill='%239fc8f7'/%3E%3Crect x='8' y='1' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='14' y='1' width='2' height='1' fill='%23cfe8ff'/%3E%3Crect x='9' y='0' width='1' height='1' fill='%23fff'/%3E%3Crect x='14' y='0' width='1' height='1' fill='%23fff'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%236eb0ff'/%3E%3Crect x='16' y='15' width='1' height='1' fill='%236eb0ff'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%239fc8f7'/%3E%3Crect x='17' y='13' width='1' height='1' fill='%239fc8f7'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%236eb0ff'/%3E%3Crect x='18' y='10' width='1' height='1' fill='%236eb0ff'/%3E%3C/svg%3E");
+    }
+
+    .skill-icon--helmet {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' shape-rendering='crispEdges'%3E%3Crect x='11' y='1' width='2' height='1' fill='%23ffd447'/%3E%3Crect x='10' y='2' width='4' height='1' fill='%23e8bf2e'/%3E%3Crect x='9' y='3' width='6' height='1' fill='%23d4d8de'/%3E%3Crect x='8' y='4' width='8' height='1' fill='%23bebdbc'/%3E%3Crect x='7' y='5' width='10' height='1' fill='%23bebdbc'/%3E%3Crect x='7' y='6' width='10' height='3' fill='%238a8f98'/%3E%3Crect x='13' y='6' width='2' height='3' fill='%23d4d8de'/%3E%3Crect x='10' y='7' width='4' height='1' fill='%231f2428'/%3E%3Crect x='11' y='8' width='2' height='1' fill='%231f2428'/%3E%3Crect x='6' y='9' width='12' height='1' fill='%23666d78'/%3E%3Crect x='5' y='10' width='14' height='2' fill='%23666d78'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23444850'/%3E%3Crect x='18' y='12' width='1' height='1' fill='%23444850'/%3E%3Crect x='4' y='13' width='16' height='1' fill='%23444850'/%3E%3Crect x='4' y='14' width='16' height='1' fill='%232e3338'/%3E%3Crect x='5' y='15' width='14' height='1' fill='%23444850'/%3E%3Crect x='6' y='16' width='12' height='1' fill='%23666d78'/%3E%3Crect x='7' y='17' width='10' height='1' fill='%238a8f98'/%3E%3Crect x='8' y='18' width='8' height='1' fill='%23bebdbc'/%3E%3Crect x='9' y='19' width='6' height='1' fill='%23d4d8de'/%3E%3Crect x='10' y='20' width='4' height='1' fill='%23ffd447'/%3E%3Crect x='11' y='21' width='2' height='1' fill='%23c9a227'/%3E%3C/svg%3E");
+    }
+
+    .skill-icon-more {
+      color: #ffd447;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 48px;
+      letter-spacing: 0.06em;
+      padding: 0 4px;
+      filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.35));
     }
 
     .hud-pill .value--best {
@@ -949,14 +1001,17 @@ title-chn: '小熊快跑'
 
       <div class="rush-hud">
         <div class="hud-left">
-          <div class="hud-pill">
-            <span class="eng">Score</span><span class="chn">得分</span>
-            <span class="value" id="score">0</span>
+          <div class="hud-pill-row">
+            <div class="hud-pill">
+              <span class="eng">Score</span><span class="chn">得分</span>
+              <span class="value" id="score">0</span>
+            </div>
+            <div class="hud-pill">
+              <span class="eng">Best</span><span class="chn">最高</span>
+              <span class="value value--best" id="hudBestScore">0</span>
+            </div>
           </div>
-          <div class="hud-pill">
-            <span class="eng">Best</span><span class="chn">最高</span>
-            <span class="value value--best" id="hudBestScore">0</span>
-          </div>
+          <div class="hud-skill-row hidden" id="hudSkillRow" aria-label="Skill charges"></div>
         </div>
         <div class="hud-pill hud-speed">
           <span class="eng">Speed</span><span class="chn">速度</span>
@@ -1093,23 +1148,48 @@ title-chn: '小熊快跑'
 
     const RUSH_CHARACTER_ENTRIES = [
       { id: 'beary', charsId: 'beary', folder: 'img/beary' },
+      { id: 'little-bear', charsId: 'little-bear', folder: 'img/little-bear'},
       { id: 'drb', charsId: 'dr-chubie', folder: 'img/drb' },
       { id: 'goddess', folder: 'img/goddess', nameEng: 'Goddess of Beauty', nameChn: '美少女神' },
       { id: 'angel', folder: 'img/angel', nameEng: 'Mechnical Angel', nameChn: '机械天使' },
+      { id: 'dark', folder: 'img/dark', nameEng: 'Dark Fairy', nameChn: '暗黑仙子' },
     ];
+
+    const SKILL_CHARGE_INTERVAL = 500;
+    const STARTING_SKILL_CHARGES = 1;
+
+    const CHARACTER_PASSIVE_SKILLS = {
+      drb: 'shield',
+      goddess: 'wing',
+      'little-bear': 'helmet',
+    };
+
+    const SKILL_ICON_CLASS = {
+      shield: 'skill-icon--shield',
+      wing: 'skill-icon--wing',
+      helmet: 'skill-icon--helmet',
+    };
 
     const CHARACTER_SKILLS = {
       drb: {
-        eng: 'Can break through the obstacles on the ground once',
-        chn: '可撞碎一次地面障碍（不会游戏结束）',
+        eng: 'Gain a shield every 500 points',
+        chn: '每500分获得一面盾牌',
       },
       goddess: {
-        eng: 'Can fly through a pit once',
-        chn: '可飞越一次坑洞（不会游戏结束）',
+        eng: 'Gain a wing every 500 points',
+        chn: '每500分获得一对翅膀',
       },
       angel: {
-        eng: 'Gain points by 1.25× (rounded down for each obstacle)',
-        chn: '每个障碍得分 ×1.25（向下取整）',
+        eng: 'Gain points by 1.25× (rounded down)',
+        chn: '得分倍率 ×1.25（向下取整）',
+      },
+      dark: {
+        eng: 'Speed slow down slightly',
+        chn: '速度略微减慢',
+      },
+      'little-bear': {
+        eng: 'Gain a helmet every 500 points',
+        chn: '每500分获得一顶头盔',
       },
     };
 
@@ -1128,6 +1208,7 @@ title-chn: '小熊快跑'
     ctx.imageSmoothingEnabled = false;
     const scoreElement = document.getElementById('score');
     const hudBestScoreElement = document.getElementById('hudBestScore');
+    const hudSkillRow = document.getElementById('hudSkillRow');
     const speedBarFill = document.getElementById('speedBarFill');
     const finalScoreElement = document.getElementById('finalScore');
     const bestScoreElement = document.getElementById('bestScore');
@@ -1160,9 +1241,13 @@ title-chn: '小熊快跑'
     const CELEBRATED_UNLOCKS_KEY = 'bear-rush-new-unlock-celebrated';
     const LEGACY_GODDESS_UNLOCK_KEY = 'bear-rush-new-goddess-unlocked';
     const DRB_UNLOCK_SCORE = 1000;
+    const LITTLE_BEAR_UNLOCK_SCORE = 500;
     const PROMOTION_CODES = {
+      '3223de1f5b316f0ebac74074774f7c4a72a959f9abdb17fb1958552899db14df': ['drb'],
+      '3347a1cb8df54898da22781229f25ad221c4066c40f3fa42e4db7772b615fcca': ['little-bear'],
       'a34e2f8942e14764da6b734058745650453ba7c659f2f2c44d67c4a7fe9a72d5': ['goddess'],
       'f7c5298ee252f09e3b760c2980f02c81a3094ffc6c51020ab515eeef7cae3a7c': ['angel'],
+      '0fafbecb6d1f204086023a7ef712e98ec473b66386dd49945a569f0e4ba8de7c': ['dark'],
     };
 
     function loadBestScore() {
@@ -1212,30 +1297,46 @@ title-chn: '小熊快跑'
 
     function isCharacterUnlocked(id) {
       if (id === 'beary') return true;
-      if (id === 'drb') return loadBestScore() >= DRB_UNLOCK_SCORE;
+      if (id === 'little-bear') {
+        return loadBestScore() >= LITTLE_BEAR_UNLOCK_SCORE || isPromoUnlocked(id);
+      }
+      if (id === 'drb') return loadBestScore() >= DRB_UNLOCK_SCORE || isPromoUnlocked(id);
       return isPromoUnlocked(id);
     }
 
     function getCharacterLockHint(id) {
+      if (id === 'little-bear') {
+        return {
+          eng: `Reach ${LITTLE_BEAR_UNLOCK_SCORE.toLocaleString()} points to unlock`,
+          chn: `达到 ${LITTLE_BEAR_UNLOCK_SCORE.toLocaleString()} 分解锁`,
+        };
+      }
       if (id === 'drb') {
         return {
           eng: `Reach ${DRB_UNLOCK_SCORE.toLocaleString()} points to unlock`,
           chn: `达到 ${DRB_UNLOCK_SCORE.toLocaleString()} 分解锁`,
         };
       }
-      if (id === 'goddess') {
-        return {
-          eng: 'Unlock by promotion code',
-          chn: '使用促销码解锁',
-        };
-      }
-      if (id === 'angel') {
+      if (id === 'goddess' || id === 'angel' || id === 'dark') {
         return {
           eng: 'Unlock by promotion code',
           chn: '使用促销码解锁',
         };
       }
       return null;
+    }
+
+    const DARK_SPEED_FACTOR = 0.88;
+    const CHARACTER_VISUAL_SCALE = {
+      'little-bear': 0.92,
+    };
+
+    function characterSpeedFactor() {
+      return selectedCharacterId === 'dark' ? DARK_SPEED_FACTOR : 1;
+    }
+
+    function characterVisualScale(charId = selectedCharacterId) {
+      return CHARACTER_VISUAL_SCALE[charId] ?? 1;
     }
 
     const OBSTACLE_SCORE_BASE = 10;
@@ -1245,6 +1346,80 @@ title-chn: '小熊快跑'
         selectedCharacterId === 'angel' ? Math.floor(basePoints * 1.25) : basePoints;
       score += points;
       calculateGameSpeed();
+      syncScoreDisplay();
+    }
+
+    function getPassiveSkillType(charId = selectedCharacterId) {
+      return CHARACTER_PASSIVE_SKILLS[charId] ?? null;
+    }
+
+    function totalSkillCharges(skillType) {
+      if (!skillType || getPassiveSkillType() !== skillType) return 0;
+      return STARTING_SKILL_CHARGES + Math.floor(score / SKILL_CHARGE_INTERVAL);
+    }
+
+    function remainingSkillCharges(skillType) {
+      if (!skillType) return 0;
+      const used =
+        skillType === 'shield'
+          ? runSkillState.shieldsUsed
+          : skillType === 'wing'
+            ? runSkillState.wingsUsed
+            : skillType === 'helmet'
+              ? runSkillState.helmetsUsed
+              : 0;
+      return Math.max(0, totalSkillCharges(skillType) - used);
+    }
+
+    function consumeSkillCharge(skillType) {
+      if (remainingSkillCharges(skillType) <= 0) return false;
+      if (skillType === 'shield') runSkillState.shieldsUsed += 1;
+      else if (skillType === 'wing') runSkillState.wingsUsed += 1;
+      else if (skillType === 'helmet') runSkillState.helmetsUsed += 1;
+      else return false;
+      updateSkillHud();
+      return true;
+    }
+
+    function tryUsePassiveSkill(skillType, onSuccess) {
+      if (getPassiveSkillType() !== skillType) return false;
+      if (!consumeSkillCharge(skillType)) return false;
+      onSuccess();
+      return true;
+    }
+
+    function updateSkillHud() {
+      if (!hudSkillRow) return;
+      const skillType = getPassiveSkillType();
+      if (!skillType) {
+        hudSkillRow.classList.add('hidden');
+        hudSkillRow.innerHTML = '';
+        return;
+      }
+
+      const remaining = remainingSkillCharges(skillType);
+      hudSkillRow.classList.remove('hidden');
+      hudSkillRow.innerHTML = '';
+
+      const visibleCount = Math.min(remaining, 5);
+      for (let i = 0; i < visibleCount; i++) {
+        const icon = document.createElement('span');
+        icon.className = `skill-icon ${SKILL_ICON_CLASS[skillType]}`;
+        icon.setAttribute('aria-hidden', 'true');
+        hudSkillRow.appendChild(icon);
+      }
+
+      if (remaining > 5) {
+        const more = document.createElement('span');
+        more.className = 'skill-icon-more';
+        more.textContent = '...';
+        hudSkillRow.appendChild(more);
+      }
+    }
+
+    function syncScoreDisplay() {
+      scoreElement.textContent = score;
+      updateSkillHud();
     }
 
     function getCelebratedUnlocks() {
@@ -1320,6 +1495,12 @@ title-chn: '小熊快跑'
       selectedCharacterId = CHARACTERS[0].id;
     }
     ensureSelectableCharacter();
+
+    let runSkillState = {
+      shieldsUsed: 0,
+      wingsUsed: 0,
+      helmetsUsed: 0,
+    };
 
     const characterAssets = {};
     let previewAnimFrame = 0;
@@ -1492,7 +1673,10 @@ title-chn: '小熊快跑'
       }
       if (!gameRunning || awaitingStart) {
         drawFrame();
+      } else {
+        calculateGameSpeed();
       }
+      updateSkillHud();
     }
 
     function runFrameIndexForStep(step, count) {
@@ -1781,20 +1965,20 @@ title-chn: '小熊快跑'
       grounded: true,
       baseJumpVelocity: -11.5,
       baseGravity: 0.6,
+      wingHover: null,
     };
 
     let obstacles = [];
     let gaps = [];
     let knives = [];
+    let breakEffects = [];
     let obstacleTimer = 0;
-    let runSkills = {
-      obstacleBreakUsed: false,
-      pitFlyUsed: false,
-    };
 
     function resetRunSkills() {
-      runSkills.obstacleBreakUsed = false;
-      runSkills.pitFlyUsed = false;
+      runSkillState.shieldsUsed = 0;
+      runSkillState.wingsUsed = 0;
+      runSkillState.helmetsUsed = 0;
+      updateSkillHud();
     }
 
     function syncLanguage() {
@@ -1832,6 +2016,9 @@ title-chn: '小熊快跑'
       if (charGrid.childElementCount) {
         updateCharCardLocks();
       }
+      if (isNewBest && best >= LITTLE_BEAR_UNLOCK_SCORE) {
+        maybeCelebrateUnlock('little-bear');
+      }
       if (isNewBest && best >= DRB_UNLOCK_SCORE) {
         maybeCelebrateUnlock('drb');
       }
@@ -1842,7 +2029,7 @@ title-chn: '小熊快跑'
     }
 
     function calculateGameSpeed() {
-      gameSpeed = baseGameSpeed * speedMultiplier();
+      gameSpeed = baseGameSpeed * speedMultiplier() * characterSpeedFactor();
       updateSpeedHud();
     }
 
@@ -1892,6 +2079,7 @@ title-chn: '小熊快跑'
       obstacles = [];
       gaps = [];
       knives = [];
+      breakEffects = [];
       obstacleTimer = 0;
       runAnimFrame = 0;
       resetRunSkills();
@@ -1913,6 +2101,7 @@ title-chn: '小熊快跑'
       player.jumping = false;
       player.dodging = false;
       player.grounded = true;
+      player.wingHover = null;
     }
 
     function initGame() {
@@ -1933,11 +2122,11 @@ title-chn: '小熊快跑'
       resetWorld();
       resetPlayer();
 
-      scoreElement.textContent = '0';
       finalScoreElement.textContent = '0';
       renderBestScore(loadBestScore());
       bestScoreRow.classList.remove('is-new-best');
       updateSpeedHud();
+      syncScoreDisplay();
       setButtonActive(jumpBtn, false);
       setButtonActive(dodgeBtn, false);
 
@@ -1956,6 +2145,7 @@ title-chn: '小熊快跑'
       canRestart = false;
       startOverlay.classList.add('hidden');
       gameOverOverlay.classList.add('hidden');
+      calculateGameSpeed();
       startGameLoop();
     }
 
@@ -1970,8 +2160,8 @@ title-chn: '小熊快跑'
       awaitingStart = false;
       gameRunning = true;
       canRestart = false;
-      scoreElement.textContent = '0';
-      updateSpeedHud();
+      syncScoreDisplay();
+      calculateGameSpeed();
       gameOverOverlay.classList.add('hidden');
       startGameLoop();
     }
@@ -2137,8 +2327,131 @@ title-chn: '小熊快跑'
       groundOffset += gameSpeed;
     }
 
+    function startObstacleBreak(obstacle) {
+      const cols = 3;
+      const rows = 3;
+      const pieceW = obstacle.width / cols;
+      const pieceH = obstacle.height / rows;
+      const pieces = [];
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          pieces.push({
+            x: obstacle.x + col * pieceW,
+            y: obstacle.y + row * pieceH,
+            w: pieceW,
+            h: pieceH,
+            col,
+            row,
+            vx: 1.2 + Math.random() * 3.5,
+            vy: -2.8 - Math.random() * 3.5,
+            vr: (Math.random() - 0.5) * 0.22,
+            rotation: 0,
+            life: 26 + Math.floor(Math.random() * 8),
+          });
+        }
+      }
+
+      breakEffects.push({
+        variant: obstacle.variant,
+        img: obstacle.variant >= 0 ? sprites.obstacles[obstacle.variant] : null,
+        ox: obstacle.x,
+        oy: obstacle.y,
+        ow: obstacle.width,
+        oh: obstacle.height,
+        cols,
+        rows,
+        pieces,
+        flash: 7,
+      });
+    }
+
+    function updateBreakEffects() {
+      for (let i = breakEffects.length - 1; i >= 0; i--) {
+        const effect = breakEffects[i];
+        if (effect.flash > 0) effect.flash -= 1;
+        effect.ox -= gameSpeed;
+
+        let alive = false;
+        for (const piece of effect.pieces) {
+          if (piece.life <= 0) continue;
+          alive = true;
+          piece.x -= gameSpeed;
+          piece.x += piece.vx;
+          piece.y += piece.vy;
+          piece.vy += 0.42;
+          piece.vx *= 0.985;
+          piece.rotation += piece.vr;
+          piece.life -= 1;
+        }
+
+        if (!alive && effect.flash <= 0) {
+          breakEffects.splice(i, 1);
+        }
+      }
+    }
+
+    function drawBreakEffects() {
+      for (const effect of breakEffects) {
+        if (effect.flash > 0) {
+          const flashAlpha = effect.flash / 7;
+          ctx.fillStyle = `rgba(255, 244, 170, ${flashAlpha * 0.55})`;
+          ctx.fillRect(effect.ox - 6, effect.oy - 6, effect.ow + 12, effect.oh + 12);
+          ctx.fillStyle = `rgba(110, 176, 255, ${flashAlpha * 0.35})`;
+          ctx.fillRect(effect.ox - 2, effect.oy - 2, effect.ow + 4, effect.oh + 4);
+        }
+
+        for (const piece of effect.pieces) {
+          if (piece.life <= 0) continue;
+          const alpha = Math.min(1, piece.life / 12);
+
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          ctx.translate(piece.x + piece.w / 2, piece.y + piece.h / 2);
+          ctx.rotate(piece.rotation);
+
+          if (effect.img) {
+            const sx = (piece.col / effect.cols) * effect.img.width;
+            const sy = (piece.row / effect.rows) * effect.img.height;
+            const sw = effect.img.width / effect.cols;
+            const sh = effect.img.height / effect.rows;
+            ctx.drawImage(effect.img, sx, sy, sw, sh, -piece.w / 2, -piece.h / 2, piece.w, piece.h);
+          } else {
+            ctx.fillStyle = '#d9480f';
+            ctx.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+            ctx.strokeStyle = '#8b1e00';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+          }
+
+          ctx.restore();
+        }
+      }
+    }
+
     function updatePlayer() {
       player.x = 100;
+
+      if (player.wingHover) {
+        const bob = Math.sin(runAnimFrame * 0.22) * 2.5;
+        player.y = player.wingHover.hoverY + bob;
+        player.velocityY = 0;
+        player.grounded = false;
+        player.jumping = false;
+
+        if (
+          !player.wingHover.gap ||
+          player.wingHover.gap.x + player.wingHover.gap.width < player.x + 8
+        ) {
+          player.wingHover = null;
+          player.y = groundY - player.height;
+          player.velocityY = 0;
+          player.grounded = true;
+        }
+
+        if (gameRunning) runAnimFrame++;
+        return;
+      }
 
       if (!player.grounded) {
         const physics = getJumpPhysics();
@@ -2157,6 +2470,8 @@ title-chn: '小熊快跑'
     }
 
     function updateObstacles() {
+      updateBreakEffects();
+
       for (let i = obstacles.length - 1; i >= 0; i--) {
         obstacles[i].x -= gameSpeed;
         if (obstacles[i].x + obstacles[i].width < 0) {
@@ -2171,31 +2486,51 @@ title-chn: '小熊快跑'
           gaps.splice(i, 1);
           score += 15;
           calculateGameSpeed();
+          syncScoreDisplay();
         }
       }
 
       for (let i = knives.length - 1; i >= 0; i--) {
+        const knife = knives[i];
+
+        if (knife.deflected) {
+          knife.y += knife.deflectVy;
+          knife.deflectVy += 0.38;
+          knife.rotation += 0.72;
+          knife.x -= gameSpeed * 0.12;
+          knife.deflectLife -= 1;
+          if (knife.deflectLife <= 0 || knifeVisualY(knife) + knife.height < -48) {
+            knives.splice(i, 1);
+          }
+          continue;
+        }
+
         knives[i].x -= knives[i].speed;
         knives[i].rotation += 0.4;
         if (knives[i].x + knives[i].width < 0) {
           knives.splice(i, 1);
           score += 25;
           calculateGameSpeed();
+          syncScoreDisplay();
         }
       }
     }
 
     function checkCollisions() {
+      if (player.wingHover) return;
+
       const hurtbox = playerHurtbox();
 
       for (let i = obstacles.length - 1; i >= 0; i--) {
         const obstacle = obstacles[i];
         if (meaningfulHit(hurtbox, obstacleHurtbox(obstacle))) {
-          if (selectedCharacterId === 'drb' && !runSkills.obstacleBreakUsed) {
-            runSkills.obstacleBreakUsed = true;
-            obstacles.splice(i, 1);
-            awardObstacleScore();
-            scoreElement.textContent = score;
+          if (
+            tryUsePassiveSkill('shield', () => {
+              startObstacleBreak(obstacle);
+              obstacles.splice(i, 1);
+              awardObstacleScore();
+            })
+          ) {
             continue;
           }
           endGame();
@@ -2211,15 +2546,17 @@ title-chn: '小熊快跑'
           hurtbox.x < gap.x + gap.width - gapEdge &&
           player.y + player.height >= gap.y
         ) {
-          if (selectedCharacterId === 'goddess' && !runSkills.pitFlyUsed) {
-            runSkills.pitFlyUsed = true;
-            gap.cleared = true;
-            const physics = getJumpPhysics();
-            player.velocityY = physics.jumpVelocity * 1.2;
-            player.jumping = true;
-            player.grounded = false;
-            player.dodging = false;
-            player.height = player.normalHeight;
+          if (
+            tryUsePassiveSkill('wing', () => {
+              gap.cleared = true;
+              player.dodging = false;
+              player.height = player.normalHeight;
+              player.wingHover = {
+                gap,
+                hoverY: groundY - player.height - 10,
+              };
+            })
+          ) {
             continue;
           }
           endGame();
@@ -2227,10 +2564,21 @@ title-chn: '小熊快跑'
         }
       }
 
-      for (const knife of knives) {
+      for (let i = knives.length - 1; i >= 0; i--) {
+        const knife = knives[i];
+        if (knife.deflected) continue;
         if (player.dodging && player.grounded) continue;
 
         if (meaningfulHit(hurtbox, knifeLaneHitbox(knife))) {
+          if (
+            tryUsePassiveSkill('helmet', () => {
+              knife.deflected = true;
+              knife.deflectVy = -11;
+              knife.deflectLife = 42;
+            })
+          ) {
+            continue;
+          }
           endGame();
           return;
         }
@@ -2507,12 +2855,17 @@ title-chn: '小熊快跑'
         drawH = 104;
       }
 
+      drawH = Math.round(drawH * characterVisualScale());
+
       const drawW = drawH * (sprite.width / sprite.height);
       const drawX = player.x + (player.width - drawW) / 2;
       const drawY = feetY - drawH;
 
       ctx.save();
-      if (player.jumping) {
+      if (player.wingHover) {
+        ctx.shadowColor = 'rgba(180, 220, 255, 0.55)';
+        ctx.shadowBlur = 18;
+      } else if (player.jumping) {
         ctx.shadowColor = 'rgba(255, 215, 0, 0.35)';
         ctx.shadowBlur = 14;
       }
@@ -2553,6 +2906,10 @@ title-chn: '小熊快跑'
         ctx.translate(centerX, centerY);
         ctx.rotate(knife.rotation);
 
+        if (knife.deflected) {
+          ctx.globalAlpha = Math.min(1, (knife.deflectLife ?? 30) / 30);
+        }
+
         if (img) {
           ctx.drawImage(img, -knife.width / 2, -knife.height / 2, knife.width, knife.height);
         } else {
@@ -2564,7 +2921,7 @@ title-chn: '小熊快跑'
 
         ctx.restore();
 
-        if (knife.x < 320) {
+        if (!knife.deflected && knife.x < 320) {
           ctx.strokeStyle = 'rgba(255, 210, 80, 0.45)';
           ctx.lineWidth = 2;
           ctx.setLineDash([5, 5]);
@@ -2582,6 +2939,7 @@ title-chn: '小熊快跑'
       drawGround();
       drawGaps();
       drawObstacles();
+      drawBreakEffects();
       drawKnives();
       drawPlayer();
     }
@@ -2589,7 +2947,7 @@ title-chn: '小熊快跑'
     function drawFrame() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       withGameCamera(drawGameWorld);
-      scoreElement.textContent = score;
+      syncScoreDisplay();
     }
 
     function updateDeathPlayer() {
@@ -2599,7 +2957,7 @@ title-chn: '小熊快跑'
 
     function isPlayerOffScreen() {
       const sprite = sprites.over;
-      const drawH = 112;
+      const drawH = Math.round(112 * characterVisualScale());
       const feetY = player.y + player.height;
       const drawY = feetY - drawH;
       return drawY > worldViewBottom() + 24;
@@ -2621,7 +2979,7 @@ title-chn: '小熊快跑'
       updateDeathPlayer();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       withGameCamera(drawGameWorld);
-      scoreElement.textContent = score;
+      syncScoreDisplay();
 
       if (isPlayerOffScreen()) {
         deathLoopId = null;
@@ -2669,7 +3027,7 @@ title-chn: '小熊快跑'
       checkCollisions();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       withGameCamera(drawGameWorld);
-      scoreElement.textContent = score;
+      syncScoreDisplay();
 
       if (gameRunning) {
         gameLoopId = requestAnimationFrame(gameLoop);
