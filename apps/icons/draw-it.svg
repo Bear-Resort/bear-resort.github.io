@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Draw It">
+  <rect width="64" height="64" rx="14" fill="#ec4899"/>
+  <rect x="16" y="16" width="8" height="8" fill="#fce7f3"/>
+  <rect x="24" y="16" width="8" height="8" fill="#fbcfe8"/>
+  <rect x="32" y="16" width="8" height="8" fill="#f472b6"/>
+  <rect x="16" y="24" width="8" height="8" fill="#f9a8d4"/>
+  <rect x="24" y="24" width="8" height="8" fill="#fff"/>
+  <rect x="32" y="24" width="8" height="8" fill="#db2777"/>
+  <rect x="40" y="24" width="8" height="8" fill="#831843"/>
+  <rect x="16" y="32" width="8" height="8" fill="#be185d"/>
+  <rect x="24" y="32" width="8" height="8" fill="#fdf2f8"/>
+  <path d="M38 38l14 14" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M48 38l4-4 4 4-4 4z" fill="#fef08a"/>
+</svg>

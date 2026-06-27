@@ -1,0 +1,437 @@
+---
+layout: default
+title: 'Gaokao Grade Simulator'
+title-chn: '高考查分模拟器'
+---
+
+<div class="gaokao-page">
+  <style>
+    .gaokao-page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 0 2rem;
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    .gaokao-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .gaokao-toolbar button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: var(--main-color);
+      color: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .gaokao-toolbar button.secondary {
+      background: var(--secondary-color);
+      color: var(--main-color);
+    }
+
+    .gaokao-toolbar button:hover {
+      filter: brightness(1.05);
+    }
+
+    .gaokao-editor {
+      background: var(--background-light);
+      border: 1px solid var(--secondary-light);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    .gaokao-editor h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--main-color);
+    }
+
+    .gaokao-field-row {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .gaokao-field-row label {
+      font-size: 0.88rem;
+      color: var(--text-color);
+    }
+
+    .gaokao-field-row input[type='text'],
+    .gaokao-field-row input[type='number'] {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.35rem 0.5rem;
+      border: 1px solid var(--secondary-light);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      background: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .gaokao-subjects {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+
+    .gaokao-subject-line {
+      display: grid;
+      grid-template-columns: 1fr 5rem;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .gaokao-subject-line.required label {
+      font-weight: 600;
+    }
+
+    .gaokao-subject-line.elective {
+      grid-template-columns: 1.4rem 1fr 5rem;
+    }
+
+    .gaokao-subject-line.optional-genshin {
+      grid-template-columns: 1.4rem 1fr 5rem;
+      margin-top: 0.35rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--secondary-light);
+    }
+
+    .gaokao-hint {
+      font-size: 0.78rem;
+      color: var(--text-color);
+      opacity: 0.7;
+      margin: 0.35rem 0 0;
+    }
+
+    .gaokao-hint.warn {
+      color: #c2410c;
+      opacity: 1;
+    }
+
+    #gaokao-slip {
+      background: #fff;
+      color: #1a1a1a;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      border: 1px solid #999;
+      font-family: 'SimSun', 'Songti SC', 'STSong', 'NSimSun', 'Noto Serif SC', serif;
+    }
+
+    #gaokao-slip .slip-header {
+      background: #245baf;
+      color: #fff;
+      text-align: center;
+      padding: 1.25rem 1rem 1rem;
+      border-bottom: 3px solid #c8161d;
+    }
+
+    #gaokao-slip .slip-header .org {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      opacity: 0.95;
+    }
+
+    #gaokao-slip .slip-header h1 {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.45;
+      color: #fff !important;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    #gaokao-slip .slip-header .year-tag {
+      display: inline-block;
+      margin-top: 0.45rem;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.15rem 0.65rem;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+
+    #gaokao-slip .slip-body {
+      padding: 1.1rem 1.25rem 1.35rem;
+      background: #fff;
+    }
+
+    #gaokao-slip .slip-meta {
+      border: 1px solid #666;
+      border-radius: 0;
+      padding: 0.55rem 0.75rem;
+      margin-bottom: 1rem;
+      background: #fafafa;
+    }
+
+    #gaokao-slip .slip-meta-row {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      font-size: 0.92rem;
+      padding: 0.28rem 0;
+      border-bottom: 1px solid #ddd;
+      line-height: 1.5;
+    }
+
+    #gaokao-slip .slip-meta-row:last-child {
+      border-bottom: none;
+    }
+
+    #gaokao-slip .slip-meta-row span:first-child {
+      color: #333;
+      text-align: justify;
+      text-align-last: justify;
+    }
+
+    #gaokao-slip .slip-meta-row span:last-child,
+    #gaokao-slip #slip-name,
+    #gaokao-slip #slip-exam-id,
+    #gaokao-slip #slip-date {
+      font-weight: 400;
+      color: #000 !important;
+      text-align: right;
+      padding-left: 0;
+      padding-right: 0.25rem;
+    }
+
+    #gaokao-slip .slip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      table-layout: fixed;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #gaokao-slip .slip-table th,
+    #gaokao-slip .slip-table td {
+      border: 1px solid #333 !important;
+      padding: 0.5rem 0.65rem;
+      text-align: center;
+      vertical-align: middle;
+      color: #000 !important;
+      background-color: #fff !important;
+    }
+
+    #gaokao-slip .slip-table th {
+      background-color: #e8e8e8 !important;
+      color: #000 !important;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    #gaokao-slip .slip-table tbody tr:nth-child(odd) td,
+    #gaokao-slip .slip-table tbody tr:nth-child(even) td {
+      background-color: #fff !important;
+    }
+
+    #gaokao-slip .slip-table tbody tr:nth-child(even) td {
+      background-color: #fafafa !important;
+    }
+
+    #gaokao-slip .slip-table td.subject {
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+
+    #gaokao-slip .slip-table td:last-child {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    #gaokao-slip .slip-total {
+      margin-top: 1rem;
+      text-align: center;
+      padding: 0.85rem 0.75rem;
+      background: #fff;
+      border: 2px solid #c8161d;
+      border-radius: 0;
+    }
+
+    #gaokao-slip .slip-total .label {
+      font-size: 0.95rem;
+      color: #000;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+    }
+
+    #gaokao-slip .slip-total .score {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #c8161d;
+      line-height: 1.3;
+      letter-spacing: 0.05em;
+    }
+
+    #gaokao-slip .slip-footer {
+      margin-top: 0.9rem;
+      font-size: 0.72rem;
+      color: #666;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    #gaokao-slip .slip-watermark {
+      margin-top: 0.45rem;
+      text-align: center;
+      font-size: 0.65rem;
+      color: #bbb;
+      letter-spacing: 0.15em;
+    }
+
+    @media (max-width: 500px) {
+      .gaokao-field-row {
+        grid-template-columns: 1fr;
+      }
+
+      #gaokao-slip .slip-header h1 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <div class="gaokao-editor">
+    <h2>填写信息</h2>
+    <div class="gaokao-field-row">
+      <label for="student-name">姓名</label>
+      <input id="student-name" type="text" value="刘可数" maxlength="20" />
+    </div>
+    <div class="gaokao-field-row">
+      <label for="exam-id">准考证号</label>
+      <input id="exam-id" type="text" value="202606011234567" maxlength="20" />
+    </div>
+    <div class="gaokao-field-row">
+      <label for="query-date">查询时间</label>
+      <input id="query-date" type="text" value="" maxlength="30" />
+    </div>
+
+    <h2 style="margin-top: 1rem">科目成绩</h2>
+    <div class="gaokao-subjects" id="required-subjects">
+      <div class="gaokao-subject-line required" data-subject="chinese">
+        <label for="score-chinese">语文 <small>(150)</small></label>
+        <input id="score-chinese" type="number" min="0" max="150" value="150" />
+      </div>
+      <div class="gaokao-subject-line required" data-subject="math">
+        <label for="score-math">数学 <small>(150)</small></label>
+        <input id="score-math" type="number" min="0" max="150" value="150" />
+      </div>
+      <div class="gaokao-subject-line required" data-subject="english">
+        <label for="score-english">英语 <small>(150)</small></label>
+        <input id="score-english" type="number" min="0" max="150" value="150" />
+      </div>
+    </div>
+
+    <h2 style="margin-top: 1rem">选考科目（6选3）</h2>
+    <p class="gaokao-hint">最多选择三门：物理、化学、生物、历史、地理、政治</p>
+    <p class="gaokao-hint warn" id="elective-warn" hidden>已选满三门，请先取消一科再选其他科目。</p>
+    <div class="gaokao-subjects" id="elective-subjects">
+      <div class="gaokao-subject-line elective" data-subject="physics">
+        <input type="checkbox" id="pick-physics" data-elective="physics" checked />
+        <label for="pick-physics">物理 <small>(100)</small></label>
+        <input id="score-physics" type="number" min="0" max="100" value="100" />
+      </div>
+      <div class="gaokao-subject-line elective" data-subject="chemistry">
+        <input type="checkbox" id="pick-chemistry" data-elective="chemistry" checked />
+        <label for="pick-chemistry">化学 <small>(100)</small></label>
+        <input id="score-chemistry" type="number" min="0" max="100" value="100" />
+      </div>
+      <div class="gaokao-subject-line elective" data-subject="biology">
+        <input type="checkbox" id="pick-biology" data-elective="biology" checked />
+        <label for="pick-biology">生物 <small>(100)</small></label>
+        <input id="score-biology" type="number" min="0" max="100" value="100" />
+      </div>
+      <div class="gaokao-subject-line elective" data-subject="history">
+        <input type="checkbox" id="pick-history" data-elective="history" />
+        <label for="pick-history">历史 <small>(100)</small></label>
+        <input id="score-history" type="number" min="0" max="100" value="79" disabled />
+      </div>
+      <div class="gaokao-subject-line elective" data-subject="geography">
+        <input type="checkbox" id="pick-geography" data-elective="geography" />
+        <label for="pick-geography">地理 <small>(100)</small></label>
+        <input id="score-geography" type="number" min="0" max="100" value="100" disabled />
+      </div>
+      <div class="gaokao-subject-line elective" data-subject="politics">
+        <input type="checkbox" id="pick-politics" data-elective="politics" />
+        <label for="pick-politics">政治 <small>(100)</small></label>
+        <input id="score-politics" type="number" min="0" max="100" value="100" disabled />
+      </div>
+    </div>
+
+    <h2 style="margin-top: 1rem">附加科目（可选）</h2>
+    <div class="gaokao-subjects">
+      <div class="gaokao-subject-line optional-genshin">
+        <input type="checkbox" id="pick-genshin" />
+        <label for="pick-genshin">原神 <small>(无上限)</small></label>
+        <input id="score-genshin" type="number" min="0" value="150" disabled />
+      </div>
+    </div>
+    <p class="gaokao-hint">原神分数计入总分，纯属娱乐，请勿当真。</p>
+  </div>
+
+  <div class="gaokao-toolbar">
+    <button type="button" id="refresh-slip">更新成绩单</button>
+    <button type="button" id="screenshot-btn" class="secondary">生成截图</button>
+  </div>
+
+  <div id="gaokao-slip">
+    <div class="slip-header">
+      <div class="org">小熊乐园考试院 · 模拟查询系统</div>
+      <h1>普通高等学校招生全国统一考试成绩</h1>
+      <span class="year-tag">2026 年</span>
+    </div>
+    <div class="slip-body">
+      <div class="slip-meta">
+        <div class="slip-meta-row">
+          <span>姓名</span>
+          <span id="slip-name">刘可数</span>
+        </div>
+        <div class="slip-meta-row">
+          <span>准考证号</span>
+          <span id="slip-exam-id">202606011234567</span>
+        </div>
+        <div class="slip-meta-row">
+          <span>查询时间</span>
+          <span id="slip-date">—</span>
+        </div>
+      </div>
+
+      <table class="slip-table">
+        <thead>
+          <tr>
+            <th>科目</th>
+            <th>成绩</th>
+          </tr>
+        </thead>
+        <tbody id="slip-scores"></tbody>
+      </table>
+
+      <div class="slip-total">
+        <div class="label">总分</div>
+        <div class="score" id="slip-total">0</div>
+      </div>
+
+      <div class="slip-footer">
+        本页面为高考成绩模拟器，仅供娱乐与界面演示，不具有任何官方效力。
+      </div>
+      <div class="slip-watermark">BEAR RESORT · GAO KAO SIM</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="./main.js"></script>

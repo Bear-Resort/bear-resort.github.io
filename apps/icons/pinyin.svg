@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pinyin">
+  <rect width="64" height="64" rx="14" fill="#dc2626"/>
+  <rect x="29" y="16" width="6" height="30" rx="1" fill="#fef2f2"/>
+  <rect x="17" y="27" width="30" height="5" rx="1" fill="#fef2f2"/>
+  <rect x="19" y="37" width="26" height="4" rx="1" fill="#fecaca"/>
+  <text x="32" y="54" text-anchor="middle" fill="#fecaca" font-size="9" font-family="Arial, Helvetica, sans-serif">zhong</text>
+</svg>

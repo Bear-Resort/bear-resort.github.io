@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Penguin glasses">
+  <rect width="400" height="400" fill="#dbeafe"/>
+  <ellipse cx="200" cy="250" rx="95" ry="110" fill="#1e293b"/>
+  <ellipse cx="200" cy="265" rx="62" ry="78" fill="#f8fafc"/>
+  <circle cx="200" cy="135" r="58" fill="#1e293b"/>
+  <circle cx="200" cy="145" r="38" fill="#f8fafc"/>
+  <circle cx="185" cy="125" r="7" fill="#fff"/><circle cx="185" cy="125" r="3" fill="#0f172a"/>
+  <circle cx="215" cy="125" r="7" fill="#fff"/><circle cx="215" cy="125" r="3" fill="#0f172a"/>
+  <rect x="150" y="118" width="38" height="22" rx="8" fill="none" stroke="#0f172a" stroke-width="4"/>
+  <rect x="212" y="118" width="38" height="22" rx="8" fill="none" stroke="#0f172a" stroke-width="4"/>
+  <line x1="188" y1="129" x2="212" y2="129" stroke="#0f172a" stroke-width="4"/>
+  <polygon points="200,138 188,152 212,152" fill="#f97316"/>
+  <ellipse cx="170" cy="355" rx="22" ry="12" fill="#f97316"/>
+  <ellipse cx="230" cy="355" rx="22" ry="12" fill="#f97316"/>
+</svg>
